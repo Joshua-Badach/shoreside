@@ -23,6 +23,14 @@ footer ::-moz-selection{
   background: nth($rpsBrand, 4);
   color: nth($rpsBrand, 5);
 }
+a:hover{
+  background: nth($rpsBrand, 1);
+  color: nth($rpsBrand, 4);
+}
+footer li a:hover{
+  background: nth($rpsBrand, 2);
+  color: nth($rpsBrand, 4);
+}
 
 //==========headings==========
 h1{
@@ -134,4 +142,14 @@ footer ul{
 }
 footer .logo{
   margin-top: 21.3%;
+}
+footer .socmed{
+  margin: 5%;
+}
+.socmed{
+  height: 50px;
+  width: 50px;
+  background: nth($rpsBrand, 4);
+  border-radius: 45px;
+  display: inline-flex;
 }

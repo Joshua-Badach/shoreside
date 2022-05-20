@@ -31,6 +31,16 @@ footer ::-moz-selection {
   color: #000000;
 }
 
+a:hover {
+  background: #0069ad;
+  color: #ffffff;
+}
+
+footer li a:hover {
+  background: #ad0034;
+  color: #ffffff;
+}
+
 h1 {
   font-family: "American Captain";
   color: #ffffff;
@@ -146,4 +156,16 @@ footer ul {
 
 footer .logo {
   margin-top: 21.3%;
+}
+
+footer .socmed {
+  margin: 5%;
+}
+
+.socmed {
+  height: 50px;
+  width: 50px;
+  background: #ffffff;
+  border-radius: 45px;
+  display: inline-flex;
 }
