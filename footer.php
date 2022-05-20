@@ -33,9 +33,9 @@
     <div class="row">
         <span class="col-lg-4 offset-lg-4">
 <!--            replace with icons when assets are made-->
-            <div class="socmed"></div>
-            <div class="socmed"></div>
-            <div class="socmed"></div>
+            <div id="facebookIcon" class="socmed"></div>
+            <div id="youtubeIcon" class="socmed"></div>
+            <div id="instaIcon" class="socmed"></div>
         </span>
     </div>
     <div class="row">

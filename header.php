@@ -17,11 +17,11 @@
 
 <body <?php body_class(); ?>>
     <?php wp_body_open(); ?>
-<div class="container">
-    <div class="row">
-        <div class="test col-lg-4">
-            <h3>header hooked up</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias at, beatae dolores dolorum et excepturi expedita harum maiores nulla odio officiis porro quaerat quas quibusdam saepe sunt ut voluptas.</p>
-        </div>
-
-    </div>
+<!--<div class="container">-->
+<!--    <div class="row">-->
+<!--        <div class="test col-lg-4">-->
+<!--            <h3>header hooked up</h3>-->
+<!--            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias at, beatae dolores dolorum et excepturi expedita harum maiores nulla odio officiis porro quaerat quas quibusdam saepe sunt ut voluptas.</p>-->
+<!--        </div>-->
+<!---->
+<!--    </div>-->

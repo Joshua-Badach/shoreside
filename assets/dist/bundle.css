@@ -169,3 +169,11 @@ footer .socmed {
   border-radius: 45px;
   display: inline-flex;
 }
+
+.errorHeading {
+  font-family: "D-DIN Condensed Bold";
+  color: #ffffff;
+  font-size: 15rem;
+  margin-top: 50px;
+  margin-bottom: 15px;
+}

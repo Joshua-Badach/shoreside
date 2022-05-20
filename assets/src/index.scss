@@ -4,6 +4,13 @@
 $font: 'D-DIN Condensed', 'D-DIN Condensed Bold', 'American Captain';
 $fontSizing: 1.313rem, 2.25rem, 3rem, 3.75rem, 4.5rem, 5.25rem;
 //Tweak fontSizing later... these are way off.
+//fix this later...
+//#facebookIcon{
+//  background-image: url("../src/library/images/facebook.png");
+//  width: 50px;
+//  height: 50px;
+//}
+$errorFont: 'D-DIN Condensed Bold', #ffffff, 15rem;
 
 //==========colors==========
 $rpsBrand: #0069ad, #ad0034, #959595, #ffffff, #000000;
@@ -152,4 +159,11 @@ footer .socmed{
   background: nth($rpsBrand, 4);
   border-radius: 45px;
   display: inline-flex;
+}
+.errorHeading{
+  font-family: nth($errorFont, 1);
+  color: nth($errorFont, 2);
+  font-size: nth($errorFont, 3);
+  margin-top: 50px;
+  margin-bottom: 15px;
 }
