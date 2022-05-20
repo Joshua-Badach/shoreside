@@ -1,0 +1,28 @@
+{
+  "name": "rpsshoreside",
+  "version": "1.0.0",
+  "description": "Custom theme created for Recreational Power Sports",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack --config webpack.config.js"
+  },
+  "author": "Joshua Badach",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^10.4.7",
+    "css-loader": "^6.7.1",
+    "mini-css-extract-plugin": "^2.6.0",
+    "postcss-loader": "^6.2.1",
+    "sass": "^1.51.0",
+    "slick-carousel": "^1.8.1",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2"
+  },
+  "dependencies": {
+    "bootstrap-4-grid": "^3.4.0",
+    "node-sass": "^7.0.1",
+    "normalize-css": "^2.3.1",
+    "sass-loader": "^13.0.0"
+  }
+}
