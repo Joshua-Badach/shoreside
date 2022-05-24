@@ -33,7 +33,7 @@
     <div class="row">
         <span class="col-lg-4 offset-lg-4">
 <!--            replace with icons when assets are made-->
-            <div id="facebookIcon" class="socmed"></div>
+            <div id="facebookIcon" class="socmed"><img src="assets/dist/84e674e28a2bedd375b4.png" width="50px" height="50px"></svg></div>
             <div id="youtubeIcon" class="socmed"></div>
             <div id="instaIcon" class="socmed"></div>
         </span>

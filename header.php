@@ -15,8 +15,12 @@
     <?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>>
+<body <?php body_class(); ?> >
+
     <?php wp_body_open(); ?>
+<!--    add analytics to wp_body_open eventually-->
+
+
 <!--<div class="container">-->
 <!--    <div class="row">-->
 <!--        <div class="test col-lg-4">-->

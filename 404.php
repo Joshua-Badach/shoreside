@@ -1,7 +1,7 @@
 <?php
 get_header()
 ?>
-
+<div class="errorPage">
 <div class="container">
     <div class="row">
         <div class="offset-lg-7 col-lg-5">
@@ -10,7 +10,7 @@ get_header()
         </div>
     </div>
 </div>
-
+</div>
 
 <?php
 get_footer();

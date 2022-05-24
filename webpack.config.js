@@ -1,6 +1,7 @@
-const path = require('path')
-const webpack = require('webpack')
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const path = require('path');
+const webpack = require('webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const svgToMiniDataURI = require('mini-svg-data-uri');
 
 
 module.exports = {
@@ -10,6 +11,10 @@ module.exports = {
   watch: true,
   plugins:[
     new MiniCssExtractPlugin({
+      filename: "bundle.css",
+      chunkFilename: "bundle-[id].css"
+    }),
+    new svgToMiniDataURI({
       filename: "bundle.css",
       chunkFilename: "bundle-[id].css"
     })
@@ -44,6 +49,7 @@ module.exports = {
             loader: 'url-loader',
             options: {
               limit: 8192,
+              mimetype: 'image/png'
             },
           },
         ],
@@ -54,7 +60,8 @@ module.exports = {
           loader: 'url-loader',
           options: {
             limit: 10000,
-            mimetype: 'image/svg+xml'
+            mimetype: 'image/svg+xml',
+            generator: (content) => svgToMiniDataURI(content.toString)
           }
         }]
       }
