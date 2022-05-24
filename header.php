@@ -1,31 +1,13 @@
-<?php
-/**
- * Header file for the Shoreside Recreational Power Sports Theme.
- *
- * @package WordPress
- * @subpackage rpsShoreside
- */
-
-?><!DOCTYPE html>
-<html lang="<?php language_attributes(); ?>"></html>
+<!DOCTYPE html>
+<html <?php language_attributes(); ?>>
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" >
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <?php wp_head(); ?>
+    <?php wp_title(); ?>
 </head>
-
-<body <?php body_class(); ?> >
-
-    <?php wp_body_open(); ?>
-<!--    add analytics to wp_body_open eventually-->
-
-
-<!--<div class="container">-->
-<!--    <div class="row">-->
-<!--        <div class="test col-lg-4">-->
-<!--            <h3>header hooked up</h3>-->
-<!--            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias at, beatae dolores dolorum et excepturi expedita harum maiores nulla odio officiis porro quaerat quas quibusdam saepe sunt ut voluptas.</p>-->
-<!--        </div>-->
-<!---->
-<!--    </div>-->
+<body>
+<header>
+    <?php get_template_part( 'template-parts/header/nav' ); ?>
+</header>

@@ -1,5 +1,4 @@
 <?php
-
 if ( ! function_exists( 'rpsShoreside_setup') ):
 
     function rpsShoreside_setup(){
@@ -31,20 +30,26 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
 
 
     function add_theme_scripts(){
-        wp_enqueue_style( 'main', get_template_directory_uri() . '/assets/dist/main.bundle.js', false );
+        wp_enqueue_script( 'main', get_template_directory_uri() . '/assets/dist/main.bundle.js', false );
         wp_enqueue_style( 'bundle', get_template_directory_uri() . '/assets/dist/bundle.css', false );
     }
     add_action( 'wp_enqueue_scripts', 'add_theme_scripts');
 
-    register_nav_menus( array(
-        'primary'   => __( 'Primary Menu', 'rpsShoreside' ),
-        'secondary' => __( 'Secondary Menu', 'rpsShoreside')
+//    Wordpress primary and secondary menus
+//    register_nav_menus( array(
+//        'primary'   => __( 'Primary Menu', 'rpsShoreside' ),
+//        'secondary' => __( 'Secondary Menu', 'rpsShoreside')
+//
+//    ) );
 
-    ) );
+    function shoreside_custom_menu(){
+        register_nav_menu( 'shoreside_menu', __('Shoreside Menu'));
+    }
+    add_action('init', 'shoreside_custom_menu');
 
     add_theme_support( 'editor-styles' );
 
-    add_theme_support( 'title-tag' );
+//    add_theme_support( 'title-tag' );
 
     function register_menu( $locations = array() ){
         global $_wp_registered_nav_menus;

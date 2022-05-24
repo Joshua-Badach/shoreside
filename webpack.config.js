@@ -14,10 +14,10 @@ module.exports = {
       filename: "bundle.css",
       chunkFilename: "bundle-[id].css"
     }),
-    new svgToMiniDataURI({
-      filename: "bundle.css",
-      chunkFilename: "bundle-[id].css"
-    })
+    // new svgToMiniDataURI({
+    //   filename: "bundle.css",
+    //   chunkFilename: "bundle-[id].css"
+    // })
   ],
   module: {
     rules: [
@@ -61,7 +61,7 @@ module.exports = {
           options: {
             limit: 10000,
             mimetype: 'image/svg+xml',
-            generator: (content) => svgToMiniDataURI(content.toString)
+            // generator: (content) => svgToMiniDataURI(content.toString)
           }
         }]
       }
