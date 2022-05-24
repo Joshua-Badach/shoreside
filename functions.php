@@ -18,15 +18,30 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
 
     function shoreside_logo_setup() {
         $defaults = array(
-            'height'                  =>400,
-            'width'                   =>300,
-            'flex-height'             =>true,
-            'flex-width'              =>true,
-            'header-text'             =>array( 'site-title', 'site-description' ),
-           'unlink-homepage-logo'    =>true, );
+            'height'                    =>400,
+            'width'                     =>300,
+            'flex-height'               =>true,
+            'flex-width'                =>true,
+            'header-text'               =>array( 'site-title', 'site-description' ),
+            'unlink-homepage-logo'      =>true, );
         add_theme_support('custom-logo', $defaults);
     }
     add_action( 'after_setup_theme', 'shoreside_logo_setup' );
+
+
+//    tweak this to handle hero video when appropriate
+    function shoreside_header_setup(){
+        $args = array(
+            'default-image'             =>get_template_directory_uri() . 'assets/src/library/images/404background.jpg',
+            'default-text-color'        =>'0069ad',
+            'width'                     =>'1920',
+            'height'                    =>'1440',
+            'flex-width'                =>true,
+            'flex-height'               =>true,
+        );
+        add_theme_support('shoreside-header', $args);
+    }
+    add_action('after_setup_theme', 'shoreside_header_setup');
 
 
     function add_theme_scripts(){
@@ -49,8 +64,9 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
 
     add_theme_support( 'editor-styles' );
 
-//    add_theme_support( 'title-tag' );
+    add_theme_support( 'title-tag' );
 
+//    custom menu setup
     function register_menu( $locations = array() ){
         global $_wp_registered_nav_menus;
 

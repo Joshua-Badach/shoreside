@@ -8,6 +8,8 @@
     <?php wp_title(); ?>
 </head>
 <body>
-<header>
-    <?php get_template_part( 'template-parts/header/nav' ); ?>
-</header>
+    <div class="carousel">
+        <header>
+            <?php get_template_part( 'template-parts/header/nav' ); ?>
+        </header>
+    </div>
