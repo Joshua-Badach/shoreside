@@ -28,7 +28,6 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
     }
     add_action( 'after_setup_theme', 'shoreside_logo_setup' );
 
-
 //    tweak this to handle hero video when appropriate
     function shoreside_header_setup(){
         $args = array(
@@ -50,17 +49,20 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
     }
     add_action( 'wp_enqueue_scripts', 'add_theme_scripts');
 
-//    Wordpress primary and secondary menus
-//    register_nav_menus( array(
-//        'primary'   => __( 'Primary Menu', 'rpsShoreside' ),
-//        'secondary' => __( 'Secondary Menu', 'rpsShoreside')
-//
-//    ) );
-
     function shoreside_custom_menu(){
         register_nav_menu( 'shoreside_menu', __('Shoreside Menu'));
     }
     add_action('init', 'shoreside_custom_menu');
+
+// tweak function later to add class col-lg-2 automatically
+
+//    function add_class_on_nav($classes, $item, $args){
+//        if(isset($args->add_li_class)) {
+//            $classess[] = $args->add_li_class;
+//        }
+//        return $classes;
+//    }
+//    add_filter( 'nav_menu_css_class', 'add_class_on_nav', 1, 3 );
 
     add_theme_support( 'editor-styles' );
 

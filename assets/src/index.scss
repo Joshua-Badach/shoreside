@@ -86,8 +86,20 @@ span{
 }
 
 //==========menu==========
-.shoreside_menu_class{
-
+#menu-main{
+  list-style: none;
+  position: relative;
+  top: 50px;
+  padding: 0;
+}
+#menu-main li{
+  background-color: rgba(149, 149, 149, .5);
+  text-align: center;
+}
+#menu-main li a{
+  color: nth($rpsBrand, 4);
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+//  neat little trick for text outline
 }
 
 
@@ -112,6 +124,17 @@ button span{
 
 
 //====================Body Styling====================
+.news{
+  background-color: nth($rpsBrand, 1);
+  color: nth($rpsBrand, 4);
+  height: 25px;
+}
+.news p{
+  font-size: 16px;
+  text-align: center;
+  margin: 0;
+  padding-top: 2.5px;
+}
 .container a{
   font-family: nth($font, 1);
   color: nth($rpsBrand, 2);
@@ -122,14 +145,6 @@ button span{
 }
 .container span{
   font-family: nth($font, 1);
-}
-
-//Tester background for the carousel text and heading
-.test{
-  background-color: nth($rpsBrand, 3);
-  opacity: 0.4;
-  height: 5%;
-  margin: 5px;
 }
 
 //====================Footer Styling====================
@@ -178,8 +193,9 @@ footer .socmed{
 //  background-image: url("/library/images/404background.jpg");
 //    }
 .carousel{
+  //margin is quick and dirty fix for now. figure out why body is hovering below news banner
+  margin-top: -16px;
   width: 100%;
-  height: 75%;
-  aspect-ratio: 4/ 3;
+  aspect-ratio: 16/ 9;
   background-color: grey;
 }
