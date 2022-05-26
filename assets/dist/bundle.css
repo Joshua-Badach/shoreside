@@ -124,6 +124,24 @@ button span {
   font-size: 1rem;
 }
 
+.home-block {
+  top: -550px;
+  margin-bottom: -200px;
+}
+
+.home-heading {
+  font-size: 3rem;
+  font-family: "D-DIN Condensed";
+  text-shadow: none;
+  -webkit-text-stroke: unset;
+}
+
+.power {
+  font-family: "American Captain" !important;
+  font-size: 2.25rem;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
 .news {
   background-color: #0069ad;
   color: #ffffff;

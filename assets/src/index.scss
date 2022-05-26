@@ -121,7 +121,22 @@ button span{
 }
 
 //====================Header Styling====================
-
+//switch from hard coding when content is populated dynamically
+.home-block{
+  top: -550px;
+  margin-bottom: -200px;
+}
+.home-heading{
+  font-size: nth($fontSizing, 3);
+  font-family: nth($font, 1);
+  text-shadow: none;
+  -webkit-text-stroke: unset;
+}
+.power{
+  font-family: nth($font, 3) !important;
+  font-size: nth($fontSizing, 2);
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
 
 //====================Body Styling====================
 .news{
