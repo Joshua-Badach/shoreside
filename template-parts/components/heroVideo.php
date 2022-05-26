@@ -1,6 +1,8 @@
 <!--change this to dynamic content later-->
 
 <div class="heroVideo">
-    <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4?autoplay=1 &loop=1 &autopause=0" allow="accelerometer; clipboard-write; encrypted-media; muted; gyroscope; autoplay; playsinline">
-    </iframe>
+    <video autoplay loop muted>
+        <source src="wp-content/themes/rpsShoreside/assets/src/library/videos/VideoPlaceholder.mp4" type="video/mp4">
+    </video>
+<!--    webpack issue again, again remove hardcoding-->
 </div>
