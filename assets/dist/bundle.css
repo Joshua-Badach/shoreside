@@ -91,14 +91,14 @@ span {
   font-size: 1.313rem;
 }
 
-#menu-main {
-  list-style: none;
+nav {
   position: relative;
   top: 50px;
   padding: 0;
 }
 
 #menu-main li {
+  list-style: none;
   background-color: rgba(149, 149, 149, 0.5);
   text-align: center;
 }
@@ -201,9 +201,14 @@ footer .socmed {
   margin-bottom: 15px;
 }
 
-.carousel {
-  margin-top: -16px;
+.heroVideo {
+  margin-top: -55px;
   width: 100%;
   aspect-ratio: 16/9;
   background-color: grey;
+}
+
+.heroVideo iframe {
+  width: 100%;
+  height: 100%;
 }
