@@ -4,8 +4,8 @@
     <div class="row">
         <div class="col-lg-5 home-block">
             <h1 class="home-heading">We put the <span class="power">POWER</span> in power sports</h1>
-            <img src="http://placekitten.com/200/200" alt="">
-<!--change to logo when I fix the webpack image issue-->
+            <img src="wp-content/themes/rpsShoreside/assets/src/library/images/logo.png" alt="Recreational Power Sports Logo" alt="Recreational Power Sports Logo">
+<!--Fix the bloody webpack issue, remove the hardcoding-->
         </div>
     </div>
     <div class="row">

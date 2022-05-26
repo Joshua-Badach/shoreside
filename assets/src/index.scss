@@ -126,6 +126,10 @@ button span{
   top: -550px;
   margin-bottom: -200px;
 }
+.home-block img{
+  width: 200px;
+  height: 200px;
+}
 .home-heading{
   font-size: nth($fontSizing, 3);
   font-family: nth($font, 1);

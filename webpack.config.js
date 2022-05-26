@@ -43,24 +43,26 @@ module.exports = {
         ]
       },
       {
-        test: /\.(png|jpg|gif)$/i,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 8192,
-              mimetype: 'image/png'
-            },
-          },
-        ],
+        test: /\.png$/,
+        use: 'url-loader'
       },
+      // {
+      //   test: /\.(png|jpg|gif)$/i,
+      //   use: [
+      //     {
+      //       loader: 'file-loader',
+      //       options: {
+      //         mimetype: 'image/png',
+      //       },
+      //     },
+      //   ],
+      // },
       {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
         use: [{
           loader: 'url-loader',
           options: {
-            limit: 10000,
-            mimetype: 'image/svg+xml',
+            generator: (content) => svgToMiniDataURI(content.toString()),
             // generator: (content) => svgToMiniDataURI(content.toString)
           }
         }]

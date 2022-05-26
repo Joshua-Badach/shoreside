@@ -129,6 +129,11 @@ button span {
   margin-bottom: -200px;
 }
 
+.home-block img {
+  width: 200px;
+  height: 200px;
+}
+
 .home-heading {
   font-size: 3rem;
   font-family: "D-DIN Condensed";
