@@ -8,8 +8,12 @@
 <!--Fix the bloody webpack issue, remove the hardcoding-->
         </div>
     </div>
+    <div class="row brandSpan">
+        <?php get_template_part('template-parts/components/brands') ?>
+    </div>
+
     <div class="row">
-    <p class="col-lg-12">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid commodi consequuntur excepturi fugit ipsam iusto modi, molestiae nostrum provident recusandae reprehenderit repudiandae sint sunt suscipit temporibus unde voluptates voluptatum! Vero!</p>
+        <p class="col-lg-12">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid commodi consequuntur excepturi fugit ipsam iusto modi, molestiae nostrum provident recusandae reprehenderit repudiandae sint sunt suscipit temporibus unde voluptates voluptatum! Vero!</p>
 
 
     <p class="col-lg-12">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid commodi consequuntur excepturi fugit ipsam iusto modi, molestiae nostrum provident recusandae reprehenderit repudiandae sint sunt suscipit temporibus unde voluptates voluptatum! Vero!</p>

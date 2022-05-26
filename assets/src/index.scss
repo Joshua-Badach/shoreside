@@ -216,9 +216,45 @@ footer .socmed{
   margin-top: -55px;
   width: 100%;
   aspect-ratio: 16/ 9;
-  background-color: grey;
 }
 .heroVideo video{
   width: 100%;
   height: 100%;
+}
+.brandSpan{
+  margin-top: -275px;
+  margin-bottom: 50px;
+}
+.brands{
+  min-height: 500px;
+  background-color: nth($rpsBrand, 1);
+  box-shadow: 9px 6px 4px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 9px 6px 4px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 9px 6px 4px 0px rgba(0,0,0,0.75);
+  -webkit-transition: height, 2s transform 1s;
+  -moz-transition: height 2s, transform 1s;
+  -ms-transition: height 2s, transform 1s;
+  -o-transition: height 2s, transform 1s;
+  transition: height 2s, transform 1s;
+}
+.brands:hover{
+  -webkit-transform: translateY(-60px);
+  -moz-transform: translateY(-60px);
+  -ms-transform: translateY(-60px);
+  -o-transform: translateY(-60px);
+  transform: translateY(-60px);
+}
+.brands p{
+  color: nth($rpsBrand, 4);
+  padding: 5px;
+}
+.brands h5{
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.brands img{
+  padding: 0;
+  width: 100%;
+  aspect-ratio: 1/ 1;
 }
