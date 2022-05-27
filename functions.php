@@ -77,6 +77,8 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
 
     add_theme_support( 'title-tag' );
 
+    add_theme_support( 'post-thumbnails' );
+
 //    custom menu setup
     function register_menu( $locations = array() ){
         global $_wp_registered_nav_menus;

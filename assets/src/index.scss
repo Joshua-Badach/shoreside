@@ -200,6 +200,13 @@ footer .logo{
 footer .socmed{
   margin: 1%;
 }
+.button{
+  border: 2px solid nth($rpsBrand, 4);
+  border-radius: 45px;
+  width: 100px;
+  height: 30px;
+  font-size: 14px;
+}
 .socmed{
   height: 40px;
   width: 40px;
