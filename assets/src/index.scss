@@ -112,6 +112,16 @@ button{
 button span{
   font-size: 1rem;
 }
+@keyframes wiggle {
+  0%   { transform: scale(1,1)      translateY(0); }
+  10%  { transform: scale(1.1,.9)   translateY(0); }
+  30%  { transform: scale(.9,1.1)   translateY(-10px); }
+  50%  { transform: scale(1.05,.95) translateY(0); }
+  57%  { transform: scale(1,1)      translateY(-2px); }
+  64%  { transform: scale(1,1)      translateY(0); }
+  100% { transform: scale(1,1)      translateY(0); }
+}
+
 
 //====================Header Styling====================
 //switch from hard coding when content is populated dynamically
@@ -191,19 +201,38 @@ footer .socmed{
   margin: 1%;
 }
 .socmed{
-  height: 30px;
-  width: 30px;
+  height: 40px;
+  width: 40px;
   background: nth($rpsBrand, 4);
   border-radius: 45px;
   display: inline-flex;
+  -webkit-animation-duration: 2s;
+  -moz-animation-duration: 2s;
+  -o-animation-duration: 2s;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+  -webkit-transform-origin: bottom;
+  -moz-transform-origin: bottom;
+  -ms-transform-origin: bottom;
+  -o-transform-origin: bottom;
+  transform-origin: bottom;
+  box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.75);
+
+}
+.socmed:hover{
+  -webkit-animation: wiggle .5s;
+  -o-animation: wiggle .5s;
+  animation: wiggle .5s;
 }
 .socmed img{
   width: 60%;
   height: 60%;
 }
 .socmed object{
-  width: 90%;
-  height: 90%;
+  width: 100%;
+  height: 100%;
 }
 #facebookIcon{
   justify-content: center;

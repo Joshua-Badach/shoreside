@@ -42,10 +42,6 @@ module.exports = {
           'sass-loader'
         ]
       },
-      {
-        test: /\.png$/,
-        use: 'url-loader'
-      },
       // {
       //   test: /\.(png|jpg|gif)$/i,
       //   use: [
@@ -57,16 +53,16 @@ module.exports = {
       //     },
       //   ],
       // },
-      {
-        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        use: [{
-          loader: 'url-loader',
-          options: {
-            generator: (content) => svgToMiniDataURI(content.toString()),
-            // generator: (content) => svgToMiniDataURI(content.toString)
-          }
-        }]
-      }
+      // {
+      //   test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+      //   use: [{
+      //     loader: 'url-loader',
+      //     options: {
+      //       generator: (content) => svgToMiniDataURI(content.toString()),
+      //       // generator: (content) => svgToMiniDataURI(content.toString)
+      //     }
+      //   }]
+      // }
     ],
   },
   output: {

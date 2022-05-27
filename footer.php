@@ -27,14 +27,14 @@
             </div>
             <div class="row">
                 <span class="col-lg-4 offset-lg-4">
-<!--            replace with icons when assets are made-->
-                    <div id="facebookIcon" class="socmed"><img src="assets/dist/84e674e28a2bedd375b4.png" width="50px" height="50px"></svg></div>
-                    <div id="youtubeIcon" class="socmed"></div>
-                    <div id="instaIcon" class="socmed"></div>
+<!--            replace with svg and animate when assets are made-->
+                    <div id="facebookIcon" class="socmed"><object data="wp-content/themes/rpsShoreside/assets/src/library/images/facebook.svg"></object></div>
+                    <div id="youtubeIcon" class="socmed"><object data="wp-content/themes/rpsShoreside/assets/src/library/images/youtube.svg"></object></div>
+                    <div id="instaIcon" class="socmed"><object data="wp-content/themes/rpsShoreside/assets/src/library/images/instagram.svg"></object></div>
                 </span>
             </div>
             <div class="row">
-                <sub class="col-lg-12">&copy; 2022 Recreational Power Sports</sub>
+                <span class="col-lg-12">&copy; 2022 Recreational Power Sports</span>
             </div>
         </footer>
     </body>
