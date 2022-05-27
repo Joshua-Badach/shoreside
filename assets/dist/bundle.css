@@ -153,8 +153,8 @@ button span {
 }
 
 .home-block img {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
 }
 
 .home-heading {
@@ -257,10 +257,18 @@ footer .socmed {
   -moz-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.75);
 }
 
+.socmed object {
+  pointer-events: none;
+}
+
 .socmed:hover {
   -webkit-animation: wiggle 0.5s;
   -o-animation: wiggle 0.5s;
   animation: wiggle 0.5s;
+}
+
+.socmed a:hover {
+  background: none;
 }
 
 .socmed img {
@@ -269,6 +277,11 @@ footer .socmed {
 }
 
 .socmed object {
+  width: 100%;
+  height: 100%;
+}
+
+.socmed a {
   width: 100%;
   height: 100%;
 }
@@ -293,6 +306,11 @@ footer .socmed {
 #instaIcon object {
   width: 100%;
   height: 100%;
+}
+
+#tiktokIcon {
+  justify-content: center;
+  align-items: center;
 }
 
 .errorHeading {

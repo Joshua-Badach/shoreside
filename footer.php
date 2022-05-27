@@ -15,9 +15,9 @@
                 </div>
                 <div class="col-lg-2">
                     <h5>HOURS</h5>
-                    <p>Weekdays: 8:00Am to 5:00pm</p>
-                    <p>Saturday: 10:00Am to 2:00pm</p>
-                    <p>Sunday: Closed</p>
+                    <p>Weekdays: 8:00Am to 5:00pm
+                    Saturday: 10:00Am to 2:00pm
+                    Sunday: Closed</p>
                 </div>
                 <div class="col-lg-4 offset-lg-1">
                     <h5>SUBSCRIBE TO OUR NEWSLETTER</h5>
@@ -28,9 +28,26 @@
             <div class="row">
                 <span class="col-lg-4 offset-lg-4">
 <!--            replace with svg and animate when assets are made-->
-                    <div id="facebookIcon" class="socmed"><object data="wp-content/themes/rpsShoreside/assets/src/library/images/facebook.svg"></object></div>
-                    <div id="youtubeIcon" class="socmed"><object data="wp-content/themes/rpsShoreside/assets/src/library/images/youtube.svg"></object></div>
-                    <div id="instaIcon" class="socmed"><object data="wp-content/themes/rpsShoreside/assets/src/library/images/instagram.svg"></object></div>
+                    <div id="facebookIcon" class="socmed">
+                        <a href="https://www.facebook.com/recpowersports/" target="_blank">
+                            <object data="wp-content/themes/rpsShoreside/assets/src/library/images/facebook.svg"></object>
+                        </a>
+                    </div>
+                    <div id="youtubeIcon" class="socmed">
+                        <a href="https://www.youtube.com/channel/UCl8h_s4q3vnYPLc6tWwppgA" target="_blank">
+                            <object data="wp-content/themes/rpsShoreside/assets/src/library/images/youtube.svg"></object>
+                        </a>
+                    </div>
+                    <div id="instaIcon" class="socmed">
+                        <a href="https://www.instagram.com/recreationalpowersports/?hl=en" target="_blank">
+                            <object data="wp-content/themes/rpsShoreside/assets/src/library/images/instagram.svg"></object>
+                        </a>
+                    </div>
+                    <div id="tiktokIcon" class="socmed">
+                        <a href="https://www.tiktok.com/@recreationalpowersports" target="_blank">
+                            <object data="wp-content/themes/rpsShoreside/assets/src/library/images/tiktok.svg"></object>
+                        </a>
+                    </div>
                 </span>
             </div>
             <div class="row">

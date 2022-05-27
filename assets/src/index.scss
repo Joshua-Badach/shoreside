@@ -130,8 +130,8 @@ button span{
   margin-bottom: -200px;
 }
 .home-block img{
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
 }
 .home-heading{
   font-size: nth($fontSizing, 3);
@@ -145,6 +145,7 @@ button span{
   font-size: nth($fontSizing, 2);
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
+//Not displaying heading because of logo prominence
 .home-block h1{
   display: none;
 }
@@ -219,18 +220,27 @@ footer .socmed{
   box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.75);
   -webkit-box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.75);
-
+}
+.socmed object{
+  pointer-events: none;
 }
 .socmed:hover{
   -webkit-animation: wiggle .5s;
   -o-animation: wiggle .5s;
   animation: wiggle .5s;
 }
+.socmed a:hover{
+  background: none;
+}
 .socmed img{
   width: 60%;
   height: 60%;
 }
 .socmed object{
+  width: 100%;
+  height: 100%;
+}
+.socmed a{
   width: 100%;
   height: 100%;
 }
@@ -251,6 +261,10 @@ footer .socmed{
 #instaIcon object{
   width: 100%;
   height: 100%;
+}
+#tiktokIcon{
+  justify-content: center;
+  align-items: center;
 }
 .errorHeading{
   font-family: nth($errorFont, 1);
