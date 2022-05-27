@@ -2,7 +2,7 @@
         <footer>
             <div class="row">
                 <span class="col-lg-3">
-                    <img class="logo" src="\assets\src\library\img\RPS-Logo.png" alt="">
+                    <img class="logo" src="wp-content/themes/rpsShoreside/assets/src/library/images/logo.png" alt="Recreational Power Sports Logo">
                 </span>
                 <div class="col-lg-2">
                     <h5>NAVIGATION</h5>

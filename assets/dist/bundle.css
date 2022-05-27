@@ -137,6 +137,7 @@ button span {
 .home-heading {
   font-size: 3rem;
   font-family: "D-DIN Condensed";
+  color: #ffffff;
   text-shadow: none;
   -webkit-text-stroke: unset;
 }
@@ -145,6 +146,10 @@ button span {
   font-family: "American Captain" !important;
   font-size: 2.25rem;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.home-block h1 {
+  display: none;
 }
 
 .news {
@@ -205,15 +210,47 @@ footer .logo {
 }
 
 footer .socmed {
-  margin: 5%;
+  margin: 1%;
 }
 
 .socmed {
-  height: 50px;
-  width: 50px;
+  height: 30px;
+  width: 30px;
   background: #ffffff;
   border-radius: 45px;
   display: inline-flex;
+}
+
+.socmed img {
+  width: 60%;
+  height: 60%;
+}
+
+.socmed object {
+  width: 90%;
+  height: 90%;
+}
+
+#facebookIcon {
+  justify-content: center;
+  align-items: center;
+  background-color: #4267B2;
+}
+
+#youtubeIcon {
+  justify-content: center;
+  align-items: center;
+  background-color: #ff0000;
+}
+
+#instaIcon {
+  justify-content: center;
+  align-items: center;
+}
+
+#instaIcon object {
+  width: 100%;
+  height: 100%;
 }
 
 .errorHeading {
@@ -222,6 +259,10 @@ footer .socmed {
   font-size: 15rem;
   margin-top: 50px;
   margin-bottom: 15px;
+}
+
+footer .logo {
+  width: 50%;
 }
 
 .heroVideo {

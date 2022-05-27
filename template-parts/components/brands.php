@@ -1,5 +1,5 @@
 <!--Setup foreach and dynamic population-->
-<div class="col-lg-3">
+<div class="col-sm-3">
     <a href="#">
         <div class="brands">
             <img src="http://placekitten.com/250/250" alt="">
@@ -8,7 +8,7 @@
         </div>
     </a>
 </div>
-<div class="col-lg-3">
+<div class="col-sm-3">
     <a href="#">
         <div class="brands">
             <img src="http://placekitten.com/250/250" alt="">
@@ -17,7 +17,7 @@
         </div>
     </a>
 </div>
-<div class="col-lg-3">
+<div class="col-sm-3">
     <a href="#">
         <div class="brands">
             <img src="http://placekitten.com/250/250" alt="">
@@ -26,7 +26,7 @@
         </div>
     </a>
 </div>
-<div class="col-lg-3">
+<div class="col-sm-3">
     <a href="#">
         <div class="brands">
             <img src="http://placekitten.com/250/250" alt="">
