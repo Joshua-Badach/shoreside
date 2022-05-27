@@ -73,7 +73,6 @@ h5 {
   font-family: "D-DIN Condensed Bold";
   color: #ffffff;
   font-size: 1.313rem;
-  -webkit-text-stroke: 0.5px #000000;
 }
 
 p {
@@ -301,6 +300,8 @@ footer .socmed {
 #instaIcon {
   justify-content: center;
   align-items: center;
+  background: #d6249f;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
 }
 
 #instaIcon object {

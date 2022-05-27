@@ -62,7 +62,6 @@ h5{
   font-family: nth($font, 2);
   color: nth($rpsBrand, 4);
   font-size: nth($fontSizing, 1);
-  -webkit-text-stroke: .5px nth($rpsBrand, 5);
 }
 
 //==========text==========
@@ -257,6 +256,8 @@ footer .socmed{
 #instaIcon{
   justify-content: center;
   align-items: center;
+  background: #d6249f;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
 }
 #instaIcon object{
   width: 100%;
