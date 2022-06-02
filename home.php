@@ -5,7 +5,7 @@
         <div class="col-lg-5 home-block">
             <h1>Recreational Power Sports</h1>
             <h2 class="home-heading">We put the <span class="power">POWER</span> in power sports</h2>
-            <img src="wp-content/themes/rpsShoreside/assets/src/library/images/logo.png" alt="Recreational Power Sports Logo" alt="Recreational Power Sports Logo">
+            <img src="wp-content/themes/shoreside/assets/src/library/images/logo.png" alt="Recreational Power Sports Logo" alt="Recreational Power Sports Logo">
 <!--Fix the bloody webpack issue, remove the hardcoding-->
         </div>
     </div>

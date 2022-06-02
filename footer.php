@@ -3,7 +3,7 @@
             <div class="row">
                 <span class="col-lg-3">
                     <a href="./">
-                        <img class="logo" src="wp-content/themes/rpsShoreside/assets/src/library/images/logo.png" alt="Recreational Power Sports Logo">
+                        <img class="logo" src="<?php echo get_template_directory_uri() . '/assets/src/library/images/logo.png' ?>" alt="Recreational Power Sports Logo">
                     </a>
                 </span>
                 <div class="col-lg-2">
@@ -31,22 +31,22 @@
                 <span class="col-lg-4 offset-lg-4">
                     <div id="facebookIcon" class="socmed">
                         <a href="https://www.facebook.com/recpowersports/" target="_blank">
-                            <object data="wp-content/themes/rpsShoreside/assets/src/library/images/facebook.svg"></object>
+                            <object data="<?php echo get_template_directory_uri() . '/assets/src/library/images/facebook.svg' ?>" ></object>
                         </a>
                     </div>
                     <div id="youtubeIcon" class="socmed">
                         <a href="https://www.youtube.com/channel/UCl8h_s4q3vnYPLc6tWwppgA" target="_blank">
-                            <object data="wp-content/themes/rpsShoreside/assets/src/library/images/youtube.svg"></object>
+                            <object data="<?php echo get_template_directory_uri() . '/assets/src/library/images/youtube.svg' ?>"></object>
                         </a>
                     </div>
                     <div id="instaIcon" class="socmed">
                         <a href="https://www.instagram.com/recreationalpowersports/?hl=en" target="_blank">
-                            <object data="wp-content/themes/rpsShoreside/assets/src/library/images/instagram.svg"></object>
+                            <object data="<?php echo get_template_directory_uri() . '/assets/src/library/images/instagram.svg' ?>"></object>
                         </a>
                     </div>
                     <div id="tiktokIcon" class="socmed">
                         <a href="https://www.tiktok.com/@recreationalpowersports" target="_blank">
-                            <object data="wp-content/themes/rpsShoreside/assets/src/library/images/tiktok.svg"></object>
+                            <object data="<?php echo get_template_directory_uri() . '/assets/src/library/images/tiktok.svg' ?>"></object>
                         </a>
                     </div>
                 </span>
