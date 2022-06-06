@@ -304,6 +304,7 @@ footer .logo{
 }
 .brands{
   min-height: 500px;
+  max-height: 500px;
   background-color: nth($rpsBrand, 1);
   box-shadow: 9px 6px 4px 0px rgba(0,0,0,0.75);
   -webkit-box-shadow: 9px 6px 4px 0px rgba(0,0,0,0.75);
@@ -332,6 +333,6 @@ footer .logo{
 }
 .brands img{
   padding: 0;
-  width: 100%;
-  aspect-ratio: 1/ 1;
+  width: 200px;
+  aspect-ratio: 4 / 3;
 }

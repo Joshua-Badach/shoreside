@@ -63,16 +63,6 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
     }
     add_action('init', 'shoreside_custom_menu');
 
-// tweak function later to add class col-lg-2 automatically
-
-//    function add_class_on_nav($classes, $item, $args){
-//        if(isset($args->add_li_class)) {
-//            $classess[] = $args->add_li_class;
-//        }
-//        return $classes;
-//    }
-//    add_filter( 'nav_menu_css_class', 'add_class_on_nav', 1, 3 );
-
     add_theme_support( 'editor-styles' );
 
     add_theme_support( 'title-tag' );
