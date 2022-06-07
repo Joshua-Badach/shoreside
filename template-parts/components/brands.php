@@ -5,7 +5,7 @@
                 <img src="<?php echo get_template_directory_uri() . '/assets/src/library/images/avalon-logo-gray.png' ?>" alt="Avalon pontoons">
             </div>
             <h5>Avalon</h5>
-            <p>The Avalon brand is known for innovative, exciting, and luxurious pontoons. Avalon is a vertically integrated builder, meaning they make almost everything in-house from the pontoons, to framing, to furniture.</p>
+            <p>The Avalon brand is known for innovative, exciting, and luxurious pontoons. Avalon is a vertically integrated builder, meaning they make almost everything in-house from the pontoons, to framing, to furniture. Avalon luxury pontoons and tritoons are backed by a 10 year bow-to-stern warranty and a lifetime structural warranty. They also include high quality features that most other brands don’t offer or have.</p>
         </div>
     </a>
 </div>

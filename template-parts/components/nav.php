@@ -1,11 +1,8 @@
-<nav class="container">
+<nav class="container nav-collapse">
     <?php
     wp_nav_menu( array(
         'theme_location'    => 'shoreside_menu',
         'menu_class'        => 'row',
-//        'add_a_class'      => 'col-lg-2',
-//        finish this up by adding a filter function in functions.php
-//
     ) );
     ?>
 </nav>
