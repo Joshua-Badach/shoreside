@@ -1,4 +1,4 @@
-<nav>
+<nav id="sticky-nav">
     <?php
     wp_nav_menu( array(
         'theme_location'    => 'shoreside_menu',

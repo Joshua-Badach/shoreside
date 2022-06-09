@@ -2,7 +2,7 @@
 
 //==========fonts==========
 $font: 'D-DIN Condensed', 'D-DIN Condensed Bold', 'American Captain';
-$fontSizing: 3.313vh, 4.25vh, 5vh, 5.75vh, 6.5vh, 7.25vh;
+$fontSizing: 2.313vh, 3.25vh, 4vh, 4.75vh, 5.5vh, 6.25vh;
 //Tweak fontSizing later... these are way off.
 $errorFont: 'D-DIN Condensed Bold', #ffffff, 15rem;
 
@@ -79,8 +79,8 @@ span{
 }
 //==========menu==========
 nav{
-  position: fixed;
-  top: 25px;
+  position: relative;
+  //top: 25px;
   width: 100%;
   padding: 0;
   z-index: 10;
@@ -372,4 +372,7 @@ footer .logo{
   width: -moz-available;
   width: -webkit-fill-available;
   width: fill-available;
+}
+#sticky{
+  position:fixed;
 }

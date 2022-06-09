@@ -57,6 +57,17 @@
                 <span class="col-lg-12">&copy; 2022 Recreational Power Sports</span>
             </div>
         </footer>
+        <script>
+            var win = window,
+              docEl = document.documentElement,
+              $sticky = document.getElementById('sticky-nav');
+
+            win.onscroll = function(){
+              var sTop = (this.pageYOffset || docEl.scrollTop)  - (docEl.clientTop || 0);
+              $sticky.style.display =  sTop > 100 ? "block":"none" ;
+            };
+        </script>
+<!--think on how I want to implement this-->
         <script type="text/javascript" src="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"></script>
     </body>
 </html>
