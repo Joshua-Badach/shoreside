@@ -13,6 +13,8 @@
 
     <div class="row">
         <section class="col-lg-12">
+            <button id="toggle">Toggle menu</button>
+
             <h2>How recreational Power Sports Does it Better</h2>
             <p>We specialize in <a href="">parts</a> and <a href="">service</a> for all makes and models of boats, snowmobiles, ATVs, SxS, personal watercraft, and other recreational vehicles. We are Alberta’s largest dealer of
                 <a href="">MirroCraft aluminum fishing boats</a>, <a href="">Montego Bay Pontoons</a>, and <a

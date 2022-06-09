@@ -406,8 +406,21 @@ footer .logo {
 }
 
 .quote {
-  background-image: url("http://placekitten.com/1385/350");
+  position: relative;
+  margin: 50px 0;
+}
+
+.quote span {
+  position: absolute;
+  color: #ffffff;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.quote img {
   width: 100%;
-  aspect-ratio: 6/1;
-  background-color: grey;
+  width: -moz-available;
+  width: -webkit-fill-available;
+  width: fill-available;
 }
