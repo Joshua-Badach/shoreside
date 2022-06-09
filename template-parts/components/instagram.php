@@ -1,1 +1,1 @@
-<!-- todo wire in instagram api pull -->
+Instagram component hooked up

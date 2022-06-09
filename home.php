@@ -3,7 +3,6 @@
 <div class="container">
     <div class="row">
         <section class="col-lg-5 home-block">
-            <h1>Recreational Power Sports</h1>
             <h2 class="home-heading">We put the <span class="power">POWER</span> in power sports</h2>
             <img src="<?php echo get_template_directory_uri() . '/assets/src/library/images/logo.png' ?>" alt="Recreational Power Sports Logo" alt="Recreational Power Sports Logo">
         </section>
@@ -51,7 +50,14 @@
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur delectus dignissimos maxime nobis numquam saepe tempore voluptatem. Assumenda autem distinctio error expedita laudantium maxime officiis praesentium quos repellat soluta.</p>
         <button>Learn More</button>
     </section>
-
-
+</div>
+<?php get_template_part( 'template-parts/components/quote' ); ?>
+<div class="container">
+    <div class="row">
+        <p class="col-lg-12">
+            <span>Follow Us</span> <img src="http://placekitten.com/50/50" alt=""> <span>@recreationalpowersports</span>
+        </p>
+        <?php get_template_part( 'template-parts/components/instagram' ); ?>
+    </div>
 </div>
 <?php get_footer() ?>

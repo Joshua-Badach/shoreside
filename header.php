@@ -9,6 +9,7 @@
 </head>
 <body>
 <?php get_template_part('template-parts/components/news') ?>
+<h1 class="bodyOutline">Recreational Power Sports</h1>
 <header>
     <?php get_template_part( 'template-parts/components/nav' ); ?>
 </header>

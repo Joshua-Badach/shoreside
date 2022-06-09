@@ -145,7 +145,7 @@ button span{
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 //Not displaying heading because of logo prominence
-.home-block h1{
+.bodyOutline{
   display: none;
 }
 
@@ -348,5 +348,11 @@ footer .logo{
 .carousel{
   width: 100%;
   aspect-ratio: 4 / 3;
+  background-color: grey;
+}
+.quote{
+  background-image: url("http://placekitten.com/1385/350");
+  width: 100%;
+  aspect-ratio: 6 / 1;
   background-color: grey;
 }
