@@ -57,15 +57,6 @@
                 <span class="col-lg-12">&copy; 2022 Recreational Power Sports</span>
             </div>
         </footer>
-        <script>
-            var nav = responsiveNav(".nav-collapse");
-
-            var toggle = document.getElementById("toggle");
-            toggle.addEventListener("click", function (e) {
-              e.preventDefault();
-              nav.toggle();
-            }, false);
-        </script>
         <script type="text/javascript" src="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"></script>
     </body>
 </html>

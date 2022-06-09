@@ -79,12 +79,15 @@ span{
 }
 //==========menu==========
 nav{
-  position: relative;
-  top: 50px;
+  position: fixed;
+  top: 25px;
+  width: 100%;
   padding: 0;
+  z-index: 10;
 }
 #menu-main li{
   list-style: none;
+  text-decoration-line: none;
   background-color: rgba(149, 149, 149, .5);
   text-align: center;
 }
@@ -92,6 +95,10 @@ nav{
   color: nth($rpsBrand, 4);
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 //  neat little trick for text outline
+}
+.mega-menu-wrap{
+  padding: 0;
+  width: 100%;
 }
 
 
@@ -290,7 +297,6 @@ footer .logo{
 //    }
 .heroVideo{
   //margin is quick and dirty fix for now. figure out why body is hovering below news banner
-  margin-top: -55px;
   width: 100%;
   aspect-ratio: 16/ 9;
 }

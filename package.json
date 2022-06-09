@@ -26,7 +26,6 @@
     "bootstrap-4-grid": "^3.4.0",
     "node-sass": "^7.0.1",
     "normalize-css": "^2.3.1",
-    "responsive-nav": "^1.0.39",
     "sass-loader": "^13.0.0"
   }
 }
