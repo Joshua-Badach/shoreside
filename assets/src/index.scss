@@ -2,7 +2,7 @@
 
 //==========fonts==========
 $font: 'D-DIN Condensed', 'D-DIN Condensed Bold', 'American Captain';
-$fontSizing: 1.313vw, 2.25vw, 3vw, 3.75vw, 4.5vw, 5.25vw;
+$fontSizing: 3.313vh, 4.25vh, 5vh, 5.75vh, 6.5vh, 7.25vh;
 //Tweak fontSizing later... these are way off.
 $errorFont: 'D-DIN Condensed Bold', #ffffff, 15rem;
 
@@ -344,4 +344,9 @@ footer .logo{
   padding: 0;
   width: 200px;
   aspect-ratio: 4 / 3;
+}
+.carousel{
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background-color: grey;
 }
