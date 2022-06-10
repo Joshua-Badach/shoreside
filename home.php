@@ -25,9 +25,10 @@
 </div>
 <div class="carousel">
     <section class="col-lg-12">
-        <h3 class="col-lg-4">Filler heading</h3>
-        <p class="col-lg-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum cupiditate distinctio eaque exercitationem facere in incidunt ipsam ipsum, laboriosam maiores nisi obcaecati, placeat possimus quaerat quasi reprehenderit rerum soluta, temporibus.</p>
-        <button>Read More</button>
+        <?php get_template_part( 'template-parts/components/carousel' ); ?>
+<!--        <h3 class="col-lg-4">Filler heading</h3>-->
+<!--        <p class="col-lg-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum cupiditate distinctio eaque exercitationem facere in incidunt ipsam ipsum, laboriosam maiores nisi obcaecati, placeat possimus quaerat quasi reprehenderit rerum soluta, temporibus.</p>-->
+<!--        <button>Read More</button>-->
     </section>
 </div>
 <div class="container">
