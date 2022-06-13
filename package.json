@@ -12,7 +12,6 @@
     "autoprefixer": "^10.4.7",
     "css-loader": "^6.7.1",
     "file-loader": "^6.2.0",
-    "jquery": "^3.6.0",
     "mini-css-extract-plugin": "^2.6.0",
     "mini-svg-data-uri": "^1.4.4",
     "postcss-loader": "^6.2.1",
@@ -24,6 +23,7 @@
   },
   "dependencies": {
     "bootstrap-4-grid": "^3.4.0",
+    "jquery": "^3.6.0",
     "node-sass": "^7.0.1",
     "normalize-css": "^2.3.1",
     "sass-loader": "^13.0.0"

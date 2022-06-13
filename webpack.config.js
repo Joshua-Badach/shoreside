@@ -10,6 +10,11 @@ module.exports = {
   context: path.resolve(__dirname, "assets"),
   watch: true,
   plugins:[
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      jquery: 'jquery',
+    }),
     new MiniCssExtractPlugin({
       filename: "bundle.css",
       chunkFilename: "bundle-[id].css"

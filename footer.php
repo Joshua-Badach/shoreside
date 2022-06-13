@@ -12,7 +12,7 @@
                         <li><a href="/showroom/">Showroom</a></li>
                         <li><a href="/parts/">Parts & Accessories</a></li>
                         <li><a href="/service/">Service</a></li>
-                        <li><a href="/contact/">Contact</a></li>
+                        <li><a href="/information/">More Information</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-2">

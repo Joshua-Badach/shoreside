@@ -1,4 +1,4 @@
-<div class="carousel" data-slick='{"slidesToShow": 4, "slidesToScroll": 4'>
+<div class="carousel">
     <div><h3>1</h3></div>
     <div><h3>2</h3></div>
     <div><h3>3</h3></div>

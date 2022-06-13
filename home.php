@@ -34,15 +34,15 @@
         <h2 class="offset-lg-5 col-lg-7">What we offer</h2>
         <p class="offset-lg-1 col-sm-3">
             <img src="http://placekitten.com/200/200" alt="placeholder"><br>
-            <a href="">Showroom</a>
+            <a href="/showroom/">Showroom</a>
         </p>
         <p class="offset-lg-1 col-sm-3">
             <img src="http://placekitten.com/200/200" alt="placeholder"><br>
-            <a href="">Parts</a>
+            <a href="/parts/">Parts</a>
         </p>
         <p class="offset-lg-1 col-sm-3">
             <img src="http://placekitten.com/200/200" alt="placeholder"><br>
-            <a href="">Service</a>
+            <a href="/service/">Service</a>
         </p>
     </section>
     <section class="row">

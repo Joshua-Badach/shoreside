@@ -12,8 +12,8 @@
     }
   }
 
-  $(document).ready(function(){
-    $('.carousel').slick({
+  jQuery(document).ready(function(){
+    jQuery('.carousel').slick({
     });
   });
 </script>
