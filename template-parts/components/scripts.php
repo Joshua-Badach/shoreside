@@ -14,6 +14,13 @@
 
   jQuery(document).ready(function(){
     jQuery('.carousel').slick({
+      // dots: true,
+      // infinite: true,
+      // speed: 300,
+      // slidesToShow: 5,
+      // slidesToScroll: 5,
+      // autoplay: true,
+      // autoplaySpeed: 5000,
     });
   });
 </script>
