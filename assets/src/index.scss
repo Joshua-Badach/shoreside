@@ -352,7 +352,12 @@ footer .logo{
   aspect-ratio: 4 / 3;
 }
 .carousel{
+  width: 100%;
+  aspect-ratio: 16 / 9;
   background-color: grey;
+}
+.slick-dots button{
+  display: none;
 }
 .quote{
   position: relative;
@@ -375,3 +380,6 @@ footer .logo{
   position: fixed;
   top: 0;
 }
+//body{
+//  max-width: fit-content;
+//}

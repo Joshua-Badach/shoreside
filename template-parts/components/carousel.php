@@ -1,7 +1,13 @@
 <div class="carousel">
-    <div><h3>1</h3></div>
-    <div><h3>2</h3></div>
-    <div><h3>3</h3></div>
-    <div><h3>4</h3></div>
-    <div><h3>5</h3></div>
+    <?php
+    $pageID = get_queried_object_id();
+    $home_query = new WP_Query( $args );
+
+    if ($pageID == 0){
+        echo ('<h1> It Worked</h1>');
+    }
+    elseif ( $pageID == 1){
+        echo ('<h1> This is page</h1>'. $pageID);
+    }
+    ?>
 </div>

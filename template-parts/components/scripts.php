@@ -11,16 +11,14 @@
       navbar.classList.remove("sticky");
     }
   }
-
+</script>
+<script>
   jQuery(document).ready(function(){
     jQuery('.carousel').slick({
-      // dots: true,
-      // infinite: true,
-      // speed: 300,
-      // slidesToShow: 5,
-      // slidesToScroll: 5,
+      infinite: true,
+      speed: 300,
       // autoplay: true,
-      // autoplaySpeed: 5000,
+      autoplaySpeed: 10000,
     });
   });
 </script>
