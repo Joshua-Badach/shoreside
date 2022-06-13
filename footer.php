@@ -57,29 +57,6 @@
                 <span class="col-lg-12">&copy; 2022 Recreational Power Sports</span>
             </div>
         </footer>
-
-        <script>
-            window.onscroll = function() {navStick()};
-
-            var navbar = document.getElementById("navbar");
-            var sticky = navbar.offsetTop;
-
-            function navStick() {
-              if (window.pageYOffset >= sticky) {
-                navbar.classList.add("sticky")
-              } else {
-                navbar.classList.remove("sticky");
-              }
-            }
-        </script>
-
-        <script>
-            $(document).ready(function(){
-              $('.carousel').slick({
-              });
-            });
-        </script>
-<!--think on how I want to implement this-->
-        <script type="text/javascript" src="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"></script>
+        <?php get_template_part('template-parts/components/scripts' ); ?>
     </body>
 </html>
