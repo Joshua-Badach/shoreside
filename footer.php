@@ -2,17 +2,17 @@
         <footer>
             <div class="row">
                 <span class="col-lg-3">
-                    <a href="./">
+                    <a href="<?php echo site_url() ?>">
                         <img class="logo" src="<?php echo get_template_directory_uri() . '/assets/src/library/images/logo.png' ?>" alt="Recreational Power Sports Logo">
                     </a>
                 </span>
                 <div class="col-lg-2">
                     <p>NAVIGATION</p>
                     <ul>
-                        <li><a href="#">Showroom</a></li>
-                        <li><a href="#">Parts & Accessories</a></li>
-                        <li><a href="#">Service</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="/showroom/">Showroom</a></li>
+                        <li><a href="/parts/">Parts & Accessories</a></li>
+                        <li><a href="/service/">Service</a></li>
+                        <li><a href="/contact/">Contact</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-2">
@@ -57,16 +57,22 @@
                 <span class="col-lg-12">&copy; 2022 Recreational Power Sports</span>
             </div>
         </footer>
-        <script>
-            var win = window,
-              docEl = document.documentElement,
-              $sticky = document.getElementById('sticky-nav');
 
-            win.onscroll = function(){
-              var sTop = (this.pageYOffset || docEl.scrollTop)  - (docEl.clientTop || 0);
-              $sticky.style.display =  sTop > 100 ? "position":"fixed" ;
-            };
+        <script>
+            window.onscroll = function() {navStick()};
+
+            var navbar = document.getElementById("navbar");
+            var sticky = navbar.offsetTop;
+
+            function navStick() {
+              if (window.pageYOffset >= sticky) {
+                navbar.classList.add("sticky")
+              } else {
+                navbar.classList.remove("sticky");
+              }
+            }
         </script>
+
         <script>
             $(document).ready(function(){
               $('.carousel').slick({

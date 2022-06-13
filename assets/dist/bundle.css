@@ -431,6 +431,7 @@ footer .logo {
   width: fill-available;
 }
 
-#sticky {
+.sticky {
   position: fixed;
+  top: 0;
 }

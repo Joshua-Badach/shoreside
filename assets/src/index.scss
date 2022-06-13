@@ -373,6 +373,7 @@ footer .logo{
   width: -webkit-fill-available;
   width: fill-available;
 }
-#sticky{
-  position:fixed;
+.sticky{
+  position: fixed;
+  top: 0;
 }
