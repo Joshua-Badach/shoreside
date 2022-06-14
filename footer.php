@@ -57,6 +57,9 @@
                 <span class="col-lg-12">&copy; 2022 Recreational Power Sports</span>
             </div>
         </footer>
-        <?php get_template_part('template-parts/components/scripts' ); ?>
+        <?php
+        $pageID = get_queried_object_id();
+        print_r($pageID);
+        get_template_part('template-parts/components/scripts' ); ?>
     </body>
 </html>
