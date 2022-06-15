@@ -1,4 +1,3 @@
-<!-- wp:template-part {"slug":"carousel"} /-->
 <div class="carousel">
     <?php
     $pageID = get_queried_object_id();

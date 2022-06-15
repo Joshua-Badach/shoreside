@@ -36,6 +36,11 @@ footer ::-moz-selection {
   color: #000000;
 }
 
+.container a:hover {
+  background: #0069ad;
+  color: #ffffff;
+}
+
 a:hover {
   background: #0069ad;
   color: #ffffff;
@@ -396,8 +401,6 @@ footer .logo {
 
 .brands img {
   padding: 6%;
-  display: flex;
-  justify-content: center;
   width: 100%;
   aspect-ratio: 16/9;
 }

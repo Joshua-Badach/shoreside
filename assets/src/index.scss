@@ -29,6 +29,10 @@ footer ::-moz-selection{
   background: nth($rpsBrand, 4);
   color: nth($rpsBrand, 5);
 }
+.container a:hover{
+  background: nth($rpsBrand, 1);
+  color: nth($rpsBrand, 4);
+}
 a:hover{
   background: nth($rpsBrand, 1);
   color: nth($rpsBrand, 4);
@@ -345,8 +349,6 @@ footer .logo{
 }
 .brands img{
   padding: 6%;
-  display: flex;
-  justify-content: center;
   width: 100%;
   aspect-ratio: 16 / 9;
 }
