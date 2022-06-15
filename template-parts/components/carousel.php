@@ -24,11 +24,14 @@
 //  Wordpress while loop if posts contain categories slider and home
     while ($query->have_posts()){
         $query->the_post();
+        global $post;
+//      grabbing wp global variable for posts to use the slug in the button
             echo ('<div class="sliderContent">');
                 the_post_thumbnail();
                 ?><div class="sliderText">
                     <h2><?php the_title(); ?></h2>
                     <?php the_content(); ?>
+                    <button onclick="location.href='<?php echo($post->post_name) ?>' ">Read More</button>
                 </div><?php
             echo ('</div>');
     }
