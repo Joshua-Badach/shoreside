@@ -26,7 +26,7 @@
                 <div class="col-lg-4 offset-lg-1">
                     <p>SUBSCRIBE TO OUR NEWSLETTER</p>
                     <p>Subscribe to our newsletter to see exciting new offers, products promotions, and keep up with the REC Power team</p>
-                    <a href="#" class="button">I'd Like to Register</a>
+                    <button onclick="location.href='#'">I'd Like to Register</button>
                 </div>
             </div>
             <div class="row">

@@ -20,6 +20,7 @@
     if ($pageID == 0):
 //    query for catagories with both slider and home
     $query = new WP_Query(array( 'category_name' => 'slider+home'));
+//  Move crap below into function rather than repeat, works for now...
 
 //  Wordpress while loop if posts contain categories slider and home
     while ($query->have_posts()){

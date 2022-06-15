@@ -1,5 +1,10 @@
 //====================Constants====================
 
+html, body{
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 //==========fonts==========
 $font: 'D-DIN Condensed', 'D-DIN Condensed Bold', 'American Captain';
 $fontSizing: 2.313vh, 3.25vh, 4vh, 4.75vh, 5.5vh, 6.25vh;
@@ -207,13 +212,6 @@ footer .logo{
 footer .socmed{
   margin: 1%;
 }
-.button{
-  border: 2px solid nth($rpsBrand, 4);
-  border-radius: 45px;
-  width: 200px;
-  height: 30px;
-  font-size: 1.1vw;
-}
 .socmed{
   height: 40px;
   width: 40px;
@@ -361,6 +359,9 @@ footer .logo{
 }
 .slick-dots button{
   display: none;
+}
+.slick-arrow{
+  colour: nth($rpsBrand, 1);
 }
 .quote{
   position: relative;
