@@ -1,5 +1,5 @@
 <div class="col-sm-3">
-    <a href="#">
+    <a href="/avalon/">
         <div class="brands">
             <div class="brandImage">
                 <img src="<?php echo get_template_directory_uri() . '/assets/src/library/images/avalon-logo-gray.png' ?>" alt="Avalon pontoons">
@@ -10,7 +10,7 @@
     </a>
 </div>
 <div class="col-sm-3">
-    <a href="#">
+    <a href="/mirrocraft/">
         <div class="brands">
             <div class="brandImage">
                 <img src="<?php echo get_template_directory_uri() . '/assets/src/library/images/Mirrocraft-Logo.png' ?>" alt="Mirrocraft fishing boats">
@@ -21,7 +21,7 @@
     </a>
 </div>
 <div class="col-sm-3">
-    <a href="#">
+    <a href="/mercury/">
         <div class="brands">
             <div class="brandImage">
                 <img src="<?php echo get_template_directory_uri() . '/assets/src/library/images/Mercury_Lockup.png' ?>" alt="Mercury outboard motors">
@@ -32,7 +32,7 @@
     </a>
 </div>
 <div class="col-sm-3">
-    <a href="#">
+    <a href="/shorestation/">
         <div class="brands">
             <div class="brandImage">
                 <img src="<?php echo get_template_directory_uri() . '/assets/src/library/images/Shorestation.png' ?>" alt="Shorestation docking">

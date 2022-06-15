@@ -1,10 +1,9 @@
+<!-- wp:template-part {"slug":"carousel"} /-->
 <div class="carousel">
     <?php
     $pageID = get_queried_object_id();
+//    get the page id to check what posts to pull
 
-//    fix this later
-//    $query = '';
-//
 //     public function carouselContent($query){
 //         while ($query->have_posts()){
 //             $query->the_post();
@@ -17,25 +16,27 @@
 //         wp_reset_postdata();
 //     }
 
+//    check if page id is 0, home
     if ($pageID == 0):
-    $query = new WP_Query(array( 'category_name' => 'home-slider'));
+//    query for catagories with both slider and home
+    $query = new WP_Query(array( 'category_name' => 'slider+home'));
 
-
+//  Wordpress while loop if posts contain categories slider and home
     while ($query->have_posts()){
         $query->the_post();
             echo ('<div class="sliderContent">');
+                the_post_thumbnail();
                 ?><div class="sliderText">
                     <h2><?php the_title(); ?></h2>
                     <?php the_content(); ?>
                 </div><?php
-            the_post_thumbnail();
             echo ('</div>');
     }
-
+//  reset query
     wp_reset_postdata();
 
     elseif ($pageID == 43):
-    $query = new WP_Query(array( 'category_name' => 'showroom-slider'));
+    $query = new WP_Query(array( 'category_name' => 'slider+showroom'));
 
     while ($query->have_posts()){
     $query->the_post();
@@ -51,7 +52,7 @@
     wp_reset_postdata();
 
     elseif ($pageID == 66):
-        $query = new WP_Query(array( 'category_name' => 'parts-slider'));
+        $query = new WP_Query(array( 'category_name' => 'slider+parts'));
 
         while ($query->have_posts()){
             $query->the_post();
@@ -67,7 +68,7 @@
         wp_reset_postdata();
 
         elseif ($pageID == 68):
-        $query = new WP_Query(array( 'category_name' => 'service-slider'));
+        $query = new WP_Query(array( 'category_name' => 'slider+service'));
 
             while ($query->have_posts()){
             $query->the_post();

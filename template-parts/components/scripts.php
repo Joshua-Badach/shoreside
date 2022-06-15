@@ -17,11 +17,8 @@
     jQuery('.carousel').slick({
       infinite: true,
       speed: 300,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 10000,
     });
   });
 </script>
-
-<!--think on how I want to implement this-->
-<script type="text/javascript" src="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"></script>
