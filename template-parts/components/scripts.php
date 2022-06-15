@@ -17,7 +17,7 @@
     jQuery('.carousel').slick({
       infinite: true,
       speed: 300,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 10000,
     });
   });
