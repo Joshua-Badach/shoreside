@@ -19,6 +19,8 @@
       speed: 300,
       autoplay: true,
       autoplaySpeed: 10000,
+      // dots: true,
+    //  Tweak the dots later, for some reason there are duplicates rendering
     });
   });
 </script>

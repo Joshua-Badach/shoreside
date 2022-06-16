@@ -9,8 +9,9 @@
 <!--    derp... fix this later-->
 </head>
 <body>
+<?php $page_slug = get_post_field('post_name', $post_id )?>
 <?php get_template_part('template-parts/components/news') ?>
-<h1 class="bodyOutline">Recreational Power Sports</h1>
+<h1 class="bodyOutline">Recreational Power Sports <?php echo ucwords((' - ' . $pagename)) ?></h1>
 <header>
     <?php get_template_part( 'template-parts/components/nav' ); ?>
 </header>

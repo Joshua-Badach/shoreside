@@ -411,14 +411,6 @@ footer .logo {
   aspect-ratio: 16/9;
 }
 
-.slick-dots button {
-  display: none;
-}
-
-.slick-arrow {
-  colour: #0069ad;
-}
-
 .quote {
   position: relative;
   margin: 50px 0;
