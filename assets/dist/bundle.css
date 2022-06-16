@@ -483,6 +483,6 @@ footer .logo {
 .slick-arrow::before {
   font-size: 50px !important;
   color: #0069ad !important;
-  border: 2px solid #ffffff !important;
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
   border-radius: 45px !important;
 }
