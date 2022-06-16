@@ -457,10 +457,32 @@ footer .logo {
   max-height: 365px;
   overflow: hidden;
   text-overflow: ellipsis;
-  transform: translate(50px, -150px);
+  transform: translate(75px, -150px);
   background-color: rgba(255, 255, 255, 0.5);
 }
 
 .sliderText p {
   font-size: 12px !important;
+}
+
+.slick-next {
+  z-index: 1 !important;
+  right: 1.5% !important;
+}
+
+.slick-prev {
+  z-index: 1 !important;
+  left: 1% !important;
+}
+
+.slick-arrow {
+  width: 50px !important;
+  height: 50px !important;
+}
+
+.slick-arrow::before {
+  font-size: 50px !important;
+  color: #0069ad !important;
+  border: 2px solid #ffffff !important;
+  border-radius: 45px !important;
 }
