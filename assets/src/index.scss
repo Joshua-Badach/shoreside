@@ -293,12 +293,19 @@ footer .socmed{
 footer .logo{
   width: 50%;
 }
-//fix the webpack image loading issue
-//.errorPage{
-//  background-image: url("/library/images/404background.jpg");
-//    }
+.errorPage img{
+  position: absolute;
+  height: 850px;
+  aspect-ratio: 16 / 9;
+  z-index: -1;
+  overflow-y: hidden;
+}
+//quick and dirty for now
+.errorPage p{
+  color: nth($rpsBrand, 4);
+  margin-bottom: 40%;
+}
 .heroVideo{
-  //margin is quick and dirty fix for now. figure out why body is hovering below news banner
   width: 100%;
   aspect-ratio: 16/ 9;
 }

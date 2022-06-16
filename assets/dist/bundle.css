@@ -343,6 +343,19 @@ footer .logo {
   width: 50%;
 }
 
+.errorPage img {
+  position: absolute;
+  height: 850px;
+  aspect-ratio: 16/9;
+  z-index: -1;
+  overflow-y: hidden;
+}
+
+.errorPage p {
+  color: #ffffff;
+  margin-bottom: 40%;
+}
+
 .heroVideo {
   width: 100%;
   aspect-ratio: 16/9;
