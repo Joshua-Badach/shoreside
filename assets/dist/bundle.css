@@ -413,9 +413,10 @@ footer .logo {
 }
 
 .brands img {
-  padding: 6%;
+  padding-top: 40%;
+  padding-left: 6%;
+  padding-right: 6%;
   width: 100%;
-  aspect-ratio: 16/9;
 }
 
 .carousel {
