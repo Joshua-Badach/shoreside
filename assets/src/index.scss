@@ -4,7 +4,6 @@ html, body{
   max-width: 100%;
   overflow-x: hidden;
 }
-
 //==========fonts==========
 $font: 'D-DIN Condensed', 'D-DIN Condensed Bold', 'American Captain';
 $fontSizing: 2.313vh, 3.25vh, 4vh, 4.75vh, 5.5vh, 6.25vh;
@@ -155,12 +154,6 @@ button span{
   text-shadow: none;
   -webkit-text-stroke: unset;
 }
-.power{
-  font-family: nth($font, 3) !important;
-  font-size: nth($fontSizing, 2);
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-}
-//Not displaying heading because of logo prominence
 .bodyOutline{
   display: none;
 }

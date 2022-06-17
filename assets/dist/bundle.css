@@ -181,12 +181,6 @@ button span {
   -webkit-text-stroke: unset;
 }
 
-.power {
-  font-family: "American Captain" !important;
-  font-size: 3.25vh;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-}
-
 .bodyOutline {
   display: none;
 }

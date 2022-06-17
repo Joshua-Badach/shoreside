@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row">
         <section class="col-lg-5 home-block">
-            <h2 class="home-heading">We put the <span class="power">POWER</span> in power sports</h2>
+            <h2 class="home-heading"><?php echo get_option('blogdescription'); ?></h2>
             <img src="<?php echo get_template_directory_uri() . '/assets/src/library/images/logo.png' ?>" alt="Recreational Power Sports Logo" alt="Recreational Power Sports Logo">
         </section>
     </div>
