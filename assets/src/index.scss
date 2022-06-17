@@ -418,10 +418,15 @@ footer .logo{
 .slick-dots{
   bottom: 50px !important;
 }
+.slick-dots li{
+  width: 35px !important;
+  height: 35px !important;
+}
 .slick-dots li button::before{
   padding: 3% !important;
   color: nth($rpsBrand, 1) !important;
   font-size: 25px !important;
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
 }
 .slick-arrow::before{
   font-size: 50px !important;
