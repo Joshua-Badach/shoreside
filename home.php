@@ -13,20 +13,16 @@
     </section>
     <div class="row">
         <section class="col-lg-12">
-            <h2>How Recreational Power Sports Does it Better</h2>
-            <p>We specialize in <a href="/parts/">parts</a> and <a href="/service/">service</a> for all makes and models of boats, snowmobiles, ATVs, SxS, personal watercraft, and other recreational vehicles. We are Alberta’s largest dealer of<a href="/mirrocraft/">MirroCraft aluminum fishing boats</a>, <a href="/montego/">Montego Bay Pontoons</a>, and <a href="/shorestation/">ShoreStation docking and hoists</a>. We also offer a large selection of pre-owned units and <a href="/mercury/">Mercury Marine outboard engines</a>.</p>
+            <h2>About Us</h2>
+            <p>We specialize in <a href="/parts/">parts</a> and <a href="/service/">service</a> for all makes and models of boats, snowmobiles, ATVs, SxS, personal watercraft, and other recreational vehicles. We are Alberta’s largest dealer of <a href="/mirrocraft/">MirroCraft aluminum fishing boats</a>, <a href="/montego/">Montego Bay Pontoons</a>, and <a href="/shorestation/">ShoreStation docking and hoists</a>. We also offer a large selection of pre-owned units and <a href="/mercury/">Mercury Marine outboard engines</a>.</p>
                 <p>We are committed to standing behind each and every product and service we offer. Let our knowledgeable team of experts help meet all of your power sports needs.</p>
         </section>
     </div>
 </div>
-<div class="carousel">
-    <section class="col-lg-12">
-        <?php get_template_part( 'template-parts/components/carousel' ); ?>
-<!--        <h3 class="col-lg-4">Filler heading</h3>-->
-<!--        <p class="col-lg-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum cupiditate distinctio eaque exercitationem facere in incidunt ipsam ipsum, laboriosam maiores nisi obcaecati, placeat possimus quaerat quasi reprehenderit rerum soluta, temporibus.</p>-->
-<!--        <button>Read More</button>-->
-    </section>
-</div>
+<section>
+    <h2 class="offset-sm-2 col-sm-8">How Recreational Power Sports Does It Better</h2>
+    <?php get_template_part('template-parts/components/carousel' ); ?>
+</section>
 <div class="container">
     <section class="row">
         <h2 class="offset-lg-5 col-lg-7">What we offer</h2>

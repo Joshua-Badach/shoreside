@@ -486,6 +486,16 @@ footer .logo {
   height: 50px !important;
 }
 
+.slick-dots {
+  bottom: 50px !important;
+}
+
+.slick-dots li button::before {
+  padding: 3% !important;
+  color: #0069ad !important;
+  font-size: 25px !important;
+}
+
 .slick-arrow::before {
   font-size: 50px !important;
   color: #0069ad !important;
