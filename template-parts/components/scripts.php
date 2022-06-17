@@ -21,6 +21,7 @@
       autoplaySpeed: 10000,
       // dots: true,
     //  Tweak the dots later, for some reason there are duplicates rendering
+    //  slickGoTo doesn't work within afterChange, hash out way to return to slide 1 at the end later
     });
   });
 </script>
