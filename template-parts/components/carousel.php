@@ -29,7 +29,7 @@
             echo ('<div class="sliderContent">');
                 the_post_thumbnail();
                 ?><div class="sliderText">
-                    <h2><?php the_title(); ?></h2>
+                    <h3><?php the_title(); ?></h3>
                     <?php the_content(); ?>
                     <button onclick="location.href='<?php echo($post->post_name) ?>' ">Read More</button>
                 </div><?php

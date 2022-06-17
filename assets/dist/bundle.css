@@ -365,6 +365,10 @@ footer .logo {
   margin-bottom: 50px;
 }
 
+.brandSpan h2 {
+  display: none;
+}
+
 .brands {
   min-height: 500px;
   max-height: 500px;
@@ -393,7 +397,7 @@ footer .logo {
   font-size: 1.1vw !important;
 }
 
-.brands h5 {
+.brands h3 {
   text-align: center;
   margin-top: 15px;
   margin-bottom: 15px;

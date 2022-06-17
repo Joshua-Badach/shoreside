@@ -15,8 +15,8 @@
 <script>
   jQuery(document).ready(function(){
     jQuery('.carousel').slick({
-      infinite: true,
-      speed: 300,
+      infinite: false,
+      speed: 1000,
       autoplay: true,
       autoplaySpeed: 10000,
       // dots: true,

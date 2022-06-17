@@ -11,7 +11,9 @@
 <?php get_template_part('template-parts/components/news') ?>
     <h1 class="bodyOutline">
         <?php
-            echo (get_option('blogname') );
+//        $slug = get_queried_object()->post_name;
+//        $titleAmend = str_replace('-', ' ', $slug);
+        echo (get_option('blogname'));
             ?>
     </h1>
     <header>

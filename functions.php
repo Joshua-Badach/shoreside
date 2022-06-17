@@ -89,8 +89,8 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
         $_wp_registered_nav_menus = array_merge( (array) $_wp_registered_nav_menus, $locations);
     }
 
-
     }
 endif;
 
 add_action( 'after_setup_theme', 'rpsShoreside_setup');
+
