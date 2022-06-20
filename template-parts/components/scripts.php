@@ -16,6 +16,8 @@
   jQuery(document).ready(function(){
     jQuery('.carousel').slick({
       infinite: false,
+      slidesToShow: 1,
+      slidesToScroll: 1,
       speed: 1000,
       autoplay: true,
       autoplaySpeed: 10000,
