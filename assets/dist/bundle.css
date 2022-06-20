@@ -16,6 +16,10 @@ html, body {
   overflow-x: hidden;
 }
 
+nav h2 {
+  display: none;
+}
+
 ::selection {
   background: #0069ad;
   color: #ffffff;

@@ -94,3 +94,5 @@ endif;
 
 add_action( 'after_setup_theme', 'rpsShoreside_setup');
 
+include('custom-shortcodes.php');
+

@@ -4,6 +4,9 @@ html, body{
   max-width: 100%;
   overflow-x: hidden;
 }
+nav h2{
+  display: none;
+}
 //==========fonts==========
 $font: 'D-DIN Condensed', 'D-DIN Condensed Bold', 'American Captain';
 $fontSizing: 2.313vh, 3.25vh, 4vh, 4.75vh, 5.5vh, 6.25vh;
