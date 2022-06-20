@@ -47,12 +47,27 @@ function shortcode_test_function($atts, $content = null) {
 }
 add_shortcode('test_shortcode', 'shortcode_test_function');
 
+function brands_shortcode(){
+    return include('template-parts/components/brands.php');
+}
+add_shortcode('brands', 'brands_shortcode');
+
+function carousel_shortcode(){
+    return include('template-parts/components/carousel.php');
+}
+add_shortcode('carousel', 'carousel_shortcode');
+
 function hero_shortcode(){
     return include('template-parts/components/heroVideo.php');
 }
 add_shortcode('hero', 'hero_shortcode');
 
-function brands_shortcode(){
-    return include('template-parts/components/brands.php');
+function insta_shortcode(){
+    return include('template-parts/components/instagram.php');
 }
-add_shortcode('brands', 'brands_shortcode');
+add_shortcode('instagram', 'insta_shortcode');
+
+function quote_shortcode(){
+    return include('template-parts/components/quote.php');
+}
+add_shortcode('quote', 'quote_shortcode');
