@@ -1,3 +1,5 @@
+<section class="row brandSpan">
+    <h2>Our Brands</h2>
 <section class="col-sm-3">
     <a href="/avalon/">
         <div class="brands">
@@ -41,4 +43,5 @@
             <p>ShoreStation is known for producing high quality and dependable waterfront equipment. Our boat lift systems and docks are made to last and backed by one of the best warranties in the business.</p>
         </div>
     </a>
+</section>
 </section>

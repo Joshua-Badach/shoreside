@@ -7,10 +7,7 @@
             <h2 class="home-heading"><?php echo get_option('blogdescription'); ?></h2>
         </section>
     </div>
-    <section class="row brandSpan">
-        <h2>Our Brands</h2>
-        <?php get_template_part('template-parts/components/brands') ?>
-    </section>
+    <?php get_template_part('template-parts/components/brands') ?>
     <div class="row">
         <section class="col-lg-12">
             <h2>Our Mission</h2>

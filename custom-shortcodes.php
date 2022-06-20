@@ -1,25 +1,25 @@
 <?php
-$pageID = get_queried_object_id();
+$slug = $post->post_name;
 
 if ( is_home() ){
     $query = new WP_Query(array( 'category_name' => 'slider+home'));
     return $query;
 }
-elseif ( $pageID == 43 ){
+elseif ( $slug == 'showroom' ){
     $query = new WP_Query(array( 'category_name' => 'slider+showroom'));
     return $query;
 }
-elseif ($pageID == 66) {
+elseif ($slug == 'parts-and-accessories') {
     $query = new WP_Query(array( 'category_name' => 'slider+parts'));
     return $query;
 }
-elseif ($pageId == 68) {
+elseif ($slug == 'service') {
     $query = new WP_Query(array( 'category_name' => 'slider+service'));
     return $query;
 }
 ;
 
-function carouselContent( $query, $content = null ){
+function carouselContent( $atts, $content = null ){
     while ($query->have_posts()){
         $query->the_post();
         }
@@ -46,3 +46,13 @@ function shortcode_test_function($atts, $content = null) {
     return 'Follow us on <a href="'.($a['link']).'" style="color: blue">'.$content.'</a>';
 }
 add_shortcode('test_shortcode', 'shortcode_test_function');
+
+function hero_shortcode(){
+    return include('template-parts/components/heroVideo.php');
+}
+add_shortcode('hero', 'hero_shortcode');
+
+function brands_shortcode(){
+    return include('template-parts/components/brands.php');
+}
+add_shortcode('brands', 'brands_shortcode');
