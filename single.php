@@ -12,5 +12,6 @@ single.php page returned
             } // end while
         } // end if
     ?>
+    <p>Single page returned</p>
 </div>
 <?php get_footer() ?>

@@ -30,7 +30,7 @@
     wp_reset_postdata();
 
     elseif ( $slug == 'showroom'):
-        $query = new WP_Query(array( 'category_name' => 'slider+showroom'));
+        $query = new WP_Query(array( 'category_name' => 'slider+showroom-2' ));
 
         while ($query->have_posts()){
             $query->the_post();

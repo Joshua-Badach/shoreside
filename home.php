@@ -17,7 +17,7 @@
     </div>
 </div>
 <section>
-    <h2 class="offset-sm-2 col-sm-8">How Recreational Power Sports Does It Better</h2>
+    <h2 class="col-sm-8">How Recreational Power Sports Does It Better</h2>
     <?php get_template_part('template-parts/components/carousel' ); ?>
 </section>
 <div class="container">

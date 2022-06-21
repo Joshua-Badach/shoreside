@@ -1,53 +1,20 @@
 <!--http://placekitten.com/200/200-->
+<?php $category = get_category_by_slug('showroom'); ?>
 <div class="container">
     <section class="row">
-        <?php the_title( '<h2 class="col-sm-4">', '</h2>'); ?>
-        <p class="col-sm-12">Pull the gallery below in loop Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi cumque dolor facilis fuga hic natus, nostrum quae quia quidem voluptatibus? Deleniti eligendi hic minus nam quia sequi sint totam voluptatem. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium eligendi nam optio quo repellendus. Amet fuga quaerat reprehenderit. Accusantium earum illum modi, molestiae optio recusandae rem repellat sed soluta veniam? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci at blanditiis debitis dignissimos exercitationem facere fugit hic ipsam laboriosam laborum, minus pariatur perspiciatis possimus quos rem sapiente veritatis? Beatae, mollitia.</p>
+        <h2 class="col-sm-4"><?php echo $category->name ?></h2>
+        <p class="col-sm-12"><?php echo $category->description ?></p>
     </section>
-<!--    hardcode gallery for styling-->
     <div class="row">
-        <div class="categoryCard col-sm-3">
-            <a href="#">
-                <img src="http://placekitten.com/200/200" alt="placeholder">
-                <p>Category</p>
-            </a>
-        </div>
-        <div class="categoryCard col-sm-3">
-            <a href="#">
-                <img src="http://placekitten.com/200/200" alt="placeholder">
-                <p>Category</p>
-            </a>
-        </div>
-        <div class="categoryCard col-sm-3">
-            <a href="#">
-                <img src="http://placekitten.com/200/200" alt="placeholder">
-                <p>Category</p>
-            </a>
-        </div>
-        <div class="categoryCard col-sm-3">
-            <a href="#">
-                <img src="http://placekitten.com/200/200" alt="placeholder">
-                <p>Category</p>
-            </a>
-        </div>
-        <div class="categoryCard col-sm-3">
-            <a href="#">
-                <img src="http://placekitten.com/200/200" alt="placeholder">
-                <p>Category</p>
-            </a>
-        </div>
-        <div class="categoryCard col-sm-3">
-            <a href="#">
-                <img src="http://placekitten.com/200/200" alt="placeholder">
-                <p>Category</p>
-            </a>
-        </div>
-        <div class="categoryCard col-sm-3">
-            <a href="#">
-                <img src="http://placekitten.com/200/200" alt="placeholder">
-                <p>Category</p>
-            </a>
-        </div>
+        <?php
+            print_r($category);
+//        $query = new WP_Query(array( 'category_name' => 'showroom'));
+//        while ($query->have_posts()){
+//            $query->the_post();
+//            echo $query;
+//        }
+//        wp_reset_postdata();
+        ?>
         <div class="categoryCard col-sm-3">
             <a href="#">
                 <img src="http://placekitten.com/200/200" alt="placeholder">
