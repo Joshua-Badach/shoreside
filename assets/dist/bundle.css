@@ -512,3 +512,9 @@ footer .logo {
   text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
   border-radius: 45px !important;
 }
+
+.categoryCard {
+  background-color: #0069ad;
+  aspect-ratio: 1/1;
+  border: 2px solid black;
+}
