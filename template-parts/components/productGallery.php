@@ -9,6 +9,17 @@ $slug = $post->post_name;
         $category = get_category_by_slug('parts-and-accessories');
     }
 ?>
+
+<div class="modal-wrapper">
+    <div class="modal">
+        <div class="close-modal">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="container">
     <section class="row">
         <h2 class="col-sm-6"><?php echo $category->name ?></h2>
