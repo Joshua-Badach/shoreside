@@ -518,3 +518,31 @@ footer .logo {
   aspect-ratio: 1/1;
   border: 2px solid black;
 }
+
+@media only screen and (min-width: 786px) {
+  .hide {
+    display: none;
+  }
+  .show {
+    display: block !important;
+  }
+  .modal-wrapper {
+    z-index: 999;
+    position: absolute;
+    left: calc((100vw - 600px) / 2);
+  }
+  .modal {
+    display: none;
+    position: relative;
+    width: 600px;
+    min-height: 300px;
+    padding: 2%;
+    background: #ffffff;
+  }
+  .modal .close-modal {
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    cursor: pointer;
+  }
+}

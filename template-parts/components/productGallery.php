@@ -14,11 +14,11 @@ $slug = $post->post_name;
     <div class="modal">
         <div class="close-modal">
             <div class="modal-content">
-
+<!--                Modal content-->
             </div>
         </div>
     </div>
-</div>
+</div><!-- Modal End -->
 
 <div class="container">
     <section class="row">
