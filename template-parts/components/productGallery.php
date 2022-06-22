@@ -9,7 +9,7 @@ $slug = $post->post_name;
         $category = get_category_by_slug('parts-and-accessories');
     }
 ?>
-
+<!--change the categories...-->
 <div class="modal-wrapper">
     <div class="modal">
         <div class="close-modal">

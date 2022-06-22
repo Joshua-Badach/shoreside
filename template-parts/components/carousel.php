@@ -1,9 +1,10 @@
 <div class="carousel">
     <?php
         $pageID = get_queried_object_id();
-        $the_page = sanitize_post( $GLOBALS['wp_the_query']->get_queried_object() );
+        $the_page = sanitize_posT($GLOBALS['wp_the_query']->get_queried_object() );
         $slug = $the_page->post_name;
 
+//        add a check for text, display image only if no text present
         function wp_loop_slider($query, $post){
             while ($query->have_posts()){
             $query->the_post();
@@ -19,26 +20,13 @@
         wp_reset_postdata();
     }
 
-//    clean up below
-
-    if (is_home() ):
-    $query = new WP_Query(array( 'category_name' => 'slider+home'));
-
-    wp_loop_slider($query, $post);
-
-    elseif ( $slug == 'showroom'):
-        $query = new WP_Query(array( 'category_name' => 'slider+showroom-2'));
+    if (is_home() == true ):
+        $query = new WP_Query(array( 'category_name' => 'slider+home-slider'));
 
         wp_loop_slider($query, $post);
 
-    elseif ($slug == 'parts-and-accessories'):
-        $query = new WP_Query(array( 'category_name' => 'slider+parts'));
-
-        wp_loop_slider($query, $post);
-
-    elseif ($slug == 'service'):
-        $query = new WP_Query(array( 'category_name' => 'slider+service'));
-
+    elseif (is_home() == false):
+        $query = new WP_Query(array( 'category_name' => $slug.'-slider' ));
         wp_loop_slider($query, $post);
 
     endif;
