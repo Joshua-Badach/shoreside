@@ -1,13 +1,12 @@
 <?php
-global $post;
 
-$taxonomy     = 'product_cat';
-$orderby      = 'name';
-$show_count   = 0;      // 1 for yes, 0 for no
-$pad_counts   = 0;      // 1 for yes, 0 for no
-$hierarchical = 1;      // 1 for yes, 0 for no
-$title        = '';
-$empty        = 0;
+$taxonomy       = 'product_cat';
+$orderby        = 'name';
+$show_count     = 0;      // 1 for yes, 0 for no
+$pad_counts     = 0;      // 1 for yes, 0 for no
+$hierarchical   = 1;      // 1 for yes, 0 for no
+$title          = '';
+$empty          = 0;
 
 $args = array(
     'taxonomy'     => $taxonomy,
@@ -19,29 +18,41 @@ $args = array(
     'hide_empty'   => $empty
 );
 $all_categories = get_categories( $args );
+echo '<div class="container"> 
+        <div class="row">';
+        echo '</div>
+        <div class="row">';
 foreach ($all_categories as $cat) {
-    if($cat->category_parent == 38) {
+    if ($cat->category_parent == 38) {
         $category_id = $cat->term_id;
-        echo '<br /><a href="'. get_term_link($cat->slug, 'product_cat') .'">'. $cat->name .'</a>';
-
-        $args2 = array(
-            'taxonomy'     => $taxonomy,
-            'child_of'     => 38,
-            'parent'       => $category_id,
-            'orderby'      => $orderby,
-            'show_count'   => $show_count,
-            'pad_counts'   => $pad_counts,
-            'hierarchical' => $hierarchical,
-            'title_li'     => $title,
-            'hide_empty'   => $empty
-        );
-        $sub_cats = get_categories( $args2 );
-        if($sub_cats) {
-            foreach($sub_cats as $sub_category) {
-                echo  '<br/><a href="'. get_term_link($sub_category->slug, 'product_cat') .'">'. $sub_category->name .'</a>';
-            }
-        }
+        echo '<a class="col-sm-3" href="' . get_term_link($cat->slug, 'product_cat') . '">'
+                . $cat->name .
+            ' </a>';
     }
+}
+echo '</div>
+</div>';
+
+//        pull subcategories
+//
+//        $args2 = array(
+//            'taxonomy'     => $taxonomy,
+//            'child_of'     => 38,
+//            'parent'       => $category_id,
+//            'orderby'      => $orderby,
+//            'show_count'   => $show_count,
+//            'pad_counts'   => $pad_counts,
+//            'hierarchical' => $hierarchical,
+//            'title_li'     => $title,
+//            'hide_empty'   => $empty
+//        );
+//        $sub_cats = get_categories( $args2 );
+//        if($sub_cats) {
+//            foreach($sub_cats as $sub_category) {
+//                echo  '<br/><a href="'. get_term_link($sub_category->slug, 'product_cat') .'">'. $sub_category->name .'</a>';
+//            }
+//        }
+//    }
 //    elseif ($cat->category_parent == 54) {
 //        $category_id = $cat->term_id;
 //        echo '<br /><a href="'. get_term_link($cat->slug, 'product_cat') .'">'. $cat->name .'</a>';
@@ -64,32 +75,9 @@ foreach ($all_categories as $cat) {
 //            }
 //        }
 //    }
-}
-
-//$args = array(
-//    'post_type'     =>      'product',
-//    'post_status'   =>      'publish',
-//    'tax_query'     =>      array(
-//        array(
-//            'taxonomy'  =>  'product_cat',
-//            'field'     =>  'term_id',
-//            'terms'     =>  array('40'),
-//            'operator'  =>  'IN',
-//        )
-//    )
-//);
-//$slug = $post->post_name;
-//    if ($slug == 'showroom' ) {
-////        $category = new WP_Query(array('category name'));
-////        $category = get_category_by_slug('slider');
-//    }
-//    elseif ($slug == 'parts-and-accessories'){
-////        $category = get_category_by_slug('parts-accessories');
-//    }
-//?>
-<!--Troubleshoot why this is not pulling woocommerce cats-->
-
-
+//}
+?>
+<!--move this crap into it's own file-->
 <div class="modal-wrapper">
     <div class="modal">
         <div class="close-modal">
