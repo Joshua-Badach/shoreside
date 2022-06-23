@@ -96,12 +96,13 @@ add_action( 'after_setup_theme', 'rpsShoreside_setup');
 
 //Shortcodes
 
+
+
 function carousel_shortcode(){
     $carousel = include('template-parts/components/carousel.php');
     return $carousel;
 }
 add_shortcode('carousel', 'carousel_shortcode');
-
 
 function brands_shortcode(){
     $brands = include('template-parts/components/brands.php');
@@ -132,5 +133,4 @@ function quote_shortcode(){
     return $quote;
 }
 add_shortcode('quote', 'quote_shortcode');
-
 

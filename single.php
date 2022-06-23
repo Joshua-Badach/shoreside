@@ -1,5 +1,4 @@
 <?php get_header() ?>
-single.php page returned
 <div class="container">
     <?php
         if ( have_posts() ) {
