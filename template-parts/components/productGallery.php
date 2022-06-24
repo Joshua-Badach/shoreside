@@ -1,5 +1,9 @@
 <?php
 //$the_page = sanitize_posT($GLOBALS['wp_the_query']->get_queried_object() );
+global $post;
+$slug = $post->post_name;
+var_dump($slug);
+
 $taxonomy       = 'product_cat';
 $orderby        = 'name';
 $show_count     = 0;      // 1 for yes, 0 for no
@@ -18,12 +22,13 @@ $args = array(
     'hide_empty'                => $empty
 );
 $all_categories = get_categories( $args );
-$parentCat = get_cat_ID($cat_name);
+$catObj = get_cat_ID('parts-accessories');
 $idObj = 38;
 $categoryDescription = category_description($idObj);
 $term = get_term_by('id', $idObj, 'product_cat');
 
-echo($parentCat);
+echo $catObj;
+
 echo '<section class="container"> 
         <div class="row">
         <h2>' . $term->name . '</h2>';
@@ -32,6 +37,13 @@ echo '<section class="container">
 foreach ($all_categories as $cat) {
     if ($cat->category_parent == $idObj) {
         $category_id = $cat->term_id;
+
+        // get the thumbnail id using the queried category term_id
+        $thumbnail_id = get_term_meta( $cat->term_id, 'thumbnail_id', true );
+
+        // get the image URL
+        $image = wp_get_attachment_url( $thumbnail_id );
+        echo '<img src="'. $image . '" width="150px" height="150px">';
         echo '<a class="col-sm-3" href="' . get_term_link($cat->slug, 'product_cat') . '">'
                 . $cat->name .
             ' </a>';
