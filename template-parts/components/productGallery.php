@@ -2,8 +2,6 @@
 global $post;
 $slug = $post->post_name;
 
-$idObj = 54;
-
 $taxonomy       = 'product_cat';
 $orderby        = 'name';
 $show_count     = 0;      // 1 for yes, 0 for no
@@ -43,18 +41,14 @@ function product_gallery($idObj, $args){
         }
     }
     echo '</section>';
-
-
 }
-//move shit from below into function
-
 
 if ($slug == 'parts-and-accessories'):
     $idObj = 38;
-    product_gallery($idObj, $category_id);
+    product_gallery($idObj, $args);
 elseif ($slug = 'showroom'):
     $idObj = 54;
-    product_gallery($idObj, $category_id);
+    product_gallery($idObj, $args);
 endif;
 
 //        pull subcategories
