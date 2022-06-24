@@ -1,5 +1,7 @@
 <?php
 
+$slug = $post->post_name;
+
 $taxonomy       = 'product_cat';
 $orderby        = 'name';
 $show_count     = 0;      // 1 for yes, 0 for no
@@ -19,10 +21,12 @@ $args = array(
 );
 $all_categories = get_categories( $args );
 $categoryDescription = category_description(38);
-echo '<div class="container"> 
-        <div class="row">';
+echo '<section class="container"> 
+        <div class="row">
+        <h2> </h2>';
         echo $categoryDescription . '</div>
         <div class="row">';
+
 foreach ($all_categories as $cat) {
     if ($cat->category_parent == 38) {
         $category_id = $cat->term_id;
@@ -32,7 +36,7 @@ foreach ($all_categories as $cat) {
     }
 }
 echo '</div>
-</div>';
+</section>';
 
 //        pull subcategories
 //
