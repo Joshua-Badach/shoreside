@@ -546,3 +546,12 @@ footer .logo {
     cursor: pointer;
   }
 }
+.categoryItems {
+  text-align: center;
+  margin-bottom: 4%;
+  margin-top: 4%;
+}
+
+.categoryItems img {
+  padding: 10px;
+}
