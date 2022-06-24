@@ -513,12 +513,6 @@ footer .logo {
   border-radius: 45px !important;
 }
 
-.categoryCard {
-  background-color: #0069ad;
-  aspect-ratio: 1/1;
-  border: 2px solid black;
-}
-
 @media only screen and (min-width: 786px) {
   .hide {
     display: none;

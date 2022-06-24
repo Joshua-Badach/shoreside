@@ -1,8 +1,8 @@
 <?php
-//$the_page = sanitize_posT($GLOBALS['wp_the_query']->get_queried_object() );
 global $post;
 $slug = $post->post_name;
-var_dump($slug);
+
+$idObj = 54;
 
 $taxonomy       = 'product_cat';
 $orderby        = 'name';
@@ -21,28 +21,41 @@ $args = array(
     'title_li'                  => $title,
     'hide_empty'                => $empty
 );
-$all_categories = get_categories( $args );
-$idObj = 38;
-$categoryDescription = category_description($idObj);
-$term = get_term_by('id', $idObj, 'product_cat');
 
-echo '<section class="container"> 
+function product_gallery($idObj, $args){
+    $all_categories = get_categories( $args );
+    $categoryDescription = category_description($idObj);
+    $term = get_term_by('id', $idObj, 'product_cat');
+    echo '<section class="container"> 
         <div class="row">
         <h2>' . $term->name . '</h2>';
-        echo $categoryDescription . '</div>
+    echo $categoryDescription . '</div>
         <div class="row">';
-foreach ($all_categories as $cat) {
-    if ($cat->category_parent == $idObj) {
-        $category_id = $cat->term_id;
-        $thumbnail_id = get_term_meta( $cat->term_id, 'thumbnail_id', true );
-        $image = wp_get_attachment_url( $thumbnail_id );
-        echo '<a class="col-sm-3 categoryItems" href="' . get_term_link($cat->slug, 'product_cat') . '">
+    foreach ($all_categories as $cat) {
+        if ($cat->category_parent == $idObj) {
+            $category_id = $cat->term_id;
+            $thumbnail_id = get_term_meta( $cat->term_id, 'thumbnail_id', true );
+            $image = wp_get_attachment_url( $thumbnail_id );
+            echo '<a class="col-sm-3 categoryItems" href="' . get_term_link($cat->slug, 'product_cat') . '">
             <img src="'. $image . '" width="150px" height="150px"><p>'
                 . $cat->name .
-            ' </p></a>';
+                ' </p></a>';
+        }
     }
+    echo '</section>';
+
+
 }
-echo '</section>';
+//move shit from below into function
+
+
+if ($slug == 'parts-and-accessories'):
+    $idObj = 38;
+    product_gallery($idObj, $category_id);
+elseif ($slug = 'showroom'):
+    $idObj = 54;
+    product_gallery($idObj, $category_id);
+endif;
 
 //        pull subcategories
 //
@@ -100,18 +113,7 @@ echo '</section>';
 </div><!-- Modal End -->
 <div class="container">
     <section class="row">
-<!--        <h2 class="col-sm-6">--><?php //echo $category->name ?><!--</h2>-->
-<!--        <p class="col-sm-12">--><?php //echo $category->description ?><!--</p>-->
+
     </section>
-    <div class="row">
-<!--        --><?php
-//        var_dump($category);
-//        $categories = get_term_children($category->term_id, $category->taxonomy);
-//        foreach($categories as $category) {
-//                $cat = get_term($category, 'category');
-//                echo '<div class="col-sm-3 categoryCard"><p>' . $cat->name . '</p></div>';
-//            }
-//        ?>
-   </div>
 </div>
 
