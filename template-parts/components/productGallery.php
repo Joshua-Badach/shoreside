@@ -1,7 +1,5 @@
 <?php
 //$the_page = sanitize_posT($GLOBALS['wp_the_query']->get_queried_object() );
-$slug = $post->post_name;
-
 $taxonomy       = 'product_cat';
 $orderby        = 'name';
 $show_count     = 0;      // 1 for yes, 0 for no
@@ -20,16 +18,19 @@ $args = array(
     'hide_empty'                => $empty
 );
 $all_categories = get_categories( $args );
-$categoryDescription = category_description(38);
+$parentCat = get_cat_ID($cat_name);
+$idObj = 38;
+$categoryDescription = category_description($idObj);
+$term = get_term_by('id', $idObj, 'product_cat');
 
+echo($parentCat);
 echo '<section class="container"> 
         <div class="row">
-        <h2> </h2>';
+        <h2>' . $term->name . '</h2>';
         echo $categoryDescription . '</div>
         <div class="row">';
-
 foreach ($all_categories as $cat) {
-    if ($cat->category_parent == 38) {
+    if ($cat->category_parent == $idObj) {
         $category_id = $cat->term_id;
         echo '<a class="col-sm-3" href="' . get_term_link($cat->slug, 'product_cat') . '">'
                 . $cat->name .
