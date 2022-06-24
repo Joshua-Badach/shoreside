@@ -1,5 +1,5 @@
 <?php
-
+//$the_page = sanitize_posT($GLOBALS['wp_the_query']->get_queried_object() );
 $slug = $post->post_name;
 
 $taxonomy       = 'product_cat';
@@ -21,6 +21,7 @@ $args = array(
 );
 $all_categories = get_categories( $args );
 $categoryDescription = category_description(38);
+
 echo '<section class="container"> 
         <div class="row">
         <h2> </h2>';
@@ -92,7 +93,6 @@ echo '</div>
         </div>
     </div>
 </div><!-- Modal End -->
-<!--Move modal code into own file-->
 <div class="container">
     <section class="row">
 <!--        <h2 class="col-sm-6">--><?php //echo $category->name ?><!--</h2>-->
