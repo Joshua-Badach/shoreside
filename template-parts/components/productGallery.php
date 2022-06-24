@@ -9,18 +9,19 @@ $title          = '';
 $empty          = 0;
 
 $args = array(
-    'taxonomy'     => $taxonomy,
-    'orderby'      => $orderby,
-    'show_count'   => $show_count,
-    'pad_counts'   => $pad_counts,
-    'hierarchical' => $hierarchical,
-    'title_li'     => $title,
-    'hide_empty'   => $empty
+    'taxonomy'                  => $taxonomy,
+    'orderby'                   => $orderby,
+    'show_count'                => $show_count,
+    'pad_counts'                => $pad_counts,
+    'hierarchical'              => $hierarchical,
+    'title_li'                  => $title,
+    'hide_empty'                => $empty
 );
 $all_categories = get_categories( $args );
+$categoryDescription = category_description(38);
 echo '<div class="container"> 
         <div class="row">';
-        echo '</div>
+        echo $categoryDescription . '</div>
         <div class="row">';
 foreach ($all_categories as $cat) {
     if ($cat->category_parent == 38) {
