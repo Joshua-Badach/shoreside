@@ -20,3 +20,4 @@
 <header>
         <?php get_template_part( 'template-parts/components/nav' ); ?>
 </header>
+<?php //include_once('template-parts/components/modal.php');

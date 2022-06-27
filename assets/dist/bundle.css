@@ -181,7 +181,7 @@ button span {
   font-size: 4vh;
   font-family: "D-DIN Condensed";
   color: #ffffff;
-  text-shadow: none;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   -webkit-text-stroke: unset;
 }
 
@@ -547,5 +547,63 @@ footer .logo {
 }
 
 .categoryItems img {
-  padding: 10px;
+  width: 90%;
+  height: 90%;
+}
+
+.categoryItems p {
+  margin: 0;
+}
+
+.modal-link {
+  width: 150px;
+  height: 40px;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border: none;
+  border-radius: 5px;
+  background: #00bfff;
+  color: white;
+  text-transform: uppercase;
+}
+
+@media only screen and (min-width: 768px) {
+  .hide {
+    display: none;
+  }
+  .show {
+    display: block !important;
+  }
+  .modal-wrapper {
+    z-index: 999;
+    position: absolute;
+    left: calc((100vw - 600px) / 2);
+  }
+  .modal {
+    display: none;
+    position: relative;
+    width: 600px;
+    min-height: 300px;
+    padding: 20px 15px;
+    background: #EEEEEE;
+    color: #000000;
+    text-align: center;
+  }
+  .modal .close-modal {
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    cursor: pointer;
+  }
+  .modal h1 {
+    font-size: 56px;
+    margin: 35px 0;
+  }
+  .modal .entry-content p {
+    font-size: 16px;
+  }
 }

@@ -154,7 +154,7 @@ button span{
   font-size: nth($fontSizing, 3);
   font-family: nth($font, 1);
   color: nth($rpsBrand, 4);
-  text-shadow: none;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   -webkit-text-stroke: unset;
 }
 .bodyOutline{
@@ -474,5 +474,79 @@ footer .logo{
   margin-top: 4%;
 }
 .categoryItems img{
-  padding: 10px;
+  //padding: 10px;
+  width: 90%;
+  height: 90%;
 }
+.categoryItems p{
+  margin: 0;
+}
+//.nav-logo{
+//  background-image: url('../../assets/src/library/images/Logo-One-Line-WhiteBlue.png') !important;
+//  width: 200px!important;
+//}
+
+
+//Modal tester styling
+
+.modal-link {
+  width: 150px;
+  height: 40px;
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  border: none;
+  border-radius: 5px;
+  background: #00bfff;
+  color: white;
+  text-transform: uppercase;
+
+}
+
+// Styles for functionality
+@media only screen and (min-width: 768px) {
+  .hide {
+    display: none;
+  }
+  .show {
+    display: block!important;
+  }
+  .modal-wrapper {
+    z-index: 999;
+    position: absolute;
+    left: calc((100vw - 600px)/2); // center the modal horizontally
+  }
+
+  .modal {
+    display: none;
+    position: relative;
+    width: 600px;
+    min-height: 300px;
+    padding: 20px 15px;
+    background: #EEEEEE;
+    color: #000000;
+    text-align: center;
+
+    .close-modal {
+      position: absolute;
+      top: 20px;
+      right: 15px;
+      cursor: pointer;
+    }
+
+    h1 {
+      font-size: 56px;
+      margin: 35px 0;
+    }
+
+    .entry-content {
+      p {
+        font-size: 16px;
+      }
+    }
+  }
+}
+// end of media query
+
+@media only screen and (min-width: 1030px) {}
+// end of media query

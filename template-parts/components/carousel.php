@@ -8,14 +8,14 @@
         function wp_loop_slider($query){
             while ($query->have_posts()){
             $query->the_post();
-                echo ('<div class="sliderContent">');
+                echo ('<section class="sliderContent">');
                 the_post_thumbnail();
                 ?><div class="sliderText">
                 <h3><?php the_title(); ?></h3>
                 <?php the_content(); ?>
                 <button onclick="location.href='<?php the_permalink() ?>' ">Read More</button>
                 </div><?php
-                echo ('</div>');
+                echo ('</section>');
         }
         wp_reset_postdata();
     }

@@ -13,4 +13,7 @@
     ?>
     <p>Single page returned</p>
 </div>
-<?php get_footer() ?>
+
+<?php include('modal.php');
+
+get_footer() ?>

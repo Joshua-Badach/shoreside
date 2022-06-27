@@ -51,6 +51,8 @@ elseif ($slug = 'showroom'):
     product_gallery($idObj, $args);
 endif;
 
+//do a check again for subcategory pages. Need to hash out why I can't pull the category id, I don't want to hard code it
+
 //        pull subcategories
 //
 //        $args2 = array(
@@ -94,20 +96,3 @@ endif;
 //        }
 //    }
 //}
-?>
-<!--move this crap into it's own file-->
-<div class="modal-wrapper">
-    <div class="modal">
-        <div class="close-modal">
-            <div class="modal-content">
-<!--                Modal content-->
-            </div>
-        </div>
-    </div>
-</div><!-- Modal End -->
-<div class="container">
-    <section class="row">
-
-    </section>
-</div>
-
