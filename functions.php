@@ -59,6 +59,7 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
         wp_enqueue_style( 'slick', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css', null, null, false);
         wp_enqueue_style( 'slick-theme', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css', null, null, false);
         wp_enqueue_script( 'main', get_template_directory_uri() . '/assets/dist/main.bundle.js', array('jquery'), null, false );
+        wp_enqueue_script('app', get_template_directory_uri() . '/assets/src/js/app.js');
     }
     add_action( 'wp_enqueue_scripts', 'add_theme_scripts');
 

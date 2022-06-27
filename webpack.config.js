@@ -9,9 +9,6 @@ module.exports = {
   mode: "development",
   context: path.resolve(__dirname, "assets"),
   watch: true,
-  entry: {
-    app: './src/js/app.js'
-  },
   plugins:[
     new webpack.ProvidePlugin({
       $: 'jquery',
@@ -73,6 +70,9 @@ module.exports = {
       // }
     ],
   },
+  // entry: {
+  //   app: './src/js/app.js'
+  // },
   output: {
     filename: 'main.bundle.js',
     path: path.resolve(__dirname, "assets/dist")

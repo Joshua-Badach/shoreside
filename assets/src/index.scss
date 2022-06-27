@@ -3,10 +3,6 @@
 html, body{
   max-width: 100%;
   overflow-x: hidden;
-//  important hack because body is getting 8px margin out of somewhere
-}
-.body{
-  margin: 0;
 }
 nav h6{
   display: none;
