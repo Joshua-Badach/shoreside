@@ -8,10 +8,10 @@ module.exports = {
   //Change to production at delivery
   mode: "development",
   context: path.resolve(__dirname, "assets"),
+  watch: true,
   entry: {
     app: './src/js/app.js'
   },
-  watch: true,
   plugins:[
     new webpack.ProvidePlugin({
       $: 'jquery',
