@@ -6,7 +6,7 @@
     </div>
 </div>
 <div class="show-in-modal hide">
-    <p>Modal content - find out why hide function has to be manually triggered. Seems like wordpress is preventing jquery</p>
+    <p>Modal content - hackey fix for the jQuery not closing the modal. I have no idea why my test worked but I'll take it</p>
 </div>
 <div class="container">
     <?php
