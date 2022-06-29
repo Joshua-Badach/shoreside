@@ -547,15 +547,13 @@ footer .logo {
     display: none;
   }
   .show {
-    display: block !important;
+    display: flex !important;
   }
   .modal-wrapper {
     z-index: 999;
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: black;
-    opacity: 0.5;
   }
   .modal {
     display: none;

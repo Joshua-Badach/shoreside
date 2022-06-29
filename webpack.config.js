@@ -11,9 +11,9 @@ module.exports = {
   watch: true,
   plugins:[
     new webpack.ProvidePlugin({
-      $: 'jquery',
       jQuery: 'jquery',
       jquery: 'jquery',
+      $: 'jquery',
     }),
     new MiniCssExtractPlugin({
       filename: "bundle.css",

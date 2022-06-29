@@ -502,7 +502,7 @@ footer .logo{
     display: none;
   }
   .show {
-    display: block!important;
+    display: flex!important;
   }
   .modal-wrapper {
     z-index: 999;
@@ -511,8 +511,6 @@ footer .logo{
     //width: 90%;
     height: 100%;
     //left: calc((100vw - 90%)/2); // center the modal horizontally, keep width the same % as the calc
-    background-color: black;
-    opacity: .5;
   }
 
   .modal {
