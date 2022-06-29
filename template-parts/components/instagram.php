@@ -1,1 +1,1 @@
-Instagram component hooked up
+Instagram component hooked up - todo: pull in the api

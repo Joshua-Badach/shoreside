@@ -94,7 +94,7 @@ nav{
   //top: 25px;
   width: 100%;
   padding: 0;
-  z-index: 10;
+  z-index: 1000;
 }
 #menu-main li{
   list-style: none;
@@ -438,36 +438,36 @@ footer .logo{
   text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
   border-radius: 45px !important;
 }
-@media only screen and (min-width: 786px){
-  .hide{
-    display: none;
-  }
-  .show{
-    display: block!important;
-  }
-  .modal-wrapper{
-    z-index: 999;
-    position: absolute;
-    left: calc((100vw - 600px)/2);
-  }
-  .modal {
-    display: none;
-    position: relative;
-    //  tweak size later
-    width: 600px;
-    min-height: 300px;
-    padding: 2%;
-    background: nth($rpsBrand, 4);
-
-    .close-modal {
-      position: absolute;
-      //  tweak position later
-      top: 20px;
-      right: 15px;
-      cursor: pointer;
-    }
-  }
-}
+//@media only screen and (min-width: 786px){
+//  .hide{
+//    display: none;
+//  }
+//  .show{
+//    display: block!important;
+//  }
+//  .modal-wrapper{
+//    z-index: 999;
+//    position: absolute;
+//    left: calc((100vw - 600px)/2);
+//  }
+//  .modal {
+//    display: none;
+//    position: relative;
+//    //  tweak size later
+//    width: 600px;
+//    min-height: 300px;
+//    padding: 2%;
+//    background: nth($rpsBrand, 4);
+//
+//    .close-modal {
+//      position: absolute;
+//      //  tweak position later
+//      top: 20px;
+//      right: 15px;
+//      cursor: pointer;
+//    }
+//  }
+//}
 .categoryItems{
   text-align: center;
   margin-bottom: 4%;
@@ -487,8 +487,6 @@ footer .logo{
 .modal-link {
   width: 150px;
   height: 40px;
-  //margin: auto;
-  position: absolute;
   top: 0; left: 0; bottom: 0; right: 0;
   border: none;
   border-radius: 5px;
@@ -509,14 +507,19 @@ footer .logo{
   .modal-wrapper {
     z-index: 999;
     position: absolute;
-    left: calc((100vw - 600px)/2); // center the modal horizontally
+    width: 100%;
+    //width: 90%;
+    height: 100%;
+    //left: calc((100vw - 90%)/2); // center the modal horizontally, keep width the same % as the calc
+    background-color: black;
+    opacity: .5;
   }
 
   .modal {
     display: none;
     position: relative;
-    width: 600px;
-    min-height: 300px;
+    width: 100%;
+    min-height: 75%;
     padding: 20px 15px;
     background: #EEEEEE;
     color: #000000;
