@@ -579,3 +579,13 @@ footer .logo {
     font-size: 16px;
   }
 }
+@media (min-width: 320px) and (max-width: 480px) {
+  .brandSpan {
+    display: none;
+  }
+}
+@media (min-width: 481px) and (max-width: 768px) {
+  .brandSpan {
+    display: none;
+  }
+}

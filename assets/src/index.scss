@@ -543,6 +543,32 @@ footer .logo{
   }
 }
 // end of media query
+//
+//@media only screen and (min-width: 1030px) {}
+//// end of media query
+//not sure what this is for
 
-@media only screen and (min-width: 1030px) {}
-// end of media query
+
+//extra small mobile
+@media (min-width: 320px) and (max-width: 480px) {
+  .brandSpan{
+    display: none;
+  }
+}
+
+//mobile and tablet
+@media (min-width: 481px) and (max-width: 768px) {
+  .brandSpan{
+    display: none;
+  }
+}
+
+//small screens
+@media (min-width: 769px) and (max-width: 1024px) {}
+
+//regular screens
+@media (min-width: 1025px) and (max-width: 1200px) {}
+
+//tv and large screen
+@media only screen and (min-width: 1201px) {}
+
