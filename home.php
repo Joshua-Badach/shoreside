@@ -22,6 +22,13 @@
 </section>
 <div class="container">
     <section class="row">
+        <?php
+            if (is_home() == true ):
+                $query = new WP_Query(array( 'category_name' => 'slider+home-slider'));
+            else:
+                echo 'stuff';
+            endif
+        ?>
         <h2 class="offset-lg-5 col-lg-7">What we offer</h2>
         <p class="offset-lg-1 col-sm-3">
             <img src="http://placekitten.com/200/200" alt="placeholder"><br>

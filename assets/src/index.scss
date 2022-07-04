@@ -148,7 +148,7 @@ button span{
 }
 .home-block img{
   width: 150px;
-  height: 150px;
+  aspect-ratio: 1/1;
 }
 .home-heading{
   font-size: nth($fontSizing, 3);
@@ -554,6 +554,13 @@ footer .logo{
   .brandSpan{
     display: none;
   }
+  .home-block{
+    top: -220px;
+  }
+  .home-block img{
+    width: 20%;
+    aspect-ratio: 1 / 1;
+  }
 }
 
 //mobile and tablet
@@ -561,14 +568,32 @@ footer .logo{
   .brandSpan{
     display: none;
   }
+  .home-block{
+    top: -220px;
+  }
+  .home-block img{
+    width: 20%;
+    aspect-ratio: 1 / 1;
+  }
 }
 
 //small screens
-@media (min-width: 769px) and (max-width: 1024px) {}
+@media (min-width: 769px) and (max-width: 1024px) {
+  .brandSpan{
+    margin-top: -70px;
+  }
+  .home-block{
+    top: -310px;
+  }
+}
 
 //regular screens
-@media (min-width: 1025px) and (max-width: 1200px) {}
-
-//tv and large screen
-@media only screen and (min-width: 1201px) {}
+@media (min-width: 1025px) and (max-width: 1200px) {
+  .brandSpan{
+    margin-top: -70px;
+  }
+  .home-block{
+    top: -310px;
+  }
+}
 

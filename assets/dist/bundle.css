@@ -174,7 +174,7 @@ button span {
 
 .home-block img {
   width: 150px;
-  height: 150px;
+  aspect-ratio: 1/1;
 }
 
 .home-heading {
@@ -583,9 +583,39 @@ footer .logo {
   .brandSpan {
     display: none;
   }
+  .home-block {
+    top: -220px;
+  }
+  .home-block img {
+    width: 20%;
+    aspect-ratio: 1/1;
+  }
 }
 @media (min-width: 481px) and (max-width: 768px) {
   .brandSpan {
     display: none;
+  }
+  .home-block {
+    top: -220px;
+  }
+  .home-block img {
+    width: 20%;
+    aspect-ratio: 1/1;
+  }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  .brandSpan {
+    margin-top: -70px;
+  }
+  .home-block {
+    top: -310px;
+  }
+}
+@media (min-width: 1025px) and (max-width: 1200px) {
+  .brandSpan {
+    margin-top: -70px;
+  }
+  .home-block {
+    top: -310px;
   }
 }
