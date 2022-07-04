@@ -1,5 +1,6 @@
-<?php get_header() ?>
-<?php get_template_part('template-parts/components/heroVideo') ?>
+<?php get_header();
+
+get_template_part('template-parts/components/heroVideo') ?>
 <div class="container">
     <div class="row">
         <section class="col-lg-5 home-block">
@@ -22,26 +23,19 @@
 </section>
 <div class="container">
     <section class="row">
-        <?php
-            if (is_home() == true ):
-                $query = new WP_Query(array( 'category_name' => 'slider+home-slider'));
-            else:
-                echo 'stuff';
-            endif
-        ?>
         <h2 class="offset-lg-5 col-lg-7">What we offer</h2>
-        <p class="offset-lg-1 col-sm-3">
-            <img src="http://placekitten.com/200/200" alt="placeholder"><br>
-            <a href="/showroom/">Showroom</a>
-        </p>
-        <p class="offset-lg-1 col-sm-3">
-            <img src="http://placekitten.com/200/200" alt="placeholder"><br>
-            <a href="/parts/">Parts</a>
-        </p>
-        <p class="offset-lg-1 col-sm-3">
-            <img src="http://placekitten.com/200/200" alt="placeholder"><br>
-            <a href="/service/">Service</a>
-        </p>
+        <a href="/showroom/" class="offset-lg-1 col-sm-3">
+            <img src="<?php echo get_template_directory_uri() . '/assets/src/library/images/salesStock.jpg' ?>" alt="placeholder" width="200px" height="200px"><br>
+            <p>Showroom</p>
+        </a>
+        <a href="/parts-and-accessories/" class="offset-lg-1 col-sm-3">
+            <img src="<?php echo get_template_directory_uri() . '/assets/src/library/images/partsStock.jpg' ?>" alt="placeholder" width="200px" height="200px"><br>
+            <p>Parts</p>
+        </a>
+        <a href="/service/" class="offset-lg-1 col-sm-3">
+            <img src="<?php echo get_template_directory_uri() . '/assets/src/library/images/serviceStock.jpg' ?>" alt="placeholder" width="200px" height="200px"><br>
+            <p>Service</p>
+        </a>
     </section>
     <section class="row">
         <h2>Keyword placeholder header</h2>
