@@ -7,6 +7,7 @@ html, body{
 nav h6{
   display: none;
 }
+
 //==========fonts==========
 $font: 'D-DIN Condensed', 'D-DIN Condensed Bold', 'American Captain';
 $fontSizing: 2.313vh, 3.25vh, 4vh, 4.75vh, 5.5vh, 6.25vh;
@@ -279,6 +280,9 @@ footer .socmed{
   justify-content: center;
   align-items: center;
 }
+footer .mobileShow{
+  display: none;
+}
 .errorHeading{
   font-family: nth($errorFont, 1);
   color: nth($errorFont, 2);
@@ -475,8 +479,8 @@ footer .logo{
 }
 .categoryItems img{
   //padding: 10px;
-  width: 90%;
-  height: 90%;
+  width: 100%;
+  height: 100%;
 }
 .categoryItems p{
   margin: 0;
@@ -561,6 +565,21 @@ footer .logo{
     width: 20%;
     aspect-ratio: 1 / 1;
   }
+  .sliderText{
+    max-height: 200px;
+  }
+  .sliderText p{
+    display: none;
+  }
+  footer .logo{
+    display: none;
+  }
+  footer{
+    padding: 10px;
+  }
+  footer .mobileShow{
+    display: list-item;
+  }
 }
 
 //mobile and tablet
@@ -574,6 +593,21 @@ footer .logo{
   .home-block img{
     width: 20%;
     aspect-ratio: 1 / 1;
+  }
+  .sliderText{
+    max-height: 200px;
+  }
+  .sliderText p{
+    display: none;
+  }
+  footer .logo{
+    display: none;
+  }
+  footer{
+    padding: 10px;
+  }
+  footer .mobileShow{
+    display: list-item;
   }
 }
 

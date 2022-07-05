@@ -329,6 +329,10 @@ footer .socmed {
   align-items: center;
 }
 
+footer .mobileShow {
+  display: none;
+}
+
 .errorHeading {
   font-family: "D-DIN Condensed Bold";
   color: #ffffff;
@@ -520,8 +524,8 @@ footer .logo {
 }
 
 .categoryItems img {
-  width: 90%;
-  height: 90%;
+  width: 100%;
+  height: 100%;
 }
 
 .categoryItems p {
@@ -590,6 +594,21 @@ footer .logo {
     width: 20%;
     aspect-ratio: 1/1;
   }
+  .sliderText {
+    max-height: 200px;
+  }
+  .sliderText p {
+    display: none;
+  }
+  footer .logo {
+    display: none;
+  }
+  footer {
+    padding: 10px;
+  }
+  footer .mobileShow {
+    display: list-item;
+  }
 }
 @media (min-width: 481px) and (max-width: 768px) {
   .brandSpan {
@@ -601,6 +620,21 @@ footer .logo {
   .home-block img {
     width: 20%;
     aspect-ratio: 1/1;
+  }
+  .sliderText {
+    max-height: 200px;
+  }
+  .sliderText p {
+    display: none;
+  }
+  footer .logo {
+    display: none;
+  }
+  footer {
+    padding: 10px;
+  }
+  footer .mobileShow {
+    display: list-item;
   }
 }
 @media (min-width: 769px) and (max-width: 1024px) {

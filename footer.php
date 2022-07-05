@@ -9,6 +9,7 @@
                 <div class="col-lg-2">
                     <p>NAVIGATION</p>
                     <ul>
+                        <li class="mobileShow"><a href="<?php echo site_url() ?>">Home</a></li>
                         <li><a href="/showroom/">Showroom</a></li>
                         <li><a href="/parts/">Parts & Accessories</a></li>
                         <li><a href="/service/">Service</a></li>

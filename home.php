@@ -23,19 +23,29 @@ get_template_part('template-parts/components/heroVideo') ?>
 </section>
 <div class="container">
     <section class="row">
-        <h2 class="offset-lg-5 col-lg-7">What we offer</h2>
-        <a href="/showroom/" class="offset-lg-1 col-sm-3">
-            <img src="<?php echo get_template_directory_uri() . '/assets/src/library/images/salesStock.jpg' ?>" alt="placeholder" width="200px" height="200px"><br>
-            <p>Showroom</p>
-        </a>
-        <a href="/parts-and-accessories/" class="offset-lg-1 col-sm-3">
-            <img src="<?php echo get_template_directory_uri() . '/assets/src/library/images/partsStock.jpg' ?>" alt="placeholder" width="200px" height="200px"><br>
-            <p>Parts</p>
-        </a>
-        <a href="/service/" class="offset-lg-1 col-sm-3">
-            <img src="<?php echo get_template_directory_uri() . '/assets/src/library/images/serviceStock.jpg' ?>" alt="placeholder" width="200px" height="200px"><br>
-            <p>Service</p>
-        </a>
+        <h2 class="col-lg-12">What we offer</h2>
+<!--        change this later, span works kinda for now on hover-->
+        <div class="offset-lg-1 col-sm-3 categoryItems">
+            <a href="/showroom/">
+                <img src="<?php echo get_template_directory_uri() . '/assets/src/library/images/salesStock.jpg' ?>" alt="placeholder">
+                <br>
+                <span>Showroom</span>
+            </a>
+        </div>
+        <div class="offset-lg-1 col-sm-3 categoryItems">
+            <a href="/parts-and-accessories/">
+                <img src="<?php echo get_template_directory_uri() . '/assets/src/library/images/partsStock.jpg' ?>" alt="placeholder">
+                <br>
+                <span>Parts</span>
+            </a>
+        </div>
+        <div class="offset-lg-1 col-sm-3 categoryItems">
+            <a href="/service/">
+                <img src="<?php echo get_template_directory_uri() . '/assets/src/library/images/serviceStock.jpg' ?>" alt="placeholder">
+                <br>
+                <span>Service</span>
+            </a>
+        </div>
     </section>
     <section class="row">
         <h2>Keyword placeholder header</h2>
@@ -43,13 +53,9 @@ get_template_part('template-parts/components/heroVideo') ?>
         <button>Learn More</button>
     </section>
 </div>
-<?php get_template_part( 'template-parts/components/quote' ); ?>
-<div class="container">
-    <div class="row">
-        <p class="col-lg-12">
-            <span>Follow Us</span> <img src="http://placekitten.com/50/50" alt=""> <span>@recreationalpowersports</span>
-        </p>
-        <?php get_template_part( 'template-parts/components/instagram' ); ?>
-    </div>
-</div>
-<?php get_footer() ?>
+
+<?php get_template_part( 'template-parts/components/quote' );
+
+get_template_part( 'template-parts/components/instagram' );
+
+get_footer() ?>
