@@ -1,8 +1,8 @@
 <?php
 
-//idObj is set to 55 because that is the top level boat category
+//idObj is set to 0 because that is the top level boat category
 
-$idObj = 55;
+$idObj = 0;
 
 $taxonomy       = 'product_cat';
 $orderby        = 'name';
@@ -22,11 +22,6 @@ $args = array(
     'hide_empty'                => $empty
 );
 
-//$brands_cat_id = get_cat_ID('brands');
-//$brands_cat_link = get_category_link($brands_cat_id);
-//$brands_cat_name = get_cat_name($brands_cat_id);
-//$brands_cat_children = get_term_by('slug', $brands_cat_name, 'product_cat');
-
 //can clean this up but will do that later, works well enough for now
 function brand_loop($idObj, $args){
     $all_categories = get_categories( $args );
@@ -35,16 +30,16 @@ function brand_loop($idObj, $args){
                 <div class="row brandSpan">
                 <h2>Our Brands</h2>';
                 foreach ($all_categories as $cat) {
-                    if ($cat->category_parent == $idObj && $cat->name === $test[0] ) {
+                    if ($cat->name === $test[0] ) {
                         brand_cards($cat);
                         }
-                    if ($cat->category_parent == $idObj && $cat->name === $test[1] ) {
+                    if ($cat->name === $test[1] ) {
                         brand_cards($cat);
                     }
-                    if ($cat->category_parent == $idObj && $cat->name === $test[2] ) {
+                    if ($cat->name === $test[2] ) {
                         brand_cards($cat);
                     }
-                    if ($cat->category_parent == $idObj && $cat->name === $test[3] ) {
+                    if ($cat->name === $test[3] ) {
                         brand_cards($cat);
                     }
                 }
