@@ -59,13 +59,6 @@
             </div>
         </footer>
         <?php
-//        Remove testing data below, just here for easy identification
-        $pageID = get_queried_object_id();
-        $slug = $post->post_name;
-        print_r($pageID);?>
-<br>
-        <?php
-        print_r($slug);
         get_template_part('template-parts/components/scripts' ); ?>
     </body>
 </html>
