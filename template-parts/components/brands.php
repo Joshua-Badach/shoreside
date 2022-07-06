@@ -1,5 +1,22 @@
+<?php
+
+$brands_cat_id = get_cat_ID('brands');
+$brands_cat_link = get_category_link($brands_cat_id);
+$brands_cat_name = get_cat_name($brands_cat_id);
+$brands_cat_children = get_term_by('slug', $brands_cat_name, 'product_cat');
+
+
+$term_children = get_terms(
+        'brands', array(
+                'parent' => get_queried_object_id(),
+    )
+);
+
+?>
+
 <section class="row brandSpan">
     <h2>Our Brands</h2>
+    <?php echo $brands_cat_children ?>
     <section class="col-sm-3">
         <a href="/avalon/">
             <div class="brands">
@@ -44,4 +61,6 @@
             </div>
         </a>
     </section>
-</section>
+
+
+
