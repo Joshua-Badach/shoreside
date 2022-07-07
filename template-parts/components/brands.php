@@ -49,6 +49,9 @@ function brand_loop($idObj, $args){
 function brand_cards($cat){
     $thumbnail_id = get_term_meta( $cat->term_id, 'thumbnail_id', true );
     $image = wp_get_attachment_url( $thumbnail_id );
+    $content = $cat->description;
+    $trimmed_content = wp_trim_words( $content, 100, '<a href="'. get_permalink() .'">...[ read more ]</a>');
+
     echo '<section class="col-sm-3">
             <a href="' . get_term_link($cat->slug, 'product_cat') . '">
                 <div class="brands">
@@ -56,7 +59,7 @@ function brand_cards($cat){
                         <img src="'. $image . '" width="150px" height="150px">
                     </div>   
                     <h3>' . $cat->name . '</h3>
-                    <p>' . $cat->description . '</p> 
+                    <p>'; echo $trimmed_content . '</p> 
                 </div>    
             </a>
     </section>';
