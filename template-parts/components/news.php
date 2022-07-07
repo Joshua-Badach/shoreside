@@ -14,7 +14,7 @@ function news($query){
             while ($query->have_posts()){
                 $query->the_post();
                 $content = get_the_content();
-                $trimmed_content = wp_trim_words( $content, 200, '<a href="'. get_permalink() .'">...[ read more ]</a>');
+                $trimmed_content = wp_trim_words( $content, 200, '<a href="'. get_permalink() .'">...</a>');
             }
             wp_reset_postdata();
             echo $trimmed_content;

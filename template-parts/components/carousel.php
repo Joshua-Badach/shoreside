@@ -1,6 +1,6 @@
 <div class="carousel">
     <?php
-//        $the_page = sanitize_posT($GLOBALS['wp_the_query']->get_queried_object() );
+        $the_page = sanitize_posT($GLOBALS['wp_the_query']->get_queried_object() );
         $slug = $the_page->post_name;
 
 //        add a check for text, display image only if no text present
@@ -22,7 +22,7 @@
 
     if (is_home() == true ):
         $query = new WP_Query(array(
-                'category_name'         => 'slider+home-slider',
+                'category_name'         => 'home-slider',
                 'posts_per_page'        => 5
         ));
         wp_loop_slider($query);
