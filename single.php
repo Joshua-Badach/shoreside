@@ -20,8 +20,8 @@
                 the_title();
                 the_content();
 
-            } // end while
-        } // end if
+            }
+        }
     ?>
 <!--    <button href="#" class="modal-link">Open Modal</button>-->
 </div>

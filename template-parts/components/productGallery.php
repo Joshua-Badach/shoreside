@@ -1,7 +1,7 @@
 <?php
-global $post;
+//global $post;
 $slug = $post->post_name;
-$id = $post->ID;
+//$id = $post->ID;
 
 $taxonomy       = 'product_cat';
 $orderby        = 'name';
@@ -45,6 +45,7 @@ function product_gallery($idObj, $args){
 }
 
 $term = get_term_by('id', 'product_cat');
+
 if ($slug == 'parts-and-accessories'):
     $idObj = 38;
 //live category id remove hardcode later
