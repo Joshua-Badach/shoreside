@@ -40,6 +40,18 @@ a:hover{
   background: nth($rpsBrand, 1);
   color: nth($rpsBrand, 4);
 }
+//.categoryItems img {
+//  transition: all 1s ease-in-out;
+//}
+//.categoryItems img:hover{
+//  -webkit-transform: scale(1.5);
+//  -moz-transform: scale(1.5);
+//  -ms-transform: scale(1.5);
+//  -o-transform: scale(1.5);
+//  transform: scale(1.5);
+//  -webkit-box-shadow: 5px 5px 15px 5px #000000;
+//  box-shadow: 5px 5px 15px 5px #000000;
+//}
 footer li a:hover{
   background: nth($rpsBrand, 2);
   color: nth($rpsBrand, 4);
