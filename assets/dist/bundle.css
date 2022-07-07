@@ -594,6 +594,9 @@ footer .logo {
     width: 20%;
     aspect-ratio: 1/1;
   }
+  .row {
+    padding: 10px;
+  }
   .sliderText {
     max-height: 200px;
   }
@@ -620,6 +623,9 @@ footer .logo {
   .home-block img {
     width: 20%;
     aspect-ratio: 1/1;
+  }
+  .row {
+    padding: 10px;
   }
   .sliderText {
     max-height: 200px;

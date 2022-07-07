@@ -5,9 +5,7 @@ $query = new WP_Query(array(
         'post_status'       => ' publish',
         'posts_per_page'    => 1
 ));
-function news($query){
 
-}
 ?>
 <div class="news">
     <p><?php
