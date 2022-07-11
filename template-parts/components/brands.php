@@ -52,19 +52,17 @@ function brand_cards($cat){
     $content = $cat->description;
     $trimmed_content = wp_trim_words( $content, 100, '<a href="'. get_permalink() .'">...[ read more ]</a>');
 
-    echo '<div class="container">
-            <section class="col-sm-3">
-                <a href="' . get_term_link($cat->slug, 'product_cat') . '">
-                    <div class="brands">
-                        <div class="brandImage">
-                            <img src="'. $image . '" width="150px" height="150px">
-                        </div>   
-                        <h3>' . $cat->name . '</h3>
-                        <p>'; echo $trimmed_content . '</p> 
-                    </div>    
-                </a>
-            </section>
-        </div>';
+    echo '<section class="col-sm-3">
+            <a href="' . get_term_link($cat->slug, 'product_cat') . '">
+                <div class="brands">
+                    <div class="brandImage">
+                        <img src="'. $image . '" width="150px" height="150px">
+                    </div>   
+                    <h3>' . $cat->name . '</h3>
+                    <p>'; echo $trimmed_content . '</p> 
+                </div>    
+            </a>
+    </section>';
 }
 
 brand_loop($idObj, $args);

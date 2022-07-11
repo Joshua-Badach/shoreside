@@ -114,6 +114,11 @@ function hero_shortcode(){
 }
 add_shortcode('hero', 'hero_shortcode');
 
+function mission_shortcode(){
+    include('template-parts/components/mission.php');
+}
+add_shortcode('mission', 'mission_shortcode');
+
 function offering_shortcode(){
     include('template-parts/components/offerings.php');
 }
