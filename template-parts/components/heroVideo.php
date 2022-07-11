@@ -12,4 +12,5 @@
             <h2 class="home-heading"><?php echo get_option('blogdescription'); ?></h2>
         </section>
     </div>
+</div>
 
