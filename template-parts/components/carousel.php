@@ -20,7 +20,7 @@
         wp_reset_postdata();
     }
 
-    if (is_home() == true ):
+    if (is_home() || is_front_page() == true ):
         $query = new WP_Query(array(
                 'category_name'         => 'home-slider',
                 'posts_per_page'        => 5

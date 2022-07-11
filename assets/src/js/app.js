@@ -1,4 +1,5 @@
 jQuery(document).ready(function() {
+
   window.onscroll = function() {navStick()};
 
   var navbar = document.getElementById("navbar");
@@ -11,20 +12,14 @@ jQuery(document).ready(function() {
       navbar.classList.remove("sticky");
     }
   }
-  input = jQuery('<input id="searchField" name="search"><button type="submit">Go</button>');
+
+  //add full form crap
 
   jQuery(document).on('click', '.search', function(event){
-    // jQuery('.search a').toggle("slide", { direction: "right" }, 1000);
-    // event.preventDefault();
-    // if(jQuery('#another-element:visible').length)
-    //   jQuery('#another-element').hide("slide", { direction: "right" }, 1000);
-    // else
-    //   jQuery('#another-element').show("slide", { direction: "right" }, 1000);
+    input = jQuery('<input id="searchField" name="search"><button type="submit">Go</button>');
 
     jQuery('.search a').replaceWith(input);
-    // jQuery.hide('.search');
-    // alert("execute search field");
-  });
+ });
 
 
   jQuery('.carousel').slick({

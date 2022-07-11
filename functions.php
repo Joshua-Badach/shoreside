@@ -114,6 +114,11 @@ function hero_shortcode(){
 }
 add_shortcode('hero', 'hero_shortcode');
 
+function offering_shortcode(){
+    include('template-parts/components/offerings.php');
+}
+add_shortcode('offerings', 'offering_shortcode');
+
 function insta_shortcode(){
     include('template-parts/components/instagram.php');
 }
