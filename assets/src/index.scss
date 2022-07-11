@@ -32,14 +32,14 @@ footer ::-moz-selection{
   background: nth($rpsBrand, 4);
   color: nth($rpsBrand, 5);
 }
-.container a:hover{
-  background: nth($rpsBrand, 1);
-  color: nth($rpsBrand, 4);
-}
-a:hover{
-  background: nth($rpsBrand, 1);
-  color: nth($rpsBrand, 4);
-}
+//.container a:hover{
+//  background: nth($rpsBrand, 1);
+//  color: nth($rpsBrand, 4);
+//}
+//a:hover{
+//  background: nth($rpsBrand, 1);
+//  color: nth($rpsBrand, 4);
+//}
 //.categoryItems img {
 //  transition: all 1s ease-in-out;
 //}

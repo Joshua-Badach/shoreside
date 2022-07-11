@@ -40,16 +40,6 @@ footer ::-moz-selection {
   color: #000000;
 }
 
-.container a:hover {
-  background: #0069ad;
-  color: #ffffff;
-}
-
-a:hover {
-  background: #0069ad;
-  color: #ffffff;
-}
-
 footer li a:hover {
   background: #ad0034;
   color: #ffffff;
