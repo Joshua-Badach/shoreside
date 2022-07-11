@@ -1,7 +1,45 @@
-//remove later
-console.log('app.js hooked up');
-
 jQuery(document).ready(function() {
+  window.onscroll = function() {navStick()};
+
+  var navbar = document.getElementById("navbar");
+  var sticky = navbar.offsetTop;
+
+  function navStick() {
+    if (window.pageYOffset >= sticky) {
+      navbar.classList.add("sticky")
+    } else {
+      navbar.classList.remove("sticky");
+    }
+  }
+  input = jQuery('<input id="searchField" name="search"><button type="submit">Go</button>');
+
+  jQuery(document).on('click', '.search', function(event){
+    // jQuery('.search a').toggle("slide", { direction: "right" }, 1000);
+    // event.preventDefault();
+    // if(jQuery('#another-element:visible').length)
+    //   jQuery('#another-element').hide("slide", { direction: "right" }, 1000);
+    // else
+    //   jQuery('#another-element').show("slide", { direction: "right" }, 1000);
+
+    jQuery('.search a').replaceWith(input);
+    // jQuery.hide('.search');
+    // alert("execute search field");
+  });
+
+
+  jQuery('.carousel').slick({
+    infinite: false,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    speed: 1000,
+    autoplay: true,
+    autoplaySpeed: 10000,
+    dots: true,
+  });
+
+  jQuery('.close-modal').click(function() {
+    jQuery('.modal').toggleClass('show');
+  });
   // Close modal
 
   function close(){

@@ -40,6 +40,10 @@ footer ::-moz-selection {
   color: #000000;
 }
 
+.search {
+  margin-right: 20px;
+}
+
 footer li a:hover {
   background: #ad0034;
   color: #ffffff;
@@ -120,7 +124,6 @@ nav {
 
 button {
   height: 30px;
-  width: 150px;
   -webkit-border-radius: 45px;
   -moz-border-radius: 45px;
   border-radius: 45px;

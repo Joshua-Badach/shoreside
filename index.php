@@ -10,9 +10,10 @@ if ($slug != 'search') {
             the_post();
             the_content();
         }
+        echo "index returned";
     }
 } else {
-
+// may handle this differently... probably...
     get_product_search_form();
 
 }
