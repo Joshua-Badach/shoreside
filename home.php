@@ -8,8 +8,8 @@ get_template_part('template-parts/components/mission');
 
 ?>
 <section>
-<h2 class="col-sm-8">How Recreational Power Sports Does It Better</h2>
-<?php get_template_part('template-parts/components/carousel' ); ?>
+    <h2 class="col-sm-8">How Recreational Power Sports Does It Better</h2>
+    <?php get_template_part('template-parts/components/carousel' ); ?>
 </section>
 <?php
 

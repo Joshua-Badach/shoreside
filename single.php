@@ -26,5 +26,5 @@
 <!--    <button href="#" class="modal-link">Open Modal</button>-->
 </div>
 
-
+single page returned
 <?php get_footer() ?>

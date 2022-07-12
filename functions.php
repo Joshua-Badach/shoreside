@@ -112,7 +112,7 @@ add_shortcode('brands', 'brands_shortcode');
 function hero_shortcode(){
     include('template-parts/components/heroVideo.php');
 }
-add_shortcode('hero', 'hero_shortcode');
+add_shortcode('hero', 'hero_shortcode', 1);
 
 function mission_shortcode(){
     include('template-parts/components/mission.php');

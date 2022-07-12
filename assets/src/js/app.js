@@ -16,7 +16,8 @@ jQuery(document).ready(function() {
   //add full form crap
 
   jQuery(document).on('click', '.search', function(event){
-    input = jQuery('<input id="searchField" name="search"><button type="submit">Go</button>');
+    //svg scope here
+    input = jQuery('<input id="searchField" name="search"><button type="submit">ok</button>');
 
     jQuery('.search a').replaceWith(input);
  });
