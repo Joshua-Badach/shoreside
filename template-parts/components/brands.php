@@ -29,6 +29,7 @@ function brand_loop($idObj, $args){
     echo '<section class="container"> 
                 <div class="row brandSpan">
                 <h2>Our Brands</h2>';
+//    clean this crap up, sloppy but works for now
                 foreach ($all_categories as $cat) {
                     if ($cat->name === $test[0] ) {
                         brand_cards($cat);

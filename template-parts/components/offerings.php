@@ -28,13 +28,14 @@ function product_gallery($idObj, $args){
 //    $categoryDescription = category_description($idObj);
     $term = get_term_by('id', $idObj, 'product_cat');
     echo '<section class="container"> 
-        <div class="row">';
+        <div class="row">
+        <h2 class="col-lg-12">What we offer</h2>';
     foreach ($all_categories as $cat) {
         if ($cat->category_parent == 0 && $cat->name != 'Uncategorized') {
 //            $category_id = $cat->term_id;
             $thumbnail_id = get_term_meta( $cat->term_id, 'thumbnail_id', true );
             $image = wp_get_attachment_url( $thumbnail_id );
-            echo '<a class="col-sm-3 categoryItems" href="' . get_term_link($cat->slug, 'product_cat') . '">
+            echo '<a class="offset-lg-1 col-sm-3 categoryItems" href="' . get_term_link($cat->slug, 'product_cat') . '">
             <img src="'. $image . '" width="150px" height="150px"><span>'
                 . $cat->name .
                 ' </span></a>';
