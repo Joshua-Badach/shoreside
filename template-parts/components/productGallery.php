@@ -31,7 +31,7 @@ function product_gallery($idObj, $args){
     echo $categoryDescription . '</div>
         <div class="row">';
     foreach ($all_categories as $cat) {
-        if ($cat->category_parent == $idObj) {
+        if ($cat->category_parent == $idObj && $cat->name != 'Uncategorized') {
 //            $category_id = $cat->term_id;
             $thumbnail_id = get_term_meta( $cat->term_id, 'thumbnail_id', true );
             $image = wp_get_attachment_url( $thumbnail_id );
@@ -40,6 +40,7 @@ function product_gallery($idObj, $args){
                 . $cat->name .
                 ' </span></a>';
         }
+
     }
     echo '</section>';
 }
@@ -48,13 +49,15 @@ $term = get_term_by('id', 'product_cat');
 
 
 //do again for the service slider
+
+
 if ($slug == 'parts-and-accessories'):
-    $idObj = 38;
+    $idObj = 223;
 //live category id remove hardcode later
 //$idObj = 22;
     product_gallery($idObj, $args);
 elseif ($slug = 'showroom'):
-    $idObj = 54;
+    $idObj = $cat->term_id;
 //live category id remove hardcode later
 //$idObj = 38;
     product_gallery($idObj, $args);
