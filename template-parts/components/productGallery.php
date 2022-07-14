@@ -3,6 +3,7 @@ global $post;
 $slug = $post->post_name;
 $id = $post->ID;
 
+
 $taxonomy       = 'product_cat';
 $orderby        = 'name';
 $show_count     = 0;      // 1 for yes, 0 for no
@@ -25,6 +26,7 @@ function product_gallery($idObj, $args){
     $all_categories = get_categories( $args );
     $categoryDescription = category_description($idObj);
     $term = get_term_by('id', $idObj, 'product_cat');
+
     echo '<section class="container"> 
         <div class="row">
         <h2>' . $term->name . '</h2>';
@@ -47,19 +49,13 @@ function product_gallery($idObj, $args){
 
 $term = get_term_by('id', 'product_cat');
 
-
-//do again for the service slider
-
-
 if ($slug == 'parts-and-accessories'):
-    $idObj = 223;
-//live category id remove hardcode later
-//$idObj = 22;
+    $id = get_term_by('slug', 'parts-and-accessories', 'product_cat');
+    $idObj = $id->term_id;
     product_gallery($idObj, $args);
-elseif ($slug = 'showroom'):
-    $idObj = $cat->term_id;
-//live category id remove hardcode later
-//$idObj = 38;
+elseif ($slug == 'showroom'):
+    $id = get_term_by('slug', 'sales-showroom', 'product_cat');
+    $idObj = $id->term_id;
     product_gallery($idObj, $args);
 endif;
 

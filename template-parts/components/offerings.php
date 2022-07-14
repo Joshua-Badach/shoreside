@@ -35,7 +35,7 @@ function product_gallery($idObj, $args){
 //            $category_id = $cat->term_id;
             $thumbnail_id = get_term_meta( $cat->term_id, 'thumbnail_id', true );
             $image = wp_get_attachment_url( $thumbnail_id );
-            echo '<a class="offset-lg-1 col-sm-3 categoryItems" href="' . get_term_link($cat->slug, 'product_cat') . '">
+            echo '<a class="offset-lg-1 col-sm-3 categoryItems" href="' . '/' . $cat->slug . '/' . '">
             <img src="'. $image . '" width="150px" height="150px"><span>'
                 . $cat->name .
                 ' </span></a>';
