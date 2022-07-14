@@ -5,5 +5,6 @@
         'theme_location'    => 'shoreside_menu',
 //        'menu_class'        => 'row',
     ) );
+//    get_product_search_form();
     ?>
 </nav>

@@ -11,7 +11,7 @@ if ($slug != 'search') {
         }
         echo "index returned";
     }
-} else {
+} elseif ($slug == 'search') {
 // may handle this differently... probably...
     get_product_search_form();
 

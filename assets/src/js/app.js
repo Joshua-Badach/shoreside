@@ -17,9 +17,9 @@ jQuery(document).ready(function() {
 
   jQuery(document).on('click', '.search', function(event){
     //svg scope here
-    input = jQuery('<form action="search" method="post"><input id="searchField" name="search"><button type="submit">ok</button></form>');
+    input = jQuery('<form role="search" method="GET" id="searchform" class="searchform"><input name="s" value="" name="s" id="s" type="text"><button type="submit">ok</button></form>');
 
-    jQuery('.search a').replaceWith(input).slideToggle();
+    jQuery('.search a').replaceWith(input);
  });
 
 
