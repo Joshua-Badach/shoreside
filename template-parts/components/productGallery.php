@@ -34,7 +34,6 @@ function product_gallery($idObj, $args){
         <div class="row">';
     foreach ($all_categories as $cat) {
         if ($cat->category_parent == $idObj && $cat->name != 'Uncategorized') {
-//            $category_id = $cat->term_id;
             $thumbnail_id = get_term_meta( $cat->term_id, 'thumbnail_id', true );
             $image = wp_get_attachment_url( $thumbnail_id );
             echo '<a class="col-sm-3 categoryItems" href="' . get_term_link($cat->slug, 'product_cat') . '">
@@ -42,19 +41,16 @@ function product_gallery($idObj, $args){
                 . $cat->name .
                 ' </span></a>';
         }
-
     }
     echo '</section>';
 }
-
-$term = get_term_by('id', 'product_cat');
 
 if ($slug == 'parts-and-accessories'):
     $id = get_term_by('slug', 'parts-and-accessories', 'product_cat');
     $idObj = $id->term_id;
     product_gallery($idObj, $args);
 elseif ($slug == 'showroom'):
-    $id = get_term_by('slug', 'sales-showroom', 'product_cat');
+    $id = get_term_by('slug', 'showroom', 'product_cat');
     $idObj = $id->term_id;
     product_gallery($idObj, $args);
 endif;

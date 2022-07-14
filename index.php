@@ -1,6 +1,5 @@
 <?php
 get_header();
-
 $slug = $post->post_name;
 
 if ($slug != 'search') {
