@@ -51,6 +51,12 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
     }
     add_action('after_setup_theme', 'shoreside_header_setup');
 
+    function featured_image_support() {
+        add_theme_support( 'post-thumbnails' );
+    }
+    add_action( 'after_setup_theme', 'featured_image_support' );
+
+    add_theme_support('post-thumbnails');
 
     function add_theme_scripts(){
 //        wp_enqueue_script('jquery', '//ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js', array('jquery'), null, true);
@@ -141,3 +147,12 @@ function quote_shortcode(){
 }
 add_shortcode('quote', 'quote_shortcode');
 
+function banner_shortcode(){
+    include('template-parts/components/bannerImage.php');
+}
+add_shortcode('banner', 'banner_shortcode');
+
+function information_shortcode(){
+    include('template-parts/components/information.php');
+}
+add_shortcode('information', 'information_shortcode');

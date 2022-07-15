@@ -53,5 +53,9 @@ elseif ($slug == 'showroom'):
     $id = get_term_by('slug', 'showroom', 'product_cat');
     $idObj = $id->term_id;
     product_gallery($idObj, $args);
+elseif ($slug == 'service'):
+    $id = get_term_by('slug', 'service', 'product_cat');
+    $idObj = $id->term_id;
+    product_gallery($idObj, $args);
 endif;
 
