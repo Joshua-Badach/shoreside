@@ -95,6 +95,8 @@ endif;
 
 add_action( 'after_setup_theme', 'rpsShoreside_setup');
 
+add_filter( 'woocommerce_is_purchasable', '__return_false');
+
 //Shortcodes
 
 

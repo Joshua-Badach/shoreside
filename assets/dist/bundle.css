@@ -417,6 +417,10 @@ footer .logo {
   width: 100%;
 }
 
+.searchButton {
+  margin-left: 5px;
+}
+
 .carousel {
   width: 100%;
   position: absolute;

@@ -13,8 +13,6 @@ jQuery(document).ready(function() {
     }
   }
 
-  //add full form crap
-
   jQuery(document).on('click', '.search', function(event){
     //svg scope here
     input = jQuery('<form role="search" method="GET" id="searchform" class="searchform"><input name="s" value="" name="s" id="s" type="text"><button type="submit">ok</button></form>');
