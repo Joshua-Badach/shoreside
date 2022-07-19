@@ -22,14 +22,12 @@ $args = array(
     'hide_empty'                => $empty
 );
 
-//can clean this up but will do that later, works well enough for now
 function brand_loop($idObj, $args){
     $all_categories = get_categories( $args );
     $test = ['Avalon', 'MirroCraft', 'Mercury', 'Shorestation' ];
     echo '<section class="container"> 
                 <div class="row brandSpan">
                 <h2>Our Brands</h2>';
-//    clean this crap up, sloppy but works for now
                 foreach ($all_categories as $cat) {
                     if ($cat->name === $test[0] ) {
                         brand_cards($cat);
@@ -69,3 +67,11 @@ function brand_cards($cat){
 brand_loop($idObj, $args);
 
 ?>
+<section class="container">
+    <div class="brandsContainer">
+        <div class="photoBanner">
+            <img src="https://i.stack.imgur.com/xckZy.jpg" alt=""><img src="https://i.stack.imgur.com/CVgbr.jpg" alt=""><img src="https://i.stack.imgur.com/7c4yC.jpg" alt=""><img src="https://i.stack.imgur.com/RTiml.jpg" alt=""
+            ><img src="https://i.stack.imgur.com/xckZy.jpg" alt=""><img src="https://i.stack.imgur.com/CVgbr.jpg" alt=""><img src="https://i.stack.imgur.com/7c4yC.jpg" alt=""><img src="https://i.stack.imgur.com/RTiml.jpg" alt="">
+        </div>
+    </div>
+</section>

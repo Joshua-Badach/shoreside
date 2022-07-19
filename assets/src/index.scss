@@ -332,6 +332,9 @@ footer .mobileShow{
 footer .logo{
   width: 50%;
 }
+.mobileSearch{
+  display: none!important;
+}
 .errorPage img{
   position: absolute;
   height: 850px;
@@ -361,7 +364,7 @@ footer .logo{
   display: none;
 }
 .brands{
-  min-height: 500px;
+  min-height: 525px;
   max-height: 550px;
   background-color: nth($rpsBrand, 1);
   box-shadow: 9px 6px 4px 0px rgba(0,0,0,0.75);
@@ -405,6 +408,9 @@ footer .logo{
 .bannerImage img{
   width: 100%;
   height: auto;
+}
+.brandsContainer{
+  display: none;
 }
 .information{
   -webkit-box-shadow: 5px 5px 15px 5px #000000;
@@ -475,7 +481,9 @@ footer .logo{
 .quote{
   position: relative;
   margin: 20vh 0;
-
+}
+.mission{
+  margin-bottom: 20vh;
 }
 .quote span{
   position: absolute;
@@ -548,6 +556,30 @@ footer .logo{
   text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
   border-radius: 45px !important;
 }
+.brandsContainer {
+  height:350px;
+  position:relative;
+  overflow:hidden;
+}
+.photoBanner {
+  position:absolute;
+  top:0px;
+  left:0px;
+  overflow:hidden;
+  white-space: nowrap;
+  animation: bannermove 30s linear infinite;
+}
+.photobanner img {
+  margin: 0 0.5em
+}
+@keyframes bannermove {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-50%, 0);
+  }
+}
 //@media only screen and (min-width: 786px){
 //  .hide{
 //    display: none;
@@ -591,9 +623,6 @@ footer .logo{
 .categoryItems p{
   margin: 0;
 }
-.nav-logo{
-}
-
 .modal-link {
   width: 150px;
   height: 40px;
@@ -689,6 +718,15 @@ footer .logo{
   footer .mobileShow{
     display: list-item;
   }
+  .search{
+    display: none!important;
+  }
+  .mobileSearch{
+    display: block!important;
+  }
+  .brandsContainer{
+    display: block;
+  }
 }
 
 //mobile and tablet
@@ -720,6 +758,15 @@ footer .logo{
   }
   footer .mobileShow{
     display: list-item;
+  }
+  .search{
+    display: none!important;
+  }
+  .mobileSearch{
+    display: block!important;
+  }
+  .brandsContainer{
+    display: block;
   }
 }
 

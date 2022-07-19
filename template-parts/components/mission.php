@@ -8,7 +8,7 @@ $query = new WP_Query(array(
 
 ?>
 
-<div class="container">
+<div class="container mission">
     <div class="row">
         <section class="col-lg-12">
             <h2>Our Mission</h2>

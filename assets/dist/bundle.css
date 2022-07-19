@@ -337,6 +337,10 @@ footer .logo {
   width: 50%;
 }
 
+.mobileSearch {
+  display: none !important;
+}
+
 .errorPage img {
   position: absolute;
   height: 850px;
@@ -370,7 +374,7 @@ footer .logo {
 }
 
 .brands {
-  min-height: 500px;
+  min-height: 525px;
   max-height: 550px;
   background-color: #0069ad;
   box-shadow: 9px 6px 4px 0px rgba(0, 0, 0, 0.75);
@@ -420,6 +424,10 @@ footer .logo {
 .bannerImage img {
   width: 100%;
   height: auto;
+}
+
+.brandsContainer {
+  display: none;
 }
 
 .information {
@@ -495,6 +503,10 @@ footer .logo {
 .quote {
   position: relative;
   margin: 20vh 0;
+}
+
+.mission {
+  margin-bottom: 20vh;
 }
 
 .quote span {
@@ -579,6 +591,33 @@ footer .logo {
   border-radius: 45px !important;
 }
 
+.brandsContainer {
+  height: 350px;
+  position: relative;
+  overflow: hidden;
+}
+
+.photoBanner {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: bannermove 30s linear infinite;
+}
+
+.photobanner img {
+  margin: 0 0.5em;
+}
+
+@keyframes bannermove {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-50%, 0);
+  }
+}
 .categoryItems {
   text-align: center;
   margin-bottom: 4%;
@@ -674,6 +713,15 @@ footer .logo {
   footer .mobileShow {
     display: list-item;
   }
+  .search {
+    display: none !important;
+  }
+  .mobileSearch {
+    display: block !important;
+  }
+  .brandsContainer {
+    display: block;
+  }
 }
 @media (min-width: 481px) and (max-width: 768px) {
   .brandSpan {
@@ -703,6 +751,15 @@ footer .logo {
   }
   footer .mobileShow {
     display: list-item;
+  }
+  .search {
+    display: none !important;
+  }
+  .mobileSearch {
+    display: block !important;
+  }
+  .brandsContainer {
+    display: block;
   }
 }
 @media (min-width: 769px) and (max-width: 1024px) {
