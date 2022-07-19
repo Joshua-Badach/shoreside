@@ -156,3 +156,7 @@ function information_shortcode(){
     include('template-parts/components/information.php');
 }
 add_shortcode('information', 'information_shortcode');
+function map_shortcode(){
+    include('template-parts/components/map.php');
+}
+add_shortcode('map', 'map_shortcode');

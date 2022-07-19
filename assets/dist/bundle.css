@@ -419,7 +419,7 @@ footer .logo {
 
 .bannerImage img {
   width: 100%;
-  aspect-ratio: 1/1;
+  height: auto;
 }
 
 .information {
@@ -429,7 +429,16 @@ footer .logo {
   -moz-border-radius: 0px 0px 0px 0px;
   -webkit-border-radius: 0px 0px 0px 0px;
   border: 2px solid #0069ad;
-  padding: 5px;
+  padding: 10px;
+}
+
+.searchform {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.searchFormButton {
+  margin-left: 5px;
 }
 
 .divider1 {
@@ -457,8 +466,15 @@ footer .logo {
   margin-bottom: 5%;
 }
 
-.staff {
+.staff img {
   width: 100%;
+  height: auto;
+}
+
+.map {
+  aspect-ratio: 1/1;
+  height: auto;
+  margin-bottom: 10vh;
 }
 
 .searchButton {

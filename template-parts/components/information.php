@@ -20,7 +20,6 @@ $crewQuery = new WP_Query(array(
 ));
 ?>
 
-
 <div class="divider1"></div>
 <div class="container">
     <section class="row">
@@ -58,7 +57,7 @@ $crewQuery = new WP_Query(array(
     <?php
     while ($staffQuery->have_posts()){
         $staffQuery->the_post();
-        echo '<section class="col-sm staff">';
+        echo '<section class="col-sm-12 staff">';
             the_post_thumbnail();
         ?>
         <?php echo '</section>';

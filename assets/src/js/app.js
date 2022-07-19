@@ -15,7 +15,7 @@ jQuery(document).ready(function() {
 
   jQuery(document).on('click', '.search', function(event){
     //svg scope here
-    input = jQuery('<form role="search" method="GET" id="searchform" class="searchform"><input name="s" value="" name="s" id="s" type="text"><button type="submit">ok</button></form>');
+    input = jQuery('<form role="search" method="GET" id="searchform" class="searchform"><input name="s" value="" name="s" id="s" type="text"><button type="submit" class="searchFormButton">ok</button></form>');
 
     jQuery('.search a').replaceWith(input);
  });
