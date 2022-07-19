@@ -160,3 +160,7 @@ function map_shortcode(){
     include('template-parts/components/map.php');
 }
 add_shortcode('map', 'map_shortcode');
+function vision_shortcode(){
+    include('template-parts/components/vision.php');
+}
+add_shortcode('vision', 'vision_shortcode');

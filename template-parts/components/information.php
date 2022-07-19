@@ -53,15 +53,15 @@ $crewQuery = new WP_Query(array(
         }
         wp_reset_postdata();
         ?>
-    </section>
     <?php
     while ($staffQuery->have_posts()){
         $staffQuery->the_post();
-        echo '<section class="col-sm-12 staff">';
+        echo '<div class="col-sm-12 staff">';
             the_post_thumbnail();
         ?>
-        <?php echo '</section>';
+        <?php echo '</div>';
     }
     wp_reset_postdata();
     ?>
+    </section>
 </div>

@@ -453,6 +453,10 @@ footer .logo{
   height: auto;
   margin-bottom: 10vh;
 }
+.vision{
+  margin-top: 20vh;
+  margin-bottom: 20vh;
+}
 //.crew{
 //  text-align: center;
 //}
@@ -470,7 +474,8 @@ footer .logo{
 }
 .quote{
   position: relative;
-  margin: 50px 0;
+  margin: 20vh 0;
+
 }
 .quote span{
   position: absolute;
@@ -481,6 +486,7 @@ footer .logo{
 }
 .quote img{
   width: 100%;
+  height: auto;
   width: -moz-available;
   width: -webkit-fill-available;
   width: fill-available;

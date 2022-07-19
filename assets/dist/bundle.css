@@ -477,6 +477,11 @@ footer .logo {
   margin-bottom: 10vh;
 }
 
+.vision {
+  margin-top: 20vh;
+  margin-bottom: 20vh;
+}
+
 .searchButton {
   margin-left: 10px;
 }
@@ -489,7 +494,7 @@ footer .logo {
 
 .quote {
   position: relative;
-  margin: 50px 0;
+  margin: 20vh 0;
 }
 
 .quote span {
@@ -502,6 +507,7 @@ footer .logo {
 
 .quote img {
   width: 100%;
+  height: auto;
   width: -moz-available;
   width: -webkit-fill-available;
   width: fill-available;
