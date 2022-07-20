@@ -9,7 +9,6 @@ if ($slug != 'search') {
             the_post();
             the_content();
         }
-        echo "index returned";
     }
 } elseif ($slug == 'search') {
 // may handle this differently... probably...

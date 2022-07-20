@@ -51,14 +51,16 @@ function brand_cards($cat){
     $content = $cat->description;
     $trimmed_content = wp_trim_words( $content, 100, '<a href="'. get_permalink() .'">...[ read more ]</a>');
 
-    echo '<section class="col-sm-3">
+    echo '<section class="col-3">
             <a href="' . get_term_link($cat->slug, 'product_cat') . '">
                 <div class="brands">
                     <div class="brandImage">
                         <img src="'. $image . '" width="150px" height="150px">
                     </div>   
-                    <h3>' . $cat->name . '</h3>
-                    <p>'; echo $trimmed_content . '</p> 
+                    <div class="brandsContent">    
+                        <h3>' . $cat->name . '</h3>
+                        <p>'; echo $trimmed_content . '</p> 
+                    </div>
                 </div>    
             </a>
     </section>';
@@ -67,11 +69,10 @@ function brand_cards($cat){
 brand_loop($idObj, $args);
 
 ?>
-<section class="container">
-    <div class="brandsContainer">
-        <div class="photoBanner">
-            <img src="https://i.stack.imgur.com/xckZy.jpg" alt=""><img src="https://i.stack.imgur.com/CVgbr.jpg" alt=""><img src="https://i.stack.imgur.com/7c4yC.jpg" alt=""><img src="https://i.stack.imgur.com/RTiml.jpg" alt=""
-            ><img src="https://i.stack.imgur.com/xckZy.jpg" alt=""><img src="https://i.stack.imgur.com/CVgbr.jpg" alt=""><img src="https://i.stack.imgur.com/7c4yC.jpg" alt=""><img src="https://i.stack.imgur.com/RTiml.jpg" alt="">
-        </div>
-    </div>
-</section>
+<!--<section class="container">-->
+<!--    <div class="row">-->
+<!--        <div class="col-sm-12 mobileBrand">-->
+<!---->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->

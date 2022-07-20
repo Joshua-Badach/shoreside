@@ -409,7 +409,9 @@ footer .logo{
   width: 100%;
   height: auto;
 }
-.brandsContainer{
+.mobileBrand{
+  height: 200px;
+  background: nth($rpsBrand, 1);
   display: none;
 }
 .information{
@@ -556,30 +558,6 @@ footer .logo{
   text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
   border-radius: 45px !important;
 }
-.brandsContainer {
-  height:350px;
-  position:relative;
-  overflow:hidden;
-}
-.photoBanner {
-  position:absolute;
-  top:0px;
-  left:0px;
-  overflow:hidden;
-  white-space: nowrap;
-  animation: bannermove 30s linear infinite;
-}
-.photobanner img {
-  margin: 0 0.5em
-}
-@keyframes bannermove {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(-50%, 0);
-  }
-}
 //@media only screen and (min-width: 786px){
 //  .hide{
 //    display: none;
@@ -623,6 +601,9 @@ footer .logo{
 .categoryItems p{
   margin: 0;
 }
+.nav-logo{
+}
+
 .modal-link {
   width: 150px;
   height: 40px;
@@ -690,9 +671,6 @@ footer .logo{
 
 //extra small mobile
 @media (min-width: 320px) and (max-width: 480px) {
-  .brandSpan{
-    display: none;
-  }
   .home-block{
     top: -200px;
   }
@@ -724,16 +702,13 @@ footer .logo{
   .mobileSearch{
     display: block!important;
   }
-  .brandsContainer{
+  .mobileBrand{
     display: block;
   }
 }
 
 //mobile and tablet
 @media (min-width: 481px) and (max-width: 768px) {
-  .brandSpan{
-    display: none;
-  }
   .home-block{
     top: -220px;
   }
@@ -765,7 +740,7 @@ footer .logo{
   .mobileSearch{
     display: block!important;
   }
-  .brandsContainer{
+  .mobileBrand{
     display: block;
   }
 }
