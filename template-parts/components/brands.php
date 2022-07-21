@@ -1,9 +1,5 @@
 <?php
 
-global $post;
-$slug = $post->post_name;
-$id = $post->ID;
-
 //idObj is set to 0 because that is the top level boat category
 
 $idObj = 0;
@@ -56,7 +52,7 @@ function brand_cards($cat){
     $trimmed_content = wp_trim_words( $content, 100, '<a href="'. get_permalink() .'">...[ read more ]</a>');
 
     echo '<section class="col-3">
-            <a href="' . get_term_link($cat->slug, 'product_cat') . '">
+            <a href="/' . $cat->slug . '/">
                 <div class="brandCard brands">
                     <div class="brandImage">
                         <img src="'. $image . '" width="150px" height="150px">

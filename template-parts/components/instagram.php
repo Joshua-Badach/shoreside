@@ -1,3 +1,7 @@
+<?php
+global $post;
+$slug = $post->post_name;
+?>
 <div class="container">
     <div class="row">
         <p class="col-lg-12">

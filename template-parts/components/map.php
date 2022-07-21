@@ -1,3 +1,8 @@
+<?php
+global $post;
+$slug = $post->post_name;
+
+?>
 <div class="container">
     <div class="row">
         <h2 class="col-sm-12">Visit us at</h2>

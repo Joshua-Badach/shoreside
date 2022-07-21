@@ -1,3 +1,7 @@
+<?php
+global $post;
+$slug = $post->post_name;?>
+
 <div class="modal-wrapper">
     <div class="modal">
         <div class="close-modal">X</div>
