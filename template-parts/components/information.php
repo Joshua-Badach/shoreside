@@ -28,7 +28,7 @@ $crewQuery = new WP_Query(array(
             while ($infoQuery->have_posts()){
                 $infoQuery->the_post(); ?>
                 <h2><?php the_title(); ?> </h2>
-                <p class="information"> <?php the_content(); ?></p>
+                <?php echo '<p class="information">' . get_the_content() . '</p>' ?>
             <?php
             }
             wp_reset_postdata();

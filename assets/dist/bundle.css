@@ -769,3 +769,34 @@ footer .logo {
     top: -310px;
   }
 }
+.contactSelection {
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.icon {
+  background: #0069ad;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  width: 6em;
+  aspect-ratio: 1/1;
+  text-align: center;
+  display: block;
+}
+
+.contactRow {
+  text-align: -webkit-center;
+}
+
+.contactRow a {
+  bottom: 30px;
+}
+
+.icon h3 {
+  -webkit-transform: translateY(5em);
+  -moz-transform: translateY(5em);
+  -ms-transform: translateY(5em);
+  -o-transform: translateY(5em);
+  transform: translateY(5em);
+}
