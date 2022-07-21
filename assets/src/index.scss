@@ -10,7 +10,7 @@ nav h6{
 
 //==========fonts==========
 $font: 'D-DIN Condensed', 'D-DIN Condensed Bold', 'American Captain';
-$fontSizing: 2.313vh, 3.25vh, 4vh, 4.75vh, 5.5vh, 6.25vh;
+$fontSizing: 2.313vh, 3.25vh, 4vw, 4.75vh, 5.5vh, 6.25vh;
 //Tweak fontSizing later... these are way off.
 $errorFont: 'D-DIN Condensed Bold', #ffffff, 15rem;
 
@@ -678,6 +678,17 @@ footer .logo{
     width: 20%;
     aspect-ratio: 1 / 1;
   }
+  .brandCard img{
+    width: 100%;
+    padding-top: 40%;
+    padding-left: 1%;
+    padding-right: 1%;
+    height: auto;
+  }
+  .brandSpan{
+    background: nth($rpsBrand, 1);
+    margin-top: -175px;
+  }
   .row{
     padding: 10px;
   }
@@ -715,6 +726,17 @@ footer .logo{
   .home-block img{
     width: 20%;
     aspect-ratio: 1 / 1;
+  }
+  .brandCard img{
+    width: 100%;
+    padding-top: 40%;
+    padding-left: 1%;
+    padding-right: 1%;
+    height: auto;
+  }
+  .brandSpan{
+    background: nth($rpsBrand, 1);
+    margin-top: -5vw;
   }
   .row{
     padding: 10px;

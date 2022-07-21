@@ -4,8 +4,6 @@ jQuery(document).ready(function() {
 
   var navbar = document.getElementById("navbar");
   var sticky = navbar.offsetTop;
-  var $window = jQuery(window);
-  var brandSpan = jQuery((".brandSpan"));
   var win = jQuery(this);
 
 
@@ -13,26 +11,21 @@ jQuery(document).ready(function() {
     if (win.width() <= 769 ){
       jQuery('.brands h3').hide();
       jQuery('.brands p').hide();
+      jQuery((".brandCard")).removeClass("brands");
+
     }
     if (win.width() >= 769 ){
       jQuery('.brands h3').show();
       jQuery('.brands p').show();
+      jQuery((".brandCard")).addClass("brands");
     };
   });
 
   function brandShuffle(){
-    var windowsize = $window.width();
     if ( win.width() < 769) {
       jQuery('.brands h3').hide();
       jQuery('.brands p').hide();
-      // jQuery('.brandsContent').hide();
-      // jQuery((".test")).removeClass("brands");
-      // brandSpan.classList.removeClass("brands");
-    }
-    if (windowsize > 769 ){
-
-      // jQuery('.brandsContent').show();
-      // jQuery((".test")).addClass("brands");
+      jQuery((".brandCard")).removeClass("brands");
     }
   }
 

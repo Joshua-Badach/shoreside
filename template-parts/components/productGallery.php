@@ -1,7 +1,6 @@
 <?php
 global $post;
 $slug = $post->post_name;
-$id = $post->ID;
 
 
 $taxonomy       = 'product_cat';
@@ -36,7 +35,7 @@ function product_gallery($idObj, $args){
         if ($cat->category_parent == $idObj && $cat->name != 'Uncategorized') {
             $thumbnail_id = get_term_meta( $cat->term_id, 'thumbnail_id', true );
             $image = wp_get_attachment_url( $thumbnail_id );
-            echo '<a class="col-sm-3 categoryItems" href="' . get_term_link($cat->slug, 'product_cat') . '">
+            echo '<a class="col-3 categoryItems" href="' . get_term_link($cat->slug, 'product_cat') . '">
             <img src="'. $image . '" width="150px" height="150px"><span>'
                 . $cat->name .
                 ' </span></a>';
@@ -45,17 +44,9 @@ function product_gallery($idObj, $args){
     echo '</section>';
 }
 
-if ($slug == 'parts-and-accessories'):
-    $id = get_term_by('slug', 'parts-and-accessories', 'product_cat');
-    $idObj = $id->term_id;
-    product_gallery($idObj, $args);
-elseif ($slug == 'showroom'):
-    $id = get_term_by('slug', 'showroom', 'product_cat');
-    $idObj = $id->term_id;
-    product_gallery($idObj, $args);
-elseif ($slug == 'service'):
-    $id = get_term_by('slug', 'service', 'product_cat');
-    $idObj = $id->term_id;
-    product_gallery($idObj, $args);
-endif;
+$id = get_term_by('slug', $slug, 'product_cat');
+$idObj = $id->term_id;
+
+product_gallery($idObj, $args);
+
 

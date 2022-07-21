@@ -1,5 +1,9 @@
 <?php
 
+global $post;
+$slug = $post->post_name;
+$id = $post->ID;
+
 //idObj is set to 0 because that is the top level boat category
 
 $idObj = 0;
@@ -53,7 +57,7 @@ function brand_cards($cat){
 
     echo '<section class="col-3">
             <a href="' . get_term_link($cat->slug, 'product_cat') . '">
-                <div class="brands">
+                <div class="brandCard brands">
                     <div class="brandImage">
                         <img src="'. $image . '" width="150px" height="150px">
                     </div>   
@@ -69,10 +73,3 @@ function brand_cards($cat){
 brand_loop($idObj, $args);
 
 ?>
-<!--<section class="container">-->
-<!--    <div class="row">-->
-<!--        <div class="col-sm-12 mobileBrand">-->
-<!---->
-<!--        </div>-->
-<!--    </div>-->
-<!--</section>-->

@@ -60,7 +60,7 @@ h1 {
 h2 {
   font-family: "D-DIN Condensed Bold";
   color: #0069ad;
-  font-size: 4vh;
+  font-size: 4vw;
 }
 
 h3 {
@@ -170,7 +170,7 @@ button span {
 }
 
 .home-heading {
-  font-size: 4vh;
+  font-size: 4vw;
   font-family: "D-DIN Condensed";
   color: #ffffff;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
@@ -667,6 +667,17 @@ footer .logo {
     width: 20%;
     aspect-ratio: 1/1;
   }
+  .brandCard img {
+    width: 100%;
+    padding-top: 40%;
+    padding-left: 1%;
+    padding-right: 1%;
+    height: auto;
+  }
+  .brandSpan {
+    background: #0069ad;
+    margin-top: -175px;
+  }
   .row {
     padding: 10px;
   }
@@ -702,6 +713,17 @@ footer .logo {
   .home-block img {
     width: 20%;
     aspect-ratio: 1/1;
+  }
+  .brandCard img {
+    width: 100%;
+    padding-top: 40%;
+    padding-left: 1%;
+    padding-right: 1%;
+    height: auto;
+  }
+  .brandSpan {
+    background: #0069ad;
+    margin-top: -5vw;
   }
   .row {
     padding: 10px;
