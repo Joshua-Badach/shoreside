@@ -49,7 +49,7 @@ function brand_cards($cat){
     $thumbnail_id = get_term_meta( $cat->term_id, 'thumbnail_id', true );
     $image = wp_get_attachment_url( $thumbnail_id );
     $content = $cat->description;
-    $trimmed_content = wp_trim_words( $content, 100, '<a href="'. get_permalink() .'">...[ read more ]</a>');
+    $trimmed_content = wp_trim_words( $content, 75, '...' . '<p class="appended">[ read more ]</p>');
 
     echo '<section class="col-3">
             <a href="/' . $cat->slug . '/">

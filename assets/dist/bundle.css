@@ -608,6 +608,10 @@ footer .logo {
   margin: 0;
 }
 
+.appended {
+  text-align: center;
+}
+
 .modal-link {
   width: 150px;
   height: 40px;
