@@ -37,8 +37,8 @@
 <div class="container detailsForm">
     <div class="row">
         <div class="form-set">
-            <form action="" class="col-sm-12 form-1">
-
+            <form action="" class="form-1">
+                <div class="col-sm-12">
                 <p>Standard form for every request (form 1)</p>
 
                 <label for="fName">First Name:</label><br>
@@ -64,11 +64,13 @@
 
                 <p>On submit pull up specific request form</p>
 
-                <button type="submit" id="submit" class="btn btn-primary next">Next Step</button>
+                <button type="submit" class="btn btn-primary next submit">Next Step</button>
 <!--            <input id="submit" type="submit">-->
+                </div>
             </form>
 
-            <form action="" class="col-sm-12 form-2" style="display:none">
+            <form action="" class="form-2" style="display:none">
+                <div class="col-sm-12">
                 <p>Value unit form (form 2, if == on page || dropdown select)</p>
                 <label for="unit" class="form-check-label">Unit Type:</label><br>
                 <select name="unit" id="unit">
@@ -95,18 +97,21 @@
                 <textarea type="textarea" id="tradeinRequest" name="tradeinRequest"></textarea><br><br>
 
                 <br><br>
-<!--                <button type="submit" id="submit" class="btn btn-primary next">Next Step</button>-->
-                <input type="submit">
+                <button type="submit" id="submit" class="btn btn-primary next submit">Submit</button>
+<!--                <input type="submit">-->
+                </div>
             </form>
 
-        <form action="" class="col-sm-12 form-3">
+        <form action="" class="form-3">
+            <div class="col-sm-12">
             <p>Parts request form (form 3, if == on page || dropdown select)</p>
 
             <label for="description">What parts do you need?</label><br>
             <textarea type="textarea" id="description" name="description" placeholder="Do you gave a part number?"></textarea><br><br>
             <br><br>
-            <button type="submit" class="btn btn-primary next">Next Step</button>
+            <button type="submit" class="btn btn-primary next">Submit</button>
             <!--            <input type="submit">-->
+            </div>
         </form>
 
         <form action="" class="col-sm-12 form-4">
@@ -115,7 +120,7 @@
             <label for="message">We would love to hear from you</label><br>
             <textarea type="textarea" id="message" name="message"></textarea><br><br>
             <br><br>
-            <button type="submit" class="btn btn-primary next">Next Step</button>
+            <button type="submit" class="btn btn-primary next">Submit</button>
 
             <!--            <input type="submit">-->
         </form>

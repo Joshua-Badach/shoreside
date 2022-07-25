@@ -62,9 +62,10 @@ jQuery(document).ready(function() {
   });
 
   jQuery('#submit').click(function() {
-    var data = jQuery('.form-1').serializeArray();
-    for(i in data){
-      console.log(data[i]);
+    var data1 = jQuery('.form-1').serializeArray();
+    var data2 = jQuery('.form-2').serializeArray();
+    for(i in data1 && data2 ){
+      console.log(data1[i],data2[i]);
     }
   });
 
