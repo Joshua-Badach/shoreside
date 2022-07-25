@@ -854,3 +854,22 @@ footer .logo{
   -o-transform: translateY(5em);
   transform: translateY(5em);
 }
+.form-1,.form-2,.form-3,.form-4{
+  animation: moveInRight .5s ease-out;
+
+}
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px)
+  }
+
+  80% {
+    transform: translateX(-10px)
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0px)
+  }
+}
