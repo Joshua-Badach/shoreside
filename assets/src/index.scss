@@ -558,6 +558,10 @@ footer .logo{
   text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
   border-radius: 45px !important;
 }
+.detailsForm{}
+.form-2{
+  display: none;
+}
 //@media only screen and (min-width: 786px){
 //  .hide{
 //    display: none;
@@ -601,7 +605,9 @@ footer .logo{
 .categoryItems p{
   margin: 0;
 }
-.nav-logo{
+.contactHelp{
+  margin-top: -15vw;
+  margin-bottom: 8vw;
 }
 .appended{
   text-align: center;

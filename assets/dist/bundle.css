@@ -593,6 +593,10 @@ footer .logo {
   border-radius: 45px !important;
 }
 
+.form-2 {
+  display: none;
+}
+
 .categoryItems {
   text-align: center;
   margin-bottom: 4%;
@@ -606,6 +610,11 @@ footer .logo {
 
 .categoryItems p {
   margin: 0;
+}
+
+.contactHelp {
+  margin-top: -15vw;
+  margin-bottom: 8vw;
 }
 
 .appended {
