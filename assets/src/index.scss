@@ -116,15 +116,11 @@ h5{
 }
 
 //==========text==========
-p{
+p, span, label{
   font-family: nth($font, 1);
   font-size: nth($fontSizing, 1);
 }
 a{
-  font-family: nth($font, 1);
-  font-size: nth($fontSizing, 1);
-}
-span{
   font-family: nth($font, 1);
   font-size: nth($fontSizing, 1);
 }
@@ -558,10 +554,47 @@ footer .logo{
   text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
   border-radius: 45px !important;
 }
-.detailsForm{}
-.form-2{
-  display: none;
+.detailsForm{
+  background: nth($rpsBrand, 1);
+  color: nth($rpsBrand, 4);
+  padding: 25px 50px;
+  border-radius: 45px;
+  -webkit-box-shadow: 5px 5px 15px 5px #000000;
+  box-shadow: 5px 5px 15px 5px #000000;
 }
+.detailsForm textarea{
+  width: 100%;
+  aspect-ratio: 4/1;
+}
+.detailsForm input[type='radio']:after {
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  top: -2px;
+  left: -1px;
+  position: relative;
+  background-color: #ffffff;
+  content: '';
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid white;
+}
+.detailsForm input[type='radio']:checked:after {
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  top: -2px;
+  left: -1px;
+  position: relative;
+  background-color: nth($rpsBrand, 2);
+  content: '';
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid white;
+}
+//.form-2{
+//  display: none;
+//}
 //@media only screen and (min-width: 786px){
 //  .hide{
 //    display: none;

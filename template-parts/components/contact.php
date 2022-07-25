@@ -34,34 +34,56 @@
         </section>
     </div>
 </section>
-<div class="container detailsForm">
+<div class="container form-1 detailsForm">
     <div class="row">
-        <form action="" class="form-1 col-sm-12">
-            <p>Standard form for every request (form 1)</p>
-            <label for="fName">First Name:</label><br>
-            <input type="text" id="fName" name="fName" placeholder="First Name" required><br><br>
-            <label for="lName">Last Name:</label><br>
-            <input type="text" id="lName" name="lName" placeholder="Last Name" required><br><br>
-            <label for="email">Email Address:</label><br>
-            <input type="email" id="email" name="email" placeholder="Email Address" required><br><br>
-            <input type="checkbox" id="emailSignUp" name="emailSignUp" value="emailSignUp">
-            <label for="emailSignUp">  I would like to receive promotions and occasional emails from Recreational Power Sports.</label><br><br>
+        <div class="form-set">
+<!--            <form class="form-1">-->
+<!--                <div class="form-group">-->
+<!--                    <label for="exampleInputPassword1">Password</label>-->
+<!--                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">-->
+<!--                </div>-->
+<!--                <div class="form-group form-check">-->
+<!--                    <input type="checkbox" class="form-check-input" id="exampleCheck1">-->
+<!--                    <label class="form-check-label" for="exampleCheck1">Check me out</label>-->
+<!--                </div>-->
+<!--                -->
+<!--            </form>-->
 
-            <label for="phone">Phone Number:</label><br>
-            <input type="tel" id="phone" name="phone" placeholder="Phone Number" required><br>
-            <p>Can we text you at this number?</p>
-            <input type="radio" id="textYouYes" name="textYou" value="Yes">
-            <label for="textYou1">Yes</label><br>
-            <input type="radio" id="textYouNo" name="textYou" value="No" checked>
-            <label for="textYou2">No</label><br><br>
+        <form action="" class="col-sm-12 form-1">
+            <p>Standard form for every request (form 1)</p>
+            <div class="form-group">
+                <label for="fName">First Name:</label><br>
+                <input type="text" class="form-control" id="fName" name="fName" placeholder="First Name" required><br><br>
+            </div>
+            <div class="form-group">
+                <label for="lName">Last Name:</label><br>
+                <input type="text" class="form-control" id="lName" name="lName" placeholder="Last Name" required><br><br>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address:</label><br>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" required><br><br>
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="emailSignUp" name="emailSignUp" value="emailSignUp">
+                <label for="emailSignUp" class="form-check-label">  I would like to receive promotions and occasional emails from Recreational Power Sports.</label><br><br>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number:</label><br>
+                <input type="tel" id="phone" name="phone" placeholder="Phone Number" required><br>
+            </div>
+            <div class="form-group form-check">
+                <p>Can we text you at this number?</p>
+                <input type="radio" class="form-check-input" id="textYouYes" name="textYou" value="Yes">
+                <label for="textYou1" class="form-check-label">Yes</label><br>
+                <input type="radio" class="form-check-input" id="textYouNo" name="textYou" value="No" checked>
+                <label for="textYou2"class="form-check-label" >No</label><br><br>
+            </div>
             <p>On submit pull up specific request form</p>
-            <input type="submit">
+            <button type="submit" class="btn btn-primary next">Next Step</button>
+<!--            <input id="submitbtn" type="submit">-->
         </form>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-        <form action="" class="form-2 col-sm-12">
+
+        <form action="" class="col-sm-12 form-2">
             <p>Value unit form (form 2, if == on page || dropdown select)</p>
 
             <label for="unit">Unit Type:</label><br>
@@ -90,12 +112,8 @@
             <br><br>
             <input type="submit">
         </form>
-    </div>
-</div>
 
-<div class="container">
-    <div class="row">
-        <form action="" class="form-2 col-sm-12">
+        <form action="" class="col-sm-12 form-3">
             <p>Parts request form (form 2, if == on page || dropdown select)</p>
 
             <label for="description">What parts do you need?</label><br>
@@ -103,13 +121,8 @@
             <br><br>
             <input type="submit">
         </form>
-    </div>
-</div>
 
-
-<div class="container">
-    <div class="row">
-        <form action="" class="form-2 col-sm-12">
+        <form action="" class="col-sm-12 form-4">
             <p>General request form (form 2, if == on page || dropdown select)</p>
 
             <label for="message">We would love to hear from you</label><br>
@@ -117,6 +130,7 @@
             <br><br>
             <input type="submit">
         </form>
+        </div>
     </div>
 </div>
 

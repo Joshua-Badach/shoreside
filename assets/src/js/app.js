@@ -46,6 +46,21 @@ jQuery(document).ready(function() {
     jQuery('.search a').replaceWith(input);
  });
 
+  jQuery(".form-set form:not(:first-child)").each(function(e) {
+    if (e != 0)
+      jQuery(this).hide();
+  });
+
+  jQuery(".next").click(function() {
+    if (jQuery(".form-set form:visible").next().length != 0)
+      jQuery(".form-set form:visible").next().show().prev().hide();
+    else {
+      jQuery(".form-set form:visible").hide();
+      jQuery(".form-set form:first").show();
+    }
+    return false;
+  });
+
 
   jQuery('.carousel').slick({
     infinite: false,

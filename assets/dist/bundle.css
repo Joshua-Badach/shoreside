@@ -83,17 +83,12 @@ h5 {
   font-size: 2.313vh;
 }
 
-p {
+p, span, label {
   font-family: "D-DIN Condensed";
   font-size: 2.313vh;
 }
 
 a {
-  font-family: "D-DIN Condensed";
-  font-size: 2.313vh;
-}
-
-span {
   font-family: "D-DIN Condensed";
   font-size: 2.313vh;
 }
@@ -593,8 +588,46 @@ footer .logo {
   border-radius: 45px !important;
 }
 
-.form-2 {
-  display: none;
+.detailsForm {
+  background: #0069ad;
+  color: #ffffff;
+  padding: 25px 50px;
+  border-radius: 45px;
+  -webkit-box-shadow: 5px 5px 15px 5px #000000;
+  box-shadow: 5px 5px 15px 5px #000000;
+}
+
+.detailsForm textarea {
+  width: 100%;
+  aspect-ratio: 4/1;
+}
+
+.detailsForm input[type=radio]:after {
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  top: -2px;
+  left: -1px;
+  position: relative;
+  background-color: #ffffff;
+  content: "";
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid white;
+}
+
+.detailsForm input[type=radio]:checked:after {
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  top: -2px;
+  left: -1px;
+  position: relative;
+  background-color: #ad0034;
+  content: "";
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid white;
 }
 
 .categoryItems {
