@@ -61,6 +61,13 @@ jQuery(document).ready(function() {
     return false;
   });
 
+  jQuery('#submit').click(function() {
+    var data = jQuery('.form-1').serializeArray();
+    for(i in data){
+      console.log(data[i]);
+    }
+  });
+
 
   jQuery('.carousel').slick({
     infinite: false,

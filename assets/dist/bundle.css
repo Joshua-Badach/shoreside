@@ -847,7 +847,7 @@ footer .logo {
   transform: translateY(5em);
 }
 
-.form-1, .form-2, .form-3, .form-4 {
+.form-1, .form-2, .form-3, .form-4, .form-5 {
   animation: moveInRight 0.5s ease-out;
 }
 
