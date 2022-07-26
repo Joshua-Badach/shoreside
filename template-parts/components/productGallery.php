@@ -20,12 +20,33 @@ $args = array(
     'title_li'                  => $title,
     'hide_empty'                => $empty
 );
+function brand_gallery($idObj, $args){
+    $all_categories = get_categories( $args );
+    $categoryDescription = category_description($idObj);
+    $term = get_term_by('id', $idObj, 'product_cat');
+
+    echo '<section class="container"> 
+        <div class="row">
+        <h2>' . $term->name . '</h2>';
+    echo $categoryDescription . '</div>
+        <div class="row">';
+    foreach ($all_categories as $cat) {
+        if ($cat == $idObj && $cat->name != 'Uncategorized') {
+            $thumbnail_id = get_term_meta( $cat->term_id, 'thumbnail_id', true );
+            $image = wp_get_attachment_url( $thumbnail_id );
+            echo '<a class="col-3 categoryItems" href="' . get_term_link($cat->slug, 'product_cat') . '">
+            <img src="'. $image . '" width="150px" height="150px"><span>'
+                . $cat->name .
+                ' </span></a>';
+        }
+    }
+    echo '</section>';
+}
 
 function product_gallery($idObj, $args){
     $all_categories = get_categories( $args );
     $categoryDescription = category_description($idObj);
     $term = get_term_by('id', $idObj, 'product_cat');
-    $product = get_product($term);
 
     echo '<section class="container"> 
         <div class="row">
@@ -41,19 +62,27 @@ function product_gallery($idObj, $args){
                 . $cat->name .
                 ' </span></a>';
         }
-        elseif ($cat->slug == 'avalon' ) {
-            echo "avalon detected";
-        }
     }
     echo '</section>';
 }
-
 $id = get_term_by('slug', $slug, 'product_cat');
 $idObj = $id->term_id;
 
+$test = ['avalon', 'mercury', 'mirrocraft', 'shorestation'];
 
-
-
-product_gallery($idObj, $args);
-
+if ($slug == $test[0]){
+    brand_gallery($idObj, $args);
+}
+elseif ($slug == $test[1]){
+    echo "mercury";
+}
+elseif ($slug == $test[2]){
+    echo "mirrocraft";
+}
+elseif ($slug == $test[3]){
+    echo "shorestation";
+}
+else {
+    product_gallery($idObj, $args);
+}
 
