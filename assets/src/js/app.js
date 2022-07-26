@@ -64,8 +64,11 @@ jQuery(document).ready(function() {
   jQuery('#submit').click(function() {
     var data1 = jQuery('.form-1').serializeArray();
     var data2 = jQuery('.form-2').serializeArray();
-    for(i in data1 && data2 ){
-      console.log(data1[i],data2[i]);
+    for(i in data1 ){
+      console.log(data1[i]);
+    }
+    for(i in data2){
+      console.log(data2[i]);
     }
   });
 

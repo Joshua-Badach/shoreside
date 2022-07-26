@@ -88,9 +88,9 @@
                 <input type="text" id="value" class="form-control" name="value"><br><br>
 
                 <p>Are you interested in trading you unit in towards the purchase of something else?</p>
-                <input type="radio" id="textYouYes" name="textYou" value="Yes">
+                <input type="radio" id="tradeInYes" name="tradeInYes" value="Yes">
                 <label for="textYou1">Yes</label><br>
-                <input type="radio" id="textYouNo" name="textYou" value="No" checked>
+                <input type="radio" id="tradeInNo" name="tradeInNo" value="No" checked>
                 <label for="textYou2">No</label><br><br>
                 <p>if yes return below</p>
                 <label for="description">What are you looking for?</label><br>
@@ -129,4 +129,3 @@
 </div>
 
 <br><br>
-<p>Jotform call href to specific page</p>

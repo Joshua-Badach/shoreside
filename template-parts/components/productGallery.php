@@ -25,6 +25,7 @@ function product_gallery($idObj, $args){
     $all_categories = get_categories( $args );
     $categoryDescription = category_description($idObj);
     $term = get_term_by('id', $idObj, 'product_cat');
+    $product = get_product($term);
 
     echo '<section class="container"> 
         <div class="row">
@@ -40,12 +41,18 @@ function product_gallery($idObj, $args){
                 . $cat->name .
                 ' </span></a>';
         }
+        elseif ($cat->slug == 'avalon' ) {
+            echo "avalon detected";
+        }
     }
     echo '</section>';
 }
 
 $id = get_term_by('slug', $slug, 'product_cat');
 $idObj = $id->term_id;
+
+
+
 
 product_gallery($idObj, $args);
 
