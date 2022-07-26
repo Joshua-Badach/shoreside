@@ -45,7 +45,7 @@ jQuery(document).ready(function() {
 
     jQuery('.search a').replaceWith(input);
  });
-
+  //finish this later, or not at all depending on how rps wants to go forward, the animations are at least salvageable
   jQuery(".form-set form:not(:first-child)").each(function(e) {
     if (e != 0)
       jQuery(this).hide();

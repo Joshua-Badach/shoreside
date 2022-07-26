@@ -21,12 +21,6 @@ $args = array(
     'hide_empty'                => $empty
 );
 
-function product_loop($idObj, $args){
-    $all_categories = get_categories( $args );
-    $test = ['Avalon', 'Mercury', 'MirroCraft', 'Shorestation'];
-
-}
-
 function product_gallery($idObj, $args){
     $all_categories = get_categories( $args );
     $categoryDescription = category_description($idObj);
@@ -54,6 +48,7 @@ function product_gallery($idObj, $args){
 $id = get_term_by('slug', $slug, 'product_cat');
 $idObj = $id->term_id;
 
+$test = ['Avalon', 'Mercury', 'MirroCraft', 'Shorestation'];
 
 if ($slug == $test[0]){
     echo "avalon";
