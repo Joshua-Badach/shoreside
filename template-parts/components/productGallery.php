@@ -20,27 +20,11 @@ $args = array(
     'title_li'                  => $title,
     'hide_empty'                => $empty
 );
-function brand_gallery($idObj, $args){
-    $all_categories = get_categories( $args );
-    $categoryDescription = category_description($idObj);
-    $term = get_term_by('id', $idObj, 'product_cat');
 
-    echo '<section class="container"> 
-        <div class="row">
-        <h2>' . $term->name . '</h2>';
-    echo $categoryDescription . '</div>
-        <div class="row">';
-    foreach ($all_categories as $cat) {
-        if ($cat == $idObj && $cat->name != 'Uncategorized') {
-            $thumbnail_id = get_term_meta( $cat->term_id, 'thumbnail_id', true );
-            $image = wp_get_attachment_url( $thumbnail_id );
-            echo '<a class="col-3 categoryItems" href="' . get_term_link($cat->slug, 'product_cat') . '">
-            <img src="'. $image . '" width="150px" height="150px"><span>'
-                . $cat->name .
-                ' </span></a>';
-        }
-    }
-    echo '</section>';
+function product_loop($idObj, $args){
+    $all_categories = get_categories( $args );
+    $test = ['Avalon', 'Mercury', 'MirroCraft', 'Shorestation'];
+
 }
 
 function product_gallery($idObj, $args){
@@ -62,24 +46,25 @@ function product_gallery($idObj, $args){
                 . $cat->name .
                 ' </span></a>';
         }
+        elseif ($cat->slug == 'avalon' ) {
+        }
     }
     echo '</section>';
 }
 $id = get_term_by('slug', $slug, 'product_cat');
 $idObj = $id->term_id;
 
-$test = ['avalon', 'mercury', 'mirrocraft', 'shorestation'];
 
 if ($slug == $test[0]){
-    brand_gallery($idObj, $args);
+    echo "avalon";
 }
-elseif ($slug == $test[1]){
+if ($slug == $test[1]){
     echo "mercury";
 }
-elseif ($slug == $test[2]){
+if ($slug == $test[2]){
     echo "mirrocraft";
 }
-elseif ($slug == $test[3]){
+if ($slug == $test[3]){
     echo "shorestation";
 }
 else {
