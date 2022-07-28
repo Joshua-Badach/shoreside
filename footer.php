@@ -57,6 +57,19 @@
             <div class="row">
                 <span class="col-lg-12">&copy; 2022 Recreational Power Sports</span>
             </div>
+            <script>
+//remove that bloody branding on jotform
+              var $ = jQuery.noConflict();
+
+              jQuery(document).ready(function(jQuery) {
+
+                "use strict";
+
+                $('iframe').contents().find("head").append($("<style type='text/css'>  div.formFooter{ display:none !important; } .jf-branding{ display: none !important; } div.form-footer{ display: none !important; } </style>"));
+
+              });
+
+            </script>
         </footer>
     </body>
 </html>

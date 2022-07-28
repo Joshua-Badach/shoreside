@@ -1,7 +1,10 @@
 <?php
 global $post;
 $slug = $post->post_name;
-
+$id = get_term_by('slug', $slug, 'product_cat');
+$idObj = $id->term_id;
+$term = get_term_by('id', $idObj, 'product_cat');
+$test = ['Avalon', 'Mercury', 'MirroCraft', 'Shorestation'];
 
 $taxonomy       = 'product_cat';
 $orderby        = 'name';
@@ -13,6 +16,7 @@ $empty          = 0;
 
 $args = array(
     'taxonomy'                  => $taxonomy,
+    'terms'                     => $idObj,
     'orderby'                   => $orderby,
     'show_count'                => $show_count,
     'pad_counts'                => $pad_counts,
@@ -21,10 +25,9 @@ $args = array(
     'hide_empty'                => $empty
 );
 
-function product_gallery($idObj, $args){
+function product_gallery($idObj, $args, $term){
     $all_categories = get_categories( $args );
     $categoryDescription = category_description($idObj);
-    $term = get_term_by('id', $idObj, 'product_cat');
 
     echo '<section class="container"> 
         <div class="row">
@@ -40,29 +43,54 @@ function product_gallery($idObj, $args){
                 . $cat->name .
                 ' </span></a>';
         }
-        elseif ($cat->slug == 'avalon' ) {
-        }
     }
     echo '</section>';
 }
-$id = get_term_by('slug', $slug, 'product_cat');
-$idObj = $id->term_id;
 
-$test = ['Avalon', 'Mercury', 'MirroCraft', 'Shorestation'];
 
-if ($slug == $test[0]){
-    echo "avalon";
+if ($term->name == $test[0]) {
+    $product_term_ids = array(258);
+
+    $product_term_args = array(
+        'taxonomy' => 'product_cat',
+        'include' => $product_term_ids,
+        'orderby' => 'include'
+    );
+    $product_terms = get_terms($product_term_args);
+
+    $product_term_slugs = [];
+    foreach ($product_terms as $product_term) {
+        $product_term_slugs[] = $product_term->slug;
+    }
+
+    $product_args = array(
+        'post_status' => 'publish',
+        'limit' => -1,
+        'category' => $product_term_slugs,
+        //more options according to wc_get_products() docs
+    );
+    $products = wc_get_products($product_args);
+
+    foreach ($products as $product) {
+        $product_id = $product->get_id();
+        $product_type = $product->get_type();
+        $product_title = $product->get_title();
+        $product_permalink = $product->get_permalink();
+        $product_regular_price = $product->get_regular_price();
+        $product_sale_price = $product->get_sale_price();
+        $product_short_desc = $product->get_short_description();
+        $product_categories = $product->get_categories();
+
+    }
 }
-if ($slug == $test[1]){
-    echo "mercury";
+
+if ($term->name == $test[1]){
+    product_gallery($idObj, $args, $term);
 }
-if ($slug == $test[2]){
-    echo "mirrocraft";
+if ($term->name == $test[2]){
+    product_gallery($idObj, $args, $term);
 }
-if ($slug == $test[3]){
-    echo "shorestation";
-}
-else {
-    product_gallery($idObj, $args);
+if ($term->name == $test[3]){
+    product_gallery($idObj, $args, $term);
 }
 

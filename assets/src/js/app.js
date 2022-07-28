@@ -45,32 +45,32 @@ jQuery(document).ready(function() {
 
     jQuery('.search a').replaceWith(input);
  });
-  //finish this later, or not at all depending on how rps wants to go forward, the animations are at least salvageable
-  jQuery(".form-set form:not(:first-child)").each(function(e) {
-    if (e != 0)
-      jQuery(this).hide();
-  });
-
-  jQuery(".next").click(function() {
-    if (jQuery(".form-set form:visible").next().length != 0)
-      jQuery(".form-set form:visible").next().show().prev().hide();
-    else {
-      jQuery(".form-set form:visible").hide();
-      jQuery(".form-set form:first").show();
-    }
-    return false;
-  });
-
-  jQuery('#submit').click(function() {
-    var data1 = jQuery('.form-1').serializeArray();
-    var data2 = jQuery('.form-2').serializeArray();
-    for(i in data1 ){
-      console.log(data1[i]);
-    }
-    for(i in data2){
-      console.log(data2[i]);
-    }
-  });
+  // //finish this later, or not at all depending on how rps wants to go forward, the animations are at least salvageable
+  // jQuery(".form-set form:not(:first-child)").each(function(e) {
+  //   if (e != 0)
+  //     jQuery(this).hide();
+  // });
+  //
+  // jQuery(".next").click(function() {
+  //   if (jQuery(".form-set form:visible").next().length != 0)
+  //     jQuery(".form-set form:visible").next().show().prev().hide();
+  //   else {
+  //     jQuery(".form-set form:visible").hide();
+  //     jQuery(".form-set form:first").show();
+  //   }
+  //   return false;
+  // });
+  //
+  // jQuery('#submit').click(function() {
+  //   var data1 = jQuery('.form-1').serializeArray();
+  //   var data2 = jQuery('.form-2').serializeArray();
+  //   for(i in data1 ){
+  //     console.log(data1[i]);
+  //   }
+  //   for(i in data2){
+  //     console.log(data2[i]);
+  //   }
+  // });
 
 
   jQuery('.carousel').slick({
