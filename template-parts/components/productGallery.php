@@ -3,7 +3,6 @@ global $post;
 $slug = $post->post_name;
 $id = get_term_by('slug', $slug, 'product_cat');
 $idObj = $id->term_id;
-$term = get_term_by('id', $idObj, 'product_cat');
 $test = ['Avalon', 'Mercury', 'MirroCraft', 'Shorestation'];
 
 $taxonomy       = 'product_cat';
@@ -25,9 +24,10 @@ $args = array(
     'hide_empty'                => $empty
 );
 
-function product_gallery($idObj, $args, $term){
+function product_gallery($idObj, $args){
     $all_categories = get_categories( $args );
     $categoryDescription = category_description($idObj);
+    $term = get_term_by('id', $idObj, 'product_cat');
 
     echo '<section class="container"> 
         <div class="row">
@@ -43,54 +43,9 @@ function product_gallery($idObj, $args, $term){
                 . $cat->name .
                 ' </span></a>';
         }
+
     }
     echo '</section>';
 }
 
-
-if ($term->name == $test[0]) {
-    $product_term_ids = array(258);
-
-    $product_term_args = array(
-        'taxonomy' => 'product_cat',
-        'include' => $product_term_ids,
-        'orderby' => 'include'
-    );
-    $product_terms = get_terms($product_term_args);
-
-    $product_term_slugs = [];
-    foreach ($product_terms as $product_term) {
-        $product_term_slugs[] = $product_term->slug;
-    }
-
-    $product_args = array(
-        'post_status' => 'publish',
-        'limit' => -1,
-        'category' => $product_term_slugs,
-        //more options according to wc_get_products() docs
-    );
-    $products = wc_get_products($product_args);
-
-    foreach ($products as $product) {
-        $product_id = $product->get_id();
-        $product_type = $product->get_type();
-        $product_title = $product->get_title();
-        $product_permalink = $product->get_permalink();
-        $product_regular_price = $product->get_regular_price();
-        $product_sale_price = $product->get_sale_price();
-        $product_short_desc = $product->get_short_description();
-        $product_categories = $product->get_categories();
-
-    }
-}
-
-if ($term->name == $test[1]){
-    product_gallery($idObj, $args, $term);
-}
-if ($term->name == $test[2]){
-    product_gallery($idObj, $args, $term);
-}
-if ($term->name == $test[3]){
-    product_gallery($idObj, $args, $term);
-}
-
+product_gallery($idObj, $args);
