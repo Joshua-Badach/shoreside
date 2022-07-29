@@ -25,5 +25,4 @@ echo '<section class="container">
                 echo '</div>
       </section>';
 
-//                var_dump($brandsQuery);
 ?>

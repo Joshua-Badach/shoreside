@@ -7,6 +7,7 @@ $slug = $post->post_name;
     <div class="row">
         <h2 class="col-sm-12">Visit us at</h2>
         <iframe class="col-sm-12 map"
+                id="rpsMap"
                 style="border:0"
                 loading="lazy"
                 allowfullscreen
