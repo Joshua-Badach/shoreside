@@ -3,7 +3,6 @@ global $post;
 $slug = $post->post_name;
 $id = get_term_by('slug', $slug, 'product_cat');
 $idObj = $id->term_id;
-$test = ['Avalon', 'Mercury', 'MirroCraft', 'Shorestation'];
 
 $taxonomy       = 'product_cat';
 $orderby        = 'name';
@@ -48,4 +47,29 @@ function product_gallery($idObj, $args){
     echo '</section>';
 }
 
-product_gallery($idObj, $args);
+function brand_description($idObj){
+    $categoryDescription = category_description($idObj);
+    $term = get_term_by('id', $idObj, 'product_cat');
+
+    echo '<section class="container"> 
+        <div class="row">
+        <h2>' . $term->name . '</h2>';
+    echo $categoryDescription . '</div>
+    </section>';
+}
+//lazy....
+if ($slug == 'avalon'){
+    brand_description($idObj);
+}
+elseif ($slug == 'mercury'){
+    brand_description($idObj);
+}
+elseif ($slug == 'mirrocraft'){
+brand_description($idObj);
+}
+elseif ($slug == 'shorestation'){
+brand_description($idObj);
+}
+else {
+    product_gallery($idObj, $args);
+}

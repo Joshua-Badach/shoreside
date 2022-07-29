@@ -194,3 +194,7 @@ function contact_shortcode(){
     include('template-parts/components/contact.php');
 }
 add_shortcode('contact', 'contact_shortcode');
+function brandSub_shortcode(){
+    include('template-parts/components/brandSub.php');
+}
+add_shortcode('brands-sub', 'brandSub_shortcode');
