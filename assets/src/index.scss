@@ -209,6 +209,11 @@ button span{
   margin: 0;
   padding-top: 2.5px;
 }
+.news p a{
+  font-size: 16px;
+  text-decoration: underline;
+  color: nth($rpsBrand, 4);
+}
 .container a{
   font-family: nth($font, 1);
   color: nth($rpsBrand, 2);
@@ -232,6 +237,9 @@ footer span, sub{
 footer a{
   text-decoration: none;
   color: nth($rpsBrand, 4);
+}
+.location{
+  text-decoration: underline;
 }
 footer p{
   color: nth($rpsBrand, 4);
@@ -404,7 +412,7 @@ footer .logo{
 .bannerImage img{
   width: 100%;
   height: auto;
-  aspect-ratio: 16/9;
+  aspect-ratio: 4/1;
 }
 .mobileBrand{
   height: 200px;

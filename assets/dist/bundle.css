@@ -189,6 +189,12 @@ button span {
   padding-top: 2.5px;
 }
 
+.news p a {
+  font-size: 16px;
+  text-decoration: underline;
+  color: #ffffff;
+}
+
 .container a {
   font-family: "D-DIN Condensed";
   color: #ad0034;
@@ -215,6 +221,10 @@ footer span, sub {
 footer a {
   text-decoration: none;
   color: #ffffff;
+}
+
+.location {
+  text-decoration: underline;
 }
 
 footer p {
@@ -419,7 +429,7 @@ footer .logo {
 .bannerImage img {
   width: 100%;
   height: auto;
-  aspect-ratio: 16/9;
+  aspect-ratio: 4/1;
 }
 
 .mobileBrand {

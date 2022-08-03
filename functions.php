@@ -190,10 +190,6 @@ function vision_shortcode(){
     include('template-parts/components/vision.php');
 }
 add_shortcode('vision', 'vision_shortcode');
-function contact_shortcode(){
-    include('template-parts/components/contact.php');
-}
-add_shortcode('contact', 'contact_shortcode');
 function brandContent_shortcode(){
     include('template-parts/components/brandContent.php');
 }

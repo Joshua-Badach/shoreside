@@ -21,8 +21,7 @@
                     <p>Weekdays: 8:00Am to 5:00pm <br>
                     Saturday: 10:00Am to 2:00pm <br>
                     Sunday: Closed</p>
-                    <p>11204 154 Street NW <br>
-                        Edmonton, AB T5M 1X7</p>
+                    <p><a class="location" href="/about/#rpsMap">11204 154 Street NW Edmonton, AB T5M 1X7</a></p>
                 </div>
                 <div class="col-lg-4 offset-lg-1">
                     <p>SUBSCRIBE TO OUR NEWSLETTER</p>
