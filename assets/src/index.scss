@@ -9,7 +9,7 @@ nav h6{
 }
 
 //==========fonts==========
-$font: 'D-DIN Condensed', 'D-DIN Condensed Bold', 'American Captain';
+$font: '"Open Sans",sans-serif', '"Open Sans",sans-serif', 'American Captain';
 $fontSizing: 2.313vh, 3.25vh, 4vw, 4.75vh, 5.5vh, 6.25vh;
 //Tweak fontSizing later... these are way off.
 $errorFont: 'D-DIN Condensed Bold', #ffffff, 15rem;
@@ -204,13 +204,13 @@ button span{
   height: 25px;
 }
 .news p{
-  font-size: 16px;
+  font-size: 12px;
   text-align: center;
   margin: 0;
-  padding-top: 2.5px;
+  padding-top: 5px;
 }
 .news p a{
-  font-size: 16px;
+  font-size: 12px;
   text-decoration: underline;
   color: nth($rpsBrand, 4);
 }
@@ -368,8 +368,8 @@ footer .logo{
   display: none;
 }
 .brands{
-  min-height: 525px;
-  max-height: 550px;
+  min-height: 500px;
+  //max-height: 500px;
   background-color: nth($rpsBrand, 1);
   box-shadow: 9px 6px 4px 0px rgba(0,0,0,0.75);
   -webkit-box-shadow: 9px 6px 4px 0px rgba(0,0,0,0.75);
@@ -400,11 +400,11 @@ footer .logo{
 .brandImage{
   width: 100%;
   text-align: center;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 4 / 3;
   background-color: nth($rpsBrand, 4);
 }
 .brands img{
-  padding-top: 40%;
+  padding-top: 20%;
   padding-left: 6%;
   padding-right: 6%;
   width: 100%;
@@ -601,9 +601,6 @@ footer .logo{
   visibility: visible;
   border: 2px solid white;
 }
-//.form-2{
-//  display: none;
-//}
 //@media only screen and (min-width: 786px){
 //  .hide{
 //    display: none;
@@ -648,7 +645,7 @@ footer .logo{
   margin: 0;
 }
 .contactHelp{
-  margin-top: -15vw;
+  margin-top: -10vw;
   margin-bottom: 8vw;
 }
 .appended{
@@ -730,7 +727,6 @@ footer .logo{
   }
   .brandCard img{
     width: 100%;
-    padding-top: 40%;
     padding-left: 1%;
     padding-right: 1%;
     height: auto;
@@ -779,9 +775,9 @@ footer .logo{
   }
   .brandCard img{
     width: 100%;
-    padding-top: 40%;
-    padding-left: 1%;
-    padding-right: 1%;
+    padding-top: 20%;
+    padding-left: 2%;
+    padding-right: 2%;
     height: auto;
   }
   .brandSpan{
@@ -884,4 +880,7 @@ footer .logo{
 }
 iframe{
   margin: -1.75% 0!important;
+}
+.hidden{
+  display: none;
 }

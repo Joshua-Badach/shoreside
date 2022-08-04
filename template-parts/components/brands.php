@@ -58,7 +58,7 @@ function brand_cards($cat){
                         <img src="'. $image . '" width="150px" height="150px">
                     </div>   
                     <div class="brandsContent">    
-                        <h3>' . $cat->name . '</h3>
+                        <h3 class="hidden">' . $cat->name . '</h3>
                         <p>'; echo $trimmed_content . '</p> 
                     </div>
                 </div>    

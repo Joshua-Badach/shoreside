@@ -57,19 +57,5 @@ function brand_description($idObj){
     echo $categoryDescription . '</div>
     </section>';
 }
-//lazy....
-if ($slug == 'avalon'){
-    brand_description($idObj);
-}
-elseif ($slug == 'mercury'){
-    brand_description($idObj);
-}
-elseif ($slug == 'mirrocraft'){
-brand_description($idObj);
-}
-elseif ($slug == 'shorestation'){
-brand_description($idObj);
-}
-else {
-    product_gallery($idObj, $args);
-}
+
+product_gallery($idObj, $args);

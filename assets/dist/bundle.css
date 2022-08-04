@@ -58,38 +58,38 @@ h1 {
 }
 
 h2 {
-  font-family: "D-DIN Condensed Bold";
+  font-family: '"Open Sans",sans-serif';
   color: #0069ad;
   font-size: 4vw;
 }
 
 h3 {
-  font-family: "D-DIN Condensed Bold";
+  font-family: '"Open Sans",sans-serif';
   color: #ffffff;
   font-size: 3.25vh;
   -webkit-text-stroke: 1px #0069ad;
 }
 
 h4 {
-  font-family: "D-DIN Condensed";
+  font-family: '"Open Sans",sans-serif';
   color: #ffffff;
   font-size: 2.313vh;
   -webkit-text-stroke: 0.5px #000000;
 }
 
 h5 {
-  font-family: "D-DIN Condensed Bold";
+  font-family: '"Open Sans",sans-serif';
   color: #ffffff;
   font-size: 2.313vh;
 }
 
 p, span, label {
-  font-family: "D-DIN Condensed";
+  font-family: '"Open Sans",sans-serif';
   font-size: 2.313vh;
 }
 
 a {
-  font-family: "D-DIN Condensed";
+  font-family: '"Open Sans",sans-serif';
   font-size: 2.313vh;
 }
 
@@ -166,7 +166,7 @@ button span {
 
 .home-heading {
   font-size: 4vw;
-  font-family: "D-DIN Condensed";
+  font-family: '"Open Sans",sans-serif';
   color: #ffffff;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   -webkit-text-stroke: unset;
@@ -183,30 +183,30 @@ button span {
 }
 
 .news p {
-  font-size: 16px;
+  font-size: 12px;
   text-align: center;
   margin: 0;
-  padding-top: 2.5px;
+  padding-top: 5px;
 }
 
 .news p a {
-  font-size: 16px;
+  font-size: 12px;
   text-decoration: underline;
   color: #ffffff;
 }
 
 .container a {
-  font-family: "D-DIN Condensed";
+  font-family: '"Open Sans",sans-serif';
   color: #ad0034;
   text-decoration: none;
 }
 
 .container p {
-  font-family: "D-DIN Condensed";
+  font-family: '"Open Sans",sans-serif';
 }
 
 .container span {
-  font-family: "D-DIN Condensed";
+  font-family: '"Open Sans",sans-serif';
 }
 
 footer {
@@ -379,8 +379,7 @@ footer .logo {
 }
 
 .brands {
-  min-height: 525px;
-  max-height: 550px;
+  min-height: 500px;
   background-color: #0069ad;
   box-shadow: 9px 6px 4px 0px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 9px 6px 4px 0px rgba(0, 0, 0, 0.75);
@@ -415,12 +414,12 @@ footer .logo {
 .brandImage {
   width: 100%;
   text-align: center;
-  aspect-ratio: 1/1;
+  aspect-ratio: 4/3;
   background-color: #ffffff;
 }
 
 .brands img {
-  padding-top: 40%;
+  padding-top: 20%;
   padding-left: 6%;
   padding-right: 6%;
   width: 100%;
@@ -657,7 +656,7 @@ footer .logo {
 }
 
 .contactHelp {
-  margin-top: -15vw;
+  margin-top: -10vw;
   margin-bottom: 8vw;
 }
 
@@ -726,7 +725,6 @@ footer .logo {
   }
   .brandCard img {
     width: 100%;
-    padding-top: 40%;
     padding-left: 1%;
     padding-right: 1%;
     height: auto;
@@ -773,9 +771,9 @@ footer .logo {
   }
   .brandCard img {
     width: 100%;
-    padding-top: 40%;
-    padding-left: 1%;
-    padding-right: 1%;
+    padding-top: 20%;
+    padding-left: 2%;
+    padding-right: 2%;
     height: auto;
   }
   .brandSpan {
@@ -877,4 +875,8 @@ footer .logo {
 }
 iframe {
   margin: -1.75% 0 !important;
+}
+
+.hidden {
+  display: none;
 }
