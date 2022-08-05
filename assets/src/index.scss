@@ -184,7 +184,6 @@ button span{
 }
 .home-block img{
   width: 150px;
-  aspect-ratio: 1/1;
 }
 .home-heading{
   font-size: nth($fontSizing, 3);
@@ -368,8 +367,9 @@ footer .logo{
   display: none;
 }
 .brands{
-  min-height: 500px;
-  //max-height: 500px;
+  //min-height: 500px;
+  height: 95%;
+  aspect-ratio: 1 / 2;
   background-color: nth($rpsBrand, 1);
   box-shadow: 9px 6px 4px 0px rgba(0,0,0,0.75);
   -webkit-box-shadow: 9px 6px 4px 0px rgba(0,0,0,0.75);
@@ -394,8 +394,8 @@ footer .logo{
 }
 .brands h3{
   text-align: center;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  position: absolute;
+  top: 10px;
 }
 .brandImage{
   width: 100%;
@@ -723,7 +723,6 @@ footer .logo{
   }
   .home-block img{
     width: 20%;
-    aspect-ratio: 1 / 1;
   }
   .brandCard img{
     width: 100%;
@@ -771,11 +770,10 @@ footer .logo{
   }
   .home-block img{
     width: 20%;
-    aspect-ratio: 1 / 1;
   }
   .brandCard img{
     width: 100%;
-    padding-top: 20%;
+    padding-top: 25%;
     padding-left: 2%;
     padding-right: 2%;
     height: auto;
@@ -816,10 +814,17 @@ footer .logo{
 //small screens
 @media (min-width: 769px) and (max-width: 1024px) {
   .brandSpan{
-    margin-top: -70px;
+    margin-top: -20%;
   }
   .home-block{
     top: -310px;
+  }
+  .brandCard img{
+    width: 100%;
+    padding-top: 25%;
+    padding-left: 2%;
+    padding-right: 2%;
+    height: auto;
   }
 }
 
@@ -882,5 +887,5 @@ iframe{
   margin: -1.75% 0!important;
 }
 .hidden{
-  display: none;
+  visibility: hidden;
 }

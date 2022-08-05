@@ -12,8 +12,8 @@ jQuery(document).ready(function() {
       jQuery('.brands h3').hide();
       jQuery('.brands p').hide();
       jQuery((".brandCard")).removeClass("brands");
-
     }
+
     if (win.width() >= 769 ){
       jQuery('.brands h3').show();
       jQuery('.brands p').show();

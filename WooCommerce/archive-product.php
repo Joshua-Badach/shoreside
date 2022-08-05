@@ -30,6 +30,7 @@ if ( is_search() ) { } else {
         ?>
     </header>
     <?php
+    echo 'test';
     if (woocommerce_product_loop()) {
 
         /**
