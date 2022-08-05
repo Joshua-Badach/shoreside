@@ -21,7 +21,7 @@
                     <p>Weekdays: 8:00Am to 5:00pm <br>
                     Saturday: 10:00Am to 2:00pm <br>
                     Sunday: Closed</p>
-                    <p><a class="location" href="/about/#rpsMap">11204 154 Street NW Edmonton, AB T5M 1X7</a></p>
+                    <p><a class="location"  href="https://maps.google.com/?q=Recreational+Power+Sports" target="_blank" rel="noopener">11204 154 Street NW Edmonton, AB T5M 1X7</a></p>
                 </div>
                 <div class="col-lg-4 offset-lg-1">
                     <p>SUBSCRIBE TO OUR NEWSLETTER</p>
@@ -46,13 +46,13 @@
                             <object data="<?php echo get_template_directory_uri() . '/assets/src/library/images/instagram.svg' ?>"></object>
                         </a>
                     </div>
-                    <div id="tiktokIcon" class="socmed">
-                        <a href="https://www.tiktok.com/@recreationalpowersports" target="_blank">
-                            <object data="<?php echo get_template_directory_uri() . '/assets/src/library/images/tiktok.svg' ?>"></object>
-                        </a>
-                    </div>
-                </span>
-            </div>
+<!--                    <div id="tiktokIcon" class="socmed">-->
+<!--                        <a href="https://www.tiktok.com/@recreationalpowersports" target="_blank">-->
+<!--                            <object data="--><?php //echo get_template_directory_uri() . '/assets/src/library/images/tiktok.svg' ?><!--"></object>-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </span>-->
+<!--            </div>-->
             <div class="row">
                 <span class="col-lg-12">&copy; 2022 Recreational Power Sports</span>
             </div>

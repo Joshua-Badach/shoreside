@@ -196,4 +196,39 @@ add_shortcode('vision', 'vision_shortcode');
 function brandContent_shortcode(){
     include('template-parts/components/brandContent.php');
 }
-add_shortcode('brand-content', 'brandContent_shortcode');
+add_shortcode('brand-content', 'brandContent_shortcode');function instagram_shortcode(){
+    include('template-parts/components/instagram.php');
+}
+add_shortcode('instagram', 'instagram_shortcode');
+
+//Woocommerce code
+
+// remove product meta
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
+
+// remove  rating  stars
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10 );
+
+//remove add to cart
+remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart');
+remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 20);
+
+//remove price
+add_filter( 'woocommerce_get_price_html', 'react2wp_woocommerce_hide_product_price' );
+function react2wp_woocommerce_hide_product_price( $price ) {
+    return '';
+}
+
+add_filter( 'woocommerce_product_tabs', 'woo_new_product_tab' );
+function woo_new_product_tab( $tabs ) {
+    // Adds the new tab
+    $tabs['return_policy'] = array(
+        'title' 	=> __( 'Return Policy', 'woocommerce' ),
+        'priority' 	=> 50,
+        'callback' 	=> 'woo_new_product_tab_content'
+    );
+    return $tabs;
+}
+function woo_new_product_tab_content() {
+    include('template-parts/components/returns.php');
+}

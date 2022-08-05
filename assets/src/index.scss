@@ -101,7 +101,7 @@ h3{
   font-family: nth($font, 2);
   color: nth($rpsBrand, 4);
   font-size: nth($fontSizing, 2);
-  -webkit-text-stroke: 1px nth($rpsBrand, 1);
+  -webkit-text-stroke: 1px nth($rpsBrand, 5);
 }
 h4{
   font-family: nth($font, 1);
@@ -487,7 +487,6 @@ footer .logo{
 }
 .quote{
   position: relative;
-  margin: 20vh 0;
 }
 .mission{
   margin-bottom: 20vh;
@@ -523,7 +522,7 @@ footer .logo{
   overflow: hidden;
   text-overflow: ellipsis;
   transform: translate(75px, -150px);
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.75);
   -webkit-box-shadow: 2px 2px 5px 1px #000000;
   box-shadow: 2px 2px 5px 1px #000000;
 }
@@ -888,4 +887,16 @@ iframe{
 }
 .hidden{
   visibility: hidden;
+  display: none;
+}
+#sb_instagram{
+  margin-bottom: 10%;
+}
+.followUs{
+  margin-top: 10%;
+  margin-bottom: 10%;
+  text-align: center;
+}
+.followUs img{
+  margin: 0 10%;
 }

@@ -13,6 +13,4 @@
         }
     ?>
 </div>
-
-single page returned
 <?php get_footer() ?>

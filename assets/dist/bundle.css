@@ -67,7 +67,7 @@ h3 {
   font-family: '"Open Sans",sans-serif';
   color: #ffffff;
   font-size: 3.25vh;
-  -webkit-text-stroke: 1px #0069ad;
+  -webkit-text-stroke: 1px #000000;
 }
 
 h4 {
@@ -509,7 +509,6 @@ footer .logo {
 
 .quote {
   position: relative;
-  margin: 20vh 0;
 }
 
 .mission {
@@ -551,7 +550,7 @@ footer .logo {
   overflow: hidden;
   text-overflow: ellipsis;
   transform: translate(75px, -150px);
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.75);
   -webkit-box-shadow: 2px 2px 5px 1px #000000;
   box-shadow: 2px 2px 5px 1px #000000;
 }
@@ -884,4 +883,19 @@ iframe {
 
 .hidden {
   visibility: hidden;
+  display: none;
+}
+
+#sb_instagram {
+  margin-bottom: 10%;
+}
+
+.followUs {
+  margin-top: 10%;
+  margin-bottom: 10%;
+  text-align: center;
+}
+
+.followUs img {
+  margin: 0 10%;
 }
