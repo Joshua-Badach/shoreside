@@ -6,8 +6,17 @@ jQuery(document).ready(function() {
   var sticky = navbar.offsetTop;
   var win = jQuery(this);
 
+  jQuery(function(){
+    jQuery('.contactForm').addClass('hiddenForm');
+    jQuery('.a11y_requirement_desc_line').addClass('hidden');
 
-  jQuery(window).on('resize', function(){
+  });
+
+  jQuery(document).on('click', '.emailButton', function(){
+    jQuery('.contactForm').removeClass('hiddenForm');
+  });
+
+    jQuery(window).on('resize', function(){
     if (win.width() <= 769 ){
       jQuery('.brands h3').hide();
       jQuery('.brands p').hide();

@@ -221,14 +221,41 @@ function react2wp_woocommerce_hide_product_price( $price ) {
 
 add_filter( 'woocommerce_product_tabs', 'woo_new_product_tab' );
 function woo_new_product_tab( $tabs ) {
-    // Adds the new tab
     $tabs['return_policy'] = array(
         'title' 	=> __( 'Return Policy', 'woocommerce' ),
         'priority' 	=> 50,
-        'callback' 	=> 'woo_new_product_tab_content'
+        'callback' 	=> 'woo_new_product_tab_one_content'
     );
+    $tabs['warranty_policy'] = array(
+        'title'     => __( 'Warranty', 'woocommerce'),
+        'priority'  => 50,
+        'callback'  => 'woo_new_product_tab_two_content'
+    );
+//    $tabs['product_form'] = array(
+//        'title'     => __( 'Email', 'woocommerce'),
+//        'priority'  => 40,
+//        'callback'  => 'woo_new_product_tab_three_content'
+//    );
     return $tabs;
 }
-function woo_new_product_tab_content() {
+function woo_new_product_tab_one_content() {
     include('template-parts/components/returns.php');
 }
+function woo_new_product_tab_two_content() {
+    include('template-parts/components/warranty.php');
+}
+//product buttons/jotform code
+function product_contact_row(){
+    $product = get_page_by_title( 'Product Title', OBJECT, 'product' );
+    $productUrl = get_permalink( $product->ID );
+    $productName = get_the_title( $product->ID );
+    echo '<a href="tel:7807321004">
+            <button class="callButton">Call Us</button>
+        </a>
+        <button class="emailButton">Email Us</button>
+        <br><br>
+        <div class="contactForm">
+            <script type="text/javascript" src="https://form.jotform.com/jsform/222166143744251?productName=' .$productName.'&productUrl='.$productUrl.'"></script>
+        </div>';
+}
+add_action('woocommerce_single_product_summary', 'product_contact_row', 50);

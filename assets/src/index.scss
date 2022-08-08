@@ -886,7 +886,6 @@ iframe{
   margin: -1.75% 0!important;
 }
 .hidden{
-  visibility: hidden;
   display: none;
 }
 #sb_instagram{
@@ -899,4 +898,10 @@ iframe{
 }
 .followUs img{
   margin: 0 10%;
+}
+div .form-footer{
+  display: none !important;
+}
+.hiddenForm{
+  visibility: hidden;
 }

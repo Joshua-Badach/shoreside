@@ -882,7 +882,6 @@ iframe {
 }
 
 .hidden {
-  visibility: hidden;
   display: none;
 }
 
@@ -898,4 +897,12 @@ iframe {
 
 .followUs img {
   margin: 0 10%;
+}
+
+div .form-footer {
+  display: none !important;
+}
+
+.hiddenForm {
+  visibility: hidden;
 }
