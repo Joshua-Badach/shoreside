@@ -60,7 +60,7 @@ h1 {
 h2 {
   font-family: '"Open Sans",sans-serif';
   color: #0069ad;
-  font-size: 4vw;
+  font-size: 3.25vh;
 }
 
 h3 {
@@ -507,6 +507,11 @@ footer .logo {
   aspect-ratio: 16/9;
 }
 
+.carousel-product {
+  width: 100%;
+  position: absolute;
+}
+
 .quote {
   position: relative;
 }
@@ -904,14 +909,13 @@ div .form-footer {
 }
 
 .hiddenForm {
-  visibility: hidden;
-}
-
-.products ul {
-  background: #0069ad;
+  display: none;
 }
 
 .products ul h2 {
   color: #ffffff;
-  text-align: center;
+}
+
+.woocommerce {
+  margin-top: 50px;
 }

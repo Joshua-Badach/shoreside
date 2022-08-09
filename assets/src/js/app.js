@@ -6,14 +6,18 @@ jQuery(document).ready(function() {
   var sticky = navbar.offsetTop;
   var win = jQuery(this);
 
-  jQuery(function(){
-    jQuery('.contactForm').addClass('hiddenForm');
-    jQuery('.a11y_requirement_desc_line').addClass('hidden');
 
+  jQuery('.contactForm').css({
+    "visibility": "hidden",
+    "margin-top": "-150%"
   });
 
-  jQuery(document).on('click', '.emailButton', function(){
-    jQuery('.contactForm').removeClass('hiddenForm');
+
+  jQuery(document).on('click', '.emailButton', function(e){
+    jQuery('.contactForm').css({
+      "visibility": "visible",
+      "margin-top": "0"
+    });
   });
 
     jQuery(window).on('resize', function(){
@@ -89,7 +93,8 @@ jQuery(document).ready(function() {
     speed: 1000,
     autoplay: true,
     autoplaySpeed: 10000,
-    adaptiveHeight: true,
+    // adaptiveHeight: true,
+    mobileFirst: true,
     dots: true,
   });
   jQuery('.carousel-product').slick({
@@ -100,6 +105,7 @@ jQuery(document).ready(function() {
     autoplay: true,
     autoplaySpeed: 10000,
     adaptiveHeight: true,
+    mobileFirst: true,
     dots: false,
   });
 

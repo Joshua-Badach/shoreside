@@ -203,6 +203,8 @@ add_shortcode('instagram', 'instagram_shortcode');
 
 //Woocommerce code
 
+add_action('woocommerce_single_product_summary', 'woocommerce_template_single_title', 8);
+
 // remove product meta
 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
 
@@ -212,12 +214,6 @@ remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_singl
 //remove add to cart
 remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart');
 remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 20);
-
-//remove price
-add_filter( 'woocommerce_get_price_html', 'react2wp_woocommerce_hide_product_price' );
-function react2wp_woocommerce_hide_product_price( $price ) {
-    return '';
-}
 
 add_filter( 'woocommerce_product_tabs', 'woo_new_product_tab' );
 function woo_new_product_tab( $tabs ) {
@@ -252,8 +248,13 @@ function product_contact_row(){
     echo '<a href="tel:7807321004">
             <button class="callButton">Call Us</button>
         </a>
-        <button class="emailButton">Email Us</button>
-        <br><br>
+        <button class="emailButton">Email Us</button>';
+        if ( has_term( 'Sales Showroom', 'product_cat', $product->get_id)){
+            echo'<a href="/financing/">
+            <button class="financeButton">Financing</button>
+        </a>';
+        }
+    echo '<br><br>
         <div class="contactForm">
             <script type="text/javascript" src="https://form.jotform.com/jsform/222166143744251?productName=' .$productName.'&productUrl='.$productUrl.'"></script>
         </div>';

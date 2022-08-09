@@ -95,7 +95,7 @@ h1{
 h2{
   font-family: nth($font, 2);
   color: nth($rpsBrand, 1);
-  font-size: nth($fontSizing, 3);
+  font-size: nth($fontSizing, 2);
 }
 h3{
   font-family: nth($font, 2);
@@ -907,12 +907,12 @@ div .form-footer{
   display: none !important;
 }
 .hiddenForm{
-  visibility: hidden;
+  display: none;
 }
-.products ul{
-  background: nth($rpsBrand, 1);
-}
+
 .products ul h2{
   color: nth($rpsBrand, 4);
-  text-align: center;
+}
+.woocommerce{
+  margin-top: 50px;
 }
