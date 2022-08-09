@@ -906,3 +906,12 @@ div .form-footer {
 .hiddenForm {
   visibility: hidden;
 }
+
+.products ul {
+  background: #0069ad;
+}
+
+.products ul h2 {
+  color: #ffffff;
+  text-align: center;
+}

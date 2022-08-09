@@ -905,3 +905,10 @@ div .form-footer{
 .hiddenForm{
   visibility: hidden;
 }
+.products ul{
+  background: nth($rpsBrand, 1);
+}
+.products ul h2{
+  color: nth($rpsBrand, 4);
+  text-align: center;
+}
