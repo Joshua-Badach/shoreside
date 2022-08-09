@@ -28,8 +28,9 @@ if ( $related_products ) : ?>
 
 		if ( $heading ) :
 			?>
-			<h2><?php echo esc_html( $heading ); ?></h2>
-		<?php endif; ?>
+<!--			<h2>--><?php //echo esc_html( $heading ); ?><!--</h2>-->
+		<p>You may also like:</p>
+        <?php endif; ?>
 		
 		<?php woocommerce_product_loop_start(); ?>
 

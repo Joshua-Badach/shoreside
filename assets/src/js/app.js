@@ -89,8 +89,20 @@ jQuery(document).ready(function() {
     speed: 1000,
     autoplay: true,
     autoplaySpeed: 10000,
+    adaptiveHeight: true,
     dots: true,
   });
+  jQuery('.carousel-product').slick({
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    speed: 1000,
+    autoplay: true,
+    autoplaySpeed: 10000,
+    adaptiveHeight: true,
+    dots: false,
+  });
+
 
   jQuery('.close-modal').click(function() {
     jQuery('.modal').toggleClass('show');
