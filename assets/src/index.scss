@@ -886,9 +886,9 @@ footer .logo{
     transform: translateX(0px)
   }
 }
-iframe{
-  margin: -1.75% 0!important;
-}
+//iframe{
+//  margin: -1.75% 0!important;
+//}
 .hidden{
   display: none;
 }
@@ -911,8 +911,19 @@ div .form-footer{
 }
 
 .products ul h2{
-  color: nth($rpsBrand, 4);
+  color: nth($rpsBrand, 1);
 }
 .woocommerce{
   margin-top: 50px;
+}
+.woocommerce-product-gallery{
+  height: 44.688rem;
+}
+.productVideo{
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin-bottom: 2%;
+}
+.brands h3{
+  display: none!important;
 }

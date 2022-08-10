@@ -240,6 +240,32 @@ function woo_new_product_tab_one_content() {
 function woo_new_product_tab_two_content() {
     include('template-parts/components/warranty.php');
 }
+// Add a custom product note after add to cart button in single product pages
+add_action('woocommerce_after_add_to_cart_button', 'custom_product_note', 10 );
+function custom_product_note() {
+
+    echo '<br><div>';
+
+    woocommerce_form_field('product_note', array(
+        'type' => 'textarea',
+        'class' => array( 'my-field-class form-row-wide') ,
+        'label' => __('Product note') ,
+        'placeholder' => __('Add your note here, please…') ,
+        'required' => false,
+    ) , '');
+
+    echo '</div>';
+}
+
+// Add customer note to cart item data
+add_filter( 'woocommerce_add_cart_item_data', 'add_product_note_to_cart_item_data', 20, 2 );
+function add_product_note_to_cart_item_data( $cart_item_data, $product_id ){
+    if( isset($_POST['product_note']) && ! empty($_POST['product_note']) ){
+        $product_note = sanitize_textarea_field( $_POST['product_note'] );
+        $cart_item_data['product_note'] = $product_note;
+    }
+    return $cart_item_data;
+}
 //product buttons/jotform code
 function product_contact_row(){
     $product = get_page_by_title( 'Product Title', OBJECT, 'product' );
@@ -249,7 +275,7 @@ function product_contact_row(){
             <button class="callButton">Call Us</button>
         </a>
         <button class="emailButton">Email Us</button>';
-        if ( has_term( 'Sales Showroom', 'product_cat', $product->get_id)){
+        if ( has_term( 'Sales Showroom', 'product_cat')){
             echo'<a href="/financing/">
             <button class="financeButton">Financing</button>
         </a>';

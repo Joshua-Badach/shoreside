@@ -20,9 +20,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 global $post;
-
+$product = wc_get_product($post);
+$video = $product->get_attribute( 'Video' );
 $short_description = apply_filters( 'woocommerce_short_description', $post->post_excerpt );
-
 if ( ! $short_description ) {
 	return;
 }
@@ -30,4 +30,13 @@ if ( ! $short_description ) {
 ?>
 <div class="woocommerce-product-details__short-description">
 	<?php echo $short_description; // WPCS: XSS ok. ?>
+<?php
+    if ($video != '') {
+        echo '<iframe class="productVideo" name="productVideo" scrolling="no" frameborder="1" src="' . $video . '" marginwidth="0px" allowfullscreen></iframe>
+';
+    }
+
+//    echo $purchase_note;
+//    var_dump($purchase_note);
+?>
 </div>
