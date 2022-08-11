@@ -196,10 +196,17 @@ add_shortcode('vision', 'vision_shortcode');
 function brandContent_shortcode(){
     include('template-parts/components/brandContent.php');
 }
-add_shortcode('brand-content', 'brandContent_shortcode');function instagram_shortcode(){
+add_shortcode('brand-content', 'brandContent_shortcode');
+
+function instagram_shortcode(){
     include('template-parts/components/instagram.php');
 }
 add_shortcode('instagram', 'instagram_shortcode');
+
+function service_shortcode(){
+    include('template-parts/components/service.php');
+}
+add_shortcode('service-content', 'service_shortcode');
 
 //Woocommerce code
 
@@ -227,11 +234,6 @@ function woo_new_product_tab( $tabs ) {
         'priority'  => 50,
         'callback'  => 'woo_new_product_tab_two_content'
     );
-//    $tabs['product_form'] = array(
-//        'title'     => __( 'Email', 'woocommerce'),
-//        'priority'  => 40,
-//        'callback'  => 'woo_new_product_tab_three_content'
-//    );
     return $tabs;
 }
 function woo_new_product_tab_one_content() {
@@ -240,31 +242,75 @@ function woo_new_product_tab_one_content() {
 function woo_new_product_tab_two_content() {
     include('template-parts/components/warranty.php');
 }
-// Add a custom product note after add to cart button in single product pages
-add_action('woocommerce_after_add_to_cart_button', 'custom_product_note', 10 );
-function custom_product_note() {
+//
+//add_filter( 'woocommerce_catalog_orderby', 'shoreside_add_custom_sorting_options');
+//function shoreside_add_custom_sorting_options($options){
+//    $options[ 'new' ] = 'New';
+//    $options[ 'used' ] = 'Used';
+//
+//    return $options;
+//}
+//add_filter( 'woocommerce_get_catalog_ordering_args', 'shoreside_custom_product_sorting' );
+//function shoreside_custom_product_sorting( $args ) {
+//
+//    // Sort alphabetically
+//    if ( isset( $_GET[ 'orderby' ] ) && 'title' === $_GET[ 'orderby' ] ) {
+//        $args[ 'orderby' ] = 'title';
+//        $args[ 'order' ] = 'asc';
+//    }
+//
+//    // Show products in stock first
+//    if( isset( $_GET[ 'orderby' ] ) && 'in-stock' === $_GET[ 'orderby' ] ) {
+//        $args[ 'meta_key' ] = '_stock_status';
+//        $args[ 'orderby' ] = array( 'meta_value' => 'ASC' );
+//    }
+//
+//    return $args;
+//}
 
-    echo '<br><div>';
-
-    woocommerce_form_field('product_note', array(
-        'type' => 'textarea',
-        'class' => array( 'my-field-class form-row-wide') ,
-        'label' => __('Product note') ,
-        'placeholder' => __('Add your note here, please…') ,
-        'required' => false,
-    ) , '');
-
-    echo '</div>';
-}
-
-// Add customer note to cart item data
-add_filter( 'woocommerce_add_cart_item_data', 'add_product_note_to_cart_item_data', 20, 2 );
-function add_product_note_to_cart_item_data( $cart_item_data, $product_id ){
-    if( isset($_POST['product_note']) && ! empty($_POST['product_note']) ){
-        $product_note = sanitize_textarea_field( $_POST['product_note'] );
-        $cart_item_data['product_note'] = $product_note;
+//custom ordering
+function woocommerce_catalog_ordering() {
+    if ( ! wc_get_loop_prop( 'is_paginated' ) || ! woocommerce_products_will_display() ) {
+        return;
     }
-    return $cart_item_data;
+    $show_default_orderby    = 'menu_order' === apply_filters( 'woocommerce_default_catalog_orderby', get_option( 'woocommerce_default_catalog_orderby', 'menu_order' ) );
+    $catalog_orderby_options = apply_filters(
+        'woocommerce_catalog_orderby',
+        array(
+            'menu_order'    => __( '---', 'woocommerce' ),
+            'pre-owned'     => __( 'Pre Owned', 'woocommerce'),
+            'price'         => __( 'Price: low to high', 'woocommerce' ),
+            'price-desc'    => __( 'Price: high to low', 'woocommerce' ),
+        )
+    );
+
+    $default_orderby = wc_get_loop_prop( 'is_search' ) ? 'relevance' : apply_filters( 'woocommerce_default_catalog_orderby', get_option( 'woocommerce_default_catalog_orderby', '' ) );
+    // phpcs:disable WordPress.Security.NonceVerification.Recommended
+    $orderby = isset( $_GET['orderby'] ) ? wc_clean( wp_unslash( $_GET['orderby'] ) ) : $default_orderby;
+    // phpcs:enable WordPress.Security.NonceVerification.Recommended
+
+    if ( wc_get_loop_prop( 'is_search' ) ) {
+        $catalog_orderby_options = array_merge( array( 'relevance' => __( 'Relevance', 'woocommerce' ) ), $catalog_orderby_options );
+
+        unset( $catalog_orderby_options['menu_order'] );
+    }
+
+    if ( ! $show_default_orderby ) {
+        unset( $catalog_orderby_options['menu_order'] );
+    }
+
+    if ( ! array_key_exists( $orderby, $catalog_orderby_options ) ) {
+        $orderby = current( array_keys( $catalog_orderby_options ) );
+    }
+
+    wc_get_template(
+        'loop/orderby.php',
+        array(
+            'catalog_orderby_options' => $catalog_orderby_options,
+            'orderby'                 => $orderby,
+            'show_default_orderby'    => $show_default_orderby,
+        )
+    );
 }
 //product buttons/jotform code
 function product_contact_row(){

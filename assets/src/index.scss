@@ -927,3 +927,16 @@ div .form-footer{
 .brands h3{
   display: none!important;
 }
+.sortingHeader{
+  background: nth($rpsBrand, 1);
+  height: 21px;
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.sortingHeader p{
+  color: nth($rpsBrand, 4);
+}
+.sortingHeader form{
+}

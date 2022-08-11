@@ -929,3 +929,16 @@ div .form-footer {
 .brands h3 {
   display: none !important;
 }
+
+.sortingHeader {
+  background: #0069ad;
+  height: 21px;
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.sortingHeader p {
+  color: #ffffff;
+}
