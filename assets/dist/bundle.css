@@ -940,5 +940,13 @@ div .form-footer {
 }
 
 .sortingHeader p {
+  padding: 3px;
+  font-size: 12px;
+  color: #ffffff;
+}
+
+.sortingHeader span {
+  padding: 3px;
+  font-size: 12px;
   color: #ffffff;
 }
