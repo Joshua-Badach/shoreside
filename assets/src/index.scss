@@ -898,7 +898,13 @@ footer .logo{
 .followUs{
   margin-top: 10%;
   margin-bottom: 10%;
-  text-align: center;
+  //text-align: center;
+}
+.followUs a{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 .followUs img{
   margin: 0 10%;
