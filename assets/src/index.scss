@@ -951,3 +951,16 @@ div .form-footer{
   font-size: 12px;
   color: nth($rpsBrand, 4);
 }
+.onsale{
+  background: nth($rpsBrand, 1)!important;
+  -webkit-box-shadow: 5px 5px 5px -5px #000000;
+  box-shadow: 5px 5px 5px -5px #000000;
+  border: 1px solid #000000;
+  transform: rotateZ(15deg);
+}
+.serviceGrid{
+  border: 2px solid nth($rpsBrand, 1);
+}
+//.serviceGrid p{
+//  border-bottom: 2px solid nth($rpsBrand, 1);
+//}
