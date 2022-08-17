@@ -2,6 +2,7 @@
     <div class="row">
         <p class="col-sm-12">Catalogs here</p>
         <p class="col-sm-12">Brand 1</p>
+<!--        iterate through catalogs, need to think on how I want to handle this-->
         <p class="col-sm-3"><img src="https://placekitten.com/200/300" alt=""><br>Brand Item</p>
         <p class="col-sm-3"><img src="https://placekitten.com/200/300" alt=""><br>Brand Item</p>
         <p class="col-sm-3"><img src="https://placekitten.com/200/300" alt=""><br>Brand Item</p>

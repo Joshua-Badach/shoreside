@@ -13,9 +13,9 @@ $returnQuery = new WP_Query(array(
         <div class="col-sm-12">
             <?php
             while ($returnQuery->have_posts()){
-                $returnQuery->the_post(); ?>
-                <?php echo '<p>' . get_the_content() . '</p>' ?>
-            <?php
+                $returnQuery->the_post();
+                echo '<h2>' . get_the_title() . '</h2>';
+                echo '<p>' . get_the_content() . '</p>';
             }
             wp_reset_postdata();
             ?>

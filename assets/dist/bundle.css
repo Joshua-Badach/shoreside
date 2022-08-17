@@ -379,7 +379,6 @@ footer .logo {
 
 .brands {
   height: 95%;
-  aspect-ratio: 1/2;
   background-color: #0069ad;
   box-shadow: 9px 6px 4px 0px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 9px 6px 4px 0px rgba(0, 0, 0, 0.75);
@@ -893,17 +892,9 @@ footer .logo {
 .followUs {
   margin-top: 10%;
   margin-bottom: 10%;
-}
-
-.followUs a {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  justify-content: center;
-}
-
-.followUs img {
-  margin: 0 10%;
+  justify-content: space-evenly;
 }
 
 div .form-footer {

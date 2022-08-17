@@ -13,9 +13,9 @@ $warrentyQuery = new WP_Query(array(
         <div class="col-sm-12">
             <?php
             while ($warrentyQuery->have_posts()){
-                $warrentyQuery->the_post(); ?>
-                <?php echo '<p>' . get_the_content() . '</p>' ?>
-                <?php
+                $warrentyQuery->the_post();
+                echo '<h2>' . get_the_title() . '</h2>';
+                echo '<p>' . get_the_content() . '</p>';
             }
             wp_reset_postdata();
             ?>

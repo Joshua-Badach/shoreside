@@ -369,7 +369,7 @@ footer .logo{
 .brands{
   //min-height: 500px;
   height: 95%;
-  aspect-ratio: 1 / 2;
+  //aspect-ratio: 1 / 2;
   background-color: nth($rpsBrand, 1);
   box-shadow: 9px 6px 4px 0px rgba(0,0,0,0.75);
   -webkit-box-shadow: 9px 6px 4px 0px rgba(0,0,0,0.75);
@@ -898,16 +898,9 @@ footer .logo{
 .followUs{
   margin-top: 10%;
   margin-bottom: 10%;
-  //text-align: center;
-}
-.followUs a{
   display: flex;
-  flex-direction: row;
   align-items: center;
-  justify-content: center;
-}
-.followUs img{
-  margin: 0 10%;
+  justify-content: space-evenly;
 }
 div .form-footer{
   display: none !important;
@@ -915,7 +908,6 @@ div .form-footer{
 .hiddenForm{
   display: none;
 }
-
 .products ul h2{
   color: nth($rpsBrand, 1);
 }
