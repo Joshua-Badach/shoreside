@@ -116,11 +116,7 @@ h5{
 }
 
 //==========text==========
-p, span, label{
-  font-family: nth($font, 1);
-  font-size: nth($fontSizing, 1);
-}
-a{
+p, span, label, a{
   font-family: nth($font, 1);
   font-size: nth($fontSizing, 1);
 }
@@ -153,6 +149,8 @@ nav{
 button{
   //height: 30px;
   //width: 150px;
+  height: 30px;
+  padding: 0 10px;
   -webkit-border-radius: 45px;
   -moz-border-radius: 45px;
   border-radius: 45px;
@@ -228,6 +226,7 @@ button span{
 //====================Footer Styling====================
 footer{
   background-color: nth($rpsBrand, 1);
+  padding: 10px;
 }
 footer span, sub{
   text-align: center;
@@ -952,6 +951,9 @@ div .form-footer{
 }
 .serviceGrid{
   border: 2px solid nth($rpsBrand, 1);
+}
+.catalog{
+  text-align: center;
 }
 //.serviceGrid p{
 //  border-bottom: 2px solid nth($rpsBrand, 1);

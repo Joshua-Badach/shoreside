@@ -7,7 +7,7 @@ $infoQuery = new WP_Query(array(
     'posts_per_page'    => 1
 ));
 $staffQuery = new WP_Query(array(
-    'category_name'     => 'information',
+    'category_name'     => 'staff',
     'order'             => 'DESC',
     'post_status'       => ' publish',
     'posts_per_page'    => 1

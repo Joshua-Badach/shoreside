@@ -227,27 +227,34 @@ remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_singl
 remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart');
 remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 20);
 
-add_filter( 'woocommerce_product_tabs', 'woo_new_product_tab' );
-function woo_new_product_tab( $tabs ) {
-    $tabs['return_policy'] = array(
-        'title' 	=> __( 'Return Policy', 'woocommerce' ),
-        'priority' 	=> 50,
-        'callback' 	=> 'woo_new_product_tab_one_content'
-    );
-    $tabs['warranty_policy'] = array(
-        'title'     => __( 'Warranty', 'woocommerce'),
-        'priority'  => 50,
-        'callback'  => 'woo_new_product_tab_two_content'
-    );
-    return $tabs;
+
+add_filter('woocommerce_product_tabs', 'woo_new_product_tab');
+function woo_new_product_tab($tabs) {
+    if ( has_term('parts-and-accessories', 'product_cat')) {
+        $tabs['return_policy'] = array(
+            'title' => __('Return Policy', 'woocommerce'),
+            'priority' => 50,
+            'callback' => 'woo_new_product_tab_one_content'
+        );
+        $tabs['warranty_policy'] = array(
+            'title' => __('Warranty', 'woocommerce'),
+            'id' => 'warranty',
+            'priority' => 50,
+            'callback' => 'woo_new_product_tab_two_content'
+        );
+        return $tabs;
+    } else {
+        return $tabs;
+    }
 }
+
 function woo_new_product_tab_one_content() {
     include('template-parts/components/returns.php');
 }
 function woo_new_product_tab_two_content() {
     include('template-parts/components/warranty.php');
 }
-//
+
 //add_filter( 'woocommerce_catalog_orderby', 'shoreside_add_custom_sorting_options');
 //function shoreside_add_custom_sorting_options($options){
 //    $options[ 'new' ] = 'New';
@@ -272,6 +279,9 @@ function woo_new_product_tab_two_content() {
 //
 //    return $args;
 //}
+
+//add_theme_support( 'wc-product-gallery-zoom' );
+//add_theme_support( 'wc-product-gallery-lightbox' );
 
 //custom ordering
 function woocommerce_catalog_ordering() {
@@ -317,6 +327,7 @@ function woocommerce_catalog_ordering() {
         )
     );
 }
+
 //product buttons/jotform code
 function product_contact_row(){
     $product = get_page_by_title( 'Product Title', OBJECT, 'product' );
