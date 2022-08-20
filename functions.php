@@ -37,7 +37,6 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
     }
     add_action( 'after_setup_theme', 'shoreside_logo_setup' );
 
-//    tweak this to handle hero video when appropriate
     function shoreside_header_setup(){
         $args = array(
             'default-image'             =>get_template_directory_uri() . 'assets/src/library/images/404background.jpg',
@@ -59,13 +58,13 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
     add_theme_support('post-thumbnails');
 
     function add_theme_scripts(){
-//        wp_enqueue_script('jquery', '//ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js', array('jquery'), null, true);
         wp_enqueue_script( 'slick', "//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js", array('jquery'), null, true);
         wp_enqueue_style( 'bundle', get_template_directory_uri() . '/assets/dist/bundle.css', null, null, false );
         wp_enqueue_style( 'slick', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css', null, null, false);
         wp_enqueue_style( 'slick-theme', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css', null, null, false);
         wp_enqueue_script( 'main', get_template_directory_uri() . '/assets/dist/main.bundle.js', array('jquery'), null, false );
         wp_enqueue_script('app', get_template_directory_uri() . '/assets/src/js/app.js', null, null, true);
+        wp_enqueue_style('google-fonts', 'https://fonts.google.com/specimen/Open+Sans?query=open+sans');
     }
     add_action( 'wp_enqueue_scripts', 'add_theme_scripts');
 
@@ -158,10 +157,10 @@ function offering_shortcode(){
 }
 add_shortcode('offerings', 'offering_shortcode');
 
-function insta_shortcode(){
-    include('template-parts/components/instagram.php');
+function socmed_shortcode(){
+    include('template-parts/components/socmed.php');
 }
-add_shortcode('instagram', 'insta_shortcode');
+add_shortcode('socmed', 'socmed_shortcode');
 
 function product_gallery_shortcode(){
     include('template-parts/components/productGallery.php');
@@ -284,49 +283,49 @@ function woo_new_product_tab_two_content() {
 //add_theme_support( 'wc-product-gallery-lightbox' );
 
 //custom ordering
-function woocommerce_catalog_ordering() {
-    if ( ! wc_get_loop_prop( 'is_paginated' ) || ! woocommerce_products_will_display() ) {
-        return;
-    }
-    $show_default_orderby    = 'menu_order' === apply_filters( 'woocommerce_default_catalog_orderby', get_option( 'woocommerce_default_catalog_orderby', 'menu_order' ) );
-    $catalog_orderby_options = apply_filters(
-        'woocommerce_catalog_orderby',
-        array(
-            'menu_order'    => __( '---', 'woocommerce' ),
-            'pre-owned'     => __( 'Pre Owned', 'woocommerce'),
-            'price'         => __( 'Price: low to high', 'woocommerce' ),
-            'price-desc'    => __( 'Price: high to low', 'woocommerce' ),
-        )
-    );
-
-    $default_orderby = wc_get_loop_prop( 'is_search' ) ? 'relevance' : apply_filters( 'woocommerce_default_catalog_orderby', get_option( 'woocommerce_default_catalog_orderby', '' ) );
-    // phpcs:disable WordPress.Security.NonceVerification.Recommended
-    $orderby = isset( $_GET['orderby'] ) ? wc_clean( wp_unslash( $_GET['orderby'] ) ) : $default_orderby;
-    // phpcs:enable WordPress.Security.NonceVerification.Recommended
-
-    if ( wc_get_loop_prop( 'is_search' ) ) {
-        $catalog_orderby_options = array_merge( array( 'relevance' => __( 'Relevance', 'woocommerce' ) ), $catalog_orderby_options );
-
-        unset( $catalog_orderby_options['menu_order'] );
-    }
-
-    if ( ! $show_default_orderby ) {
-        unset( $catalog_orderby_options['menu_order'] );
-    }
-
-    if ( ! array_key_exists( $orderby, $catalog_orderby_options ) ) {
-        $orderby = current( array_keys( $catalog_orderby_options ) );
-    }
-
-    wc_get_template(
-        'loop/orderby.php',
-        array(
-            'catalog_orderby_options' => $catalog_orderby_options,
-            'orderby'                 => $orderby,
-            'show_default_orderby'    => $show_default_orderby,
-        )
-    );
-}
+//function woocommerce_catalog_ordering() {
+//    if ( ! wc_get_loop_prop( 'is_paginated' ) || ! woocommerce_products_will_display() ) {
+//        return;
+//    }
+//    $show_default_orderby    = 'menu_order' === apply_filters( 'woocommerce_default_catalog_orderby', get_option( 'woocommerce_default_catalog_orderby', 'menu_order' ) );
+//    $catalog_orderby_options = apply_filters(
+//        'woocommerce_catalog_orderby',
+//        array(
+//            'menu_order'    => __( '---', 'woocommerce' ),
+//            'pre-owned'     => __( 'Pre Owned', 'woocommerce'),
+//            'price'         => __( 'Price: low to high', 'woocommerce' ),
+//            'price-desc'    => __( 'Price: high to low', 'woocommerce' ),
+//        )
+//    );
+//
+//    $default_orderby = wc_get_loop_prop( 'is_search' ) ? 'relevance' : apply_filters( 'woocommerce_default_catalog_orderby', get_option( 'woocommerce_default_catalog_orderby', '' ) );
+//    // phpcs:disable WordPress.Security.NonceVerification.Recommended
+//    $orderby = isset( $_GET['orderby'] ) ? wc_clean( wp_unslash( $_GET['orderby'] ) ) : $default_orderby;
+//    // phpcs:enable WordPress.Security.NonceVerification.Recommended
+//
+//    if ( wc_get_loop_prop( 'is_search' ) ) {
+//        $catalog_orderby_options = array_merge( array( 'relevance' => __( 'Relevance', 'woocommerce' ) ), $catalog_orderby_options );
+//
+//        unset( $catalog_orderby_options['menu_order'] );
+//    }
+//
+//    if ( ! $show_default_orderby ) {
+//        unset( $catalog_orderby_options['menu_order'] );
+//    }
+//
+//    if ( ! array_key_exists( $orderby, $catalog_orderby_options ) ) {
+//        $orderby = current( array_keys( $catalog_orderby_options ) );
+//    }
+//
+//    wc_get_template(
+//        'loop/orderby.php',
+//        array(
+//            'catalog_orderby_options' => $catalog_orderby_options,
+//            'orderby'                 => $orderby,
+//            'show_default_orderby'    => $show_default_orderby,
+//        )
+//    );
+//}
 
 //product buttons/jotform code
 function product_contact_row(){
@@ -334,12 +333,14 @@ function product_contact_row(){
     $productUrl = get_permalink( $product->ID );
     $productName = get_the_title( $product->ID );
     echo '<a href="tel:7807321004">
-            <button class="callButton">Call Us</button>
+            <button class="callButton button-3d">Call Us</button>
         </a>
-        <button class="emailButton">Email Us</button>';
+        <a href="#header-28">
+            <button class="emailButton button-3d">Email Us</button>
+        </a>';
         if ( has_term( 'Sales Showroom', 'product_cat')){
             echo'<a href="/financing/">
-            <button class="financeButton">Financing</button>
+            <button class="financeButton button-3d">Financing</button>
         </a>';
         }
     echo '<br><br>

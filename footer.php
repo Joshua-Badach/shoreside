@@ -7,7 +7,6 @@
                     </a>
                 </span>
                 <div class="col-lg-2">
-                    <p>NAVIGATION</p>
                     <ul>
                         <li class="mobileShow"><a href="<?php echo site_url() ?>">Home</a></li>
                         <li><a href="/showroom/">Showroom</a></li>
@@ -16,18 +15,18 @@
                         <li><a href="/about/">About Us</a></li>
                         <li><a href="/contact/">Contact</a></li>
                     </ul>
+                    <p><a class="location"  href="https://maps.google.com/?q=Recreational+Power+Sports" target="_blank" rel="noopener">11204 154 Street NW Edmonton, AB T5M 1X7</a></p>
                 </div>
                 <div class="col-lg-2">
                     <p>HOURS</p>
-                    <p>Weekdays: 8:00Am to 5:00pm <br>
-                    Saturday: 10:00Am to 2:00pm <br>
-                    Sunday: Closed</p>
-                    <p><a class="location"  href="https://maps.google.com/?q=Recreational+Power+Sports" target="_blank" rel="noopener">11204 154 Street NW Edmonton, AB T5M 1X7</a></p>
+                    <p>Monday to Friday: 8:00am to 5:00pm <br><br>
+                    Saturday: 10:00am to 2:00pm <br><br>
+                    Sundays and Holidays: Closed</p>
                 </div>
                 <div class="col-lg-4 offset-lg-1">
                     <p>SUBSCRIBE TO OUR NEWSLETTER</p>
-                    <p>Subscribe to our newsletter to see exciting new offers, products promotions, and keep up with the REC Power team</p>
-                    <button onclick="location.href='http://eepurl.com/duHsr5'">I'd Like to Register</button>
+                    <p>Subscribe to our newsletter to see exciting new offers, products promotions, and keep up with the Rec Power team</p>
+                    <button class="button-3d" onclick="location.href='http://eepurl.com/duHsr5'">I'd Like to Register</button>
                 </div>
             </div>
             <div class="row">

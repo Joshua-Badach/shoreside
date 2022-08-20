@@ -19,10 +19,6 @@ module.exports = {
       filename: "bundle.css",
       chunkFilename: "bundle-[id].css"
     }),
-    // new svgToMiniDataURI({
-    //   filename: "bundle.css",
-    //   chunkFilename: "bundle-[id].css"
-    // })
   ],
   module: {
     rules: [
@@ -47,32 +43,8 @@ module.exports = {
           'sass-loader'
         ]
       },
-      // {
-      //   test: /\.(png|jpg|gif)$/i,
-      //   use: [
-      //     {
-      //       loader: 'file-loader',
-      //       options: {
-      //         mimetype: 'image/png',
-      //       },
-      //     },
-      //   ],
-      // },
-      // {
-      //   test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-      //   use: [{
-      //     loader: 'url-loader',
-      //     options: {
-      //       generator: (content) => svgToMiniDataURI(content.toString()),
-      //       // generator: (content) => svgToMiniDataURI(content.toString)
-      //     }
-      //   }]
-      // }
     ],
   },
-  // entry: {
-  //   app: './src/js/app.js'
-  // },
   output: {
     filename: 'main.bundle.js',
     path: path.resolve(__dirname, "assets/dist")

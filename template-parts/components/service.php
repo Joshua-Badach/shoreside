@@ -63,13 +63,17 @@ $products = get_posts($args);
             echo $categoryDescription . '</div>'; ?>
         </div>
         <div class="row">
+            <span class="col-12">Prices include all parts, labor and shop supplies. <strong>GST not included.</strong></span><br><br>
+
+        </div>
+        <div class="row tableHeader">
             <span class="col-3">Name</span><span class="col-2">Price</span><span class="col-7">Description</span>
         </div>
             <?php
             foreach ($products as $service) {
                 $price = wc_get_product( $service )->get_price();
 
-                echo '<a class="row" href="' . get_permalink( $service->ID ) . '"> <span class="col-3">' . $service->post_title . '</span><span class="col-2">' . $price .  '</span><span class="col-7">' . $service->post_excerpt . '</span></a>';
+                echo '<a class="row tableItem" href="' . get_permalink( $service->ID ) . '"> <span class="col-3">' . $service->post_title . '</span><span class="col-2">' . $price .  '</span><span class="col-7">' . $service->post_excerpt . '</span></a>';
             } ?>
         </div>
     </div>

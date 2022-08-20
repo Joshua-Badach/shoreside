@@ -58,33 +58,32 @@ h1 {
 }
 
 h2 {
-  font-family: '"Open Sans",sans-serif';
+  font-family: '"Open Sans",open sans';
   color: #0069ad;
   font-size: 3.25vh;
 }
 
 h3 {
-  font-family: '"Open Sans",sans-serif';
+  font-family: '"Open Sans",open sans';
   color: #ffffff;
   font-size: 3.25vh;
   -webkit-text-stroke: 1px #000000;
 }
 
 h4 {
-  font-family: '"Open Sans",sans-serif';
+  font-family: '"Sans-serif",sans-serif';
   color: #ffffff;
   font-size: 2.313vh;
   -webkit-text-stroke: 0.5px #000000;
 }
 
 h5 {
-  font-family: '"Open Sans",sans-serif';
+  font-family: '"Open Sans",open sans';
   color: #ffffff;
   font-size: 2.313vh;
 }
 
 p, span, label, a {
-  font-family: '"Open Sans",sans-serif';
   font-size: 2.313vh;
 }
 
@@ -113,6 +112,7 @@ nav {
 }
 
 button {
+  min-width: 100px;
   height: 30px;
   padding: 0 10px;
   -webkit-border-radius: 45px;
@@ -151,6 +151,28 @@ button span {
     transform: scale(1, 1) translateY(0);
   }
 }
+.button-3d {
+  -webkit-border-radius: 45px;
+  -moz-border-radius: 45px;
+  background: #0069ad;
+  color: #ffffff;
+  border: solid 1px #80b4d6;
+  -webkit-transition: all 0.1s;
+  -moz-transition: all 0.1s;
+  transition: all 0.1s;
+  -webkit-box-shadow: 0px 6px 0px #003557;
+  -moz-box-shadow: 0px 6px 0px #003557;
+  box-shadow: 0px 6px 0px #003557;
+}
+
+.button-3d:active {
+  -webkit-box-shadow: 0px 2px 0px #66a5ce;
+  -moz-box-shadow: 0px 2px 0px #66a5ce;
+  box-shadow: 0px 2px 0px #66a5ce;
+  position: relative;
+  top: 4px;
+}
+
 .home-block {
   top: -550px;
   margin-bottom: -200px;
@@ -162,7 +184,7 @@ button span {
 
 .home-heading {
   font-size: 4vw;
-  font-family: '"Open Sans",sans-serif';
+  font-family: '"Sans-serif",sans-serif';
   color: #ffffff;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   -webkit-text-stroke: unset;
@@ -192,17 +214,8 @@ button span {
 }
 
 .container a {
-  font-family: '"Open Sans",sans-serif';
   color: #ad0034;
   text-decoration: none;
-}
-
-.container p {
-  font-family: '"Open Sans",sans-serif';
-}
-
-.container span {
-  font-family: '"Open Sans",sans-serif';
 }
 
 footer {
@@ -294,19 +307,19 @@ footer .socmed {
   height: 100%;
 }
 
-#facebookIcon {
+#facebookIcon, #facebookButton {
   justify-content: center;
   align-items: center;
   background-color: #4267B2;
 }
 
-#youtubeIcon {
+#youtubeIcon, #youtubeButton {
   justify-content: center;
   align-items: center;
   background-color: #ff0000;
 }
 
-#instaIcon {
+#instaIcon, #instaButton {
   justify-content: center;
   align-items: center;
   background: #d6249f;
@@ -378,6 +391,7 @@ footer .logo {
 .brands {
   height: 95%;
   background-color: #0069ad;
+  padding-bottom: 10px;
   box-shadow: 9px 6px 4px 0px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 9px 6px 4px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 9px 6px 4px 0px rgba(0, 0, 0, 0.75);
@@ -960,4 +974,20 @@ div .form-footer {
 
 .catalog {
   text-align: center;
+}
+
+.singleheading {
+  text-align: center;
+}
+
+.tableHeader {
+  color: #ffffff;
+  background: #0069ad;
+  border: 2px solid #0069ad;
+}
+
+.tableItem {
+  border-left: 2px solid #0069ad;
+  border-right: 2px solid #0069ad;
+  border-bottom: 2px solid #0069ad;
 }
