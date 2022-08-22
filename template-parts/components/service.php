@@ -9,7 +9,7 @@ $term = get_term_by('id', $idObj, 'product_cat');
 $product = wc_get_product( $idObj );
 
 $taxonomy       = 'product_cat';
-$orderby        = 'name';
+$orderby        = 'ID';
 $show_count     = 0;      // 1 for yes, 0 for no
 $pad_counts     = 0;      // 1 for yes, 0 for no
 $hierarchical   = 1;      // 1 for yes, 0 for no
@@ -20,7 +20,7 @@ $empty          = 0;
 
 //$serviceQuery = new WP_Query(array(
 //    'category_name'     => 'service',
-//    'order'             => 'DESC',
+//    'order'             => 'ASC',
 //    'post_status'       => ' publish',
 //    'posts_per_page'    => 1
 //));
@@ -28,12 +28,13 @@ $empty          = 0;
 $args = array(
     'post_type'             => 'product',
     'post_status'           => 'publish',
-    'posts_per_page'        => '12',
+    'posts_per_page'        => '25',
     'tax_query'             => array(
         array(
             'taxonomy'                  => $taxonomy,
             'terms'                     => $idObj,
             'orderby'                   => $orderby,
+            'order'                     => 'ASC',
             'show_count'                => $show_count,
             'pad_counts'                => $pad_counts,
             'hierarchical'              => $hierarchical,
@@ -59,7 +60,7 @@ $products = get_posts($args);
             <?php
 
             echo
-            '<h2>' . $term->name . '</h2>';
+                '<h2>' . $term->name . '</h2>';
             echo $categoryDescription . '</div>'; ?>
         </div>
         <div class="row">
@@ -69,12 +70,12 @@ $products = get_posts($args);
         <div class="row tableHeader">
             <span class="col-3">Name</span><span class="col-2">Price</span><span class="col-7">Description</span>
         </div>
-            <?php
-            foreach ($products as $service) {
-                $price = wc_get_product( $service )->get_price();
+        <?php
+        foreach ($products as $service) {
+            $price = wc_get_product( $service )->get_price();
 
-                echo '<a class="row tableItem" href="' . get_permalink( $service->ID ) . '"> <span class="col-3">' . $service->post_title . '</span><span class="col-2">' . $price .  '</span><span class="col-7">' . $service->post_excerpt . '</span></a>';
-            } ?>
-        </div>
+            echo '<a class="row tableItem" href="' . get_permalink( $service->ID ) . '"> <span class="col-3">' . $service->post_title . '</span><span class="col-2">' . $price .  '</span><span class="col-7">' . $service->post_excerpt . '</span></a>';
+        } ?>
     </div>
+</div>
 </div>
