@@ -508,6 +508,10 @@ footer .logo{
 .mission{
   margin-bottom: 20vh;
 }
+.mission a:hover{
+  background: nth($rpsBrand, 1);
+  color: nth($rpsBrand, 4);
+}
 .quote span{
   position: absolute;
   color: nth($rpsBrand, 4);

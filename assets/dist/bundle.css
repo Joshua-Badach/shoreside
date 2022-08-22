@@ -531,6 +531,11 @@ footer .logo {
   margin-bottom: 20vh;
 }
 
+.mission a:hover {
+  background: #0069ad;
+  color: #ffffff;
+}
+
 .quote span {
   position: absolute;
   color: #ffffff;

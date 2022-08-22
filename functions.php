@@ -4,17 +4,17 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
     function rpsShoreside_setup(){
         load_theme_textdomain( 'rpsShoreside', get_template_directory() . '/languages');
 
-    add_theme_support(
-        'html5',
-        array(
-            'search-form',
-            'gallery',
-            'caption',
-            'script',
-            'style',
-            'navigation-widgets',
-        )
-    );
+        add_theme_support(
+            'html5',
+            array(
+                'search-form',
+                'gallery',
+                'caption',
+                'script',
+                'style',
+                'navigation-widgets',
+            )
+        );
 //    $wp_customize->add_section('custom_css', array(
 //       'title'  => __('Custom Css Test'),
 //        'description'   =>__('Description for custom css'),
@@ -25,75 +25,75 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
 //    ));
 //        tweak this more
 
-    function shoreside_logo_setup() {
-        $defaults = array(
-            'height'                    =>400,
-            'width'                     =>300,
-            'flex-height'               =>true,
-            'flex-width'                =>true,
-            'header-text'               =>array( 'site-title', 'site-description' ),
-            'unlink-homepage-logo'      =>true, );
-        add_theme_support('custom-logo', $defaults);
-    }
-    add_action( 'after_setup_theme', 'shoreside_logo_setup' );
+        function shoreside_logo_setup() {
+            $defaults = array(
+                'height'                    =>400,
+                'width'                     =>300,
+                'flex-height'               =>true,
+                'flex-width'                =>true,
+                'header-text'               =>array( 'site-title', 'site-description' ),
+                'unlink-homepage-logo'      =>true, );
+            add_theme_support('custom-logo', $defaults);
+        }
+        add_action( 'after_setup_theme', 'shoreside_logo_setup' );
 
-    function shoreside_header_setup(){
-        $args = array(
-            'default-image'             =>get_template_directory_uri() . 'assets/src/library/images/404background.jpg',
-            'default-text-color'        =>'0069ad',
-            'width'                     =>'1920',
-            'height'                    =>'1440',
-            'flex-width'                =>true,
-            'flex-height'               =>true,
-        );
-        add_theme_support('shoreside-header', $args);
-    }
-    add_action('after_setup_theme', 'shoreside_header_setup');
+        function shoreside_header_setup(){
+            $args = array(
+                'default-image'             =>get_template_directory_uri() . 'assets/src/library/images/404background.jpg',
+                'default-text-color'        =>'0069ad',
+                'width'                     =>'1920',
+                'height'                    =>'1440',
+                'flex-width'                =>true,
+                'flex-height'               =>true,
+            );
+            add_theme_support('shoreside-header', $args);
+        }
+        add_action('after_setup_theme', 'shoreside_header_setup');
 
-    function featured_image_support() {
+        function featured_image_support() {
+            add_theme_support( 'post-thumbnails' );
+        }
+        add_action( 'after_setup_theme', 'featured_image_support' );
+
+        add_theme_support('post-thumbnails');
+
+        function add_theme_scripts(){
+            wp_enqueue_script( 'slick', "//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js", array('jquery'), null, true);
+            wp_enqueue_style( 'bundle', get_template_directory_uri() . '/assets/dist/bundle.css', null, null, false );
+            wp_enqueue_style( 'slick', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css', null, null, false);
+            wp_enqueue_style( 'slick-theme', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css', null, null, false);
+            wp_enqueue_script( 'main', get_template_directory_uri() . '/assets/dist/main.bundle.js', array('jquery'), null, false );
+            wp_enqueue_script('app', get_template_directory_uri() . '/assets/src/js/app.js', null, null, true);
+            wp_enqueue_style('google-fonts', 'https://fonts.google.com/specimen/Open+Sans?query=open+sans');
+        }
+        add_action( 'wp_enqueue_scripts', 'add_theme_scripts');
+
+        function shoreside_custom_menu(){
+            register_nav_menu( 'shoreside_menu', __('Shoreside Menu'));
+        }
+        add_action('init', 'shoreside_custom_menu');
+
+        add_theme_support( 'editor-styles' );
+
+        add_theme_support( 'title-tag' );
+
         add_theme_support( 'post-thumbnails' );
-    }
-    add_action( 'after_setup_theme', 'featured_image_support' );
 
-    add_theme_support('post-thumbnails');
-
-    function add_theme_scripts(){
-        wp_enqueue_script( 'slick', "//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js", array('jquery'), null, true);
-        wp_enqueue_style( 'bundle', get_template_directory_uri() . '/assets/dist/bundle.css', null, null, false );
-        wp_enqueue_style( 'slick', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css', null, null, false);
-        wp_enqueue_style( 'slick-theme', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css', null, null, false);
-        wp_enqueue_script( 'main', get_template_directory_uri() . '/assets/dist/main.bundle.js', array('jquery'), null, false );
-        wp_enqueue_script('app', get_template_directory_uri() . '/assets/src/js/app.js', null, null, true);
-        wp_enqueue_style('google-fonts', 'https://fonts.google.com/specimen/Open+Sans?query=open+sans');
-    }
-    add_action( 'wp_enqueue_scripts', 'add_theme_scripts');
-
-    function shoreside_custom_menu(){
-        register_nav_menu( 'shoreside_menu', __('Shoreside Menu'));
-    }
-    add_action('init', 'shoreside_custom_menu');
-
-    add_theme_support( 'editor-styles' );
-
-    add_theme_support( 'title-tag' );
-
-    add_theme_support( 'post-thumbnails' );
-
-    add_theme_support('wp-block-styles');
+        add_theme_support('wp-block-styles');
 
 //    custom menu setup
-    function register_menu( $locations = array() ){
-        global $_wp_registered_nav_menus;
+        function register_menu( $locations = array() ){
+            global $_wp_registered_nav_menus;
 
-        add_theme_support( 'menus' );
+            add_theme_support( 'menus' );
 
-        foreach ( $locations as $key => $value ){
-            if ( is_int( $key ) ) {
-                _doing_it_wrong( __FUNCTION__, __( 'Nav menu locations must be strings.' ), '1.0.0' );
+            foreach ( $locations as $key => $value ){
+                if ( is_int( $key ) ) {
+                    _doing_it_wrong( __FUNCTION__, __( 'Nav menu locations must be strings.' ), '1.0.0' );
+                }
             }
+            $_wp_registered_nav_menus = array_merge( (array) $_wp_registered_nav_menus, $locations);
         }
-        $_wp_registered_nav_menus = array_merge( (array) $_wp_registered_nav_menus, $locations);
-    }
 
     }
 endif;
@@ -327,6 +327,33 @@ function woo_new_product_tab_two_content() {
 //    );
 //}
 
+// First, this will disable support for comments and trackbacks in post types
+function df_disable_comments_post_types_support() {
+    $post_types = get_post_types();
+    foreach ($post_types as $post_type) {
+        if(post_type_supports($post_type, 'comments')) {
+            remove_post_type_support($post_type, 'comments');
+            remove_post_type_support($post_type, 'trackbacks');
+        }
+    }
+}
+//test for git
+add_action('admin_init', 'df_disable_comments_post_types_support');
+
+// Then close any comments open comments on the front-end just in case
+function df_disable_comments_status() {
+    return false;
+}
+add_filter('comments_open', 'df_disable_comments_status', 20, 2);
+add_filter('pings_open', 'df_disable_comments_status', 20, 2);
+
+// Finally, hide any existing comments that are on the site.
+function df_disable_comments_hide_existing_comments($comments) {
+    $comments = array();
+    return $comments;
+}
+add_filter('comments_array', 'df_disable_comments_hide_existing_comments', 10, 2);
+
 //product buttons/jotform code
 function product_contact_row(){
     $product = get_page_by_title( 'Product Title', OBJECT, 'product' );
@@ -338,11 +365,11 @@ function product_contact_row(){
         <a href="#header-28">
             <button class="emailButton button-3d">Email Us</button>
         </a>';
-        if ( has_term( 'Sales Showroom', 'product_cat')){
-            echo'<a href="/financing/">
+    if ( has_term( 'Sales Showroom', 'product_cat')){
+        echo'<a href="/financing/">
             <button class="financeButton button-3d">Financing</button>
         </a>';
-        }
+    }
     echo '<br><br>
         <div class="contactForm">
             <script type="text/javascript" src="https://form.jotform.com/jsform/222166143744251?productName=' .$productName.'&productUrl='.$productUrl.'"></script>

@@ -1,33 +1,36 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>
 <?php
-    global $wp;
-    $current_url = home_url( add_query_arg( array(), $wp->request ) );
-    $site_name = get_bloginfo( 'name' );
-    $site_slug = $post->post_name;
-    $site_suffix = ucwords(str_replace('-', ' ', $site_slug));
-    $featured = get_the_post_thumbnail( $post_id );
+global $wp;
+$current_url = home_url( add_query_arg( array(), $wp->request ) );
+$site_name = get_bloginfo( 'name' );
+$site_slug = $post->post_name;
+$site_suffix = ucwords(str_replace('-', ' ', $site_slug));
+$featured = get_the_post_thumbnail( $post_id );
 
 ?>
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" >
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<!--    <meta property="fb:app_id" content="568883651374703">-->
-<!--    <meta property="og:title" content="--><?php //echo $site_name . ' - ' . $site_suffix ?><!--">-->
-<!--    <meta property="og:url" content="--><?php //echo $current_url ?><!--">-->
-<!--    <meta property="og:type" content="website"/>-->
-<!--    <meta property="og:description" content="--><?php //echo $current_url ?><!--">-->
-<!--    <meta property="og:image" content="--><?php //echo $featured ?><!--">-->
-<!---->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <!--    <meta property="fb:app_id" content="568883651374703">-->
+    <!--    <meta property="og:title" content="--><?php //echo $site_name . ' - ' . $site_suffix ?><!--">-->
+    <!--    <meta property="og:url" content="--><?php //echo $current_url ?><!--">-->
+    <!--    <meta property="og:type" content="website"/>-->
+    <!--    <meta property="og:description" content="--><?php //echo $current_url ?><!--">-->
+    <!--    <meta property="og:image" content="--><?php //echo $featured ?><!--">-->
+    <!---->
 
     <?php
     if ( get_post_type() === 'page' ){
 
-        }
+    }
     if ( get_post_type() === 'post' ){
 
-        }
+    }
     ?>
     <?php wp_head(); ?>
 </head>
@@ -38,8 +41,8 @@
         echo ($site_name . ' - Home');
     else
         echo ($site_name . ' - ' . $site_suffix);
-?></h1>
+    ?></h1>
 <header>
-        <?php get_template_part( 'template-parts/components/nav' ); ?>
+    <?php get_template_part( 'template-parts/components/nav' ); ?>
 </header>
 <?php //include_once('template-parts/components/modal.php');
