@@ -25,8 +25,8 @@ function product_gallery($idObj, $args){
     $all_categories = get_categories( $args );
 
     echo '<section class="container"> 
-        <div class="row">
-        <h2 class="col-lg-12">What we offer</h2>';
+        <h2 class="col-lg-12">What we offer</h2>
+        <div class="row">';
     foreach ($all_categories as $cat) {
         if ($cat->category_parent == 0 && $cat->name != 'Uncategorized') {
             $thumbnail_id = get_term_meta( $cat->term_id, 'thumbnail_id', true );

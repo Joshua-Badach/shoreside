@@ -28,7 +28,7 @@ function product_gallery($idObj, $args){
     $categoryDescription = category_description($idObj);
     $term = get_term_by('id', $idObj, 'product_cat');
 
-    echo '<section class="container"> 
+    echo '<section class="container gallery"> 
         <div class="row">
         <h2>' . $term->name . '</h2>';
     echo $categoryDescription . '</div>
@@ -37,7 +37,7 @@ function product_gallery($idObj, $args){
         if ($cat->category_parent == $idObj && $cat->name != 'Uncategorized') {
             $thumbnail_id = get_term_meta( $cat->term_id, 'thumbnail_id', true );
             $image = wp_get_attachment_url( $thumbnail_id );
-            echo '<a class="col-3 categoryItems" href="' . get_term_link($cat->slug, 'product_cat') . '">
+            echo '<a class="col-sm-3 categoryItems" href="' . get_term_link($cat->slug, 'product_cat') . '">
             <img src="'. $image . '" width="150px" height="150px"><span>'
                 . $cat->name .
                 ' </span></a>';

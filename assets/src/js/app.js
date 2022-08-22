@@ -122,7 +122,7 @@ jQuery(document).ready(function() {
   }
 
   function checkWidth() {
-    var windowsize = $window.width();
+    var windowsize = jQuery(window.width());
     if (windowsize > 767) {
       // if the window is greater than 767px wide then do below. we don't want the modal to show on mobile devices and instead the link will be followed.
 

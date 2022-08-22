@@ -354,6 +354,16 @@ function df_disable_comments_hide_existing_comments($comments) {
 }
 add_filter('comments_array', 'df_disable_comments_hide_existing_comments', 10, 2);
 
+function my_login_logo_url() {
+    return home_url();
+}
+add_filter( 'login_headerurl', 'my_login_logo_url' );
+
+function my_login_logo_url_title() {
+    return 'Your Site Name and Info';
+}
+add_filter( 'login_headertitle', 'my_login_logo_url_title' );
+
 //product buttons/jotform code
 function product_contact_row(){
     $product = get_page_by_title( 'Product Title', OBJECT, 'product' );

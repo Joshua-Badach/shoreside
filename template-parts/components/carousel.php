@@ -21,7 +21,7 @@
                     echo ('<section class="sliderContent">');
                     the_post_thumbnail();
                     ?><div class="sliderText">
-                    <h3><?php the_title(); ?></h3>
+                    <h2><?php the_title(); ?></h2>
                     <?php the_content(); ?>
                     </div><?php
                     echo ('</section>');

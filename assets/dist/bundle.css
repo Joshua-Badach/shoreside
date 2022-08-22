@@ -439,7 +439,7 @@ footer .logo {
 .bannerImage img {
   width: 100%;
   height: auto;
-  aspect-ratio: 4/1;
+  aspect-ratio: 2/1;
 }
 
 .mobileBrand {
@@ -536,6 +536,10 @@ footer .logo {
   color: #ffffff;
 }
 
+.gallery {
+  margin-bottom: 10%;
+}
+
 .quote span {
   position: absolute;
   color: #ffffff;
@@ -564,20 +568,16 @@ footer .logo {
 
 .sliderText {
   z-index: 1;
-  width: 33.3333333%;
+  width: 45%;
   padding: 10px;
   margin-top: -30%;
   max-height: 365px;
   overflow: hidden;
   text-overflow: ellipsis;
-  transform: translate(75px, -150px);
+  transform: translate(20%, -40%);
   background-color: rgba(255, 255, 255, 0.75);
   -webkit-box-shadow: 2px 2px 5px 1px #000000;
   box-shadow: 2px 2px 5px 1px #000000;
-}
-
-.sliderText p {
-  font-size: 12px !important;
 }
 
 .slick-next {
@@ -757,8 +757,12 @@ footer .logo {
   }
   .sliderText {
     max-height: 200px;
+    transform: translate(20%, -40%);
   }
   .sliderText p {
+    font-size: 12px;
+  }
+  .followUs span {
     display: none;
   }
   footer .logo {
@@ -801,11 +805,18 @@ footer .logo {
   .row {
     padding: 10px;
   }
+  .followUs span {
+    display: none;
+  }
   .sliderText {
+    transform: translate(30%, -50%);
     max-height: 200px;
   }
+  .sliderText h2 {
+    font-size: 14px;
+  }
   .sliderText p {
-    display: none;
+    font-size: 12px;
   }
   footer .logo {
     display: none;
@@ -979,6 +990,7 @@ div .form-footer {
 
 .catalog {
   text-align: center;
+  overflow: hidden;
 }
 
 .singleheading {
