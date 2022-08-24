@@ -6,7 +6,7 @@ const svgToMiniDataURI = require('mini-svg-data-uri');
 
 module.exports = {
   //Change to production at delivery
-  mode: "development",
+  mode: "production",
   context: path.resolve(__dirname, "assets"),
   watch: true,
   plugins:[

@@ -15,7 +15,7 @@ $catalogDescriptionQuery = new WP_Query(array(
 
 ?>
 <div class="container">
-    <div class="row">
+    <div class="row ourCatalogs">
         <?php
         while ($catalogDescriptionQuery->have_posts()){
             $catalogDescriptionQuery->the_post();

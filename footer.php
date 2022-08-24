@@ -6,7 +6,7 @@
                         <img class="logo" src="<?php echo get_template_directory_uri() . '/assets/src/library/images/logo.png' ?>" alt="Recreational Power Sports Logo">
                     </a>
                 </span>
-                <div class="col-lg-2">
+                <div class="col-lg-2 contactLinks">
                     <ul>
                         <li class="mobileShow"><a href="<?php echo site_url() ?>">Home</a></li>
                         <li><a href="/showroom/">Showroom</a></li>
@@ -26,11 +26,11 @@
                 <div class="col-lg-4 offset-lg-1">
                     <p>SUBSCRIBE TO OUR NEWSLETTER</p>
                     <p>Subscribe to our newsletter to see exciting new offers, products promotions, and keep up with the Rec Power team</p>
-                    <button class="button-3d" onclick="location.href='http://eepurl.com/duHsr5'">I'd Like to Register</button>
+                    <button class="button-3d register" onclick="location.href='http://eepurl.com/duHsr5'">I'd Like to Register</button>
                 </div>
             </div>
             <div class="row">
-                <span class="col-lg-4 offset-lg-4">
+                <span class="col-lg-4 offset-lg-4 socmedContainer">
                     <div id="facebookIcon" class="socmed">
                         <a href="https://www.facebook.com/recpowersports/" target="_blank">
                             <object data="<?php echo get_template_directory_uri() . '/assets/src/library/images/facebook.svg' ?>" ></object>

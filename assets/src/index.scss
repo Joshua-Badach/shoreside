@@ -425,7 +425,7 @@ footer .logo{
 .bannerImage img{
   width: 100%;
   height: auto;
-  aspect-ratio: 2/1;
+  aspect-ratio: 4/1;
 }
 .mobileBrand{
   height: 200px;
@@ -997,4 +997,7 @@ div .form-footer{
   border-left: 2px solid nth($rpsBrand, 1);
   border-right: 2px solid nth($rpsBrand, 1);
   border-bottom: 2px solid nth($rpsBrand, 1);
+}
+.register{
+  margin-top: 5%;
 }
