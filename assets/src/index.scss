@@ -370,6 +370,10 @@ footer .logo{
   width: 100%;
   height: 100%;
 }
+.heroVideo img{
+  width: 100%;
+  height: 100%;
+}
 .brandSpan{
   //transform: translateY(-275px);
   margin-top: -275px;
@@ -739,7 +743,7 @@ footer .logo{
 //extra small mobile
 @media (min-width: 320px) and (max-width: 480px) {
   .home-block{
-    top: -200px;
+    top: -30vw;
   }
   .home-block img{
     width: 20%;
@@ -752,7 +756,7 @@ footer .logo{
   }
   .brandSpan{
     background: nth($rpsBrand, 1);
-    margin-top: -175px;
+    margin-top: -6.2vw;
   }
   .row{
     padding: 10px;

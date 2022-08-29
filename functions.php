@@ -58,15 +58,15 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
         add_theme_support('post-thumbnails');
 
         function add_theme_scripts(){
-            wp_enqueue_script('app', get_template_directory_uri() . '/assets/src/js/app.js', null, null, true);
-
-//            wp_enqueue_script( 'slick', "//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js", array('jquery'), null, true);
+//            wp_enqueue_script('app', get_template_directory_uri() . '/assets/src/js/app.js', null, null, true);
             wp_enqueue_style( 'bundle', get_template_directory_uri() . '/assets/dist/bundle.css', null, null, false );
-//            wp_enqueue_style( 'slick', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css', null, null, false);
-//            wp_enqueue_style( 'slick-theme', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css', null, null, false);
             wp_enqueue_script( 'main', get_template_directory_uri() . '/assets/dist/main.bundle.js', array('jquery'), null, false );
         }
         add_action( 'wp_enqueue_scripts', 'add_theme_scripts');
+
+        function isMobile() {
+            return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
+        }
 
         function shoreside_custom_menu(){
             register_nav_menu( 'shoreside_menu', __('Shoreside Menu'));
@@ -105,7 +105,14 @@ add_filter( 'woocommerce_is_purchasable', '__return_false');
 function add_opengraph_doctype( $output ) {
     return $output . ' xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"';
 }
-add_filter('language_attributes', 'add_opengraph_doctype');
+add_action( 'wp_enqueue_scripts', 'wpdocs_dequeue_dashicon' );
+add_filter( 'wp_default_scripts', $af = static function( &$scripts) {
+    if(!is_admin()) {
+        $scripts->remove( 'jquery');
+        $scripts->add( 'jquery', false, array( 'jquery-core' ), '3.3.2' );
+    }
+}, PHP_INT_MAX );
+unset( $af );
 
 
 //Shortcodes
