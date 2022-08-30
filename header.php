@@ -19,6 +19,8 @@ $featured = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'si
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
 
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri() . '/assets/dist/bundle.css' ?>">
+
 <!--    <meta property="fb:app_id" content="568883651374703" />-->
 <!--    <meta property="og:title" content="--><?php //echo $site_name . ' - ' . $site_suffix ?><!--" />-->
 <!--    <meta property="og:url" content="--><?php //echo $current_url ?><!--" />-->

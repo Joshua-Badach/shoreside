@@ -22,18 +22,18 @@ module.exports = {
   ],
   module: {
     rules: [
-      {
-        test: /\.css$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              publicPath: '../'
-            }
-          },
-          "css-loader"
-        ]
-      },
+      // {
+      //   test: /\.css$/,
+      //   use: [
+      //     {
+      //       loader: MiniCssExtractPlugin.loader,
+      //       options: {
+      //         publicPath: '../'
+      //       }
+      //     },
+      //     "css-loader"
+      //   ]
+      // },
       {
         test: /\.s[ac]ss$/i,
         exclude: /node-modules/,

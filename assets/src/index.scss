@@ -9,7 +9,8 @@ nav h6{
 }
 
 //==========fonts==========
-$font: '"Sans-serif",sans-serif', '"Open Sans",open sans', 'American Captain';
+//tired of fighting about the font, it's default now...
+$font: inherit, inherit, inherit;
 $fontSizing: 2.313vh, 3.25vh, 4vw, 4.75vh, 5.5vh, 6.25vh;
 //Tweak fontSizing later... these are way off.
 $errorFont: 'D-DIN Condensed Bold', #ffffff, 15rem;
@@ -744,12 +745,14 @@ footer .logo{
 @media (min-width: 320px) and (max-width: 480px) {
   .home-block{
     top: -30vw;
+
   }
   .home-block img{
     width: 20%;
   }
   .brandCard img{
     width: 100%;
+    padding-top: 25%;
     padding-left: 1%;
     padding-right: 1%;
     height: auto;
@@ -1004,4 +1007,7 @@ div .form-footer{
 }
 .register{
   margin-top: 5%;
+}
+.contactForm{
+  display: none;
 }

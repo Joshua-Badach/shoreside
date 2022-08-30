@@ -46,28 +46,18 @@
                             <object data="<?php echo get_template_directory_uri() . '/assets/src/library/images/instagram.svg' ?>"></object>
                         </a>
                     </div>
-<!--                    <div id="tiktokIcon" class="socmed">-->
-<!--                        <a href="https://www.tiktok.com/@recreationalpowersports" target="_blank">-->
-<!--                            <object data="--><?php //echo get_template_directory_uri() . '/assets/src/library/images/tiktok.svg' ?><!--"></object>-->
-<!--                        </a>-->
-<!--                    </div>-->
-<!--                </span>-->
-<!--            </div>-->
             <div class="row">
                 <span class="col-lg-12">&copy; 2022 Recreational Power Sports</span>
             </div>
+            <script src="<?php echo get_template_directory_uri() . '/assets/dist/main.bundle.js' ?>"></script>
             <script>
-//remove that bloody branding on jotform
-              var $ = jQuery.noConflict();
+                $(document).ready(function() {
+                  $(".contactform").hide();
 
-              jQuery(document).ready(function(jQuery) {
-
-                "use strict";
-
-                $('iframe').contents().find("head").append($("<style type='text/css'>  div.formFooter{ display:none !important; } .jf-branding{ display: none !important; } div.form-footer{ display: none !important; } </style>"));
-
-              });
-
+                  $(".emailButton").click(function(){
+                    $(".contactForm").toggle();
+                  });
+                }
             </script>
         </footer>
     </body>
