@@ -1,4 +1,19 @@
-<?php wp_footer() ?>
+<?php wp_footer();
+
+$hoursQuery = new WP_Query(array(
+    'category_name'     => 'hours',
+    'order'             => 'DESC',
+    'post_status'       => ' publish',
+    'posts_per_page'    => 1
+));
+$newsletterQuery = new WP_Query(array(
+    'category_name'     => 'newsletter',
+    'order'             => 'DESC',
+    'post_status'       => ' publish',
+    'posts_per_page'    => 1
+));
+
+?>
         <footer>
             <div class="row">
                 <span class="col-lg-3">
@@ -18,14 +33,29 @@
                     <p><a class="location"  href="https://maps.google.com/?q=Recreational+Power+Sports" target="_blank" rel="noopener">11204 154 Street NW Edmonton, AB T5M 1X7</a></p>
                 </div>
                 <div class="col-lg-2">
-                    <p>HOURS</p>
-                    <p>Monday to Friday: 8:00am to 5:00pm <br><br>
-                    Saturday: 10:00am to 2:00pm <br><br>
-                    Sundays and Holidays: Closed</p>
+<!--                    <p>HOURS</p>-->
+                    <?php
+                    while ($hoursQuery->have_posts()){
+                        $hoursQuery->the_post();
+                        $title = get_the_title();
+                        $content = get_the_content();
+                    }
+                    wp_reset_postdata();
+                    echo '<p>' . $title . '</p>';
+                    echo $content;
+                    ?>
                 </div>
                 <div class="col-lg-4 offset-lg-1">
-                    <p>SUBSCRIBE TO OUR NEWSLETTER</p>
-                    <p>Subscribe to our newsletter to see exciting new offers, products promotions, and keep up with the Rec Power team</p>
+                    <?php
+                    while ($newsletterQuery->have_posts()){
+                        $newsletterQuery->the_post();
+                        $title = get_the_title();
+                        $content = get_the_content();
+                    }
+                    wp_reset_postdata();
+                    echo '<p>' . $title . '</p>';
+                    echo $content;
+                    ?>
                     <button class="button-3d register" onclick="location.href='http://eepurl.com/duHsr5'">I'd Like to Register</button>
                 </div>
             </div>

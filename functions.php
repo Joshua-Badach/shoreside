@@ -359,7 +359,7 @@ function product_contact_row(){
         <button class="emailButton button-3d">Email Us</button>';
     if ( has_term( 'Sales Showroom', 'product_cat')){
         echo'<a href="/financing/">
-            <button class="financeButton button-3d">Financing</button>
+            <button class="financeButton button-3d">Apply for Financing</button>
         </a>';
     }
     echo '<br><br>
