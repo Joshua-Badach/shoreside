@@ -33,7 +33,6 @@ $newsletterQuery = new WP_Query(array(
                     <p><a class="location"  href="https://maps.google.com/?q=Recreational+Power+Sports" target="_blank" rel="noopener">11204 154 Street NW Edmonton, AB T5M 1X7</a></p>
                 </div>
                 <div class="col-lg-2">
-<!--                    <p>HOURS</p>-->
                     <?php
                     while ($hoursQuery->have_posts()){
                         $hoursQuery->the_post();
@@ -60,7 +59,7 @@ $newsletterQuery = new WP_Query(array(
                 </div>
             </div>
             <div class="row">
-                <span class="col-lg-4 offset-lg-4 socmedContainer">
+                <div class="col-lg-4 offset-lg-4 socmedContainer">
                     <div id="facebookIcon" class="socmed">
                         <a href="https://www.facebook.com/recpowersports/" target="_blank">
                             <object data="<?php echo get_template_directory_uri() . '/assets/src/library/images/facebook.svg' ?>" ></object>
@@ -76,10 +75,12 @@ $newsletterQuery = new WP_Query(array(
                             <object data="<?php echo get_template_directory_uri() . '/assets/src/library/images/instagram.svg' ?>"></object>
                         </a>
                     </div>
+                </div>
+            </div>
             <div class="row">
                 <span class="col-lg-12">&copy; 2022 Recreational Power Sports</span>
             </div>
-            <script src="<?php echo get_template_directory_uri() . '/assets/dist/main.bundle.js' ?>"></script>
+<!--            <script src="--><?php //echo get_template_directory_uri() . '/assets/dist/main.bundle.js' ?><!--"></script>-->
             <script>
                 $(document).ready(function() {
                   $(".contactform").hide();

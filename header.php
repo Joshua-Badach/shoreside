@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html <?php language_attributes(); ?>
+<html <?php language_attributes(); ?> >
 <?php
 global $wp;
 $current_url = home_url( add_query_arg( array(), $wp->request ) );
@@ -19,7 +19,7 @@ $featured = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'si
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
 
-    <link rel="stylesheet" href="<?php echo get_template_directory_uri() . '/assets/dist/bundle.css' ?>">
+<!--    <link rel="stylesheet" href="--><?php //echo get_template_directory_uri() . '/assets/dist/bundle.css' ?><!--">-->
 
 <!--    <meta property="fb:app_id" content="568883651374703" />-->
 <!--    <meta property="og:title" content="--><?php //echo $site_name . ' - ' . $site_suffix ?><!--" />-->
@@ -50,4 +50,3 @@ $featured = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'si
 <header>
     <?php get_template_part( 'template-parts/components/nav' ); ?>
 </header>
-<?php //include_once('template-parts/components/modal.php');

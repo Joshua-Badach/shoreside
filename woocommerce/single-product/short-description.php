@@ -32,7 +32,7 @@ if ( ! $short_description ) {
 	<?php echo $short_description; // WPCS: XSS ok. ?>
 <?php
     if ($video != '') {
-        echo '<iframe class="productVideo" name="productVideo" scrolling="no" frameborder="1" src="' . $video . '" marginwidth="0px" allowfullscreen></iframe>
+        echo '<iframe class="productVideo" name="productVideo" scrolling="no" frameborder="1" src="https://www.youtube.com/embed/' . $video . '" marginwidth="0px" allowfullscreen></iframe>
 ';
     }
 
