@@ -428,8 +428,6 @@ function service_shortcode(){
                   </a>';
     }
     echo '</div>';
-
-//    include('template-parts/components/service.php');
 }
 add_shortcode('service-content', 'service_shortcode');
 
@@ -504,7 +502,7 @@ function woo_new_product_tab_two_content() {
 //
 //    return $args;
 //}
-
+//
 //add_theme_support( 'wc-product-gallery-zoom' );
 //add_theme_support( 'wc-product-gallery-lightbox' );
 

