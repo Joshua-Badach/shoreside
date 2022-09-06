@@ -80,7 +80,6 @@ $newsletterQuery = new WP_Query(array(
             <div class="row">
                 <span class="col-lg-12">&copy; 2022 Recreational Power Sports</span>
             </div>
-<!--            <script src="--><?php //echo get_template_directory_uri() . '/assets/dist/main.bundle.js' ?><!--"></script>-->
             <script>
                 $(document).ready(function() {
                   $(".contactform").hide();

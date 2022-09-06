@@ -1046,3 +1046,14 @@ div .form-footer{
 .woocommerce-product-gallery{
   margin-bottom: -50px;
 }
+//set to 1/6 width to span the container
+.woocommerce div.product div.images .flex-control-thumbs li{
+  width: 16.666666666%!important;
+  float: left;
+}
+.woocommerce div.product .woocommerce-product-gallery--columns-4 .flex-control-thumbs li:nth-child(4n+1){
+  clear: none!important;
+}
+.flex-control-thumbs{
+  margin-top: 25px!important;
+}
