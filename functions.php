@@ -61,7 +61,7 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
             wp_enqueue_style( 'bundle', get_template_directory_uri() . '/assets/dist/bundle.css', null, null, false );
             wp_enqueue_script( 'main', get_template_directory_uri() . '/assets/dist/main.bundle.js', array('jquery'), null, true );
         }
-        add_action( 'wp_enqueue_scripts', 'add_theme_scripts');
+        add_action( 'wp_enqueue_scripts', 'add_theme_scripts' ,0);
 
         function isMobile() {
             return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
@@ -172,7 +172,24 @@ function map_shortcode(){
 add_shortcode('map', 'map_shortcode');
 
 function vision_shortcode(){
-    include('template-parts/components/vision.php');
+    $visionQuery = new WP_Query(array(
+        'category_name'     => 'vision',
+        'order'             => 'DESC',
+        'post_status'       => ' publish',
+        'posts_per_page'    => 1
+    ));
+
+    echo '<div class="container">
+    <section class="row justify-content-sm-center vision">';
+        while ($visionQuery->have_posts()){
+        $visionQuery->the_post();
+            echo '<h2 class="offset-sm-2 col-sm-8">' . the_title() . '</h2>';
+            echo '<p class="col-sm-8">' .  get_the_content() . '</p>';
+        }
+        wp_reset_postdata();
+    echo '</section>
+</div>';
+//    include('template-parts/components/vision.php');
 }
 add_shortcode('vision', 'vision_shortcode');
 
@@ -376,7 +393,7 @@ function product_contact_row(){
       allowtransparency="true"
       allowfullscreen="true"
       allow="geolocation; microphone; camera"
-      src="https://form.jotform.com/222166143744251"
+      src="https://form.jotform.com/222166143744251?productName=' . $productName . '&productUrl=' . $productUrl .'"
       frameborder="0"
       style="
       min-width: 100%;

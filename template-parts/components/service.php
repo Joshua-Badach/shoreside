@@ -23,15 +23,6 @@ $hierarchical   = 1;      // 1 for yes, 0 for no
 $title          = '';
 $empty          = 0;
 
-//May need this later, unsure how I want to handle the content, may want to do it differently, like parts and showroom
-
-//$serviceQuery = new WP_Query(array(
-//    'category_name'     => 'service',
-//    'order'             => 'ASC',
-//    'post_status'       => ' publish',
-//    'posts_per_page'    => 1
-//));
-
 $args = array(
     'post_type'             => 'product',
     'post_status'           => 'publish',
