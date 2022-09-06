@@ -59,7 +59,7 @@ jQuery(document).ready(function() {
     speed: 1000,
     autoplay: true,
     autoplaySpeed: 10000,
-    lazyLoad: 'ondemand',
+    // lazyLoad: 'ondemand',
     // adaptiveHeight: true,
     mobileFirst: true,
     dots: true,
