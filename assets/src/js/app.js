@@ -65,24 +65,26 @@ jQuery(document).ready(function() {
     dots: true,
   });
   jQuery('.carousel-product').slick({
-    infinite: true,
+    infinite: false,
     slidesToShow: 1,
     slidesToScroll: 1,
-    speed: 1000,
     autoplay: true,
-    autoplaySpeed: 10000,
+    arrows: false,
     lazyLoad: 'ondemand',
+    fade: true,
+    asNavFor: '.carousel-product-nav',
     adaptiveHeight: true,
     mobileFirst: true,
     dots: false,
   });
   jQuery('.carousel-product-nav').slick({
-    slidesToShow: 6,
+    slidesToShow: 4,
     slidesToScroll:1,
-    arrows: false,
+    speed: 1000,
+    autoplaySpeed: 10000,
     asNavFor: '.carousel-product',
     dots: false,
-    centerMode: true,
+    centerMode: false,
     focusOnSelect: true,
   });
 
