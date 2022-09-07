@@ -404,7 +404,7 @@ function service_shortcode(){
                 echo '</div>
             </div>
             <div class="row">
-                <div class="col-sm-5 offset-4">';
+                <div class="col-sm-12">';
                     while ($contactQuery->have_posts()){
                         $contactQuery->the_post();
                         $content = the_content();
@@ -414,7 +414,7 @@ function service_shortcode(){
     echo '</div>
     </div>
     <div class="row">
-        <span class="col-12">Prices include all parts, labor and shop supplies. <strong>GST not included.</strong></span><br><br>
+        <span class="col-12"><strong>Prices include all parts, labor and shop supplies. GST not included.</strong></span><br><br>
     </div>
     <div class="row tableHeader">
         <span class="col-3">Name</span><span class="col-2">Price</span><span class="col-7">Description</span>
