@@ -431,6 +431,8 @@ function service_shortcode(){
 }
 add_shortcode('service-content', 'service_shortcode');
 
+
+
 function catalog_shortcode(){
     include('template-parts/components/catalogs.php');
 }

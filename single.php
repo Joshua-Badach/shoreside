@@ -3,17 +3,17 @@
 global $wp;
 $url = home_url( $wp->request );
 $checkFor = 'product-category';
-//Referring to sidebar.php
-//get_sidebar();
-//Referring to the functions sidebar code
-//dynamic_sidebar('product-widget-area');
-
-if ( strpos($url, $checkFor) == true){
-    get_sidebar();
-    echo '<div class="container content">';
-} else {
+//$partsCheck = 'parts-and-accessories';
+//
+//if ( strpos($url, $checkFor) == true){
+//    get_sidebar();
+//    echo '<div class="container content">';
+//} else {
+//    echo '<div class="container">';
+//  }
+// Temp for gallery push
     echo '<div class="container">';
-  }
+
     if ( have_posts() ) {
         while ( have_posts() ) {
             if ( strpos($url, $checkFor) == true) {

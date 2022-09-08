@@ -524,12 +524,12 @@ footer .logo{
   //position: absolute;
   //margin-top: 15% !important;
 }
-.carousel-product img {
-  transition: transform .5s ease;
-}
-.carousel-product:hover img {
-  transform: scale(1.5);
-}
+//.carousel-product img {
+//  transition: transform .5s ease;
+//}
+//.carousel-product:hover img {
+//  transform: scale(1.5);
+//}
 .quote{
   position: relative;
 }
@@ -1058,6 +1058,7 @@ div .form-footer{
   //padding-top: 0!important;
 }
 .thumbnails img{
+  margin: 5px;
   aspect-ratio: 4/3;
   -o-object-fit: cover;
   object-fit: cover;
@@ -1072,9 +1073,16 @@ div .form-footer{
   border-bottom: 1px solid nth($rpsBrand, 1);
   background: white;
   z-index: 10;
+  padding-left: 10px;
+  padding-right: 10px;
 }
-#sidebar p{
+#sidebar p, a{
   padding: 5px;
+}
+#sidebar hr{
+  background-color: nth($rpsBrand, 1);
+  color: nth($rpsBrand, 1);
+  border-color: nth($rpsBrand, 1);
 }
 .content{
   position: relative;
