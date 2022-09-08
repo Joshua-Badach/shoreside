@@ -69,8 +69,8 @@ jQuery(document).ready(function() {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    arrows: false,
     lazyLoad: 'ondemand',
+    autoplaySpeed: 20000,
     fade: true,
     asNavFor: '.carousel-product-nav',
     adaptiveHeight: true,
@@ -78,13 +78,13 @@ jQuery(document).ready(function() {
     dots: false,
   });
   jQuery('.carousel-product-nav').slick({
-    slidesToShow: 4,
+    slidesToShow: 5,
     slidesToScroll:1,
-    speed: 1000,
-    autoplaySpeed: 10000,
+    speed: 2000,
+    arrows: false,
     asNavFor: '.carousel-product',
     dots: false,
-    centerMode: false,
+    centerMode: true,
     focusOnSelect: true,
   });
 

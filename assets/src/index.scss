@@ -517,6 +517,7 @@ footer .logo{
 .carousel-product{
   width: 100%;
   position: absolute;
+  margin-top: 15% !important;
 }
 .quote{
   position: relative;
@@ -577,8 +578,8 @@ footer .logo{
   left: 1% !important;
 }
 .slick-arrow{
-  width: 50px !important;
-  height: 50px !important;
+  width: 75px !important;
+  height: 75px !important;
 }
 .slick-dots{
   bottom: 50px !important;
@@ -594,7 +595,7 @@ footer .logo{
   text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
 }
 .slick-arrow::before{
-  font-size: 50px !important;
+  font-size: 75px !important;
   color: nth($rpsBrand, 1) !important;
   //border: 2px solid nth($rpsBrand,4) !important;
   text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
@@ -1104,3 +1105,15 @@ div .form-footer{
 //.slick-next {
 //  right: 0;
 //}
+//.slick-active{
+//  border: 2px solid nth($rpsBrand, 1);
+//}
+.thumbnails{
+  padding-top: 0!important;
+}
+.thumbnails img{
+  aspect-ratio: 4/3;
+  -o-object-fit: cover;
+  object-fit: cover;
+  cursor: pointer;
+}

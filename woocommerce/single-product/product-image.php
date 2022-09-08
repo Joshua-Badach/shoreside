@@ -35,6 +35,7 @@ $wrapper_classes   = apply_filters(
     )
 );
 ?>
+
 <div class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', $wrapper_classes ) ) ); ?>" data-columns="<?php echo esc_attr( $columns ); ?>" style="opacity: 0; transition: opacity .25s ease-in-out;">
     <figure class="carousel-product woocommerce-product-gallery__wrapper">
         <?php
@@ -63,8 +64,7 @@ $wrapper_classes   = apply_filters(
             $html .= '</div>';
         }
 
-        echo apply_filters( 'woocommerce_single_product_image_thumbnail_html', $html, $post_thumbnail_id ); // phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
-
+//        echo apply_filters( 'woocommerce_single_product_image_thumbnail_html', $html, $post_thumbnail_id ); // phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
 
         //        if ( $attachment_ids && $product->get_image_id() ) {
         //            foreach ( $attachment_ids as $attachment_id ) {
@@ -74,15 +74,14 @@ $wrapper_classes   = apply_filters(
 //        		do_action( 'woocommerce_product_thumbnails' );
         ?>
     </figure>
-    <div class="carousel-product-nav">
-        <?php
-
-        if ( $attachment_ids && $product->get_image_id() ) {
-            $image_urls[] = wp_get_attachment_url( $attachment_id );
-
-            foreach ( $image_urls as $image_url ) {
-                echo '<img src="' . $image_url . '">';
-            }
-        }?>
-    </div>
+    <?php
+    echo '<div class="carousel-product-nav thumbnails">';
+    if ( $attachment_ids && $product->get_image_id() ) {
+        $image_urls[] = wp_get_attachment_url( $attachment_id );
+        foreach ( $image_urls as $image_url ) {
+            echo '<img src="' . $image_url . '">';
+        }
+    }
+    echo '</div>';
+    ?>
 </div>
