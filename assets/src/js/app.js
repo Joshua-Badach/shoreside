@@ -4,6 +4,7 @@ jQuery(document).ready(function() {
 
   var navbar = document.getElementById("navbar");
   var sticky = navbar.offsetTop;
+  // var promptContainer = document.getElementsByClassName(".promptContainer");
   var win = jQuery(this);
 
   jQuery(".contactform").hide();
@@ -59,7 +60,7 @@ jQuery(document).ready(function() {
     speed: 1000,
     autoplay: true,
     autoplaySpeed: 10000,
-    // lazyLoad: 'ondemand',
+    lazyLoad: 'ondemand',
     // adaptiveHeight: true,
     mobileFirst: true,
     dots: true,
@@ -87,97 +88,29 @@ jQuery(document).ready(function() {
     centerMode: true,
     focusOnSelect: true,
   });
+  // Pan and zoom code
+  // var addZoom = (target) => {
+  //   let container = document.getElementById(target),
+  //     imgsrc = container.currentStyle || window.getComputedStyle(container, false);
+  //     imgsrc = imgsrc.backgroundImage.slice(4, -1).replace(/"/g, "");
+  //
+  //     let img = new Image();
+  //     img.src = imgsrc;
+  //     img.onload = () => {
+  //     let ratio = img.naturalHeight / img.naturalWidth,
+  //       percentage = ratio * 100 + "%";
+  //
+  //
+  // };
 
-  // if ( jQuery('.carousel-product').length ) {
-  //   var $slider = jQuery('.carousel-product')
-  //     .on('init', function(slick) {
-  //       jQuery('.carousel-product').fadeIn(1000);
-  //     })
-  //     .slick({
-  //       slidesToShow: 1,
-  //       slidesToScroll: 1,
-  //       arrows: true,
-  //       autoplay: true,
-  //       lazyLoad: 'ondemand',
-  //       autoplaySpeed: 3000,
-  //       asNavFor: '.carousel-product-nav'
-  //     });
-  //
-  //   var $slider2 = jQuery('.carousel-product-nav')
-  //     .on('init', function(slick) {
-  //       jQuery('.carousel-product-nav').fadeIn(1000);
-  //     })
-  //     .slick({
-  //       slidesToShow: 4,
-  //       slidesToScroll: 1,
-  //       lazyLoad: 'ondemand',
-  //       asNavFor: '.carousel-product',
-  //       dots: false,
-  //       centerMode: false,
-  //       focusOnSelect: true
-  //     });
-  //
-  //   //remove active class from all thumbnail slides
-  //   jQuery('.carousel-product-nav .slick-slide').removeClass('slick-active');
-  //
-  //   //set active class to first thumbnail slides
-  //   jQuery('.carousel-product-nav .slick-slide').eq(0).addClass('slick-active');
-  //
-  //   // On before slide change match active thumbnail to current slide
-  //   jQuery('.carousel-product').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
-  //     var mySlideNumber = nextSlide;
-  //     jQuery('.carousel-product-nav .slick-slide').removeClass('slick-active');
-  //     jQuery('.carousel-product-nav .slick-slide').eq(mySlideNumber).addClass('slick-active');
-  //   });
-  //
-  //
-  //   // init slider
-  //   require(['js-sliderWithProgressbar'], function(slider) {
-  //
-  //     jQuery('.carousel-product').each(function() {
-  //
-  //       me.slider = new slider(jQuery(this), options, sliderOptions, previewSliderOptions);
-  //
-  //       // stop slider
-  //       //me.slider.stop();
-  //
-  //       // start slider
-  //       //me.slider.start(index);
-  //
-  //       // get reference to slick slider
-  //       //me.slider.getSlick();
-  //
-  //     });
-  //   });
-  //   var options = {
-  //     progressbarSelector    : '.bJS_progressbar'
-  //     , slideSelector        : '.bJS_slider'
-  //     , previewSlideSelector : '.bJS_previewSlider'
-  //     , progressInterval     : ''
-  //     // add your own progressbar animation function to sync it i.e. with a video
-  //     // function will be called if the current preview slider item (".b_previewItem") has the data-customprogressbar="true" property set
-  //     , onCustomProgressbar : function($slide, $progressbar) {}
-  //   }
-  //
-  //   // slick slider options
-  //   // see: https://kenwheeler.github.io/slick/
-  //   var sliderOptions = {
-  //     slidesToShow   : 1,
-  //     slidesToScroll : 1,
-  //     arrows         : false,
-  //     fade           : true,
-  //     autoplay       : true
-  //   }
-  //
-  //   // slick slider options
-  //   // see: https://kenwheeler.github.io/slick/
-  //   var previewSliderOptions = {
-  //     slidesToShow   : 3,
-  //     slidesToScroll : 1,
-  //     dots           : false,
-  //     focusOnSelect  : true,
-  //     centerMode     : true
-  //   }
+
+  //Fix this later
+  //Hide the prompt container on mobile
+  // var mobile = (/iphone|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));
+  // if (mobile) {
+  //   promptContainer.classList.add("hidden")
+  // } else {
+  //   alert("NOT A MOBILE DEVICE!!");
   // }
 
   checkWidth(); // excute function to check width on load
