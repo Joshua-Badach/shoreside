@@ -36,8 +36,8 @@ $wrapper_classes   = apply_filters(
 );
 ?>
 
-<div class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', $wrapper_classes ) ) ); ?>" data-columns="<?php echo esc_attr( $columns ); ?>" style="opacity: 0; transition: opacity .25s ease-in-out;">
-    <figure class="carousel-product portrait woocommerce-product-gallery__wrapper">
+<div class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', $wrapper_classes ) ) ); ?>" data-columns="<?php echo esc_attr( $columns ); ?>" style="opacity: 0; transition: opacity .25s ease-in-out;"><div id="lightbox"></div>
+    <figure class="carousel-product portrait woocommerce-product-gallery__wrapper" data-scale="1.6">
         <?php
         if ( $post_thumbnail_id ) {
             $attachment_ids  = $product->get_gallery_image_ids();
@@ -54,7 +54,7 @@ $wrapper_classes   = apply_filters(
             }
 
             foreach ( $image_urls as $image_src_url ) {
-                echo '<img src="' . $image_src_url . '">';
+                echo '<img class="portrait-item" src="' . $image_src_url . '">';
             }
 //            product image lightbox
 //			$html = wc_get_gallery_image_html( $post_thumbnail_id, true );
@@ -63,7 +63,7 @@ $wrapper_classes   = apply_filters(
             $html .= sprintf( '<img src="%s" alt="%s" class="wp-post-image" />', esc_url( wc_placeholder_img_src( 'woocommerce_single' ) ), esc_html__( 'Awaiting product image', 'woocommerce' ) );
             $html .= '</div>';
         }
-
+//        call lightbox
 //        echo apply_filters( 'woocommerce_single_product_image_thumbnail_html', $html, $post_thumbnail_id ); // phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
 
         //        if ( $attachment_ids && $product->get_image_id() ) {

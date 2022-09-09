@@ -70,11 +70,11 @@ jQuery(document).ready(function() {
     autoplay: true,
     lazyLoad: 'ondemand',
     speed: 1000,
-    autoplaySpeed: 15000,
+    autoplaySpeed: 10000,
     fade: true,
     asNavFor: '.carousel-product-nav',
     adaptiveHeight: true,
-    mobileFirst: true,
+    // mobileFirst: true,
     dots: false,
   });
   jQuery('.carousel-product-nav').slick({
@@ -87,12 +87,55 @@ jQuery(document).ready(function() {
     centerMode: true,
     focusOnSelect: true,
   });
-  // Pan and zoom code
+
 
   //Mobile check
   var mobile = (/iphone|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));
   if (mobile) {
     $('.slick-arrow').delay(10000).fadeOut('slow');
+    $('.woocommerce-ordering').hide();
+
+  } else {
+    // Pan and zoom code
+    $(".portrait")
+    // tile mouse actions
+      .on("mouseover", function() {
+        $(this)
+        $(".portrait-item")
+          .css({ transform: "scale(" + $(this).attr("data-scale") + ")" });
+      })
+      .on("mouseout", function() {
+        $(this)
+        $(".portrait-item")
+          .css({ transform: "scale(1)" });
+      })
+      .on("mousemove", function(e) {
+        $(this)
+        $(".portrait-item")
+          .css({
+            "transform-origin":
+            ((e.pageX - $(this).offset().left) / $(this).width()) * 100 +
+            "% " +
+            ((e.pageY - $(this).offset().top) / $(this).height()) * 100 +
+            "%"
+          });
+      });
+    var all = $(".portrait-item"),
+      lightbox = document.getElementById("lightbox");
+
+    if (all.length>0) { for (let i of all) {
+      i.onclick = () => {
+        let clone = i.cloneNode();
+        clone.className = "";
+        lightbox.innerHTML = "";
+        lightbox.appendChild(clone);
+        lightbox.className = "show";
+      };
+    }}
+    lightbox.onclick = () => {
+      lightbox.className = "";
+    };
+
   }
 
   setTimeout(function(){
