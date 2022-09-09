@@ -592,6 +592,9 @@ footer .logo{
   width: 75px !important;
   height: 75px !important;
 }
+.slick-arrow:hover{
+  opacity: 1;
+}
 .slick-dots{
   bottom: 50px !important;
 }
@@ -780,6 +783,9 @@ footer .logo{
   .sliderText p{
     font-size: 10px!important;
   }
+  .woocommerce-product-gallery{
+    height: 100%!important;
+  }
   .brandCard img{
     width: 100%;
     padding-top: 25%;
@@ -842,6 +848,9 @@ footer .logo{
   .brandSpan{
     background: nth($rpsBrand, 1);
     margin-top: -5vw;
+  }
+  .woocommerce-product-gallery{
+    height: 100%!important;
   }
   .row{
     padding: 10px;

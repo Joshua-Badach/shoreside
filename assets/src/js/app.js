@@ -4,7 +4,6 @@ jQuery(document).ready(function() {
 
   var navbar = document.getElementById("navbar");
   var sticky = navbar.offsetTop;
-  // var promptContainer = document.getElementsByClassName(".promptContainer");
   var win = jQuery(this);
 
   jQuery(".contactform").hide();
@@ -15,23 +14,23 @@ jQuery(document).ready(function() {
 
     jQuery(window).on('resize', function(){
     if (win.width() <= 769 ){
-      jQuery('.brands h3').hide();
-      jQuery('.brands p').hide();
-      jQuery((".brandCard")).removeClass("brands");
+      $('.brands h3').hide();
+      $('.brands p').hide();
+      $((".brandCard")).removeClass("brands");
     }
 
     if (win.width() >= 769 ){
-      jQuery('.brands h3').show();
-      jQuery('.brands p').show();
-      jQuery((".brandCard")).addClass("brands");
+      $('.brands h3').show();
+      $('.brands p').show();
+      $((".brandCard")).addClass("brands");
     };
   });
 
   function brandShuffle(){
     if ( win.width() < 769) {
-      jQuery('.brands h3').hide();
-      jQuery('.brands p').hide();
-      jQuery((".brandCard")).removeClass("brands");
+      $('.brands h3').hide();
+      $('.brands p').hide();
+      $((".brandCard")).removeClass("brands");
     }
   }
 
@@ -46,13 +45,12 @@ jQuery(document).ready(function() {
   }
 
   jQuery(document).on('click', '.search', function(event){
-    //svg scope here
     input = jQuery('<form role="search" method="GET" id="searchform" class="searchform"><input name="s" value="" name="s" id="s" type="text"><button type="submit" class="searchFormButton">ok</button></form>');
 
     jQuery('.search a').replaceWith(input);
  });
-  // //finish this later, or not at all depending on how rps wants to go forward, the animations are at least salvageable
 
+  // Slider carousel code
   jQuery('.carousel').slick({
     infinite: false,
     slidesToShow: 1,
@@ -61,17 +59,18 @@ jQuery(document).ready(function() {
     autoplay: true,
     autoplaySpeed: 10000,
     lazyLoad: 'ondemand',
-    // adaptiveHeight: true,
     mobileFirst: true,
     dots: true,
   });
+
+  //Portrait carousel code
   jQuery('.carousel-product').slick({
-    infinite: false,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
     lazyLoad: 'ondemand',
-    autoplaySpeed: 20000,
+    speed: 1000,
+    autoplaySpeed: 15000,
     fade: true,
     asNavFor: '.carousel-product-nav',
     adaptiveHeight: true,
@@ -79,9 +78,9 @@ jQuery(document).ready(function() {
     dots: false,
   });
   jQuery('.carousel-product-nav').slick({
-    slidesToShow: 5,
+    slidesToShow: 3,
     slidesToScroll:1,
-    speed: 2000,
+    speed: 1000,
     arrows: false,
     asNavFor: '.carousel-product',
     dots: false,
@@ -89,30 +88,17 @@ jQuery(document).ready(function() {
     focusOnSelect: true,
   });
   // Pan and zoom code
-  // var addZoom = (target) => {
-  //   let container = document.getElementById(target),
-  //     imgsrc = container.currentStyle || window.getComputedStyle(container, false);
-  //     imgsrc = imgsrc.backgroundImage.slice(4, -1).replace(/"/g, "");
-  //
-  //     let img = new Image();
-  //     img.src = imgsrc;
-  //     img.onload = () => {
-  //     let ratio = img.naturalHeight / img.naturalWidth,
-  //       percentage = ratio * 100 + "%";
-  //
-  //
-  // };
 
+  //Mobile check
+  var mobile = (/iphone|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));
+  if (mobile) {
+    $('.slick-arrow').delay(10000).fadeOut('slow');
+  }
 
-  //Fix this later
-  //Hide the prompt container on mobile
-  // var mobile = (/iphone|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));
-  // if (mobile) {
-  //   promptContainer.classList.add("hidden")
-  // } else {
-  //   alert("NOT A MOBILE DEVICE!!");
-  // }
+  setTimeout(function(){
+    $('#prompt-CWnFXGNPWNYNiMFgwS5X-iframe').fadeOut('slow');
+  }, 10000 );
 
-  checkWidth(); // excute function to check width on load
-  jQuery(window).resize(checkWidth); // execute function to check width on resize
+  checkWidth();
+  jQuery(window).resize(checkWidth);
 });
