@@ -1,14 +1,21 @@
+<?php
+global $wp;
+$url = home_url( $wp->request );
+$checkFor = 'parts-and-accessories';
+
+?>
 <div id="sidebar">
-    <p>Filter Crap</p>
-    <p>For now sidebar is hardcoded in as 200px absolute, main content offset left 100px. I will need to target something in the categories</p>
-    <hr>
-    <p>Brand</p>
-    <a href="#">Brand foreach loop</a><br><br>
-    <a href="#">Brand 1</a><br><br>
-    <a href="#">Brand 2</a><br><br>
-    <a href="#">Brand 3</a><br><br>
-    <hr>
-    <p>Price</p>
-    <a href="#">High to Low</a><br><br>
-    <a href="#">Low to High</a><br><br>
+<?php
+//        price filter, on every sidebar
+        echo '<p>Price: </p>';
+        echo do_shortcode("[br_filter_single filter_id=4041]");
+        echo '<hr>';
+
+    if (strpos($url, $checkFor) == true){
+        echo '<p>Category: </p>';
+        echo do_shortcode("[br_filter_single filter_id=4049]");
+        echo '<hr>';
+    }
+?>
+
 </div>

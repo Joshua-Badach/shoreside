@@ -1,6 +1,16 @@
 <?php
 get_header();
 $slug = $post->post_name;
+//global $wp;
+//$url = home_url( $wp->request );
+//$partsCheck = 'parts-and-accessories';
+//
+//if (strpos($url, $partsCheck) == true){
+//    get_sidebar();
+//    echo '<div class="container content">';
+//} else {
+//    echo '<div class="container">';
+//}
 
 if ($slug != 'search') {
 

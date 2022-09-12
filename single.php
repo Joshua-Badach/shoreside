@@ -3,9 +3,8 @@
 global $wp;
 $url = home_url( $wp->request );
 $checkFor = 'product-category';
-//$partsCheck = 'parts-and-accessories';
-//
-//if ( strpos($url, $checkFor) == true){
+
+//if (strpos($url, $partsCheck) == true){
 //    get_sidebar();
 //    echo '<div class="container content">';
 //} else {

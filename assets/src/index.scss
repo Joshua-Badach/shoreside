@@ -982,22 +982,27 @@ div .form-footer{
 }
 #sidebar{
   position: absolute;
-  height: 100%;
+  height: auto;
   width: 200px;
   border-right: 1px solid nth($rpsBrand, 1);
   border-bottom: 1px solid nth($rpsBrand, 1);
+  border-top: 1px solid nth($rpsBrand, 1);
   background: white;
   z-index: 10;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-#sidebar p, a{
-  padding: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 #sidebar hr{
   background-color: nth($rpsBrand, 1);
   color: nth($rpsBrand, 1);
   border-color: nth($rpsBrand, 1);
+}
+.bapf_body ul{
+  padding-left: 10px;
+}
+.bapf_body label{
+  font-size: 10px;
+
 }
 .content{
   position: relative;

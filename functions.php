@@ -433,6 +433,13 @@ function service_shortcode(){
 }
 add_shortcode('service-content', 'service_shortcode');
 
+function parts_shortcode(){
+    get_sidebar();
+    echo '<div class="container content">';
+        echo do_shortcode('[product_category category="parts-and-accessories" per_page="35" paginate="true" columns="5" orderby="name" order="ASC" operator="IN"]');
+    echo '</div>';
+}
+add_shortcode('parts-content', 'parts_shortcode');
 
 
 function catalog_shortcode(){
@@ -481,6 +488,8 @@ function woo_new_product_tab_one_content() {
 function woo_new_product_tab_two_content() {
     include('template-parts/components/warranty.php');
 }
+//remove woocommerce default filtering
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 9 );
 
 //add_filter( 'woocommerce_catalog_orderby', 'shoreside_add_custom_sorting_options');
 //function shoreside_add_custom_sorting_options($options){
@@ -738,8 +747,8 @@ add_action('woocommerce_single_product_summary', 'contact_blurb', 45);
 //                    'description'       => esc_html__('Product widget area for filtering'),
 //                    'before_widget'     => '<div id="%1$s" class="widget %2$s">',
 //                    'after_widget'      => '</div>',
-//                    'before_title'      => '<h5 class="sidebar-title">',
-//                    'after_title'       => '</h5>'
+//                    'before_title'      => '',
+//                    'after_title'       => ''
 //            )
 //    );
 //}

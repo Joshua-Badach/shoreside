@@ -135,7 +135,7 @@ jQuery(document).ready(function() {
     // lightbox.onclick = () => {
     //   lightbox.className = "";
     // };
-    //Close modal
+    // Close modal
     // $('.close-modal').click(function() {
     //   $('.modal').toggleClass('show')
     // });
@@ -143,8 +143,15 @@ jQuery(document).ready(function() {
     // $('.modal-link').click(function(e){
     //   var modalContent = $('#modal-content');
     //   var post_link = $('show-in-modal').html();
+    //
+    //   e.preventDefault();
+    //   //tester crap
+    //   // alert('fire modal');
+    //
+    //   $('.modal').addClass('show', 1000, 'easeOutSine');
+    //   modalContent.html('loading...');
     // });
-
+  //finish modal later
   }
 
   setTimeout(function(){
@@ -152,6 +159,6 @@ jQuery(document).ready(function() {
   }, 10000 );
 
   checkWidth();
-  jQuery(window).resize(checkWidth);
+  $(window).resize(checkWidth);
 
 });
