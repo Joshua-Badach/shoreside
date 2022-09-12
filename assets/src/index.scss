@@ -653,36 +653,6 @@ footer .logo{
   visibility: visible;
   border: 2px solid white;
 }
-//@media only screen and (min-width: 786px){
-//  .hide{
-//    display: none;
-//  }
-//  .show{
-//    display: block!important;
-//  }
-//  .modal-wrapper{
-//    z-index: 999;
-//    position: absolute;
-//    left: calc((100vw - 600px)/2);
-//  }
-//  .modal {
-//    display: none;
-//    position: relative;
-//    //  tweak size later
-//    width: 600px;
-//    min-height: 300px;
-//    padding: 2%;
-//    background: nth($rpsBrand, 4);
-//
-//    .close-modal {
-//      position: absolute;
-//      //  tweak position later
-//      top: 20px;
-//      right: 15px;
-//      cursor: pointer;
-//    }
-//  }
-//}
 .categoryItems{
   text-align: center;
   margin-bottom: 4%;
@@ -704,70 +674,6 @@ footer .logo{
 .appended{
   text-align: center;
 }
-.modal-link {
-  width: 150px;
-  height: 40px;
-  top: 0; left: 0; bottom: 0; right: 0;
-  border: none;
-  border-radius: 5px;
-  background: #00bfff;
-  color: white;
-  text-transform: uppercase;
-
-}
-
-// Styles for functionality
-@media only screen and (min-width: 768px) {
-  .hide {
-    display: none;
-  }
-  .show {
-    display: flex!important;
-  }
-  .modal-wrapper {
-    z-index: 999;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    //width: 90%;
-    //left: calc((100vw - 90%)/2); // center the modal horizontally, keep width the same % as the calc
-  }
-
-  .modal {
-    display: none;
-    position: relative;
-    width: 100%;
-    min-height: 75%;
-    padding: 20px 15px;
-    background: #EEEEEE;
-    color: #000000;
-    text-align: center;
-
-    .close-modal {
-      position: absolute;
-      top: 20px;
-      right: 15px;
-      cursor: pointer;
-    }
-
-    h1 {
-      font-size: 56px;
-      margin: 35px 0;
-    }
-
-    .entry-content {
-      p {
-        font-size: 16px;
-      }
-    }
-  }
-}
-// end of media query
-//
-//@media only screen and (min-width: 1030px) {}
-//// end of media query
-//not sure what this is for
-
 
 //extra small mobile
 @media (min-width: 320px) and (max-width: 480px) {
@@ -1100,25 +1006,32 @@ div .form-footer{
 .portrait {
   touch-action: auto !important;
 }
-#lightbox {
-  position: fixed; z-index: 9999999999;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity ease 0.4s;
-}
-#lightbox.show {
-  visibility: visible;
-  opacity: 1;
-}
-#lightbox img {
-  width: 100%;
-  left: 0!important;
-  height: auto;
-  object-fit: cover;
-}
+//#lightbox {
+//  position: fixed;
+//  z-index: 9999999999;
+//  top: 0;
+//  left: 0;
+//  width: 100vw; height: 100vh;
+//  background: rgba(0, 105, 173, .8);
+//  display: flex;
+//  align-items: center;
+//  justify-content: center;
+//  visibility: hidden;
+//  opacity: 0;
+//  transition: opacity ease 0.4s;
+//}
+//#lightbox.show {
+//  visibility: visible;
+//  opacity: 1;
+//}
+//#lightbox img {
+//  top: 0!important;
+//  left: 0!important;
+//  display: flex!important;
+//  align-self: center!important;
+//  justify-self: center!important;
+//  transform-origin: 0!important;
+//  width: 100%;
+//  height: auto;
+//  object-fit: cover;
+//}

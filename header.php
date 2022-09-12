@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?> >
 <?php
-global $wp;
-$current_url = home_url( add_query_arg( array(), $wp->request ) );
-$site_name = get_bloginfo( 'name' );
-$site_slug = $post->post_name;
 $site_suffix = ucwords(str_replace('-', ' ', $site_slug));
 $featured = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' );
 

@@ -118,23 +118,32 @@ jQuery(document).ready(function() {
             "% " +
             ((e.pageY - $(this).offset().top) / $(this).height()) * 100 +
             "%"
-          });
+          })
       });
-    var all = $(".portrait-item"),
-      lightbox = document.getElementById("lightbox");
-
-    if (all.length>0) { for (let i of all) {
-      i.onclick = () => {
-        let clone = i.cloneNode();
-        clone.className = "";
-        lightbox.innerHTML = "";
-        lightbox.appendChild(clone);
-        lightbox.className = "show";
-      };
-    }}
-    lightbox.onclick = () => {
-      lightbox.className = "";
-    };
+    // var all = $(".portrait-item"),
+    //   lightbox = $("#lightbox").get(0);
+    //
+    // if (all.length>0) { for (let i of all) {
+    //   i.onclick = () => {
+    //     let clone = i.cloneNode();
+    //     clone.className = "test";
+    //     lightbox.innerHTML = "";
+    //     lightbox.appendChild(clone);
+    //     lightbox.className = "show";
+    //   };
+    // }}
+    // lightbox.onclick = () => {
+    //   lightbox.className = "";
+    // };
+    //Close modal
+    // $('.close-modal').click(function() {
+    //   $('.modal').toggleClass('show')
+    // });
+    //
+    // $('.modal-link').click(function(e){
+    //   var modalContent = $('#modal-content');
+    //   var post_link = $('show-in-modal').html();
+    // });
 
   }
 
@@ -144,4 +153,5 @@ jQuery(document).ready(function() {
 
   checkWidth();
   jQuery(window).resize(checkWidth);
+
 });

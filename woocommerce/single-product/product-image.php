@@ -36,7 +36,9 @@ $wrapper_classes   = apply_filters(
 );
 ?>
 
-<div class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', $wrapper_classes ) ) ); ?>" data-columns="<?php echo esc_attr( $columns ); ?>" style="opacity: 0; transition: opacity .25s ease-in-out;"><div id="lightbox"></div>
+<div class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', $wrapper_classes ) ) ); ?>" data-columns="<?php echo esc_attr( $columns ); ?>" style="opacity: 0; transition: opacity .25s ease-in-out;">
+    <!--Lightbox trigger, work on this later-->
+    <!--    <div id="lightbox"></div>-->
     <figure class="carousel-product portrait woocommerce-product-gallery__wrapper" data-scale="2">
         <?php
         if ( $post_thumbnail_id ) {
