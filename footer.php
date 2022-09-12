@@ -30,7 +30,7 @@ $newsletterQuery = new WP_Query(array(
                         <li><a href="/about/">About Us</a></li>
                         <li><a href="/contact/">Contact</a></li>
                     </ul>
-                    <p><a class="location"  href="https://maps.google.com/?q=Recreational+Power+Sports" target="_blank" rel="noopener">11204 154 Street NW Edmonton, AB T5M 1X7</a></p>
+                    <p><a class="location" href="https://maps.google.com/?q=Recreational+Power+Sports" target="_blank" rel="noopener">11204 154 Street NW Edmonton, AB T5M 1X7</a></p>
                 </div>
                 <div class="col-lg-2">
                     <?php

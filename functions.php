@@ -15,15 +15,6 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
                 'navigation-widgets',
             )
         );
-//    $wp_customize->add_section('custom_css', array(
-//       'title'  => __('Custom Css Test'),
-//        'description'   =>__('Description for custom css'),
-//        'panel' => '',
-//        'priority' => 160,
-//        'capability'    => 'edith+theme_option',
-//        'theme_supports'    => '',
-//    ));
-//        tweak this more
 
         function shoreside_logo_setup() {
             $defaults = array(
@@ -114,6 +105,13 @@ function remove_img_attr ($html)
 }
 
 add_filter( 'post_thumbnail_html', 'remove_img_attr' );
+
+//function modal(){
+//    if (!is_admin()){
+//        echo 'not admin';
+//    }
+//}
+//add_action();
 
 //Shortcodes
 

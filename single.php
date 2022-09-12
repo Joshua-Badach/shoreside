@@ -24,5 +24,5 @@ $checkFor = 'product-category';
         }
     }
     echo '</div>';
-
+echo 'Single page';
 get_footer();
