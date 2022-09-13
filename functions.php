@@ -434,12 +434,48 @@ function service_shortcode(){
 add_shortcode('service-content', 'service_shortcode');
 
 function parts_shortcode(){
+    global $post;
+    $slug = $post->post_name;
+    $id = get_term_by('slug', $slug, 'product_cat');
+    $idObj = $id->term_id;
+    $categoryDescription = category_description($idObj);
+    $term = get_term_by('id', $idObj, 'product_cat');
+
+    echo '<div class="container display">
+        <div class="row">
+        <h2>' . $term->name . '</h2>' .
+            $categoryDescription .
+        '</div>
+    </div>';
+
     get_sidebar();
     echo '<div class="container content">';
-        echo do_shortcode('[product_category category="parts-and-accessories" per_page="35" paginate="true" columns="5" orderby="name" order="ASC" operator="IN"]');
+        echo do_shortcode('[product_category category="parts-and-accessories" per_page="40" paginate="true" columns="5" orderby="name" order="ASC" operator="IN"]');
     echo '</div>';
 }
 add_shortcode('parts-content', 'parts_shortcode');
+
+function showroom_shortcode(){
+    global $post;
+    $slug = $post->post_name;
+    $id = get_term_by('slug', $slug, 'product_cat');
+    $idObj = $id->term_id;
+    $categoryDescription = category_description($idObj);
+    $term = get_term_by('id', $idObj, 'product_cat');
+
+    echo '<div class="container display">
+        <div class="row">
+        <h2>' . $term->name . '</h2>' .
+        $categoryDescription .
+        '</div>
+    </div>';
+
+    get_sidebar();
+    echo '<div class="container content">';
+    echo do_shortcode('[product_category category="showroom" per_page="40" paginate="true" columns="5" orderby="name" order="ASC" operator="IN"]');
+    echo '</div>';
+}
+add_shortcode('showroom-content', 'showroom_shortcode');
 
 
 function catalog_shortcode(){

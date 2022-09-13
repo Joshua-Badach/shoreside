@@ -4,14 +4,14 @@ global $wp;
 $url = home_url( $wp->request );
 $checkFor = 'product-category';
 
-//if (strpos($url, $partsCheck) == true){
-//    get_sidebar();
-//    echo '<div class="container content">';
-//} else {
-//    echo '<div class="container">';
-//  }
-// Temp for gallery push
+if (strpos($url, $checkFor) == true){
+    get_sidebar();
+    echo '<div class="container content">';
+} else {
     echo '<div class="container">';
+  }
+// Temp for gallery push
+//    echo '<div class="container">';
 
     if ( have_posts() ) {
         while ( have_posts() ) {

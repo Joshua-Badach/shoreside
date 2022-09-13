@@ -888,11 +888,15 @@ div .form-footer{
 .products ul h2{
   color: nth($rpsBrand, 1);
 }
-.woocommerce{
-  margin-top: 50px;
-}
+//.woocommerce{
+//  margin-top: 50px;
+//}
 .woocommerce-product-gallery{
   height: 44.688rem;
+}
+// Remove in functions.php when I hash out the appropriate hook to use
+.woocommerce-ordering{
+  visibility: hidden;
 }
 .productVideo{
   width: 100%;
@@ -989,25 +993,41 @@ div .form-footer{
   border-top: 1px solid nth($rpsBrand, 1);
   background: white;
   z-index: 10;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding: 20px 10px;
 }
 #sidebar hr{
   background-color: nth($rpsBrand, 1);
   color: nth($rpsBrand, 1);
   border-color: nth($rpsBrand, 1);
 }
-.bapf_body ul{
-  padding-left: 10px;
-}
 .bapf_body label{
   font-size: 10px;
-
 }
+//super hackey way to hide parent level category with the ajax plugin
+//label[for="bapf_1_223"],
+//label[for="bapf_2_223"],
+//label[for="bapf_3_223"],
+//label[for="bapf_1_239"],
+//label[for="bapf_2_239"],
+//label[for="bapf_3_239"]{
+//  visibility: hidden;
+//}
 .content{
   position: relative;
   left: 100px;
 }
+//.categoryList{
+//  margin-top: -25px;
+//}
+.categoryList ul{
+  padding-left: 0;
+}
+.display{
+  margin-bottom: 5%;
+}
+//.categoryList ul li:first-child{
+//  margin-left: 0!important;
+//}
 .portrait {
   touch-action: auto !important;
 }
