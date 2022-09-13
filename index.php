@@ -25,6 +25,6 @@ if ($slug != 'search') {
     get_product_search_form();
 
 }
-echo 'index returned';
+//echo 'index returned';
 get_footer();
 ?>

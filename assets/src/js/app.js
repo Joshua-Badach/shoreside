@@ -93,9 +93,11 @@ jQuery(document).ready(function() {
   var mobile = (/iphone|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));
   if (mobile) {
     $('.slick-arrow').delay(10000).fadeOut('slow');
-    $('.woocommerce-ordering').hide();
+    $('#sidebar').hide();
+    $('#contentTrigger').removeClass('content')
 
   } else {
+    $('#mobileFilter').hide();
     // Pan and zoom code
     $(".portrait")
     // tile mouse actions

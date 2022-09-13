@@ -23,5 +23,5 @@ if (strpos($url, $checkFor) == true){
         }
     }
     echo '</div>';
-echo 'Single page';
+//echo 'Single page';
 get_footer();

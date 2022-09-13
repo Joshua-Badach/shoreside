@@ -9,10 +9,8 @@
     '<hr>';
 
     echo '<p>Attributes: </p>';
-//    if (strpos($url, $checkFor) == true){
+//    do_shortcode("[br_filter_single filter_id=4059]");
 
-//        echo '<hr>';
-//    }
 ?>
 
 </div>

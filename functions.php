@@ -433,7 +433,7 @@ function service_shortcode(){
 }
 add_shortcode('service-content', 'service_shortcode');
 
-function parts_shortcode(){
+function content_shortcode(){
     global $post;
     $slug = $post->post_name;
     $id = get_term_by('slug', $slug, 'product_cat');
@@ -446,37 +446,16 @@ function parts_shortcode(){
         <h2>' . $term->name . '</h2>' .
             $categoryDescription .
         '</div>
-    </div>';
-
+    </div>
+    <div id="mobileFilter">';
+       echo do_shortcode('[br_filter_single filter_id=4059]');
+    echo '</div>';
     get_sidebar();
-    echo '<div class="container content">';
-        echo do_shortcode('[product_category category="parts-and-accessories" per_page="40" paginate="true" columns="5" orderby="name" order="ASC" operator="IN"]');
+    echo '<div id="contentTrigger" class="container content">';
+        echo do_shortcode('[product_category category="' . $slug . '" per_page="40" paginate="true" columns="5" orderby="name" order="ASC" operator="IN"]');
     echo '</div>';
 }
-add_shortcode('parts-content', 'parts_shortcode');
-
-function showroom_shortcode(){
-    global $post;
-    $slug = $post->post_name;
-    $id = get_term_by('slug', $slug, 'product_cat');
-    $idObj = $id->term_id;
-    $categoryDescription = category_description($idObj);
-    $term = get_term_by('id', $idObj, 'product_cat');
-
-    echo '<div class="container display">
-        <div class="row">
-        <h2>' . $term->name . '</h2>' .
-        $categoryDescription .
-        '</div>
-    </div>';
-
-    get_sidebar();
-    echo '<div class="container content">';
-    echo do_shortcode('[product_category category="showroom" per_page="40" paginate="true" columns="5" orderby="name" order="ASC" operator="IN"]');
-    echo '</div>';
-}
-add_shortcode('showroom-content', 'showroom_shortcode');
-
+add_shortcode('content', 'content_shortcode');
 
 function catalog_shortcode(){
     include('template-parts/components/catalogs.php');
@@ -524,8 +503,10 @@ function woo_new_product_tab_one_content() {
 function woo_new_product_tab_two_content() {
     include('template-parts/components/warranty.php');
 }
-//remove woocommerce default filtering
-remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 9 );
+//remove woocommerce default filtering, need to unhook all of the filtering stuff or the format breaks alltogether
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_output_all_notices', 10 );
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
 
 //add_filter( 'woocommerce_catalog_orderby', 'shoreside_add_custom_sorting_options');
 //function shoreside_add_custom_sorting_options($options){
