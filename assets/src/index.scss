@@ -903,12 +903,8 @@ div .form-footer{
 .berocket_single_filter_widget_4059{
   width: 200px;
   height: 100%;
-  margin-left: 49%;
   padding-top: 1px;
   padding-bottom: 1px;
-}
-.select2-container{
-  z-index: 900!important;
 }
 .productVideo{
   width: 100%;
@@ -1042,6 +1038,10 @@ div .form-footer{
 //}
 .portrait {
   touch-action: auto !important;
+}
+//hackey bs because the stupid ajax plugin has huge z-index
+body .select2-container, body .ui-widget.ui-datepicker{
+  z-index: 100!important;
 }
 //#lightbox {
 //  position: fixed;

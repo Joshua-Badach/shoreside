@@ -94,7 +94,8 @@ jQuery(document).ready(function() {
   if (mobile) {
     $('.slick-arrow').delay(10000).fadeOut('slow');
     $('#sidebar').hide();
-    $('#contentTrigger').removeClass('content')
+    $('#contentTrigger').removeClass('content');
+    // $('.select2-container').removeAttr('style').css('z-index', '100');
 
   } else {
     $('#mobileFilter').hide();
