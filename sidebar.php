@@ -1,10 +1,12 @@
 <div id="sidebar">
 <?php
     global $post;
+    global $product;
     $slug = $post->post_name;
 
     $id = get_term_by('slug', $slug, 'product_cat');
     $idObj = $id->term_id;
+
 
     $taxonomy       = 'product_cat';
     $orderby        = 'ID';
@@ -31,6 +33,19 @@
         )
     );
 
+    $manufacturers = 'pa_manufacturer';
+//    $manufacturer = explode(',', $product->get_attributes($manufacturers));
+
+    if ( $slug == 'showroom' ) {
+        echo '<p>Condition: </p>' . '
+        <span>New</span>
+        <label class="switch">
+            <input type="checkbox">
+            <span class="slider"></span>
+        </label>
+        <span>Used</span>        
+    <hr>';
+    }
     echo '<p>Category: </p>';
 
     foreach ($categories as $cat) {
@@ -41,20 +56,23 @@
 
     echo '<p>Price: </p>' . '
     <form action="">
-        <input type="radio" id="html" name="priceRange" value="HTML">
-        <label for="html">0 - 100</label><br>
-        <input type="radio" id="css" name="priceRange" value="CSS">
-        <label for="css">100 - 500</label><br>
-        <input type="radio" id="javascript" name="priceRange" value="JavaScript">
-        <label for="javascript">500 - 1,000</label><br>
-        <input type="radio" id="javascript" name="priceRange" value="JavaScript">
-        <label for="javascript">1,000 - 10,000</label><br>
-        <input type="radio" id="javascript" name="priceRange" value="JavaScript">
-        <label for="javascript">10,000 and up</label><br>
+        <input type="radio" id="toOneHundred" name="priceRange" value="toOneHundred">
+        <label for="toOneHundred">0 - $100</label><br>
+        <input type="radio" id="toFiveHundred" name="priceRange" value="toFiveHundred">
+        <label for="toFiveHundred">$100 - $500</label><br>
+        <input type="radio" id="toOneThousand" name="priceRange" value="toOneThousand">
+        <label for="toOneThousand">$500 - $1,000</label><br>
+        <input type="radio" id="toTenThousand" name="priceRange" value="toTenThousand">
+        <label for="toTenThousand">$1,000 - $10,000</label><br>
+        <input type="radio" id="aboveTenThousand" name="priceRange" value="aboveTenThousand">
+        <label for="aboveTenThousand">+ $10,000</label><br>
     </form>
     <hr>';
 
-    echo '<p>Manufacturer: </p>'
+    echo '<p>Manufacturer: </p>' . '
+    <p>Iterate crap here</p>' .
+//    var_dump($manufacturer);
+    '<hr>';
 
 ?>
     <button type="button" id="clear">Clear</button>
