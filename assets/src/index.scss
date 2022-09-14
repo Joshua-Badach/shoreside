@@ -888,9 +888,6 @@ div .form-footer{
 .products ul h2{
   color: nth($rpsBrand, 1);
 }
-//.woocommerce{
-//  margin-top: 50px;
-//}
 .woocommerce-product-gallery{
   height: 44.688rem;
 }
@@ -899,12 +896,6 @@ div .form-footer{
   height: 30px;
   margin-bottom: 2px;
   background: nth($rpsBrand, 1);
-}
-.berocket_single_filter_widget_4059{
-  width: 200px;
-  height: 100%;
-  padding-top: 1px;
-  padding-bottom: 1px;
 }
 .productVideo{
   width: 100%;
@@ -981,9 +972,6 @@ div .form-footer{
   margin-right: 5px;
   text-align: center;
 }
-.thumbnails{
-  //padding-top: 0!important;
-}
 .thumbnails img{
   margin: 5px;
   aspect-ratio: 4/3;
@@ -1008,40 +996,21 @@ div .form-footer{
   color: nth($rpsBrand, 1);
   border-color: nth($rpsBrand, 1);
 }
-.bapf_body label{
-  font-size: 10px;
-}
-//super hackey way to hide parent level category with the ajax plugin
-//label[for="bapf_1_223"],
-//label[for="bapf_2_223"],
-//label[for="bapf_3_223"],
-//label[for="bapf_1_239"],
-//label[for="bapf_2_239"],
-//label[for="bapf_3_239"]{
-//  visibility: hidden;
-//}
 .content{
   position: relative;
   left: 100px;
 }
-//.categoryList{
-//  margin-top: -25px;
-//}
 .categoryList ul{
   padding-left: 0;
 }
 .display{
   margin-bottom: 5%;
 }
-//.categoryList ul li:first-child{
-//  margin-left: 0!important;
-//}
 .portrait {
   touch-action: auto !important;
 }
-//hackey bs because the stupid ajax plugin has huge z-index
-body .select2-container, body .ui-widget.ui-datepicker{
-  z-index: 100!important;
+.woocommerce{
+  margin-top: 5%;
 }
 //#lightbox {
 //  position: fixed;

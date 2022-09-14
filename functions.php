@@ -445,13 +445,14 @@ function content_shortcode(){
         <div class="row">
         <h2>' . $term->name . '</h2>' .
             $categoryDescription .
-        '</div>
-    </div>
-    <div id="mobileFilter">';
-       echo do_shortcode('[br_filter_single filter_id=4059]');
-    echo '</div>';
-    get_sidebar();
-    echo '<div id="contentTrigger" class="container content">';
+        '</div>';
+     echo '</div>';
+//    <div id="mobileFilter">';
+//       echo do_shortcode('[br_filter_single filter_id=4059]');
+//    echo '</div>';
+//    get_sidebar();
+//    add content class below when sidebar is live
+    echo '<div id="contentTrigger" class="container">';
         echo do_shortcode('[product_category category="' . $slug . '" per_page="40" paginate="true" columns="5" orderby="name" order="ASC" operator="IN"]');
     echo '</div>';
 }

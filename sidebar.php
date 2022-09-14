@@ -12,5 +12,6 @@
 //    do_shortcode("[br_filter_single filter_id=4059]");
 
 ?>
+    <button type="button" id="some_id">Send Request</button>
 
 </div>

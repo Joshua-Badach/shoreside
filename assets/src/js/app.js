@@ -157,6 +157,27 @@ jQuery(document).ready(function() {
   //finish modal later
   }
 
+  $("#some_id").click( function(e) {
+    e.preventDefault();
+
+    $.ajax({
+      type : "post",
+      dataType : "json",
+      url : OBJ.ajaxurl,
+      data : {
+        action: "my_ajax_action"
+      },
+      success: function(response) {
+        if( response.type == "success" ) {
+          'it worked'
+        }
+        else {
+          'nope'
+        }
+      }
+    });
+  });
+
   setTimeout(function(){
     $('#prompt-CWnFXGNPWNYNiMFgwS5X-iframe').fadeOut('slow');
   }, 10000 );
