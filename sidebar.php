@@ -1,7 +1,6 @@
 <div id="sidebar">
 <?php
     global $post;
-    global $product;
     $slug = $post->post_name;
 
     $id = get_term_by('slug', $slug, 'product_cat');
@@ -9,20 +8,30 @@
 
 
     $taxonomy       = 'product_cat';
-    $orderby        = 'ID';
-    $show_count     = 0;      // 1 for yes, 0 for no
-    $pad_counts     = 0;      // 1 for yes, 0 for no
     $hierarchical   = 1;      // 1 for yes, 0 for no
     $title          = '';
     $empty          = 0;
+    $limit          = -1;
+    $status         ='publish';
 
     $args = array(
+        'status'                        => $status,
+        'limit'                         => $limit,
         'hierarchical'                  => $hierarchical,
         'show_option_none'              => '',
         'hide_empty'                    => $empty,
         'parent'                        => $idObj,
         'taxonomy'                      => $taxonomy,
     );
+
+    $query_args = array(
+        'status'                        => $status,
+        'limit'                         => $limit,
+//        'parent'                        => $idObj,
+        'category'                      => array( $slug ),
+    );
+
+    $data = array();
 
     $categories = get_categories($args);
 
@@ -33,15 +42,12 @@
         )
     );
 
-    $manufacturers = 'pa_manufacturer';
-//    $manufacturer = explode(',', $product->get_attributes($manufacturers));
-
     if ( $slug == 'showroom' ) {
         echo '<p>Condition: </p>' . '
         <span>New</span>
         <label class="switch">
             <input type="checkbox">
-            <span class="slider"></span>
+            <span class="slider round"></span>
         </label>
         <span>Used</span>        
     <hr>';
@@ -53,11 +59,11 @@
     }
     echo '<hr>';
 //    var_dump($last_categories);
-
+//Change this from form radio to links, or not... I'm not sure
     echo '<p>Price: </p>' . '
     <form action="">
         <input type="radio" id="toOneHundred" name="priceRange" value="toOneHundred">
-        <label for="toOneHundred">0 - $100</label><br>
+        <label for="toOneHundred">$0 - $100</label><br>
         <input type="radio" id="toFiveHundred" name="priceRange" value="toFiveHundred">
         <label for="toFiveHundred">$100 - $500</label><br>
         <input type="radio" id="toOneThousand" name="priceRange" value="toOneThousand">
@@ -69,10 +75,29 @@
     </form>
     <hr>';
 
-    echo '<p>Manufacturer: </p>' . '
-    <p>Iterate crap here</p>' .
-//    var_dump($manufacturer);
-    '<hr>';
+echo '<p>Manufacturer: </p>';
+
+    foreach( wc_get_products($query_args) as $product ){
+        foreach( $product->get_attributes() as $tax => $attribute ){
+//            $attribute_name = wc_attribute_label( $tax );
+//            $attribute_name = get_taxonomy( $tax )->labels->singular_name;
+
+            foreach ( $attribute->get_terms() as $term ){
+                if ($term->taxonomy == 'pa_manufacturer') {
+                    echo '<a href="?filters=product_cat['. $term->term_id . ']">' . $term->name. '</a><br>';
+                }
+//                $data[$tax][$term->term_id] = $term->name;
+//            // Or with the product attribute label name instead:
+//             $data[$attribute_name][$term->term_id] = $term->name;
+//                var_dump($term);
+//                echo '<br>';
+            }
+//            echo $attribute_name . '<br>';
+        }
+}
+//echo $slug . '<br>
+
+    echo '<hr>';
 
 ?>
     <button type="button" id="clear">Clear</button>
