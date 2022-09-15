@@ -85,18 +85,20 @@ echo '<p>Manufacturer: </p>';
             foreach ( $attribute->get_terms() as $term ){
                 if ($term->taxonomy == 'pa_manufacturer') {
                     echo '<a href="?filters=product_cat['. $term->term_id . ']">' . $term->name. '</a><br>';
-                }
 //                $data[$tax][$term->term_id] = $term->name;
+                }
 //            // Or with the product attribute label name instead:
 //             $data[$attribute_name][$term->term_id] = $term->name;
-//                var_dump($term);
-//                echo '<br>';
             }
 //            echo $attribute_name . '<br>';
         }
 }
 //echo $slug . '<br>
 
+//    foreach($data['']) {
+//
+//    }
+//    var_dump($data);
     echo '<hr>';
 
 ?>
