@@ -1,7 +1,6 @@
 <div id="sidebar">
 <?php
     global $post;
-    global $product;
     $slug = $post->post_name;
 
     $id = get_term_by('slug', $slug, 'product_cat');
@@ -31,17 +30,16 @@
 //        'parent'                        => $idObj,
         'category'                      => array( $slug ),
     );
-
-    $data = array();
+//    $data = array();
 
     $categories = get_categories($args);
 
-    $last_categories = get_categories(
-        array(
-            'taxonomy' => 'product_cat',
-            'parent' => $categories->cat_ID
-        )
-    );
+//    $last_categories = get_categories(
+//        array(
+//            'taxonomy' => 'product_cat',
+//            'parent' => $categories->cat_ID
+//        )
+//    );
 
     if ( $slug == 'showroom' ) {
         echo '<p>Condition: </p>' . '
@@ -78,31 +76,24 @@
 
 echo '<p>Manufacturer: </p>';
 
-//    foreach( wc_get_products($query_args) as $product ){
-//        foreach( $product->get_attributes() as $tax => $attribute ){
-////            $attribute_name = wc_attribute_label( $tax );
-////            $attribute_name = get_taxonomy( $tax )->labels->singular_name;
-//
-//            foreach ( $attribute->get_terms() as $term ){
-//                if ($term->taxonomy == 'pa_manufacturer') {
-//                    echo '<a href="?filters=tag_ID['. $term->term_id . ']">' . $term->name. '</a><br>';
-////                $data[$tax][$term->term_id] = $term->name;
-//                }
-////            // Or with the product attribute label name instead:
-////             $data[$attribute_name][$term->term_id] = $term->name;
-//            }
-////            echo $attribute_name . '<br>';
-//        }
-//}
+//$unique = array();
 
-foreach( wc_get_attribute_taxonomies() as $values ) {
-    // Get the array of term names for each product attribute
-    $term_names = get_terms( array('taxonomy' => 'pa_' . $values->attribute_name, 'fields' => 'names' ) );
-    if ($values->attribute_label == 'Manufacturer') {
-        echo implode(', ', $term_names);
+foreach (wc_get_products($query_args) as $product) {
+    foreach ($product->get_attributes() as $tax => $attribute) {
+        foreach ($attribute->get_terms() as $term) {
+            if ($term->taxonomy == 'pa_manufacturer') {
+                $manufacturer = array(
+                                        'id'            => $term->term_id,
+                                        'name'          => $term->name
+                );
+                $unique = array_unique($manufacturer);
+
+                echo '<a href="?filters=tag_ID[' . $unique['id'] . ']">' . $unique['name'] . '</a><br>';
+            }
+
+        }
     }
 }
-
     echo '<hr>';
 
 ?>
