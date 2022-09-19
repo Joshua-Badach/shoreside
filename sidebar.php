@@ -76,23 +76,31 @@
 
 echo '<p>Manufacturer: </p>';
 
-//$unique = array();
+$unique = array();
+$manufacturer = array();
 
 foreach (wc_get_products($query_args) as $product) {
     foreach ($product->get_attributes() as $tax => $attribute) {
         foreach ($attribute->get_terms() as $term) {
             if ($term->taxonomy == 'pa_manufacturer') {
-                $manufacturer = array(
-                                        'id'            => $term->term_id,
-                                        'name'          => $term->name
-                );
-                $unique = array_unique($manufacturer);
-
-                echo '<a href="?filters=tag_ID[' . $unique['id'] . ']">' . $unique['name'] . '</a><br>';
+                $unique[] = $term->term_id;
+                $termCheck = array_unique($unique);
+                foreach ($term as $manufacturer) {
+                    $manufacturer = array(
+                        'id' => $term->term_id,
+                        'name' => $term->name
+                    );
+                }
             }
-
         }
     }
+}
+
+var_dump($termCheck);
+foreach ($termCheck as $tester) {
+    if(in_array($manufacturer['id'], $termCheck)) {
+            echo '<a href="?filters=tag_ID[' . $manufacturer['id'] . ']">' . $manufacturer['name'] . '</a><br>';
+        }
 }
     echo '<hr>';
 
