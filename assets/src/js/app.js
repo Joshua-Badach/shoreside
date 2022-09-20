@@ -1,4 +1,4 @@
-jQuery(document).ready(function() {
+jQuery(document).ready(function($) {
 
   window.onscroll = function() {navStick()};
 
@@ -156,31 +156,52 @@ jQuery(document).ready(function() {
     // });
   //finish modal later
   }
-
-  $("#some_id").click( function(e) {
-    e.preventDefault();
-
-    $.ajax({
-      type : "post",
-      dataType : "json",
-      url : OBJ.ajaxurl,
-      data : {
-        action: "my_ajax_action"
-      },
-      success: function(response) {
-        if( response.type == "success" ) {
-          'it worked'
-        }
-        else {
-          'nope'
-        }
-      }
-    });
-  });
+  //
+  // $("#some_id").click( function(e) {
+  //   e.preventDefault();
+  //
+  //   $.ajax({
+  //     type : "post",
+  //     dataType : "json",
+  //     url : OBJ.ajaxurl,
+  //     data : {
+  //       action: "my_ajax_action"
+  //     },
+  //     success: function(response) {
+  //       if( response.type == "success" ) {
+  //         'it worked'
+  //       }
+  //       else {
+  //         'nope'
+  //       }
+  //     }
+  //   });
+  // });
 
   setTimeout(function(){
     $('#prompt-CWnFXGNPWNYNiMFgwS5X-iframe').fadeOut('slow');
   }, 10000 );
+
+$(document).on('click', '.load_results', function(){
+    var page = $(this).data('page');
+    var ajaxUrl = $(this).data('url');
+
+    $.ajax({
+
+      url : ajaxUrl,
+      type : 'post',
+      data : {
+        page : page,
+        action : 'load_results'
+      },
+      error : function( response ){
+        console.log( response );
+      },
+      success : function( response ){
+        $('.load_content').append( response )
+      },
+    });
+  });
 
   checkWidth();
   $(window).resize(checkWidth);

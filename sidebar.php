@@ -77,31 +77,36 @@
 echo '<p>Manufacturer: </p>';
 
 $unique = array();
-$manufacturer = array();
+//$manufacturer = array();
 
 foreach (wc_get_products($query_args) as $product) {
     foreach ($product->get_attributes() as $tax => $attribute) {
         foreach ($attribute->get_terms() as $term) {
+            attributeLoop($termCheck, $manufacturer);
+
             if ($term->taxonomy == 'pa_manufacturer') {
                 $unique[] = $term->term_id;
-                $termCheck = array_unique($unique);
-                foreach ($term as $manufacturer) {
-                    $manufacturer = array(
-                        'id' => $term->term_id,
-                        'name' => $term->name
-                    );
-                }
+                $termCheck['id'] = array_unique($unique);
+                $manufacturer = array(
+                    'id' => $term->term_id,
+                    'name' => $term->name
+                );
             }
+//            if(isset($manufacturer[$termCheck])){
+//            var_dump($manufacturer['id']);
         }
     }
 }
+var_dump($termCheck['id']);
 
-var_dump($termCheck);
-foreach ($termCheck as $tester) {
-    if(in_array($manufacturer['id'], $termCheck)) {
-            echo '<a href="?filters=tag_ID[' . $manufacturer['id'] . ']">' . $manufacturer['name'] . '</a><br>';
-        }
+function attributeLoop($termcheck, $manufacturer)
+{
+    if (in_array($termCheck['id'], $manufacturer['id'], true)) {
+        echo '<a href="?filters=tag_ID[' . $manufacturer['id'] . ']">' . $manufacturer['name'] . '</a><br>';
+    }
 }
+
+
     echo '<hr>';
 
 ?>

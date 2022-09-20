@@ -1111,3 +1111,8 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+.loadMore{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5%;
+}

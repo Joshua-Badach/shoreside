@@ -3,6 +3,7 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
 
     function rpsShoreside_setup(){
         load_theme_textdomain( 'rpsShoreside', get_template_directory() . '/languages');
+        require get_template_directory() . '/template-parts/components/ajax.php';
 
         add_theme_support(
             'html5',
@@ -453,7 +454,7 @@ function content_shortcode(){
     get_sidebar();
 //    add content class below when sidebar is live
     echo '<div id="contentTrigger" class="container content">';
-        echo do_shortcode('[product_category category="' . $slug . '" per_page="40" paginate="true" columns="5" orderby="name" order="ASC" operator="IN"]');
+        echo do_shortcode('[product_category category="' . $slug . '" per_page="40" paginate="false" columns="5" orderby="name" order="ASC" operator="IN"]');
     echo '</div>';
 }
 add_shortcode('content', 'content_shortcode');
