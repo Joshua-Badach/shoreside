@@ -12,29 +12,23 @@ $slug = $post->post_name;
 //    echo '<div class="container">';
 //}
 
-//if ($slug != 'search') {
-?>
-<div class="load_content">
-    <?php
+if ($slug != 'search') {
+
     if (have_posts()) {
         while (have_posts()) {
             the_post();
             the_content();
         }
     }
-    ?>
-</div>
-<?php
-//}
-//elseif ($slug == 'search') {
-//// may handle this differently... probably...
-//    get_product_search_form();
-//
-//}
+} elseif ($slug == 'search') {
+// may handle this differently... probably...
+    get_product_search_form();
+
+}
 if ($slug == 'showroom' || $slug == 'parts-and-accessories'){
 echo '<div class="container">
         <div class="row loadMore">
-            <button class="button-3d load_results" data-page="1" data-url="'; echo admin_url("admin-ajax.php") . '">Load more</button>
+            <button class="button-3d load_results" data-page="Ajax fired" data-url="'; echo admin_url("admin-ajax.php") . '">Load more</button>
         </div>
     </div>';
 }

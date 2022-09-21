@@ -77,38 +77,24 @@
 echo '<p>Manufacturer: </p>';
 
 $unique = array();
-//$manufacturer = array();
+$name = array();
 
 foreach (wc_get_products($query_args) as $product) {
     foreach ($product->get_attributes() as $tax => $attribute) {
         foreach ($attribute->get_terms() as $term) {
-            attributeLoop($termCheck, $manufacturer);
-
             if ($term->taxonomy == 'pa_manufacturer') {
                 $unique[] = $term->term_id;
-                $termCheck['id'] = array_unique($unique);
-                $manufacturer = array(
-                    'id' => $term->term_id,
-                    'name' => $term->name
-                );
+                $termCheck = array_unique($unique);
+                $name[] = $term->name;
+                $termName = array_unique($name, SORT_LOCALE_STRING);
             }
-//            if(isset($manufacturer[$termCheck])){
-//            var_dump($manufacturer['id']);
         }
     }
 }
-var_dump($termCheck['id']);
-
-function attributeLoop($termcheck, $manufacturer)
-{
-    if (in_array($termCheck['id'], $manufacturer['id'], true)) {
-        echo '<a href="?filters=tag_ID[' . $manufacturer['id'] . ']">' . $manufacturer['name'] . '</a><br>';
-    }
+foreach ($termCheck as $i => $aTerm){
+    echo '<a href="?filters=tag_ID[' . $termCheck[$i] . ']">' . $termName[$i] . '</a><br>';
 }
-
-
     echo '<hr>';
-
 ?>
     <button type="button" id="clear">Clear</button>
 

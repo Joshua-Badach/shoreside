@@ -182,7 +182,10 @@ jQuery(document).ready(function($) {
     $('#prompt-CWnFXGNPWNYNiMFgwS5X-iframe').fadeOut('slow');
   }, 10000 );
 
-$(document).on('click', '.load_results', function(){
+
+  var postsPerPage = 20;
+
+  $(document).on('click', '.load_results', function(){
     var page = $(this).data('page');
     var ajaxUrl = $(this).data('url');
 
@@ -198,7 +201,7 @@ $(document).on('click', '.load_results', function(){
         console.log( response );
       },
       success : function( response ){
-        $('.load_content').append( response )
+        $('.content').append( response )
       },
     });
   });

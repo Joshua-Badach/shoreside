@@ -449,7 +449,6 @@ function content_shortcode(){
         '</div>';
      echo '</div>
     <div id="mobileFilter">';
-//       echo do_shortcode('[br_filter_single filter_id=4059]');
     echo '</div>';
     get_sidebar();
 //    add content class below when sidebar is live
