@@ -28,7 +28,7 @@ if ($slug != 'search') {
 if ($slug == 'showroom' || $slug == 'parts-and-accessories'){
 echo '<div class="container">
         <div class="row loadMore">
-            <button class="button-3d load_results" data-page="Ajax fired" data-url="'; echo admin_url("admin-ajax.php") . '">Load more</button>
+            <button class="button-3d load_results" data-page="1" data-url="'; echo admin_url("admin-ajax.php") . '">Load more</button>
         </div>
     </div>';
 }

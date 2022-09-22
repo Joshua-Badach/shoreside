@@ -183,10 +183,138 @@ jQuery(document).ready(function($) {
   }, 10000 );
 
 
-  var postsPerPage = 20;
+  // $('.load_results').click( function(e){
+  //   e.preventDefault();
+  //   ajax_next_posts()
+  //   $('body').addClass('ajaxLoading');
+  // });
+  //
+  // var ajaxLock = false; // ajaxLock is just a flag to prevent double clicks and spamming
+  //
+  // if( !ajaxLock ) {
+  //
+  //   function ajax_next_posts() {
+  //
+  //     ajaxLock = true;
+  //
+  //     // How many posts there's total
+  //     var totalPosts = parseInt( jQuery( '#found-posts' ).text() );
+  //
+  //     // How many have been loaded
+  //     var postOffset = jQuery( 'li.product' ).length
+  //
+  //     // How many do you want to load in single patch
+  //     var postsPerPage = 1;
+  //
+  //     var ajaxUrl = $(this).data('url');
+  //
+  //
+  //     // Ajax call itself
+  //     $.ajax({
+  //       method: 'POST',
+  //       url: ajaxUrl,
+  //       data: {
+  //         action: 'ajax_next_posts',
+  //         post_offset: postOffset,
+  //         posts_per_page: postsPerPage,
+  //         // product_cat: cat_id
+  //       },
+  //       dataType: 'json'
+  //     })
+  //       .done( function( response ) { // Ajax call is successful
+  //         // console.log( response );
+  //
+  //         // Add new posts
+  //         jQuery( '.content' ).append( response[0] );
+  //
+  //         // Log SQL query
+  //         jQuery( '#query > pre' ).text( response[2] );
+  //
+  //         // Update the count of total posts
+  //         // jQuery( '#found-posts' ).text( response[1] );
+  //
+  //         ajaxLock = false;
+  //
+  //         console.log( 'Success' );
+  //
+  //         $('body').removeClass('ajaxLoading');
+  //
+  //         // How many posts there's total
+  //         var totalPosts = parseInt( jQuery( '#found-posts' ).text() );
+  //         console.log( "Total Posts: " + totalPosts );
+  //
+  //         // How many have been loaded
+  //         var postOffset = jQuery( 'li.product' ).length
+  //         console.log( "Posts currently showing: " + postOffset );
+  //
+  //         // Hide button if all posts are loaded
+  //         if( totalPosts < postOffset + ( 1 * postsPerPage ) ) {
+  //           jQuery( '.load_results' ).fadeOut();
+  //         }
+  //
+  //       })
+  //       // .fail( function() {
+  //       .fail( function(jqXHR, textStatus, errorThrown) { // Ajax call is not successful, still remove lock in order to try again
+  //
+  //         ajaxLock = false;
+  //
+  //         console.log(XMLHttpRequest);
+  //         console.log(textStatus);
+  //         console.log(errorThrown);
+  //
+  //         console.log( 'Failed' );
+  //
+  //       });
+  //   }
+  // }
+  //
+
+  //filter prevent default, pass value to url
+  $(document).on('click', '#sidebar a', function(e){
+    e.preventDefault();
+    var filter = $(this).attr('href');
+
+    window.history.replaceState(null, null, filter);
+  });
+
+  //filter prevent default, clear url state
+  $(document).on('click', '#clear', function(e){
+    e.preventDefault();
+    var pageUrl = document.location.href;
+
+    window.history.pushState({}, "", pageUrl.split("?")[0]);
+  });
+
+  //filter preowned switch
+  $(document).on('click','.switch input', function(){
+    var pageUrl = document.location.href;
+    var preOwned = $('.switch input').val();
+    if ($('.switch input').prop('checked') == true){
+      window.history.replaceState(null, null, preOwned);
+    }
+    else {
+      //reine this later, good enough for now
+      window.history.pushState({}, "", pageUrl.split("?")[0]);
+    }
+  });
+
+  // $('.content').filter(function(){
+    //
+    // });
+
+    // $.ajax({
+    //   type : 'get',
+    //   url : pageUrl,
+    //   success : function(data) {
+    //     $("body")
+    //   },
+    // });
+
 
   $(document).on('click', '.load_results', function(){
+    var that = $(this);
     var page = $(this).data('page');
+    var newPage = page++;
     var ajaxUrl = $(this).data('url');
 
     $.ajax({

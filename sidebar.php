@@ -45,10 +45,10 @@
         echo '<p>Condition: </p>' . '
         <span>New</span>
         <label class="switch">
-            <input type="checkbox">
+            <input type="checkbox" value="?filters=preowned">
             <span class="slider round"></span>
         </label>
-        <span>Used</span>        
+        <span>Pre Owned</span>        
     <hr>';
     }
     echo '<p>Category: </p>';
