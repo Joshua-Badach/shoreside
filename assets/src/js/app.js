@@ -269,33 +269,36 @@ jQuery(document).ready(function($) {
   // }
   //
 
-  //filter prevent default, pass value to url
-  $(document).on('click', '#sidebar a', function(e){
-    e.preventDefault();
-    var filter = $(this).attr('href');
+  //refine later, check if ?filters= exists, if unique filter - append, if same filter - replace
 
-    window.history.replaceState(null, null, filter);
-  });
+  var pageUrl = document.location.href;
 
-  //filter prevent default, clear url state
-  $(document).on('click', '#clear', function(e){
-    e.preventDefault();
-    var pageUrl = document.location.href;
-
-    window.history.pushState({}, "", pageUrl.split("?")[0]);
-  });
-
-  //filter preowned switch
+//filter preowned switch
   $(document).on('click','.switch input', function(){
-    var pageUrl = document.location.href;
     var preOwned = $('.switch input').val();
     if ($('.switch input').prop('checked') == true){
       window.history.replaceState(null, null, preOwned);
+      location.reload();
     }
     else {
       //reine this later, good enough for now
       window.history.pushState({}, "", pageUrl.split("?")[0]);
+      location.reload();
+
     }
+  });
+
+  //filter prevent default, pass value to url
+  $(document).on('click', '#sidebar a', function(){
+    var filter = $(this).attr('href');
+    window.history.replaceState(null, null, filter);
+  });
+
+  //filter prevent default, clear url state
+  $(document).on('click', '#clear', function(){
+    // e.preventDefault();
+    window.history.pushState({}, "", pageUrl.split("?")[0]);
+    location.reload();
   });
 
   // $('.content').filter(function(){
@@ -322,7 +325,6 @@ jQuery(document).ready(function($) {
       url : ajaxUrl,
       type : 'post',
       data : {
-        page : page,
         action : 'load_results'
       },
       error : function( response ){

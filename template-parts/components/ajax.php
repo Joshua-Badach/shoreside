@@ -3,13 +3,19 @@
 
 function load_results(){
     global $post;
+    global $category;
     $slug = $post->post_name;
     $id = get_term_by('slug', $slug, 'product_cat');
     $idObj = $id->term_id;
 
+//    $post_type      = 'product';
+//    $columns        = '5';
+//    $orderby        = $_GET['orderby'];
+//    $tag            = $_GET['tag_ID'];
+    $category       = $_GET['product_cat'];
+//    $attribute      = $_GET['product_attributes'];
 //    $taxonomy       = 'product_cat';
-    $post_type      = 'product';
-    $paged          = $_POST["page"]+1;
+//    $paged          = $_POST["page"]+1;
 //    $orderby        = 'name';
 //    $show_count     = 0;      // 1 for yes, 0 for no
 //    $pad_counts     = 0;      // 1 for yes, 0 for no
@@ -18,8 +24,9 @@ function load_results(){
 //    $empty          = 0;
 
     $args = array(
-        'post_type'                 => $post_type,
-        'paged'                     => $paged,
+//        'post_type'                 => $post_type,
+        'category'                  => $category,
+//        'paged'                     => $paged,
 //        'taxonomy'                  => $taxonomy,
 //        'terms'                     => $idObj,
 //        'orderby'                   => $orderby,
@@ -30,18 +37,19 @@ function load_results(){
 //        'hide_empty'                => $empty,
 //        'paged'                     => $paged
     );
-    $loop = new WP_Query( $args );
+//    $loop = new WP_Query( $args );
 //
 //    while ($loop->have_posts() ) : $loop->the_post;
+        var_dump($args);
+
 //        echo 'new posts ';
 //    endwhile;
 
 //    loop
 
-    echo $paged;
-    wp_reset_postdata();
-
-    wp_die();
+//    wp_reset_postdata();
+//
+//    wp_die();
 }
 //
 //function ajax_next_posts() {

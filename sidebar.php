@@ -4,7 +4,12 @@
     $slug = $post->post_name;
 
     $id = get_term_by('slug', $slug, 'product_cat');
-    $idObj = $id->term_id;
+    if ($_GET['product_cat'] == '') {
+        $idObj = $id->term_id;
+    }
+    else {
+        $idObj = $_GET['product_cat'];
+    }
 
 
     $taxonomy       = 'product_cat';
@@ -43,36 +48,38 @@
 
     if ( $slug == 'showroom' ) {
         echo '<p>Condition: </p>' . '
-        <span>New</span>
         <label class="switch">
-            <input type="checkbox" value="?filters=preowned">
+            <input type="checkbox" value="?product_cat=preowned ">
             <span class="slider round"></span>
         </label>
-        <span>Pre Owned</span>        
+        <span>New</span>        
     <hr>';
     }
+//    echo '<p>On Sale: </p>' . '
+//        <label class="switch">
+//            <input type="checkbox" value="?product_cat='. $idObj .'">
+//            <span class="slider round"></span>
+//        </label>
+//        <span>New</span>
+//    <hr>';
+
     echo '<p>Category: </p>';
 
     foreach ($categories as $cat) {
-        echo '<a href="?filters=product_cat[' . $cat->term_id . ']">'.$cat->cat_name.'</a><br>';
+        echo '<a href="?product_cat=' . $cat->term_id . '">'.$cat->cat_name.'</a><br>';
     }
     echo '<hr>';
-//    var_dump($last_categories);
 //Change this from form radio to links, or not... I'm not sure
-    echo '<p>Price: </p>' . '
-    <form action="">
-        <input type="radio" id="toOneHundred" name="priceRange" value="toOneHundred">
-        <label for="toOneHundred">$0 - $100</label><br>
-        <input type="radio" id="toFiveHundred" name="priceRange" value="toFiveHundred">
-        <label for="toFiveHundred">$100 - $500</label><br>
-        <input type="radio" id="toOneThousand" name="priceRange" value="toOneThousand">
-        <label for="toOneThousand">$500 - $1,000</label><br>
-        <input type="radio" id="toTenThousand" name="priceRange" value="toTenThousand">
-        <label for="toTenThousand">$1,000 - $10,000</label><br>
-        <input type="radio" id="aboveTenThousand" name="priceRange" value="aboveTenThousand">
-        <label for="aboveTenThousand">+ $10,000</label><br>
-    </form>
-    <hr>';
+//    echo '<p>Price: </p>'
+//        . '<a href="?filters=price[100]">$0 - $100</a><br>
+//        <a href="?filters=price[500]">$100 - $500</a><br>
+//        <a href="?filters=price[1000]">$500 - $1,000</a><br>
+//        <a href="?filters=price[10000]">$1,000 - $10,000</a><br>
+//        <a href="?filters=price[10001]">+ $10,000</a><br><hr>';
+
+echo    '<p>Price: </p>' .
+        '<a href="?orderby=price">Low to High</a><br>
+        <a href="?orderby=price-desc">High to Low</a><br><hr>';
 
 echo '<p>Manufacturer: </p>';
 
@@ -92,10 +99,11 @@ foreach (wc_get_products($query_args) as $product) {
     }
 }
 foreach ($termCheck as $i => $aTerm){
-    echo '<a href="?filters=tag_ID[' . $termCheck[$i] . ']">' . $termName[$i] . '</a><br>';
+    echo '<a href="?product_tag=' . $termCheck[$i] . '">' . $termName[$i] . '</a><br>';
 }
     echo '<hr>';
 ?>
-    <button type="button" id="clear">Clear</button>
-
+    <div class="clearButton">
+        <button type="button" class="button-3d" id="clear">Clear</button>
+    </div>
 </div>

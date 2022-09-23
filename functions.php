@@ -118,6 +118,13 @@ $current_url = home_url( add_query_arg( array(), $wp->request ) );
 $site_name = get_bloginfo( 'name' );
 $site_slug = $post->post_name;
 
+//add_action('init', 'add_get_val');
+//function add_get_val(){
+//    global $wp;
+//    $wp->add_query_var('product_cat');
+//}
+
+
 //Shortcodes
 
 function carousel_shortcode(){
@@ -438,7 +445,20 @@ function content_shortcode(){
     global $post;
     $slug = $post->post_name;
     $id = get_term_by('slug', $slug, 'product_cat');
-    $idObj = $id->term_id;
+
+    if ($_GET['product_cat'] == '') {
+        $idObj = $id->term_id;
+    }
+    else {
+        $idObj = $_GET['product_cat'];
+    }
+    if ($_GET['product_tag'] == ''){
+        $tagObj ='';
+    }
+    else{
+        $tagObj = $_GET['product_tag'];
+    }
+
     $categoryDescription = category_description($idObj);
     $term = get_term_by('id', $idObj, 'product_cat');
 
@@ -453,7 +473,7 @@ function content_shortcode(){
     get_sidebar();
 //    add content class below when sidebar is live
     echo '<div id="contentTrigger" class="container content">';
-        echo do_shortcode('[product_category category="' . $slug . '" per_page="40" paginate="true" columns="5" orderby="name" order="ASC" operator="IN"]');
+        echo do_shortcode('[product category="' . $idObj . '" term="' . $tagObj . '" per_page="40" paginate="true" columns="5" orderby="name" order="ASC" operator="IN"]');
     echo '</div>';
 }
 add_shortcode('content', 'content_shortcode');
