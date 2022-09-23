@@ -466,8 +466,11 @@ function content_shortcode(){
         <div class="row">
         <h2>' . $term->name . '</h2>' .
             $categoryDescription .
-        '</div>';
-     echo '</div>
+        '</div>
+        <div class="row">
+            <p>Breadcrumbs code goes there</p>
+        </div>
+    </div>
     <div id="mobileFilter">';
     echo '</div>';
     get_sidebar();

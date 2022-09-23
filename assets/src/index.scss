@@ -1004,6 +1004,7 @@ div .form-footer{
 }
 .content{
   position: relative;
+  min-height: 350px;
   left: 100px;
 }
 .categoryList ul{
@@ -1118,4 +1119,8 @@ input:checked + .slider:before {
 }
 .clearButton{
   display: flex;
+}
+#sidebar a{
+  margin: 10px 0;
+  text-decoration: none;
 }

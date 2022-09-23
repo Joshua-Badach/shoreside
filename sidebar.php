@@ -1,4 +1,3 @@
-<div id="sidebar">
 <?php
     global $post;
     $slug = $post->post_name;
@@ -44,38 +43,31 @@
 //            'taxonomy' => 'product_cat',
 //            'parent' => $categories->cat_ID
 //        )
-//    );
-
-    if ( $slug == 'showroom' ) {
-        echo '<p>Condition: </p>' . '
-        <label class="switch">
-            <input type="checkbox" value="?product_cat=preowned ">
-            <span class="slider round"></span>
-        </label>
-        <span>New</span>        
-    <hr>';
-    }
-//    echo '<p>On Sale: </p>' . '
-//        <label class="switch">
-//            <input type="checkbox" value="?product_cat='. $idObj .'">
-//            <span class="slider round"></span>
-//        </label>
-//        <span>New</span>
-//    <hr>';
-
+//    );?>
+<div id="sidebar">
+<?php
     echo '<p>Category: </p>';
 
     foreach ($categories as $cat) {
         echo '<a href="?product_cat=' . $cat->term_id . '">'.$cat->cat_name.'</a><br>';
     }
     echo '<hr>';
-//Change this from form radio to links, or not... I'm not sure
-//    echo '<p>Price: </p>'
-//        . '<a href="?filters=price[100]">$0 - $100</a><br>
-//        <a href="?filters=price[500]">$100 - $500</a><br>
-//        <a href="?filters=price[1000]">$500 - $1,000</a><br>
-//        <a href="?filters=price[10000]">$1,000 - $10,000</a><br>
-//        <a href="?filters=price[10001]">+ $10,000</a><br><hr>';
+if ( $slug == 'showroom' ) {
+    echo '<span>Condition: </span>' . '
+        <label class="switch">
+            <input type="checkbox" class="conditionInput" value="?product_cat=preowned ">
+            <span class="slider round"></span>
+        </label>
+        <span class="condition">New</span>        
+    <hr>';
+}
+echo '<span>On Sale: </span>' . '
+        <label class="switch">
+            <input type="checkbox" class="saleInput" value="?product_cat=on-sale ">
+            <span class="slider round"></span>
+        </label>
+        <span class="on-sale">No</span>        
+    <hr>';
 
 echo    '<p>Price: </p>' .
         '<a href="?orderby=price">Low to High</a><br>

@@ -274,17 +274,35 @@ jQuery(document).ready(function($) {
   var pageUrl = document.location.href;
 
 //filter preowned switch
-  $(document).on('click','.switch input', function(){
-    var preOwned = $('.switch input').val();
-    if ($('.switch input').prop('checked') == true){
+  $(document).on('click','.conditionInput', function(){
+    var preOwned = $('.conditionInput').val();
+    var conditionText = $('.condition');
+    if ($('.conditionInput').prop('checked') == true){
       window.history.replaceState(null, null, preOwned);
-      location.reload();
+      $(conditionText).text('Used')
+      // location.reload();
     }
     else {
       //reine this later, good enough for now
       window.history.pushState({}, "", pageUrl.split("?")[0]);
-      location.reload();
-
+      $(conditionText).text('New')
+      // location.reload();
+    }
+  });
+  //filter on sale switch
+  $(document).on('click','.saleInput', function(){
+    var sale = $('.saleInput').val();
+    var saleText = $('.on-sale');
+    if ($('.saleInput').prop('checked') == true){
+      window.history.replaceState(null, null, sale);
+      $(saleText).text('Yes')
+      // location.reload();
+    }
+    else {
+      //reine this later, good enough for now
+      window.history.pushState({}, "", pageUrl.split("?")[0]);
+      $(saleText).text('No')
+      // location.reload();
     }
   });
 
