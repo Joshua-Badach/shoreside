@@ -448,22 +448,13 @@ function content_shortcode(){
 
 //    Make this better after concept is proved
 
-    if ($_GET['product_cat'] == '') {
-        $idObj = $id->term_id;
-    }
-    else {
+    if ($_GET['product_cat'] != '') {
         $idObj = $_GET['product_cat'];
     }
-    if ($_GET['product_tag'] == ''){
-        $tagObj ='';
-    }
-    else{
+    if ($_GET['product_tag'] != ''){
         $tagObj = $_GET['product_tag'];
     }
-    if ($_GET['orderby'] == ''){
-        $orderByOjb = 'price';
-    }
-    else{
+    if ($_GET['orderby'] != ''){
         $orderByOjb = $_GET['orderby'];
     }
     if ($_GET['on-sale'] != ''){

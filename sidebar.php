@@ -63,7 +63,7 @@ if ( $slug == 'showroom' ) {
 }
 echo '<span>On Sale: </span>' . '
         <label class="switch">
-            <input type="checkbox" class="saleInput" value="?on-sale=1 ">
+            <input type="checkbox" class="saleInput" value="?on-sale=sale ">
             <span class="slider round"></span>
         </label>
         <span class="on-sale">No</span>        
