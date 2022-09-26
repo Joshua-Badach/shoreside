@@ -284,7 +284,7 @@ jQuery(document).ready(function($) {
     //  remove reload crap after ajax, leave selected after reload
     }
     else {
-      //reine this later, good enough for now
+      //refine this later, good enough for now
       window.history.pushState({}, "", pageUrl.split("?")[0]);
       $(conditionText).text('New')
       location.reload();
@@ -301,7 +301,7 @@ jQuery(document).ready(function($) {
       //  remove reload crap after ajax, leave selected after reload
     }
     else {
-      //reine this later, good enough for now
+      //refine this later, good enough for now
       window.history.pushState({}, "", pageUrl.split("?")[0]);
       $(saleText).text('No')
       location.reload();

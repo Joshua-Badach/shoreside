@@ -448,13 +448,24 @@ function content_shortcode(){
 
 //    Make this better after concept is proved
 
-    if ($_GET['product_cat'] != '') {
+    if ($_GET['product_cat'] == '') {
+        $idObj = $id->term_id;
+    }
+    else {
         $idObj = $_GET['product_cat'];
     }
-    if ($_GET['product_tag'] != ''){
-        $tagObj = $_GET['product_tag'];
+    if ($_GET['product_tag'] == ''){
+        $tagObj ='';
     }
-    if ($_GET['orderby'] != ''){
+    else{
+        $tagObj = $_GET['product_tag'];
+        $attribute = 'pa_manufacturer';
+//        hardcoded for now, depending on how syd handles the attributes going forward
+    }
+    if ($_GET['orderby'] == ''){
+        $orderByOjb = 'price';
+    }
+    else{
         $orderByOjb = $_GET['orderby'];
     }
     if ($_GET['on-sale'] != ''){
@@ -478,7 +489,7 @@ function content_shortcode(){
     get_sidebar();
 //    add content class below when sidebar is live
     echo '<div id="contentTrigger" class="container content">';
-        echo do_shortcode('[products category="' . $idObj . '" term="' . $tagObj . '" per_page="40" paginate="true" columns="5" orderby="' . $orderByOjb . '" attribute="" term="" on_sale="' . $onSaleObj . '" order="ASC" operator="IN"]');
+        echo do_shortcode('[products category="' . $idObj . '" attribute="' . $attribute . '"  terms="' . $tagObj . '" per_page="40" paginate="true" columns="5" orderby="' . $orderByOjb . '" on_sale="' . $onSaleObj . '" order="ASC" operator="IN"]');
     echo '</div>';
 }
 add_shortcode('content', 'content_shortcode');
