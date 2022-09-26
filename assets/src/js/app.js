@@ -280,13 +280,14 @@ jQuery(document).ready(function($) {
     if ($('.conditionInput').prop('checked') == true){
       window.history.replaceState(null, null, preOwned);
       $(conditionText).text('Used')
-      // location.reload();
+      location.reload();
+    //  remove reload crap after ajax, leave selected after reload
     }
     else {
       //reine this later, good enough for now
       window.history.pushState({}, "", pageUrl.split("?")[0]);
       $(conditionText).text('New')
-      // location.reload();
+      location.reload();
     }
   });
   //filter on sale switch
@@ -296,13 +297,14 @@ jQuery(document).ready(function($) {
     if ($('.saleInput').prop('checked') == true){
       window.history.replaceState(null, null, sale);
       $(saleText).text('Yes')
-      // location.reload();
+      location.reload();
+      //  remove reload crap after ajax, leave selected after reload
     }
     else {
       //reine this later, good enough for now
       window.history.pushState({}, "", pageUrl.split("?")[0]);
       $(saleText).text('No')
-      // location.reload();
+      location.reload();
     }
   });
 

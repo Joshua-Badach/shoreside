@@ -55,7 +55,7 @@
 if ( $slug == 'showroom' ) {
     echo '<span>Condition: </span>' . '
         <label class="switch">
-            <input type="checkbox" class="conditionInput" value="?product_cat=preowned ">
+            <input type="checkbox" class="conditionInput" value="?product_cat=283 ">
             <span class="slider round"></span>
         </label>
         <span class="condition">New</span>        
@@ -63,7 +63,7 @@ if ( $slug == 'showroom' ) {
 }
 echo '<span>On Sale: </span>' . '
         <label class="switch">
-            <input type="checkbox" class="saleInput" value="?product_cat=on-sale ">
+            <input type="checkbox" class="saleInput" value="?on-sale=1 ">
             <span class="slider round"></span>
         </label>
         <span class="on-sale">No</span>        
@@ -90,7 +90,7 @@ foreach (wc_get_products($query_args) as $product) {
         }
     }
 }
-foreach ($termCheck as $i => $aTerm){
+foreach ($termCheck as $i => $aTerm) {
     echo '<a href="?product_tag=' . $termCheck[$i] . '">' . $termName[$i] . '</a><br>';
 }
     echo '<hr>';

@@ -446,6 +446,8 @@ function content_shortcode(){
     $slug = $post->post_name;
     $id = get_term_by('slug', $slug, 'product_cat');
 
+//    Make this better after concept is proved
+
     if ($_GET['product_cat'] == '') {
         $idObj = $id->term_id;
     }
@@ -457,6 +459,15 @@ function content_shortcode(){
     }
     else{
         $tagObj = $_GET['product_tag'];
+    }
+    if ($_GET['orderby'] == ''){
+        $orderByOjb = 'price';
+    }
+    else{
+        $orderByOjb = $_GET['orderby'];
+    }
+    if ($_GET['on-sale'] != ''){
+        $onSaleObj = true;
     }
 
     $categoryDescription = category_description($idObj);
@@ -476,7 +487,7 @@ function content_shortcode(){
     get_sidebar();
 //    add content class below when sidebar is live
     echo '<div id="contentTrigger" class="container content">';
-        echo do_shortcode('[product category="' . $idObj . '" term="' . $tagObj . '" per_page="40" paginate="true" columns="5" orderby="name" order="ASC" operator="IN"]');
+        echo do_shortcode('[products category="' . $idObj . '" term="' . $tagObj . '" per_page="40" paginate="true" columns="5" orderby="' . $orderByOjb . '" attribute="" term="" on_sale="' . $onSaleObj . '" order="ASC" operator="IN"]');
     echo '</div>';
 }
 add_shortcode('content', 'content_shortcode');
