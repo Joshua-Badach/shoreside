@@ -468,7 +468,7 @@ function content_shortcode(){
     else{
         $orderByOjb = $_GET['orderby'];
     }
-    if ($_GET['on-sale'] != ''){
+    if ($_GET['on_sale'] != ''){
         $onSaleObj = true;
     }
 

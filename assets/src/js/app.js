@@ -293,7 +293,7 @@ jQuery(document).ready(function($) {
   //filter on sale switch
   $(document).on('click','.saleInput', function(){
     var sale = $('.saleInput').val();
-    var saleText = $('.on-sale');
+    var saleText = $('.on_sale');
     if ($('.saleInput').prop('checked') == true){
       window.history.replaceState(null, null, sale);
       $(saleText).text('Yes')
@@ -308,60 +308,34 @@ jQuery(document).ready(function($) {
     }
   });
 
-  //filter prevent default, pass value to url
   $(document).on('click', '#sidebar a', function(e){
     var url = window.location.href;
     var filter = $(this).attr('href');
-    if (url.indexOf('product_cat') || url.indexOf('on-sale') || url.indexOf('product_tag') > -1) {
+
+    if ( url.indexOf('?') > -1){
       e.preventDefault();
-      if (filter.indexOf('product_cat') > -1){
+      window.history.replaceState(null, null, filter);
+      location.reload();
+    }
+
+    if (url.indexOf('?') != -1){
+      var result = filter.replace('?', '');
+      var test = filter.substring(0, filter.lastIndexOf('=') + 1);
+      var filterCheck = test.replace(/[^a-z_]/gi, '');
+      var appendedQuery = url + '&' + result;
+      e.preventDefault();
+
+      //check if query already in url
+      if (url.indexOf(filterCheck) > -1 ){
         window.history.replaceState(null, null, filter);
         location.reload();
       }
-      else{
-        //continue here
-        var result = filter.replace('?', '');
-        var appendedQuery = url + '&' + result;
+
+      if (url.indexOf(filterCheck) == -1){
         window.history.replaceState(null, null, appendedQuery);
         location.reload();
       }
     }
-    else {
-      // window.history.replaceState(null, null, filter);
-      // alert(filter);
-        location.reload();
-    }
-      // alert(url);
-      // if (window.location.href.indexOf('?product_cat=') > -1) {
-      //   // alert(filter);
-      //   var test = url + '&' + filter;
-      //   window.history.replaceState(null, null, test);
-      //   location.reload();
-      // }
-      // else{
-      //   window.history.replaceState(null, null, filter);
-      //   location.reload();
-      // }
-      // // var urlPush = window.location.href = $('+'+newFilter).val();
-      // window.location.href = urlPush;
-      // alert(newFilter);
-    // }
-    // else{
-    //   // e.preventDefault();
-    //   e.preventDefault();
-    //
-    //   window.history.replaceState(null, null, filter);
-    //   location.reload();
-    //   // location.reload();
-
-    // }
-
-  // if (window.location.href.indexOf('?product_cat') > -1){
-      // var filtered = $((filter).split('?')[0]);
-      // $(window.location.append("&&", filtered));
-      // alert("&&"+filter);
-    // }
-    // else {
   });
 
   //filter prevent default, clear url state
