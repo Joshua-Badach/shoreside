@@ -309,7 +309,7 @@ function vision_shortcode(){
     $visionQuery = new WP_Query(array(
         'category_name'     => 'vision',
         'order'             => 'DESC',
-        'post_status'       => ' publish',
+        'post_status'       => 'publish',
         'posts_per_page'    => 1
     ));
 

@@ -34,24 +34,20 @@
 //        'parent'                        => $idObj,
         'category'                      => array( $slug ),
     );
-//    $data = array();
 
     $categories = get_categories($args);
 
-//    $last_categories = get_categories(
-//        array(
-//            'taxonomy' => 'product_cat',
-//            'parent' => $categories->cat_ID
-//        )
-//    );?>
+    ?>
+
 <div id="sidebar">
 <?php
-    echo '<p>Category: </p>';
+    echo '<p>Category: </p><div id="categories">';
 
     foreach ($categories as $cat) {
         echo '<a href="?product_cat=' . $cat->term_id . '">'.$cat->cat_name.'</a><br>';
     }
-    echo '<hr>';
+
+    echo '<hr></div>';
 if ( $slug == 'showroom' ) {
     echo '<span>Condition: </span>' . '
         <label class="switch">
@@ -78,23 +74,29 @@ echo '<p>Manufacturer: </p>';
 $unique = array();
 $name = array();
 
-foreach (wc_get_products($query_args) as $product) {
-    foreach ($product->get_attributes() as $tax => $attribute) {
-        foreach ($attribute->get_terms() as $term) {
-            if ($term->taxonomy == 'pa_manufacturer') {
-                $unique[] = $term->term_id;
-                $termCheck = array_unique($unique);
-                $name[] = $term->name;
-                $termName = array_unique($name, SORT_LOCALE_STRING);
+//function getAttributes($query_args){
+    foreach (wc_get_products($query_args) as $product) {
+        foreach ($product->get_attributes() as $tax => $attribute) {
+            foreach ($attribute->get_terms() as $term) {
+                if ($term->taxonomy == 'pa_manufacturer') {
+                    $unique[] = $term->term_id;
+                    $termCheck = array_unique($unique);
+                    $name[] = $term->name;
+                    $termName = array_unique($name, SORT_LOCALE_STRING);
+                }
             }
         }
     }
-}
+//}
+
 foreach ($termCheck as $i => $aTerm) {
     echo '<a href="?product_tag=' . $termCheck[$i] . '">' . $termName[$i] . '</a><br>';
 }
     echo '<hr>';
 ?>
+<!--    <div class="submitButton">-->
+<!--        <button type="button" class="button-3d" id="submit">Filter</button>-->
+<!--    </div>-->
     <div class="clearButton">
         <button type="button" class="button-3d" id="clear">Clear</button>
     </div>

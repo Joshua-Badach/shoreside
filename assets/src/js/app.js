@@ -309,9 +309,59 @@ jQuery(document).ready(function($) {
   });
 
   //filter prevent default, pass value to url
-  $(document).on('click', '#sidebar a', function(){
+  $(document).on('click', '#sidebar a', function(e){
+    var url = window.location.href;
     var filter = $(this).attr('href');
-    window.history.replaceState(null, null, filter);
+    if (url.indexOf('product_cat') || url.indexOf('on-sale') || url.indexOf('product_tag') > -1) {
+      e.preventDefault();
+      if (filter.indexOf('product_cat') > -1){
+        window.history.replaceState(null, null, filter);
+        location.reload();
+      }
+      else{
+        //continue here
+        var result = filter.replace('?', '');
+        var appendedQuery = url + '&' + result;
+        window.history.replaceState(null, null, appendedQuery);
+        location.reload();
+      }
+    }
+    else {
+      // window.history.replaceState(null, null, filter);
+      // alert(filter);
+        location.reload();
+    }
+      // alert(url);
+      // if (window.location.href.indexOf('?product_cat=') > -1) {
+      //   // alert(filter);
+      //   var test = url + '&' + filter;
+      //   window.history.replaceState(null, null, test);
+      //   location.reload();
+      // }
+      // else{
+      //   window.history.replaceState(null, null, filter);
+      //   location.reload();
+      // }
+      // // var urlPush = window.location.href = $('+'+newFilter).val();
+      // window.location.href = urlPush;
+      // alert(newFilter);
+    // }
+    // else{
+    //   // e.preventDefault();
+    //   e.preventDefault();
+    //
+    //   window.history.replaceState(null, null, filter);
+    //   location.reload();
+    //   // location.reload();
+
+    // }
+
+  // if (window.location.href.indexOf('?product_cat') > -1){
+      // var filtered = $((filter).split('?')[0]);
+      // $(window.location.append("&&", filtered));
+      // alert("&&"+filter);
+    // }
+    // else {
   });
 
   //filter prevent default, clear url state
