@@ -10,11 +10,6 @@ $featured = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'si
     <meta name="viewport" content="width=device-width, initial-scale=1.0" >
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-<!--    remove this later   -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-
 <!--    <link rel="stylesheet" href="--><?php //echo get_template_directory_uri() . '/assets/dist/bundle.css' ?><!--">-->
 
 <!--    <meta property="fb:app_id" content="568883651374703" />-->

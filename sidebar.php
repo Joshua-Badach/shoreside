@@ -39,8 +39,11 @@
 
     ?>
 
+
 <div id="sidebar">
-<?php
+    <div id="sidebarIcon">Hidenslide</div>
+
+    <?php
     echo '<p>Category: </p><div id="categories">';
 
     foreach ($categories as $cat) {
@@ -49,7 +52,7 @@
 
     echo '<hr></div>';
 if ( $slug == 'showroom' ) {
-    echo '<span>Condition: </span>' . '
+    echo '<span>Condition: </span>' . '<br><br>
         <label class="switch">
             <input type="checkbox" class="conditionInput" value="?product_cat=283 ">
             <span class="slider round"></span>
@@ -57,12 +60,12 @@ if ( $slug == 'showroom' ) {
         <span class="condition">New</span>        
     <hr>';
 }
-echo '<span>On Sale: </span>' . '
+echo '<span>On Sale: </span>' . '<br><br>
         <label class="switch">
             <input type="checkbox" class="saleInput" value="?on_sale=sale ">
             <span class="slider round"></span>
         </label>
-        <span class="on-sale">No</span>        
+        <span class="on_sale">No</span>        
     <hr>';
 
 echo    '<p>Price: </p>' .

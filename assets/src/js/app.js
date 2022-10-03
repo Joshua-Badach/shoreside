@@ -320,8 +320,8 @@ jQuery(document).ready(function($) {
 
     if (url.indexOf('?') != -1){
       var result = filter.replace('?', '');
-      var test = filter.substring(0, filter.lastIndexOf('=') + 1);
-      var filterCheck = test.replace(/[^a-z_]/gi, '');
+      var filterSanitize = filter.substring(0, filter.lastIndexOf('=') + 1);
+      var filterCheck = filterSanitize.replace(/[^a-z_]/gi, '');
       var appendedQuery = url + '&' + result;
       e.preventDefault();
 
