@@ -485,12 +485,14 @@ function content_shortcode(){
         </div>
     </div>
     <div id="mobileFilter">';
-    echo '</div>';
-    get_sidebar();
+    echo '</div>
+    <div class="content">';
+        get_sidebar();
 //    add content class below when sidebar is live
-    echo '<div id="contentTrigger" class="container content">';
-        echo do_shortcode('[products category="' . $idObj . '" attribute="' . $attribute . '"  terms="' . $tagObj . '" per_page="40" paginate="true" columns="5" orderby="' . $orderByOjb . '" on_sale="' . $onSaleObj . '" order="ASC" operator="IN"]');
-    echo '</div>';
+        echo '<div id="contentTrigger" class="container">';
+            echo do_shortcode('[products category="' . $idObj . '" attribute="' . $attribute . '"  terms="' . $tagObj . '" per_page="40" paginate="true" columns="5" orderby="' . $orderByOjb . '" on_sale="' . $onSaleObj . '" order="ASC" operator="IN"]');
+    echo '</div>
+</div>';
 }
 add_shortcode('content', 'content_shortcode');
 

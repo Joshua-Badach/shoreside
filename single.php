@@ -5,7 +5,7 @@ $url = home_url( $wp->request );
 $checkFor = 'product-category';
 
 if (strpos($url, $checkFor) == true){
-    get_sidebar();
+//    get_sidebar();
     echo '<div class="container content">';
 } else {
     echo '<div class="container">';

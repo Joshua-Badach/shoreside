@@ -987,8 +987,8 @@ div .form-footer{
   border: 1px solid nth($rpsBrand, 1);
 }
 #sidebar{
-  position: absolute;
-  height: auto;
+  //position: absolute;
+  height: 100%;
   width: 200px;
   border-right: 1px solid nth($rpsBrand, 1);
   border-bottom: 1px solid nth($rpsBrand, 1);
@@ -1003,9 +1003,10 @@ div .form-footer{
   border-color: nth($rpsBrand, 1);
 }
 .content{
-  position: relative;
-  min-height: 350px;
-  left: 100px;
+  display: flex;
+}
+.content > .container{
+  height: auto;
 }
 .categoryList ul{
   padding-left: 0;
@@ -1015,9 +1016,6 @@ div .form-footer{
 }
 .portrait {
   touch-action: auto !important;
-}
-.woocommerce{
-  margin-top: 5%;
 }
 //#lightbox {
 //  position: fixed;

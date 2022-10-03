@@ -34,4 +34,3 @@ echo '<div class="container">
 }
 //echo 'index returned';
 get_footer();
-?>
