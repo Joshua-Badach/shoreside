@@ -473,55 +473,6 @@ function content_shortcode(){
         $onSaleObj = true;
     }
 
-//    todo stuff checks into args, grab categories, foreach cat, echo results
-
-//    $args = array(
-//        'post_type'             => 'product',
-//        'post_status'           => 'publish',
-//        'posts_per_page'        => '25',
-//        'tax_query'             => array(
-//            array(
-//                'taxonomy'                  => $taxonomy,
-//                'terms'                     => $idObj,
-//                'orderby'                   => $orderby,
-//                'order'                     => 'ASC',
-//                'show_count'                => $show_count,
-//                'pad_counts'                => $pad_counts,
-//                'hierarchical'              => $hierarchical,
-//                'title_li'                  => $title,
-//                'hide_empty'                => $empty
-//            ),
-
-    $args = array(
-            'post_type'         =>          'product',
-            'post_status'       =>          'publish',
-            'posts_per_page'    =>          -1,
-            'tax_query'         =>          array(
-                'relation' => 'OR',
-                    array(
-                                'taxonomy'  =>      'product_cat',
-                                'field'     =>      'term_taxonomy_id',
-                                'terms'     =>      $idObj,
-
-                    ),
-                    array(
-                                'taxonomy'  =>      'pa_' . $attribute,
-                                'field'     =>      'term_taxonomy_id',
-                                'terms'     =>      $tagObj,
-
-                    ),
-//                'orderby'   =>      $orderByOjb,
-
-            ),
-//            'product_cat'       =>          $idObj,
-//            'orderby'           =>          $orderByOjb,
-//            'attribute'         =>          $attribute,
-//            'terms'             =>          $tagObj,
-//            'on_sale'           =>          $onSaleObj,
-
-    );
-    $query = new WP_Query( $args );
-
     $categoryDescription = category_description($idObj);
     $term = get_term_by('id', $idObj, 'product_cat');
 
@@ -534,25 +485,21 @@ function content_shortcode(){
             <p>Breadcrumbs code goes there</p>
         </div>
     </div>
-    <div id="mobileFilter">';
-    echo '</div>
+    <div id="mobileFilter"></div>
     <div class="content">';
         get_sidebar();
-//    add content class below when sidebar is live
         echo '<div id="contentTrigger" class="container">';
-//            echo do_shortcode('[products category="' . $idObj . '" attribute="' . $attribute . '"  terms="' . $tagObj . '" per_page="40" paginate="true" columns="5" orderby="' . $orderByOjb . '" on_sale="' . $onSaleObj . '" order="ASC" operator="IN"]');
-//    var_dump($query);
-
-
-    while ($query->have_posts() ) : $query->the_post();
-        the_title();
-        echo '<br><br>';
-    endwhile;
+            echo do_shortcode('[product_category category="' . $idObj . '" attribute="' . $attribute . '"  terms="' . $tagObj . '" per_page="40" paginate="true" columns="5" orderby="' . $orderByOjb . '" on_sale="' . $onSaleObj . '" order="ASC" operator="IN"]');
 
     echo '</div>
 </div>';
 }
+//No results found for above code
 add_shortcode('content', 'content_shortcode');
+function woocommerce_shortcode_product_category_loop_no_results( $attributes ) {
+    echo __( 'There are no products found', 'woocommerce' );
+}
+add_action( 'woocommerce_shortcode_product_category_loop_no_results', 'woocommerce_shortcode_product_category_loop_no_results', 20, 1 );
 
 function catalog_shortcode(){
     include('template-parts/components/catalogs.php');
