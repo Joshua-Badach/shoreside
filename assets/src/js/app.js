@@ -99,30 +99,30 @@ jQuery(document).ready(function($) {
 
   } else {
     $('#mobileFilter').hide();
-    // Pan and zoom code
-    $(".portrait")
-    // tile mouse actions
-      .on("mouseover", function() {
-        $(this)
-        $(".portrait-item")
-          .css({ transform: "scale(" + $(this).attr("data-scale") + ")" });
-      })
-      .on("mouseout", function() {
-        $(this)
-        $(".portrait-item")
-          .css({ transform: "scale(1)" });
-      })
-      .on("mousemove", function(e) {
-        $(this)
-        $(".portrait-item")
-          .css({
-            "transform-origin":
-            ((e.pageX - $(this).offset().left) / $(this).width()) * 100 +
-            "% " +
-            ((e.pageY - $(this).offset().top) / $(this).height()) * 100 +
-            "%"
-          })
-      });
+    // Pan and zoom code removed for now, keeping it in case minds are changed
+    // $(".portrait")
+    // // tile mouse actions
+    //   .on("mouseover", function() {
+    //     $(this)
+    //     $(".portrait-item")
+    //       .css({ transform: "scale(" + $(this).attr("data-scale") + ")" });
+    //   })
+    //   .on("mouseout", function() {
+    //     $(this)
+    //     $(".portrait-item")
+    //       .css({ transform: "scale(1)" });
+    //   })
+    //   .on("mousemove", function(e) {
+    //     $(this)
+    //     $(".portrait-item")
+    //       .css({
+    //         "transform-origin":
+    //         ((e.pageX - $(this).offset().left) / $(this).width()) * 100 +
+    //         "% " +
+    //         ((e.pageY - $(this).offset().top) / $(this).height()) * 100 +
+    //         "%"
+    //       })
+    //   });
     // var all = $(".portrait-item"),
     //   lightbox = $("#lightbox").get(0);
     //
@@ -272,11 +272,12 @@ jQuery(document).ready(function($) {
   //refine later, check if ?filters= exists, if unique filter - append, if same filter - replace
 
   var pageUrl = document.location.href;
+  var saleText = $('.on_sale');
+  var conditionText = $('.condition');
 
 //filter preowned switch
   $(document).on('click','.conditionInput', function(){
     var preOwned = $('.conditionInput').val();
-    var conditionText = $('.condition');
     if ($('.conditionInput').prop('checked') == true){
       window.history.replaceState(null, null, preOwned);
       $(conditionText).text('Used')
@@ -293,7 +294,6 @@ jQuery(document).ready(function($) {
   //filter on sale switch
   $(document).on('click','.saleInput', function(){
     var sale = $('.saleInput').val();
-    var saleText = $('.on_sale');
     if ($('.saleInput').prop('checked') == true){
       window.history.replaceState(null, null, sale);
       $(saleText).text('Yes')
@@ -307,6 +307,16 @@ jQuery(document).ready(function($) {
       location.reload();
     }
   });
+
+  if(pageUrl.indexOf('on_sale=sale') != -1 ) {
+    $('input:checkbox[name="sale"]').prop('checked', true);
+    $(saleText).text('Yes')
+  }
+  //hardcoded product cat for now
+  if(pageUrl.indexOf('product_cat=pre-owned') != -1 ) {
+    $('input:checkbox[name="condition"]').prop('checked', true);
+    $(conditionText).text('Used')
+  }
 
   $(document).on('click', '#sidebar a', function(e){
     var url = window.location.href;
@@ -345,6 +355,43 @@ jQuery(document).ready(function($) {
     location.reload();
   });
 
+  //hide sidebar links if over 5, modularize if more attributes are needed
+  if( $('#attributes').children().length > 5) {
+    if (pageUrl.indexOf('product_tag') > -1) {
+      $('#attributes a').show();
+      $('#attributes br').show();
+      $('#attributes .showAttributes').hide();
+    }
+    else {
+      $('#attributes a').hide();
+      $('#attributes br').hide();
+      $('#attributes').prepend('<a href="#" class="showAttributes">Show More</a>');
+      $('.showAttributes').on('click', function(e) {
+        e.preventDefault();
+        $('#attributes a').show();
+        $('#attributes br').show();
+        $('#attributes .showAttributes').hide();
+      });
+    }
+  }
+
+  if( $('#categories').children().length > 5) {
+    if (pageUrl.indexOf('product_cat') > -1) {
+      $('#categories a').show();
+      $('#categories br').show();
+      $('#categories .showCategories').hide();
+    } else {
+      $('#categories a').hide();
+      $('#categories br').hide();
+      $('#categories').prepend('<a href="#" class="showCategories">Show More</a>');
+      $('.showCategories').on('click', function(e) {
+        e.preventDefault();
+        $('#categories a').show();
+        $('#categories br').show();
+        $('#categories .showCategories').hide();
+      });
+    }
+  }
   // $('.content').filter(function(){
     //
     // });

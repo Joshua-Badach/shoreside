@@ -54,7 +54,7 @@
 if ( $slug == 'showroom' ) {
     echo '<span>Condition: </span>' . '<br><br>
         <label class="switch">
-            <input type="checkbox" class="conditionInput" value="?product_cat=283 ">
+            <input type="checkbox" name="condition" class="conditionInput" value="?product_cat=pre-owned ">
             <span class="slider round"></span>
         </label>
         <span class="condition">New</span>        
@@ -62,7 +62,7 @@ if ( $slug == 'showroom' ) {
 }
 echo '<span>On Sale: </span>' . '<br><br>
         <label class="switch">
-            <input type="checkbox" class="saleInput" value="?on_sale=sale ">
+            <input type="checkbox" name="sale" class="saleInput" value="?on_sale=sale ">
             <span class="slider round"></span>
         </label>
         <span class="on_sale">No</span>        
@@ -72,7 +72,7 @@ echo    '<p>Price: </p>' .
         '<a href="?orderby=price">Low to High</a><br>
         <a href="?orderby=price-desc">High to Low</a><br><hr>';
 
-echo '<p>Manufacturer: </p>';
+echo '<p>Manufacturer: </p><div id="attributes">';
 
 $unique = array();
 $name = array();
@@ -95,7 +95,7 @@ $name = array();
 foreach ($termCheck as $i => $aTerm) {
     echo '<a href="?product_tag=' . $termCheck[$i] . '">' . $termName[$i] . '</a><br>';
 }
-    echo '<hr>';
+    echo '</div><hr>';
 ?>
 <!--    <div class="submitButton">-->
 <!--        <button type="button" class="button-3d" id="submit">Filter</button>-->
