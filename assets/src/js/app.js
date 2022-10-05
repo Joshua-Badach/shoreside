@@ -356,42 +356,45 @@ jQuery(document).ready(function($) {
   });
 
   //hide sidebar links if over 5, modularize if more attributes are needed
-  if( $('#attributes').children().length > 5) {
-    if (pageUrl.indexOf('product_tag') > -1) {
-      $('#attributes a').show();
-      $('#attributes br').show();
-      $('#attributes .showAttributes').hide();
-    }
-    else {
-      $('#attributes a').hide();
-      $('#attributes br').hide();
-      $('#attributes').prepend('<a href="#" class="showAttributes">Show More</a>');
-      $('.showAttributes').on('click', function(e) {
-        e.preventDefault();
-        $('#attributes a').show();
-        $('#attributes br').show();
-        $('#attributes .showAttributes').hide();
-      });
-    }
-  }
-
   if( $('#categories').children().length > 5) {
     if (pageUrl.indexOf('product_cat') > -1) {
+      $('.showCategories').hide();
       $('#categories a').show();
       $('#categories br').show();
-      $('#categories .showCategories').hide();
     } else {
+      $('.showCategories').show();
       $('#categories a').hide();
       $('#categories br').hide();
-      $('#categories').prepend('<a href="#" class="showCategories">Show More</a>');
-      $('.showCategories').on('click', function(e) {
-        e.preventDefault();
-        $('#categories a').show();
-        $('#categories br').show();
-        $('#categories .showCategories').hide();
-      });
     }
   }
+  $('.showCategories').on('click', function(e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    $('#categories a').show();
+    $('#categories br').show();
+    $('.showCategories').hide();
+  });
+
+  if( $('#attributes').children().length > 5) {
+    if (pageUrl.indexOf('product_tag') > -1) {
+      $('.showAttributes').hide();
+      $('#attributes a').show();
+      $('#attributes br').show();
+    }
+    else {
+      $('.showAttributes').show();
+      $('#attributes a').hide();
+      $('#attributes br').hide();
+    }
+  }
+  $('.showAttributes').on('click', function(e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    $('#attributes a').show();
+    $('#attributes br').show();
+    $('.showAttributes').hide();
+  });
+
   // $('.content').filter(function(){
     //
     // });

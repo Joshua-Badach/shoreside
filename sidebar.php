@@ -44,7 +44,9 @@
     <div id="sidebarIcon">Hidenslide</div>
 
     <?php
-    echo '<p>Category: </p><div id="categories">';
+    echo '<p>Category: </p>
+    <a href="" class="showCategories">Show More</a>
+    <div id="categories">';
 
     foreach ($categories as $cat) {
         echo '<a href="?product_cat=' . $cat->term_id . '">'.$cat->cat_name.'</a><br>';
@@ -72,7 +74,9 @@ echo    '<p>Price: </p>' .
         '<a href="?orderby=price">Low to High</a><br>
         <a href="?orderby=price-desc">High to Low</a><br><hr>';
 
-echo '<p>Manufacturer: </p><div id="attributes">';
+echo '<p>Manufacturer: </p>
+<a href="" class="showAttributes">Show More</a>
+<div id="attributes">';
 
 $unique = array();
 $name = array();
