@@ -350,12 +350,15 @@ jQuery(document).ready(function($) {
 
   //filter prevent default, clear url state
   $(document).on('click', '#clear', function(){
-    // e.preventDefault();
     window.history.pushState({}, "", pageUrl.split("?")[0]);
     location.reload();
   });
 
   //hide sidebar links if over 5, modularize if more attributes are needed
+  //clean this up later, lazy but I'm on a time crunch
+  $('.showCategories').hide();
+  $('.showAttributes').hide();
+
   if( $('#categories').children().length > 5) {
     if (pageUrl.indexOf('product_cat') > -1) {
       $('.showCategories').hide();
@@ -380,8 +383,7 @@ jQuery(document).ready(function($) {
       $('.showAttributes').hide();
       $('#attributes a').show();
       $('#attributes br').show();
-    }
-    else {
+    } else {
       $('.showAttributes').show();
       $('#attributes a').hide();
       $('#attributes br').hide();
@@ -394,6 +396,21 @@ jQuery(document).ready(function($) {
     $('#attributes br').show();
     $('.showAttributes').hide();
   });
+
+  //hidenslide
+  $('#sidebarIcon').on('click', function(e){
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    // $('#sidebarIcon').not('#sidebar').toggle(500);
+    $('#sidebar').toggle(500);
+  });
+
+  //Break it down
+  //check if browser or mobile
+  //if mobile hide sidebar and show icon
+  //remove container class
+  //onclick animate slide in
+
 
   // $('.content').filter(function(){
     //

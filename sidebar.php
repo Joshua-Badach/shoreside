@@ -38,10 +38,11 @@
     $categories = get_categories($args);
 
     ?>
-
-
-<div id="sidebar">
-    <div id="sidebarIcon">Hidenslide</div>
+<div id="sidebarContainer">
+    <a id="sidebarIcon" href="">
+        <object width="30px" height="30px" data="<?php echo get_template_directory_uri().'/assets/src/library/images/menu-icon.svg' ?>" alt="Menu Icon"></object>
+    </a>
+    <div id="sidebar">
 
     <?php
     echo '<p>Category: </p>
@@ -106,5 +107,6 @@ foreach ($termCheck as $i => $aTerm) {
 <!--    </div>-->
     <div class="clearButton">
         <button type="button" class="button-3d" id="clear">Clear</button>
+    </div>
     </div>
 </div>

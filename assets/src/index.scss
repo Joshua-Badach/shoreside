@@ -1003,6 +1003,21 @@ div .form-footer{
   color: nth($rpsBrand, 1);
   border-color: nth($rpsBrand, 1);
 }
+#sidebarContainer{
+  height: fit-content;
+}
+#sidebarIcon{
+  width: 40px;
+  height: 40px;
+  display: block;
+  background-color: nth($rpsBrand, 1);
+}
+#sidebarIcon object{
+  margin: 5px;
+}
+#sidebarIcon svg{
+  fill: nth($rpsBrand, 1);
+}
 .content{
   display: flex;
 }
