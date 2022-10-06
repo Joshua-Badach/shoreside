@@ -44,7 +44,9 @@
     <div id="sidebar">
 
     <?php
-    echo '<p>Category: </p>
+    echo '<div class="filterHeading">
+        <p>Category: </p>
+    </div><br>
     <a href="" class="showCategories">Show More</a>
     <div id="categories">';
 
@@ -52,23 +54,25 @@
         echo '<a href="?product_cat=' . $cat->term_id . '">'.$cat->cat_name.'</a><br>';
     }
 
-    echo '<hr></div>';
+    echo '</div><br>';
 if ( $slug == 'showroom' ) {
-    echo '<span>Condition: </span>' . '<br><br>
-        <label class="switch">
+    echo '<div class="filterHeading">
+            <p>Condition: </p>
+        </div>' .
+        '<br><label class="switch">
             <input type="checkbox" name="condition" class="conditionInput" value="?product_cat=pre-owned ">
             <span class="slider round"></span>
         </label>
-        <span class="condition">New</span>        
-    <hr>';
+        <span class="condition">New</span><br><br>';
 }
-echo '<span>On Sale: </span>' . '<br><br>
+echo '<div class="filterHeading">
+        <p>On Sale: </p>
+      </div>' . '<br>
         <label class="switch">
             <input type="checkbox" name="sale" class="saleInput" value="?on_sale=sale ">
             <span class="slider round"></span>
         </label>
-        <span class="on_sale">No</span>        
-    <hr>';
+        <span class="on_sale">No</span><br><br>';
 
 echo    '<p>Price: </p>' .
         '<a href="?orderby=price">Low to High</a><br>
