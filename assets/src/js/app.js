@@ -404,6 +404,15 @@ jQuery(document).ready(function($) {
     e.stopImmediatePropagation();
     // $('#sidebarIcon').not('#sidebar').toggle(500);
     $('#sidebar').toggle(500);
+    $('#sidebar').css({
+        "-webkit-box-shadow": "5px 5px 7px 5px #000000",
+        "box-shadow": "5px 5px 7px 5px #000000",
+    });
+    $('#sidebarIcon img').toggleClass('sidebarIconAnimate');
+    $('#sidebarContainer').css({
+        "position":"absolute",
+        "width": "50%"
+    });
     // $('.content .container').css("margin-left", 'auto')
   });
 
