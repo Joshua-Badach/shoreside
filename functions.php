@@ -485,7 +485,11 @@ function content_shortcode(){
             <p>Breadcrumbs code goes there</p>
         </div>
     </div>
-    <div id="mobileFilter"></div>
+    <div id="mobileFilter">
+        <a id="sidebarIcon" href="">
+        <img width="30px" height="30px" src="' . get_template_directory_uri(). '/assets/src/library/images/menu-icon.svg\' ?>" alt="Menu Icon">
+    </a>
+    </div>
     <div class="content">';
         get_sidebar();
         echo '<div id="contentTrigger" class="container">';

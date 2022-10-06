@@ -99,6 +99,7 @@ jQuery(document).ready(function($) {
 
   } else {
     $('#mobileFilter').hide();
+    $('#sidebarIcon').hide();
     // Pan and zoom code removed for now, keeping it in case minds are changed
     // $(".portrait")
     // // tile mouse actions
@@ -403,7 +404,10 @@ jQuery(document).ready(function($) {
     e.stopImmediatePropagation();
     // $('#sidebarIcon').not('#sidebar').toggle(500);
     $('#sidebar').toggle(500);
+    // $('.content .container').css("margin-left", 'auto')
   });
+
+
 
   //Break it down
   //check if browser or mobile

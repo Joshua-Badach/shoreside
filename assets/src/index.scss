@@ -820,6 +820,10 @@ footer .logo{
   .home-block{
     top: -310px;
   }
+  .content > .container{
+    height: auto;
+    margin-left: 16%;
+  }
 }
 .contactSelection{
   margin-top: 100px;
@@ -894,8 +898,7 @@ div .form-footer{
 }
 #mobileFilter{
   width: 100%;
-  height: 30px;
-  margin-bottom: 2px;
+  margin-bottom: 5px;
   background: nth($rpsBrand, 1);
 }
 .productVideo{
@@ -988,7 +991,6 @@ div .form-footer{
   border: 1px solid nth($rpsBrand, 1);
 }
 #sidebar{
-  //position: absolute;
   height: 100%;
   width: 200px;
   border-right: 1px solid nth($rpsBrand, 1);
@@ -1009,20 +1011,18 @@ div .form-footer{
 #sidebarIcon{
   width: 40px;
   height: 40px;
+  z-index: 11;
   display: block;
+  position: relative;
   background-color: nth($rpsBrand, 1);
 }
-#sidebarIcon object{
+#sidebarIcon > img{
   margin: 5px;
-}
-#sidebarIcon svg{
-  fill: nth($rpsBrand, 1);
+  stroke: nth($rpsBrand, 4);
+  fill: nth($rpsBrand, 4);
 }
 .content{
   display: flex;
-}
-.content > .container{
-  height: auto;
 }
 .categoryList ul{
   padding-left: 0;

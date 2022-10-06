@@ -39,9 +39,6 @@
 
     ?>
 <div id="sidebarContainer">
-    <a id="sidebarIcon" href="">
-        <object width="30px" height="30px" data="<?php echo get_template_directory_uri().'/assets/src/library/images/menu-icon.svg' ?>" alt="Menu Icon"></object>
-    </a>
     <div id="sidebar">
 
     <?php
