@@ -31,7 +31,9 @@
     $query_args = array(
         'status'                        => $status,
         'limit'                         => $limit,
+        'hierarchical'                  => $hierarchical,
 //        'parent'                        => $idObj,
+        'hide_empty'                    => $empty,
         'category'                      => array( $slug ),
     );
 

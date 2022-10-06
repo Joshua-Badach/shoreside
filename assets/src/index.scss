@@ -907,6 +907,8 @@ div .form-footer{
   margin-bottom: 15px;
   padding: 1px 0;
   background: nth($rpsBrand, 1);
+  -webkit-box-shadow: inset 0px -5px 15px -2px #000000;
+  box-shadow: inset 0px -5px 15px -2px #000000;
 }
 .productVideo{
   width: 100%;
@@ -1002,6 +1004,7 @@ div .form-footer{
   width: 200px;
   border-right: 1px solid nth($rpsBrand, 1);
   border-bottom: 1px solid nth($rpsBrand, 1);
+  border-top: 1px solid nth($rpsBrand, 1);
   background: white;
   z-index: 10;
   padding: 20px 10px;
@@ -1013,15 +1016,16 @@ div .form-footer{
 }
 #sidebarContainer{
   height: fit-content;
-  z-index: 1;
+  z-index: 10;
 }
 #sidebarIcon{
   width: 30px;
   height: 30px;
+  margin-left: 15px;
   z-index: 11;
   display: block;
   position: relative;
-  background-color: nth($rpsBrand, 1);
+  background-color: transparent;
 }
 #sidebarIcon > img{
   margin: 5px;
