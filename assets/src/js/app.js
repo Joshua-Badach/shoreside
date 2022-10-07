@@ -101,7 +101,11 @@ jQuery(document).ready(function($) {
   } else {
     $('#mobileFilter').hide();
     $('#sidebarIcon').hide();
-    $('#sidebarHeader').show()
+    $('#sidebarHeader').show();
+    $('#sidebar').css({
+      'border-right':'1px solid #d3d3d3',
+      'border-bottom':'1px solid #d3d3d3',
+    });
     // Pan and zoom code removed for now, keeping it in case minds are changed
     // $(".portrait")
     // // tile mouse actions
@@ -366,18 +370,18 @@ jQuery(document).ready(function($) {
     if (pageUrl.indexOf('product_cat') > -1) {
       $('.showCategories').toggleClass('sidebarIconAnimate90');
       $('#categories a').show();
-      $('#categories br').show();
-      $('#categories').addClass('objectPadding');
+      $('#categories').toggleClass('objectPadding');
     } else {
       $('#categories a').hide();
-      $('#categories br').hide();
     }
+  } else {
+    $('#categories').addClass('objectPadding');
   }
+
   $('.showCategories').on('click', function(e) {
     e.preventDefault();
     e.stopImmediatePropagation();
     $('#categories a').toggle();
-    $('#categories br').toggle();
     $('#categories').toggleClass('objectPadding');
     $('.showCategories').toggleClass('sidebarIconAnimate90');
   });
@@ -386,18 +390,18 @@ jQuery(document).ready(function($) {
     if (pageUrl.indexOf('product_tag') > -1) {
       $('.showAttributes').toggleClass('sidebarIconAnimate90');
       $('#attributes a').show();
-      $('#attributes br').show();
-      $('#attributes').addClass('objectPadding');
+      $('#attributes').toggleClass('objectPadding');
     } else {
       $('#attributes a').hide();
-      $('#attributes br').hide();
     }
+  } else {
+    $('#attributes').addClass('objectPadding');
   }
+
   $('.showAttributes').on('click', function(e) {
     e.preventDefault();
     e.stopImmediatePropagation();
     $('#attributes a').toggle();
-    $('#attributes br').toggle();
     $('#attributes').toggleClass('objectPadding');
     $('.showAttributes').toggleClass('sidebarIconAnimate90');
   });

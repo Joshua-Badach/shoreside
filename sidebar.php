@@ -51,7 +51,7 @@
     <div id="categories">';
 
     foreach ($categories as $cat) {
-        echo '<a href="?product_cat=' . $cat->term_id . '">'.$cat->cat_name.'</a><br>';
+        echo '<a href="?product_cat=' . $cat->term_id . '">'.$cat->cat_name.'</a>';
     }
 
     echo '</div>';
@@ -80,14 +80,14 @@
     //}
 
     foreach ($termCheck as $i => $aTerm) {
-        echo '<a href="?product_tag=' . $termCheck[$i] . '">' . $termName[$i] . '</a><br>';
+        echo '<a href="?product_tag=' . $termCheck[$i] . '">' . $termName[$i] . '</a>';
     }
     echo '</div>
         <div class="filterHeading">
             <p>Price: </p>
         </div>
-        <div class="objectPadding">
-            <a href="?orderby=price">Low to High</a><br>
+        <div id="prices" class="objectPadding">
+            <a href="?orderby=price">Low to High</a>
             <a href="?orderby=price-desc">High to Low</a>
         </div>';
 

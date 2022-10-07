@@ -914,7 +914,8 @@ div .form-footer{
   box-shadow: inset 0px -5px 15px -2px #000000;
 }
 #sidebarHeader{
-  width: 100%;
+  //hardcoded width to stop overhang
+  width: 199px;
   height: 25px;
   border-radius: 0 30px 0 0;
   padding: 2px 0;
@@ -1020,12 +1021,15 @@ div .form-footer{
 #sidebar{
   height: 100%;
   width: 200px;
-  border-right: 1px solid nth($rpsBrand, 1);
-  border-bottom: 1px solid nth($rpsBrand, 1);
+  //border-right: 1px solid #d3d3d3;
+  //border-bottom: 1px solid #d3d3d3;
   border-radius: 0 0 30px 0;
-  background: white;
+  background: nth($rpsBrand, 4);
   z-index: 10;
   //padding: 20px 10px;
+}
+#sidebar a{
+  color: nth($rpsBrand, 2);
 }
 #sidebar hr{
   background-color: nth($rpsBrand, 1);
@@ -1093,6 +1097,18 @@ div .form-footer{
    margin-right: 10px;
    clear: both;
  }
+#categories a{
+  display: block;
+  padding: 3px 0;
+}
+#attributes a{
+  display: block;
+  padding: 3px 0;
+}
+#prices a{
+  display: block;
+  padding: 3px 0;
+}
 .showAttributes{
   float: right;
   margin-right: 10px;
