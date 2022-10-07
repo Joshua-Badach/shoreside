@@ -41,51 +41,30 @@
 
     ?>
 <div id="sidebarContainer">
+    <div id="sidebarHeader"><p>Filters</p></div>
     <div id="sidebar">
 
     <?php
     echo '<div class="filterHeading">
-        <p>Category: </p>
-    </div><br>
-    <a href="" class="showCategories">Show More</a>
+        <p>Category: <a href="" class="showCategories"><img width="10px" height="10px" src="' . get_template_directory_uri(). '/assets/src/library/images/arrow-icon.png\' ?>" alt="Menu Arrow"></a></p>
+    </div>
     <div id="categories">';
 
     foreach ($categories as $cat) {
         echo '<a href="?product_cat=' . $cat->term_id . '">'.$cat->cat_name.'</a><br>';
     }
 
-    echo '</div><br>';
-if ( $slug == 'showroom' ) {
+    echo '</div>';
+
     echo '<div class="filterHeading">
-            <p>Condition: </p>
-        </div>' .
-        '<br><label class="switch">
-            <input type="checkbox" name="condition" class="conditionInput" value="?product_cat=pre-owned ">
-            <span class="slider round"></span>
-        </label>
-        <span class="condition">New</span><br><br>';
-}
-echo '<div class="filterHeading">
-        <p>On Sale: </p>
-      </div>' . '<br>
-        <label class="switch">
-            <input type="checkbox" name="sale" class="saleInput" value="?on_sale=sale ">
-            <span class="slider round"></span>
-        </label>
-        <span class="on_sale">No</span><br><br>';
-
-echo    '<p>Price: </p>' .
-        '<a href="?orderby=price">Low to High</a><br>
-        <a href="?orderby=price-desc">High to Low</a><br><hr>';
-
-echo '<p>Manufacturer: </p>
-<a href="" class="showAttributes">Show More</a>
+        <p>Manufacturer: <a href="" class="showAttributes"><img width="10px" height="10px" src="' . get_template_directory_uri(). '/assets/src/library/images/arrow-icon.png\' ?>" alt="Menu Arrow"></a></p>
+    </div>
 <div id="attributes">';
 
-$unique = array();
-$name = array();
+    $unique = array();
+    $name = array();
 
-//function getAttributes($query_args){
+    //function getAttributes($query_args){
     foreach (wc_get_products($query_args) as $product) {
         foreach ($product->get_attributes() as $tax => $attribute) {
             foreach ($attribute->get_terms() as $term) {
@@ -98,18 +77,46 @@ $name = array();
             }
         }
     }
-//}
+    //}
 
-foreach ($termCheck as $i => $aTerm) {
-    echo '<a href="?product_tag=' . $termCheck[$i] . '">' . $termName[$i] . '</a><br>';
+    foreach ($termCheck as $i => $aTerm) {
+        echo '<a href="?product_tag=' . $termCheck[$i] . '">' . $termName[$i] . '</a><br>';
+    }
+    echo '</div>
+        <div class="filterHeading">
+            <p>Price: </p>
+        </div>
+        <div class="objectPadding">
+            <a href="?orderby=price">Low to High</a><br>
+            <a href="?orderby=price-desc">High to Low</a>
+        </div>';
+
+
+    if ( $slug == 'showroom' ) {
+    echo '<div class="filterHeading">
+            <p>Condition: </p>
+        </div>' .
+        '<div class="switchContainer objectPadding">
+            <label class="switch">
+            <input type="checkbox" name="condition" class="conditionInput" value="?product_cat=pre-owned ">
+            <span class="slider round"></span>
+        </label>
+        <span class="condition">New</span></div>';
 }
-    echo '</div><hr>';
+echo '<div class="filterHeading">
+        <p>On Sale: </p>
+      </div>' . '<div class="switchContainer objectPadding">
+        <label class="switch">
+            <input type="checkbox" name="sale" class="saleInput" value="?on_sale=sale ">
+            <span class="slider round"></span>
+        </label>
+        <span class="on_sale">No</span></div>';
 ?>
 <!--    <div class="submitButton">-->
 <!--        <button type="button" class="button-3d" id="submit">Filter</button>-->
 <!--    </div>-->
-    <div class="clearButton">
-        <button type="button" class="button-3d" id="clear">Clear</button>
-    </div>
+        <div class="clearButton">
+            <button type="button" class="button-3d" id="clear">Clear</button>
+        </div>
     </div>
 </div>

@@ -95,11 +95,13 @@ jQuery(document).ready(function($) {
     $('.slick-arrow').delay(10000).fadeOut('slow');
     $('#sidebar').hide();
     $('#contentTrigger').removeClass('content');
+    $('#sidebarHeader').hide();
     // $('.select2-container').removeAttr('style').css('z-index', '100');
 
   } else {
     $('#mobileFilter').hide();
     $('#sidebarIcon').hide();
+    $('#sidebarHeader').show()
     // Pan and zoom code removed for now, keeping it in case minds are changed
     // $(".portrait")
     // // tile mouse actions
@@ -276,6 +278,8 @@ jQuery(document).ready(function($) {
   var saleText = $('.on_sale');
   var conditionText = $('.condition');
 
+
+
 //filter preowned switch
   $(document).on('click','.conditionInput', function(){
     var preOwned = $('.conditionInput').val();
@@ -357,16 +361,14 @@ jQuery(document).ready(function($) {
 
   //hide sidebar links if over 5, modularize if more attributes are needed
   //clean this up later, lazy but I'm on a time crunch
-  $('.showCategories').hide();
-  $('.showAttributes').hide();
 
   if( $('#categories').children().length > 5) {
     if (pageUrl.indexOf('product_cat') > -1) {
-      $('.showCategories').hide();
+      $('.showCategories').toggleClass('sidebarIconAnimate90');
       $('#categories a').show();
       $('#categories br').show();
+      $('#categories').addClass('objectPadding');
     } else {
-      $('.showCategories').show();
       $('#categories a').hide();
       $('#categories br').hide();
     }
@@ -374,18 +376,19 @@ jQuery(document).ready(function($) {
   $('.showCategories').on('click', function(e) {
     e.preventDefault();
     e.stopImmediatePropagation();
-    $('#categories a').show();
-    $('#categories br').show();
-    $('.showCategories').hide();
+    $('#categories a').toggle();
+    $('#categories br').toggle();
+    $('#categories').toggleClass('objectPadding');
+    $('.showCategories').toggleClass('sidebarIconAnimate90');
   });
 
   if( $('#attributes').children().length > 5) {
     if (pageUrl.indexOf('product_tag') > -1) {
-      $('.showAttributes').hide();
+      $('.showAttributes').toggleClass('sidebarIconAnimate90');
       $('#attributes a').show();
       $('#attributes br').show();
+      $('#attributes').addClass('objectPadding');
     } else {
-      $('.showAttributes').show();
       $('#attributes a').hide();
       $('#attributes br').hide();
     }
@@ -393,16 +396,20 @@ jQuery(document).ready(function($) {
   $('.showAttributes').on('click', function(e) {
     e.preventDefault();
     e.stopImmediatePropagation();
-    $('#attributes a').show();
-    $('#attributes br').show();
-    $('.showAttributes').hide();
+    $('#attributes a').toggle();
+    $('#attributes br').toggle();
+    $('#attributes').toggleClass('objectPadding');
+    $('.showAttributes').toggleClass('sidebarIconAnimate90');
   });
+
+  if(pageUrl.indexOf('?') == -1 ){
+    $('.clearButton').hide();
+  }
 
   //hidenslide
   $('#sidebarIcon').on('click', function(e){
     e.preventDefault();
     e.stopImmediatePropagation();
-    // $('#sidebarIcon').not('#sidebar').toggle(500);
     $('#sidebar').toggle(500);
     $('#sidebar').css({
         "-webkit-box-shadow": "5px 5px 7px 5px #000000",
@@ -413,7 +420,6 @@ jQuery(document).ready(function($) {
         "position":"absolute",
         "width": "50%"
     });
-    // $('.content .container').css("margin-left", 'auto')
   });
 
 
