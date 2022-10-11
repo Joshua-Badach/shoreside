@@ -449,25 +449,40 @@ jQuery(document).ready(function($) {
 
 
   $(document).on('click', '.load_results', function(){
-    var that = $(this);
-    var page = $(this).data('page');
-    var newPage = page++;
-    var ajaxUrl = $(this).data('url');
+    //grab href data
+    // currentPage++;
 
     $.ajax({
-
-      url : ajaxUrl,
-      type : 'post',
-      data : {
-        action : 'load_results'
+      type:           'POST',
+      url:            '/wp-admin/admin-ajax.php',
+      dataType:       'html',
+      data: {
+            action: 'load_results',
+            // paged:  'currentPage',
       },
-      error : function( response ){
-        console.log( response );
-      },
-      success : function( response ){
-        $('.content').append( response )
-      },
+      success: function (response) {
+              $('#contentTrigger').append( response );
+      }
     });
+
+  //   var page = $(this).data('page');
+  //   var newPage = page++;
+  //   var ajaxUrl = $(this).data('url');
+  //
+  //   $.ajax({
+  //
+  //     url : ajaxUrl,
+  //     type : 'post',
+  //     data : {
+  //       action : 'load_results'
+  //     },
+  //     error : function( response ){
+  //       console.log( response );
+  //     },
+  //     success : function( response ){
+  //       $('#contentTrigger').append( response )
+  //     },
+  //   });
   });
 
   checkWidth();

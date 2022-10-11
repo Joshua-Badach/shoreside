@@ -3,7 +3,9 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
 
     function rpsShoreside_setup(){
         load_theme_textdomain( 'rpsShoreside', get_template_directory() . '/languages');
-        require get_template_directory() . '/template-parts/components/ajax.php';
+//        require get_template_directory() . '/template-parts/components/ajax.php';
+//        continue here
+        include get_admin_url().'admin-ajax.php';
 
         add_theme_support(
             'html5',
@@ -171,8 +173,7 @@ function carousel_shortcode(){
 
     endif;
 
-    echo '</div>
-    </section>';
+    echo '</div>';
 }
 add_shortcode('carousel', 'carousel_shortcode');
 
@@ -441,12 +442,67 @@ function service_shortcode(){
 }
 add_shortcode('service-content', 'service_shortcode');
 
-function content_shortcode(){
+function load_more() {
     global $post;
     $slug = $post->post_name;
     $id = get_term_by('slug', $slug, 'product_cat');
+    $idObj = $id->term_id;
 
-//    Make this better after concept is proved
+    $taxonomy       = 'product_cat';
+    $orderby        = 'ID';
+    $show_count     = 0;      // 1 for yes, 0 for no
+    $pad_counts     = 0;      // 1 for yes, 0 for no
+    $hierarchical   = 1;      // 1 for yes, 0 for no
+    $title          = '';
+    $empty          = 0;
+
+    $args = array(
+        'post_type'             => 'product',
+        'post_status'           => 'publish',
+        'posts_per_page'        => '-1',
+        'tax_query'             => array(
+            array(
+                'taxonomy'                  => $taxonomy,
+                'terms'                     => $idObj,
+                'orderby'                   => $orderby,
+                'order'                     => 'ASC',
+                'show_count'                => $show_count,
+                'pad_counts'                => $pad_counts,
+                'hierarchical'              => $hierarchical,
+                'title_li'                  => $title,
+                'hide_empty'                => $empty
+            ),
+            array(
+                'taxonomy'      => 'product_visibility',
+                'field'         => 'slug',
+                'terms'         => 'exclude-from-catalog',
+                'operator'      => 'NOT IN'
+            )
+        )
+    );
+    $response = '';
+
+    if($args->have_posts()) {
+        while($args->have_posts()) : $args->the_post();
+//            $response .= $slug;
+//        var_dump($response);
+        echo 'it worked';
+        endwhile;
+    } else {
+        $response = '';
+    }
+
+    echo $response;
+    exit;
+}
+add_action('wp_ajax_load_more', 'load_more');
+add_action('wp_ajax_noprivload_more', 'load_more');
+
+function content_shortcode(){
+    global $post;
+    $slug = $post->post_name;
+
+    $id = get_term_by('slug', $slug, 'product_cat');
 
     if ($_GET['product_cat'] == '') {
         $idObj = $id->term_id;
@@ -480,8 +536,9 @@ function content_shortcode(){
         <div class="row">
         <h2>' . $term->name . '</h2>' .
             $categoryDescription .
-        '</div>
-        <div class="row">
+        '</div>';
+//    var_dump($id);
+       echo '<div class="row">
             <p>Breadcrumbs code goes there</p>
         </div>
     </div>
@@ -497,6 +554,7 @@ function content_shortcode(){
 
     echo '</div>
 </div>';
+    var_dump($idObj);
 }
 add_shortcode('content', 'content_shortcode');
 

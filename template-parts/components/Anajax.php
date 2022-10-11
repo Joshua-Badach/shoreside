@@ -1,20 +1,25 @@
 <?php
 
 
-function load_results(){
+function load_results()
+{
     global $post;
-    global $category;
+//    global $category;
     $slug = $post->post_name;
     $id = get_term_by('slug', $slug, 'product_cat');
     $idObj = $id->term_id;
+//    $idObj = get_the_terms($post->ID, 'taxonomy');
+//    $idObj = 240;
+    $offset = $_POST['offset'];
 
-//    $post_type      = 'product';
-//    $columns        = '5';
+    $post_type = array('product');
+    $post_status = array('publish');
+    $columns = '5';
 //    $orderby        = $_GET['orderby'];
 //    $tag            = $_GET['tag_ID'];
-    $category       = $_GET['product_cat'];
+//    $category = $_POST[$idObj];
 //    $attribute      = $_GET['product_attributes'];
-//    $taxonomy       = 'product_cat';
+    $taxonomy = 'product_cat';
 //    $paged          = $_POST["page"]+1;
 //    $orderby        = 'name';
 //    $show_count     = 0;      // 1 for yes, 0 for no
@@ -23,9 +28,10 @@ function load_results(){
 //    $title          = '';
 //    $empty          = 0;
 
-    $args = array(
+//    $args = array(
 //        'post_type'                 => $post_type,
-        'category'                  => $category,
+//        'post_status'               => $post_status,
+//        'category'                  => $category,
 //        'paged'                     => $paged,
 //        'taxonomy'                  => $taxonomy,
 //        'terms'                     => $idObj,
@@ -36,21 +42,40 @@ function load_results(){
 //        'title_li'                  => $title,
 //        'hide_empty'                => $empty,
 //        'paged'                     => $paged
+//    );
+    $args = array(
+        'post_type' => $post_type,
+        'post_status' => $post_status,
+        'posts_per_page' => '1',
+        'tax_query' => array(
+            array(
+                'taxonomy' => $taxonomy,
+                'terms' => $idObj,
+//                'orderby'                   => $orderby,
+                'order' => 'ASC',
+//                'show_count'                => $show_count,
+//                'pad_counts'                => $pad_counts,
+//                'hierarchical'              => $hierarchical,
+//                'title_li'                  => $title,
+//                'hide_empty'                => $empty
+            ),
+        ),
     );
-//    $loop = new WP_Query( $args );
+    $loop = new WP_Query($args);
+//    var_dump($slug);
+}
 //
 //    while ($loop->have_posts() ) : $loop->the_post;
-        var_dump($args);
-
+////        var_dump($loop);
+//
 //        echo 'new posts ';
 //    endwhile;
-
-//    loop
-
-//    wp_reset_postdata();
 //
+//
+//    wp_reset_postdata();
+////
 //    wp_die();
-}
+//}
 //
 //function ajax_next_posts() {
 //    global $wpdb;
