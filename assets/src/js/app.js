@@ -346,11 +346,13 @@ jQuery(document).ready(function($) {
 
       //check if query already in url
       if (url.indexOf(filterCheck) > -1 ){
+        e.preventDefault();
         window.history.replaceState(null, null, filter);
         location.reload();
       }
 
       if (url.indexOf(filterCheck) == -1){
+        e.preventDefault();
         window.history.replaceState(null, null, appendedQuery);
         location.reload();
       }
@@ -448,20 +450,26 @@ jQuery(document).ready(function($) {
     // });
 
 
-  $(document).on('click', '.load_results', function(){
+  $(document).on('click', '#categories a', function(){
     //grab href data
     // currentPage++;
+    var value = $(this).data('value');
+    var ajaxUrl = $(this).data('url');
 
     $.ajax({
-      type:           'POST',
-      url:            '/wp-admin/admin-ajax.php',
+      url:            ajaxUrl,
       dataType:       'html',
       data: {
-            action: 'load_results',
+            type:     'POST',
+            value:    value,
+            action:   'load_results',
             // paged:  'currentPage',
       },
       success: function (response) {
               $('#contentTrigger').append( response );
+      },
+      error: function (response) {
+        console.log(response);
       }
     });
 

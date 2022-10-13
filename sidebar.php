@@ -51,7 +51,7 @@
     <div id="categories">';
 
     foreach ($categories as $cat) {
-        echo '<a href="?product_cat=' . $cat->term_id . '">'.$cat->cat_name.'</a>';
+        echo '<a data-url="' . admin_url('admin-ajax.php') . '" data-value="' . $cat->term_id . '" href="?product_cat=' . $cat->term_id . '">' . $cat->cat_name . '</a>';
     }
 
     echo '</div>';
