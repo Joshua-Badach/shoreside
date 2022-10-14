@@ -444,82 +444,20 @@ add_shortcode('service-content', 'service_shortcode');
 
 function load_results() {
 
-    $idObj = $_POST["filter"];
-    $attribute ='';
-    $tagObj = '';
-    $orderByOjb ='';
-    $orderObj ='';
-    $onSaleObj = '';
+    $idObj              =           $_REQUEST['idObj'];
+    $attribute          =           $_REQUEST['attribute'];
+    $tagObj             =           $_REQUEST['tagObj'];
+    $orderByOjb         =           $_REQUEST['orderByObj'];
+    $orderObj           =           $_REQUEST['orderObj'];
+    $onSaleObj          =           $_REQUEST['onSaleObj'];
 
-
+//    var_dump($idObj);
     echo '<div id="contentTrigger" class="container">';
     echo do_shortcode('[products category="' . $idObj . '" attribute="' . $attribute . '"  terms="' . $tagObj . '" per_page="-1" columns="5" orderby="' . $orderByOjb . '" on_sale="' . $onSaleObj . '" order="ASC" operator="IN"]');
-//    if(!function_exists('wc_get_products')) {
-//        return;
-//    }
-//    if ( $loop->have_posts() ){
-//        while ( $loop->have_posts() ) : $loop->the_post();
-//            wc_get_template_part( 'content', 'product' );
-//        endwhile;
-//    } else {
-//        echo __( 'No products matching your query' );
-//    }
-//    wp_reset_postdata();
-//    var_dump($loop);
+
     echo '</div>';
 
     die();
-//    global $post;
-//    $slug = $post->post_name;
-//    $id = get_term_by('slug', $slug, 'product_cat');
-//    $idObj = $id->term_id;
-//
-//    $taxonomy       = 'product_cat';
-//    $orderby        = 'ID';
-//    $show_count     = 0;      // 1 for yes, 0 for no
-//    $pad_counts     = 0;      // 1 for yes, 0 for no
-//    $hierarchical   = 1;      // 1 for yes, 0 for no
-//    $title          = '';
-//    $empty          = 0;
-//
-//    $args = array(
-//        'post_type'             => 'product',
-//        'post_status'           => 'publish',
-//        'posts_per_page'        => '-1',
-//        'tax_query'             => array(
-//            array(
-//                'taxonomy'                  => $taxonomy,
-//                'terms'                     => $idObj,
-//                'orderby'                   => $orderby,
-//                'order'                     => 'ASC',
-//                'show_count'                => $show_count,
-//                'pad_counts'                => $pad_counts,
-//                'hierarchical'              => $hierarchical,
-//                'title_li'                  => $title,
-//                'hide_empty'                => $empty
-//            ),
-//            array(
-//                'taxonomy'      => 'product_visibility',
-//                'field'         => 'slug',
-//                'terms'         => 'exclude-from-catalog',
-//                'operator'      => 'NOT IN'
-//            )
-//        )
-//    );
-//    $response = '';
-//
-//    if($args->have_posts()) {
-//        while($args->have_posts()) : $args->the_post();
-////            $response .= $slug;
-////        var_dump($response);
-//        echo 'it worked';
-//        endwhile;
-//    } else {
-//        $response = '';
-//    }
-//
-//    echo $response;
-//    exit;
 }
 add_action('wp_ajax_load_results', 'load_results');
 add_action('wp_ajax_nopriv_load_results', 'load_results');

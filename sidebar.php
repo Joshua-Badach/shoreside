@@ -51,7 +51,7 @@
     <div id="categories">';
 //    data-url="' . admin_url('admin-ajax.php') . '" this was in a tag
     foreach ($categories as $cat) {
-        echo '<a data-url="?'. $taxonomy .'=" data-value="' . $cat->term_id . '" >' . $cat->cat_name . '</a>';
+        echo '<a data-category="' . $cat->term_id . '" >' . $cat->cat_name . '</a>';
     }
 
     echo '</div>';
@@ -80,7 +80,7 @@
     //}
 //Tweak this for contextual attribute return based on current products
     foreach ($termCheck as $i => $aTerm) {
-        echo '<a data-url="?product_tag=" data-value="' . $termCheck[$i] . '">' . $termName[$i] . '</a>';
+        echo '<a data-attribute="manufacturer" data-value="' . $termCheck[$i] . '">' . $termName[$i] . '</a>';
     }
     echo '</div>
         <div class="filterHeading">

@@ -438,8 +438,7 @@ jQuery(document).ready(function($) {
 
   $(document).on('click', '#categories a', function(){
     // currentPage++;
-    var idObj = $(this).data('value');
-    var filter = $(this).data('url');
+    var idObj = $(this).data('category');
     var ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";
 
     $.ajax({
@@ -447,16 +446,38 @@ jQuery(document).ready(function($) {
       dataType:       'html',
       data: {
             type:     'POST',
-            filter:   idObj,
+            idObj:    idObj,
             action:   'load_results',
       },
       success: function (response) {
         $('#contentTrigger').replaceWith( response );
-        // alert(response);
       },
       error: function (response) {
         console.log(response);
       }
+    });
+
+    $(document).on('click', '#attributes a', function(){
+      var attribute = $(this).data('attribute');
+      var tagObj = $(this).data('value');
+      var ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";
+
+      $.ajax({
+        url:            ajaxUrl,
+        dataType:       'html',
+        data: {
+          type:       'POST',
+          attribute:  attribute,
+          tagObj:     tagObj,
+          action:     'load_results',
+        },
+        success: function (response) {
+          $('#contentTrigger').replaceWith( response );
+        },
+        error: function (response) {
+          console.log(response);
+        }
+      })
     });
 
   //   var page = $(this).data('page');
