@@ -327,37 +327,37 @@ jQuery(document).ready(function($) {
     $(conditionText).text('Used')
   }
 
-  $(document).on('click', '#sidebar a', function(e){
-    var url = window.location.href;
-    var filter = $(this).attr('href');
-    e.preventDefault();
-
-    if ( url.indexOf('?') > -1){
-      window.history.replaceState(null, null, filter);
-      // location.reload();
-    }
-
-    if (url.indexOf('?') != -1){
-      var result = filter.replace('?', '');
-      var filterSanitize = filter.substring(0, filter.lastIndexOf('=') + 1);
-      var filterCheck = filterSanitize.replace(/[^a-z_]/gi, '');
-      var appendedQuery = url + '&' + result;
-      e.preventDefault();
-
-      //check if query already in url
-      if (url.indexOf(filterCheck) > -1 ){
-        e.preventDefault();
-        window.history.replaceState(null, null, filter);
-        // location.reload();
-      }
-
-      if (url.indexOf(filterCheck) == -1){
-        e.preventDefault();
-        window.history.replaceState(null, null, appendedQuery);
-        // location.reload();
-      }
-    }
-  });
+  // $(document).on('click', '#sidebar a', function(e){
+  //   var url = window.location.href;
+  //   var filter = $(this).attr('href');
+  //   e.preventDefault();
+  //
+  //   if ( url.indexOf('?') > -1){
+  //     window.history.replaceState(null, null, filter);
+  //     // location.reload();
+  //   }
+  //
+  //   if (url.indexOf('?') != -1){
+  //     var result = filter.replace('?', '');
+  //     var filterSanitize = filter.substring(0, filter.lastIndexOf('=') + 1);
+  //     var filterCheck = filterSanitize.replace(/[^a-z_]/gi, '');
+  //     var appendedQuery = url + '&' + result;
+  //     e.preventDefault();
+  //
+  //     //check if query already in url
+  //     if (url.indexOf(filterCheck) > -1 ){
+  //       e.preventDefault();
+  //       window.history.replaceState(null, null, filter);
+  //       // location.reload();
+  //     }
+  //
+  //     if (url.indexOf(filterCheck) == -1){
+  //       e.preventDefault();
+  //       window.history.replaceState(null, null, appendedQuery);
+  //       // location.reload();
+  //     }
+  //   }
+  // });
 
   //filter prevent default, clear url state
   $(document).on('click', '#clear', function(){
@@ -458,7 +458,8 @@ jQuery(document).ready(function($) {
     });
 
     $(document).on('click', '#attributes a', function(){
-      var attribute = $(this).data('attribute');
+      var idObj = '240';
+      var attribute = 'manufacturer';
       var tagObj = $(this).data('value');
       var ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";
 
@@ -467,6 +468,7 @@ jQuery(document).ready(function($) {
         dataType:       'html',
         data: {
           type:       'POST',
+          idObj:      idObj,
           attribute:  attribute,
           tagObj:     tagObj,
           action:     'load_results',

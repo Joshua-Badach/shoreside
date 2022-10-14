@@ -80,7 +80,7 @@
     //}
 //Tweak this for contextual attribute return based on current products
     foreach ($termCheck as $i => $aTerm) {
-        echo '<a data-attribute="manufacturer" data-value="' . $termCheck[$i] . '">' . $termName[$i] . '</a>';
+        echo '<a data-value="' . $termCheck[$i] . '">' . $termName[$i] . '</a>';
     }
     echo '</div>
         <div class="filterHeading">

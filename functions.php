@@ -465,61 +465,12 @@ add_action('wp_ajax_nopriv_load_results', 'load_results');
 function content_shortcode(){
     global $post;
     $slug = $post->post_name;
-
     $id = get_term_by('slug', $slug, 'product_cat');
-
-    if ($_GET['product_cat'] == '') {
-        $idObj = $id->term_id;
-    }
-    else {
-        $idObj = $_GET['product_cat'];
-    }
-    if ($_GET['product_tag'] == ''){
-        $tagObj ='';
-    }
-    else{
-        $tagObj = $_GET['product_tag'];
-        $attribute = 'manufacturer';
-//        hardcoded for now, depending on how syd handles the attributes going forward
-    }
-    if ($_GET['orderby'] == ''){
-        $orderByOjb = 'price';
-        $orderObj = 'ASC';
-    }
-    else{
-        $orderByOjb = $_GET['orderby'];
-    }
-    if ($_GET['on_sale'] != ''){
-        $onSaleObj = true;
-    }
-//
-//    $taxonomy       = 'product_cat';
-//    $orderby        = 'ID';
-//    $show_count     = 0;      // 1 for yes, 0 for no
-//    $pad_counts     = 0;      // 1 for yes, 0 for no
-//    $hierarchical   = 1;      // 1 for yes, 0 for no
-//    $title          = '';
-//    $empty          = 0;
-
-//    $query = array(
-//        'post_type'             => 'product',
-//        'post_status'           => 'publish',
-//        'posts_per_page'        => '-1',
-//        'tax_query'             => array(
-//            array(
-//                'taxonomy'                  => $taxonomy,
-//                'terms'                     => $idObj,
-//                'orderby'                   => $orderby,
-//                'order'                     => 'ASC',
-//                'show_count'                => $show_count,
-//                'pad_counts'                => $pad_counts,
-//                'hierarchical'              => $hierarchical,
-//                'title_li'                  => $title,
-//                'hide_empty'                => $empty
-//            ),
-//    ),
-//);
-//    $loop = new WP_Query( $query );
+    $idObj = $id->term_id;
+    $tagObj ='';
+    $attribute = '';
+    $orderByOjb = '';
+    $onSaleObj = '';
 
     $categoryDescription = category_description($idObj);
     $term = get_term_by('id', $idObj, 'product_cat');
@@ -528,11 +479,7 @@ function content_shortcode(){
         <div class="row">
         <h2>' . $term->name . '</h2>' .
             $categoryDescription .
-        '</div>';
-//    var_dump($id);
-       echo '<div class="row">
-            <p>Breadcrumbs code goes there</p>
-        </div>
+        '</div>
     </div>
     <div id="mobileFilter">
         <a id="sidebarIcon" href="">
@@ -543,21 +490,9 @@ function content_shortcode(){
         get_sidebar();
         echo '<div id="contentTrigger" class="container">';
             echo do_shortcode('[products category="' . $idObj . '" attribute="' . $attribute . '"  terms="' . $tagObj . '" per_page="-1" columns="5" orderby="' . $orderByOjb . '" on_sale="' . $onSaleObj . '" order="ASC" operator="IN"]');
-//    if(!function_exists('wc_get_products')) {
-//        return;
-//    }
-//    if ( $loop->have_posts() ){
-//        while ( $loop->have_posts() ) : $loop->the_post();
-//            wc_get_template_part( 'content', 'product' );
-//        endwhile;
-//    } else {
-//        echo __( 'No products matching your query' );
-//    }
-//    wp_reset_postdata();
-//    var_dump($loop);
+
     echo '</div>
 </div>';
-//    var_dump($idObj);
 }
 add_shortcode('content', 'content_shortcode');
 
