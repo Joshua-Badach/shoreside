@@ -51,7 +51,7 @@
     <div id="categories">';
 //    data-url="' . admin_url('admin-ajax.php') . '" this was in a tag
     foreach ($categories as $cat) {
-        echo '<a data-category="' . $cat->term_id . '" >' . $cat->cat_name . '</a>';
+        echo '<a data-value="' . $cat->term_id . '" >' . $cat->cat_name . '</a>';
     }
 
     echo '</div>';

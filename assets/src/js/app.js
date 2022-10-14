@@ -436,31 +436,31 @@ jQuery(document).ready(function($) {
   //remove container class
   //onclick animate slide in
 
-  $(document).on('click', '#categories a', function(){
-    // currentPage++;
-    var idObj = $(this).data('category');
+  $(document).on('click', '#categories a', function() {
+    var idObj = $(this).data('value');
     var ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";
 
     $.ajax({
-      url:            ajaxUrl,
-      dataType:       'html',
+      url: ajaxUrl,
+      dataType: 'html',
       data: {
-            type:     'POST',
-            idObj:    idObj,
-            action:   'load_results',
+        type: 'POST',
+        idObj: idObj,
+        action: 'load_results',
       },
       success: function (response) {
-        $('#contentTrigger').replaceWith( response );
+        $('#contentTrigger').replaceWith(response);
       },
       error: function (response) {
         console.log(response);
       }
-    });
+    })
+  });
 
     $(document).on('click', '#attributes a', function(){
-      var idObj = '240';
-      var attribute = 'manufacturer';
+      var idObj = '';
       var tagObj = $(this).data('value');
+      var attribute = 'manufacturer';
       var ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";
 
       $.ajax({
@@ -469,8 +469,8 @@ jQuery(document).ready(function($) {
         data: {
           type:       'POST',
           idObj:      idObj,
-          attribute:  attribute,
           tagObj:     tagObj,
+          attribute:  attribute,
           action:     'load_results',
         },
         success: function (response) {
@@ -481,26 +481,6 @@ jQuery(document).ready(function($) {
         }
       })
     });
-
-  //   var page = $(this).data('page');
-  //   var newPage = page++;
-  //   var ajaxUrl = $(this).data('url');
-  //
-  //   $.ajax({
-  //
-  //     url : ajaxUrl,
-  //     type : 'post',
-  //     data : {
-  //       action : 'load_results'
-  //     },
-  //     error : function( response ){
-  //       console.log( response );
-  //     },
-  //     success : function( response ){
-  //       $('#contentTrigger').append( response )
-  //     },
-  //   });
-  });
 
   checkWidth();
   $(window).resize(checkWidth);
