@@ -290,14 +290,14 @@ jQuery(document).ready(function($) {
     if ($('.conditionInput').prop('checked') == true){
       window.history.replaceState(null, null, preOwned);
       $(conditionText).text('Used')
-      location.reload();
+      // location.reload();
     //  remove reload crap after ajax, leave selected after reload
     }
     else {
       //refine this later, good enough for now
       window.history.pushState({}, "", pageUrl.split("?")[0]);
       $(conditionText).text('New')
-      location.reload();
+      // location.reload();
     }
   });
   //filter on sale switch
@@ -306,14 +306,14 @@ jQuery(document).ready(function($) {
     if ($('.saleInput').prop('checked') == true){
       window.history.replaceState(null, null, sale);
       $(saleText).text('Yes')
-      location.reload();
+      // location.reload();
       //  remove reload crap after ajax, leave selected after reload
     }
     else {
       //refine this later, good enough for now
       window.history.pushState({}, "", pageUrl.split("?")[0]);
       $(saleText).text('No')
-      location.reload();
+      // location.reload();
     }
   });
 
@@ -330,11 +330,11 @@ jQuery(document).ready(function($) {
   $(document).on('click', '#sidebar a', function(e){
     var url = window.location.href;
     var filter = $(this).attr('href');
+    e.preventDefault();
 
     if ( url.indexOf('?') > -1){
-      e.preventDefault();
       window.history.replaceState(null, null, filter);
-      location.reload();
+      // location.reload();
     }
 
     if (url.indexOf('?') != -1){
@@ -348,13 +348,13 @@ jQuery(document).ready(function($) {
       if (url.indexOf(filterCheck) > -1 ){
         e.preventDefault();
         window.history.replaceState(null, null, filter);
-        location.reload();
+        // location.reload();
       }
 
       if (url.indexOf(filterCheck) == -1){
         e.preventDefault();
         window.history.replaceState(null, null, appendedQuery);
-        location.reload();
+        // location.reload();
       }
     }
   });
@@ -436,37 +436,23 @@ jQuery(document).ready(function($) {
   //remove container class
   //onclick animate slide in
 
-
-  // $('.content').filter(function(){
-    //
-    // });
-
-    // $.ajax({
-    //   type : 'get',
-    //   url : pageUrl,
-    //   success : function(data) {
-    //     $("body")
-    //   },
-    // });
-
-
   $(document).on('click', '#categories a', function(){
-    //grab href data
     // currentPage++;
-    var value = $(this).data('value');
-    var ajaxUrl = $(this).data('url');
+    var idObj = $(this).data('value');
+    var filter = $(this).data('url');
+    var ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";
 
     $.ajax({
       url:            ajaxUrl,
       dataType:       'html',
       data: {
             type:     'POST',
-            value:    value,
+            filter:   idObj,
             action:   'load_results',
-            // paged:  'currentPage',
       },
       success: function (response) {
-              $('#contentTrigger').append( response );
+        $('#contentTrigger').replaceWith( response );
+        // alert(response);
       },
       error: function (response) {
         console.log(response);
