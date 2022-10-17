@@ -40,7 +40,6 @@
 
     $categories = get_categories($args);
 
-echo $idObj;
     ?>
 
 <div id="sidebarContainer">

@@ -288,8 +288,8 @@ jQuery(document).ready(function($) {
     var idObj = $(this).data('value');
     var ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";
     function result(idObj){
-      idObj = $(this).data('value');
-      console.log("count is: ", idObj);
+      // idObj = $(this).data('value');
+      console.log("idObj is: ", idObj);
     }
 
     $.ajax({
@@ -308,6 +308,7 @@ jQuery(document).ready(function($) {
         console.log(response);
       }
     })
+    return idObj;
   });
 
     $(document).on('click', '#attributes a', function(){
