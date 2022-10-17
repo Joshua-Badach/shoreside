@@ -287,10 +287,6 @@ jQuery(document).ready(function($) {
   $(document).on('click', '#categories a', function() {
     var idObj = $(this).data('value');
     var ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";
-    function result(idObj){
-      // idObj = $(this).data('value');
-      console.log("idObj is: ", idObj);
-    }
 
     $.ajax({
       url: ajaxUrl,
@@ -302,7 +298,6 @@ jQuery(document).ready(function($) {
       },
       success: function (response) {
         $('#contentTrigger').replaceWith(response);
-        result(idObj);
       },
       error: function (response) {
         console.log(response);
