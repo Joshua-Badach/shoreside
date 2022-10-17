@@ -2,15 +2,16 @@
     global $post;
     $slug = $post->post_name;
 
+
     $id = get_term_by('slug', $slug, 'product_cat');
     $preOwnedObj = get_term_by('slug', 'pre-owned', 'product_cat');
-//    if ($_GET['product_cat'] == '') {
-    $idObj = $id->term_id;
-//    }
-//    else {
-//        $idObj = $_GET['product_cat'];
-//    }
 
+    if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
+    {
+        $idObj = $_REQUEST['idObj'];
+    } else {
+        $idObj = $id->term_id;
+    }
 
     $taxonomy       = 'product_cat';
     $hierarchical   = 1;      // 1 for yes, 0 for no
