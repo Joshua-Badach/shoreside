@@ -451,11 +451,28 @@ function load_results() {
     $orderObj           =           $_REQUEST['orderObj'];
     $onSaleObj          =           $_REQUEST['onSaleObj'];
 
-//    var_dump($idObj);
+    $categoryDescription = category_description($idObj);
+    $term = get_term_by('id', $idObj, 'product_cat');
+
+    echo '<div id="contentTrigger" >
+            <div class="container display">
+                <div class="row">
+                    <h2>' . $term->name . '</h2>
+                    ' . $categoryDescription . '
+                </div>
+            </div>
+            <div id="mobileFilter" style="display: none">
+                <a id="sidebarIcon" href="">
+                    <img width="30px" height="30px" src="' . get_template_directory_uri(). '/assets/src/library/images/menu-icon.svg\' ?>" alt="Menu Icon">
+                </a>
+            </div>
+            <div class="content">';
+    get_sidebar();
     echo '<div id="contentTrigger" class="container">';
     echo do_shortcode('[products category="' . $idObj . '" attribute="' . $attribute . '"  terms="' . $tagObj . '" per_page="-1" columns="5" orderby="' . $orderByOjb . '" on_sale="' . $onSaleObj . '" order="ASC" operator="IN"]');
-
-    echo '</div>';
+    echo '</div>
+        </div>
+    </div>';
 
     die();
 }
@@ -475,24 +492,25 @@ function content_shortcode(){
     $categoryDescription = category_description($idObj);
     $term = get_term_by('id', $idObj, 'product_cat');
 
-    echo '<div class="container display">
-        <div class="row">
-        <h2>' . $term->name . '</h2>' .
-            $categoryDescription .
-        '</div>
-    </div>
-    <div id="mobileFilter">
-        <a id="sidebarIcon" href="">
-        <img width="30px" height="30px" src="' . get_template_directory_uri(). '/assets/src/library/images/menu-icon.svg\' ?>" alt="Menu Icon">
-    </a>
-    </div>
-    <div class="content">';
-        get_sidebar();
-        echo '<div id="contentTrigger" class="container">';
-            echo do_shortcode('[products category="' . $idObj . '" attribute="' . $attribute . '"  terms="' . $tagObj . '" per_page="-1" columns="5" orderby="' . $orderByOjb . '" on_sale="' . $onSaleObj . '" order="ASC" operator="IN"]');
-
-    echo '</div>
-</div>';
+    echo '<div id="contentTrigger" >
+            <div class="container display">
+                <div class="row">
+                    <h2>' . $term->name . '</h2>
+                    ' . $categoryDescription . '
+                </div>
+            </div>
+            <div id="mobileFilter" style="display: none">
+                <a id="sidebarIcon" href="">
+                    <img width="30px" height="30px" src="' . get_template_directory_uri(). '/assets/src/library/images/menu-icon.svg\' ?>" alt="Menu Icon">
+                </a>
+            </div>
+            <div class="content">';
+                get_sidebar();
+                echo '<div id="contentTrigger" class="container">';
+                    echo do_shortcode('[products category="' . $idObj . '" attribute="' . $attribute . '"  terms="' . $tagObj . '" per_page="-1" columns="5" orderby="' . $orderByOjb . '" on_sale="' . $onSaleObj . '" order="ASC" operator="IN"]');
+                echo '</div>
+            </div>
+    </div>';
 }
 add_shortcode('content', 'content_shortcode');
 

@@ -3,12 +3,13 @@
     $slug = $post->post_name;
 
     $id = get_term_by('slug', $slug, 'product_cat');
-    if ($_GET['product_cat'] == '') {
-        $idObj = $id->term_id;
-    }
-    else {
-        $idObj = $_GET['product_cat'];
-    }
+    $preOwnedObj = get_term_by('slug', 'pre-owned', 'product_cat');
+//    if ($_GET['product_cat'] == '') {
+    $idObj = $id->term_id;
+//    }
+//    else {
+//        $idObj = $_GET['product_cat'];
+//    }
 
 
     $taxonomy       = 'product_cat';
@@ -39,7 +40,9 @@
 
     $categories = get_categories($args);
 
+echo $idObj;
     ?>
+
 <div id="sidebarContainer">
     <div id="sidebarHeader"><p>Filters</p></div>
     <div id="sidebar">
@@ -80,15 +83,15 @@
     //}
 //Tweak this for contextual attribute return based on current products
     foreach ($termCheck as $i => $aTerm) {
-        echo '<a data-value="' . $termCheck[$i] . '">' . $termName[$i] . '</a>';
+        echo '<a data-category="' . $idObj . '" data-value="' . $termCheck[$i] . '">' . $termName[$i] . '</a>';
     }
     echo '</div>
         <div class="filterHeading">
             <p>Price: </p>
         </div>
         <div id="prices" class="objectPadding">
-            <a href="?orderby=price">Low to High</a>
-            <a href="?orderby=price-desc">High to Low</a>
+            <a id="asc" data-category="' . $idObj . '" data-value="price">Low to High</a>
+            <a id="desc" data-category="' . $idObj . '" data-value="price-desc">High to Low</a>
         </div>';
 
 
@@ -98,7 +101,7 @@
         </div>' .
         '<div class="switchContainer objectPadding">
             <label class="switch">
-            <input type="checkbox" name="condition" class="conditionInput" value="?product_cat=pre-owned ">
+            <input type="checkbox" name="condition" class="conditionInput" data-category="' . $idObj . '" data-value="' . $preOwnedObj->term_id .'">
             <span class="slider round"></span>
         </label>
         <span class="condition">New</span></div>';
@@ -107,7 +110,7 @@ echo '<div class="filterHeading">
         <p>On Sale: </p>
       </div>' . '<div class="switchContainer objectPadding">
         <label class="switch">
-            <input type="checkbox" name="sale" class="saleInput" value="?on_sale=sale ">
+            <input type="checkbox" name="sale" class="saleInput" data-category="' . $idObj . '" data-value="true">
             <span class="slider round"></span>
         </label>
         <span class="on_sale">No</span></div>';

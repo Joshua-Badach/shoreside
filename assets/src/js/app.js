@@ -94,12 +94,12 @@ jQuery(document).ready(function($) {
   if (mobile) {
     $('.slick-arrow').delay(10000).fadeOut('slow');
     $('#sidebar').hide();
+    $('#mobileFilter').show();
     $('#contentTrigger').removeClass('content');
     $('#sidebarHeader').hide();
     // $('.select2-container').removeAttr('style').css('z-index', '100');
 
   } else {
-    $('#mobileFilter').hide();
     $('#sidebarIcon').hide();
     $('#sidebarHeader').show();
     $('#sidebar').css({
@@ -163,118 +163,10 @@ jQuery(document).ready(function($) {
     // });
   //finish modal later
   }
-  //
-  // $("#some_id").click( function(e) {
-  //   e.preventDefault();
-  //
-  //   $.ajax({
-  //     type : "post",
-  //     dataType : "json",
-  //     url : OBJ.ajaxurl,
-  //     data : {
-  //       action: "my_ajax_action"
-  //     },
-  //     success: function(response) {
-  //       if( response.type == "success" ) {
-  //         'it worked'
-  //       }
-  //       else {
-  //         'nope'
-  //       }
-  //     }
-  //   });
-  // });
 
   setTimeout(function(){
     $('#prompt-CWnFXGNPWNYNiMFgwS5X-iframe').fadeOut('slow');
   }, 10000 );
-
-
-  // $('.load_results').click( function(e){
-  //   e.preventDefault();
-  //   ajax_next_posts()
-  //   $('body').addClass('ajaxLoading');
-  // });
-  //
-  // var ajaxLock = false; // ajaxLock is just a flag to prevent double clicks and spamming
-  //
-  // if( !ajaxLock ) {
-  //
-  //   function ajax_next_posts() {
-  //
-  //     ajaxLock = true;
-  //
-  //     // How many posts there's total
-  //     var totalPosts = parseInt( jQuery( '#found-posts' ).text() );
-  //
-  //     // How many have been loaded
-  //     var postOffset = jQuery( 'li.product' ).length
-  //
-  //     // How many do you want to load in single patch
-  //     var postsPerPage = 1;
-  //
-  //     var ajaxUrl = $(this).data('url');
-  //
-  //
-  //     // Ajax call itself
-  //     $.ajax({
-  //       method: 'POST',
-  //       url: ajaxUrl,
-  //       data: {
-  //         action: 'ajax_next_posts',
-  //         post_offset: postOffset,
-  //         posts_per_page: postsPerPage,
-  //         // product_cat: cat_id
-  //       },
-  //       dataType: 'json'
-  //     })
-  //       .done( function( response ) { // Ajax call is successful
-  //         // console.log( response );
-  //
-  //         // Add new posts
-  //         jQuery( '.content' ).append( response[0] );
-  //
-  //         // Log SQL query
-  //         jQuery( '#query > pre' ).text( response[2] );
-  //
-  //         // Update the count of total posts
-  //         // jQuery( '#found-posts' ).text( response[1] );
-  //
-  //         ajaxLock = false;
-  //
-  //         console.log( 'Success' );
-  //
-  //         $('body').removeClass('ajaxLoading');
-  //
-  //         // How many posts there's total
-  //         var totalPosts = parseInt( jQuery( '#found-posts' ).text() );
-  //         console.log( "Total Posts: " + totalPosts );
-  //
-  //         // How many have been loaded
-  //         var postOffset = jQuery( 'li.product' ).length
-  //         console.log( "Posts currently showing: " + postOffset );
-  //
-  //         // Hide button if all posts are loaded
-  //         if( totalPosts < postOffset + ( 1 * postsPerPage ) ) {
-  //           jQuery( '.load_results' ).fadeOut();
-  //         }
-  //
-  //       })
-  //       // .fail( function() {
-  //       .fail( function(jqXHR, textStatus, errorThrown) { // Ajax call is not successful, still remove lock in order to try again
-  //
-  //         ajaxLock = false;
-  //
-  //         console.log(XMLHttpRequest);
-  //         console.log(textStatus);
-  //         console.log(errorThrown);
-  //
-  //         console.log( 'Failed' );
-  //
-  //       });
-  //   }
-  // }
-  //
 
   //refine later, check if ?filters= exists, if unique filter - append, if same filter - replace
 
@@ -288,32 +180,26 @@ jQuery(document).ready(function($) {
   $(document).on('click','.conditionInput', function(){
     var preOwned = $('.conditionInput').val();
     if ($('.conditionInput').prop('checked') == true){
-      window.history.replaceState(null, null, preOwned);
+      // window.history.replaceState(null, null, preOwned);
       $(conditionText).text('Used')
-      // location.reload();
-    //  remove reload crap after ajax, leave selected after reload
     }
     else {
       //refine this later, good enough for now
-      window.history.pushState({}, "", pageUrl.split("?")[0]);
+      // window.history.pushState({}, "", pageUrl.split("?")[0]);
       $(conditionText).text('New')
-      // location.reload();
     }
   });
   //filter on sale switch
   $(document).on('click','.saleInput', function(){
     var sale = $('.saleInput').val();
     if ($('.saleInput').prop('checked') == true){
-      window.history.replaceState(null, null, sale);
+      // window.history.replaceState(null, null, sale);
       $(saleText).text('Yes')
-      // location.reload();
-      //  remove reload crap after ajax, leave selected after reload
     }
     else {
       //refine this later, good enough for now
-      window.history.pushState({}, "", pageUrl.split("?")[0]);
+      // window.history.pushState({}, "", pageUrl.split("?")[0]);
       $(saleText).text('No')
-      // location.reload();
     }
   });
 
@@ -323,41 +209,9 @@ jQuery(document).ready(function($) {
   }
   //hardcoded product cat for now
   if(pageUrl.indexOf('product_cat=pre-owned') != -1 ) {
-    $('input:checkbox[name="condition"]').prop('checked', true);
+    // $('input:checkbox[name="condition"]').prop('checked', true);
     $(conditionText).text('Used')
   }
-
-  // $(document).on('click', '#sidebar a', function(e){
-  //   var url = window.location.href;
-  //   var filter = $(this).attr('href');
-  //   e.preventDefault();
-  //
-  //   if ( url.indexOf('?') > -1){
-  //     window.history.replaceState(null, null, filter);
-  //     // location.reload();
-  //   }
-  //
-  //   if (url.indexOf('?') != -1){
-  //     var result = filter.replace('?', '');
-  //     var filterSanitize = filter.substring(0, filter.lastIndexOf('=') + 1);
-  //     var filterCheck = filterSanitize.replace(/[^a-z_]/gi, '');
-  //     var appendedQuery = url + '&' + result;
-  //     e.preventDefault();
-  //
-  //     //check if query already in url
-  //     if (url.indexOf(filterCheck) > -1 ){
-  //       e.preventDefault();
-  //       window.history.replaceState(null, null, filter);
-  //       // location.reload();
-  //     }
-  //
-  //     if (url.indexOf(filterCheck) == -1){
-  //       e.preventDefault();
-  //       window.history.replaceState(null, null, appendedQuery);
-  //       // location.reload();
-  //     }
-  //   }
-  // });
 
   //filter prevent default, clear url state
   $(document).on('click', '#clear', function(){
@@ -428,17 +282,15 @@ jQuery(document).ready(function($) {
     });
   });
 
-
-
-  //Break it down
-  //check if browser or mobile
-  //if mobile hide sidebar and show icon
-  //remove container class
-  //onclick animate slide in
-
+  //Sidebar ajax queries
+  //Clean this up
   $(document).on('click', '#categories a', function() {
     var idObj = $(this).data('value');
     var ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";
+    function result(idObj){
+      idObj = $(this).data('value');
+      console.log("count is: ", idObj);
+    }
 
     $.ajax({
       url: ajaxUrl,
@@ -450,6 +302,7 @@ jQuery(document).ready(function($) {
       },
       success: function (response) {
         $('#contentTrigger').replaceWith(response);
+        result(idObj);
       },
       error: function (response) {
         console.log(response);
@@ -458,7 +311,7 @@ jQuery(document).ready(function($) {
   });
 
     $(document).on('click', '#attributes a', function(){
-      var idObj = '';
+      var idObj = $(this).data('category');
       var tagObj = $(this).data('value');
       var attribute = 'manufacturer';
       var ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";
@@ -481,6 +334,94 @@ jQuery(document).ready(function($) {
         }
       })
     });
+
+    $(document).on('click', `.conditionInput`, function(){
+      var idObj = $(this).data('value');
+      var ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";
+      $.ajax({
+        url:            ajaxUrl,
+        dataType:       'html',
+        data: {
+          type:       'POST',
+          idObj:      idObj,
+          action:     'load_results'
+        },
+        success: function (response) {
+          $('#contentTrigger').replaceWith( response );
+        },
+        error: function (response) {
+          console.log(response);
+        }
+      })
+    });
+
+  $(document).on('click', `.saleInput`, function(){
+    var idObj = $(this).data('category');
+    var onSaleObj = $(this).data('value');
+    var ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";
+    $.ajax({
+      url:            ajaxUrl,
+      dataType:       'html',
+      data: {
+        type:         'POST',
+        idObj:        idObj,
+        onSaleObj:    onSaleObj,
+        action:       'load_results'
+      },
+      success: function (response) {
+        $('#contentTrigger').replaceWith( response );
+      },
+      error: function (response) {
+        console.log(response);
+      }
+    })
+  });
+
+  $(document).on('click', '#asc', function(){
+    var idObj = $(this).data('category');
+    var orderByOjb = $(this).data('value');
+    var ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";
+
+    $.ajax({
+      url:            ajaxUrl,
+      dataType:       'html',
+      data: {
+        type:         'POST',
+        idObj:        idObj,
+        orderByObj:   orderByOjb,
+        action:       'load_results'
+      },
+      success: function (response) {
+        $('#contentTrigger').replaceWith( response );
+      },
+      error: function (response) {
+        console.log(response);
+      }
+    })
+  });
+
+  $(document).on('click', '#desc', function(){
+    var idObj = $(this).data('category');
+    var orderByOjb = $(this).data('value');
+    var ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";
+
+    $.ajax({
+      url:            ajaxUrl,
+      dataType:       'html',
+      data: {
+        type:         'POST',
+        idObj:        idObj,
+        orderByObj:   orderByOjb,
+        action:       'load_results'
+      },
+      success: function (response) {
+        $('#contentTrigger').replaceWith( response );
+      },
+      error: function (response) {
+        console.log(response);
+      }
+    })
+  });
 
   checkWidth();
   $(window).resize(checkWidth);
