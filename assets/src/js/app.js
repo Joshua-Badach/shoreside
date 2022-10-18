@@ -170,118 +170,134 @@ jQuery(document).ready(function($) {
 
   //refine later, check if ?filters= exists, if unique filter - append, if same filter - replace
 
-  var pageUrl = document.location.href;
-  var saleText = $('.on_sale');
-  var conditionText = $('.condition');
+  function sidebar() {
+    var pageUrl = document.location.href;
+    var saleText = $('.on_sale');
+    var conditionText = $('.condition');
 
-
-
-//filter preowned switch
-  $(document).on('click','.conditionInput', function(){
-    var preOwned = $('.conditionInput').val();
-    if ($('.conditionInput').prop('checked') == true){
-      // window.history.replaceState(null, null, preOwned);
-      $(conditionText).text('Used')
-    }
-    else {
-      //refine this later, good enough for now
-      // window.history.pushState({}, "", pageUrl.split("?")[0]);
-      $(conditionText).text('New')
-    }
-  });
-  //filter on sale switch
-  $(document).on('click','.saleInput', function(){
-    var sale = $('.saleInput').val();
-    if ($('.saleInput').prop('checked') == true){
-      // window.history.replaceState(null, null, sale);
+    if (pageUrl.indexOf('on_sale=sale') != -1) {
+      $('input:checkbox[name="sale"]').prop('checked', true);
       $(saleText).text('Yes')
     }
-    else {
-      //refine this later, good enough for now
-      // window.history.pushState({}, "", pageUrl.split("?")[0]);
-      $(saleText).text('No')
+    //hardcoded product cat for now
+    if (pageUrl.indexOf('product_cat=pre-owned') != -1) {
+      // $('input:checkbox[name="condition"]').prop('checked', true);
+      $(conditionText).text('Used')
     }
-  });
 
-  if(pageUrl.indexOf('on_sale=sale') != -1 ) {
-    $('input:checkbox[name="sale"]').prop('checked', true);
-    $(saleText).text('Yes')
-  }
-  //hardcoded product cat for now
-  if(pageUrl.indexOf('product_cat=pre-owned') != -1 ) {
-    // $('input:checkbox[name="condition"]').prop('checked', true);
-    $(conditionText).text('Used')
-  }
+    //filter prevent default, clear url state
+    //handle this via ajax later
+    $(document).on('click', '#clear', function () {
+      window.history.pushState({}, "", pageUrl.split("?")[0]);
+      location.reload();
+    });
 
-  //filter prevent default, clear url state
-  $(document).on('click', '#clear', function(){
-    window.history.pushState({}, "", pageUrl.split("?")[0]);
-    location.reload();
-  });
+    //hide sidebar links if over 5, modularize if more attributes are needed
+    //clean this up later, lazy but I'm on a time crunch
 
-  //hide sidebar links if over 5, modularize if more attributes are needed
-  //clean this up later, lazy but I'm on a time crunch
+    // if( $('#categories').children().length > 5) {
+    //   if (pageUrl.indexOf('product_cat') > -1) {
+    //     $('.showCategories img').toggleClass('sidebarIconAnimate90');
+    //     $('#categories a').show();
+    //   } else {
+    //     $('#categories a').hide();
+    //     // $('#categories').toggleClass('sidebarActive');
+    //   }
+    // }
+    //
+    // if( $('#attributes').children().length > 5) {
+    //   if (pageUrl.indexOf('product_tag') > -1) {
+    //     $('.showAttributes img').toggleClass('sidebarIconAnimate90');
+    //     $('#attributes a').show();
+    //   } else {
+    //     $('#attributes a').hide();
+    //   }
+    // }
 
-  if( $('#categories').children().length > 5) {
-    if (pageUrl.indexOf('product_cat') > -1) {
-      $('.showCategories').toggleClass('sidebarIconAnimate90');
-      $('#categories a').show();
-      $('#categories').toggleClass('objectPadding');
-    } else {
+    //move all this crap into functions later
+
+    // $('#contentTrigger .test').on('click', 'a', function(){
+    //   console.log('clicked');
+    // });
+
+    //Show sale toggle if user is in showroom
+    if (pageUrl.indexOf('showroom') == -1) {
+      $('#showroomToggle').hide();
+    }
+
+    //Prevent defaults for filter heading dropdowns
+    function preventDefaults() {
+      $('#contentTrigger .filterHeading').on('click', 'a', function (e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        console.log('heading clicked');
+      });
+    }
+
+    //Hide filters on load if more than 5 children
+    //Need to handle this differently, probably active class
+    if ($('#contentTrigger #categories').children().length >= 5) {
       $('#categories a').hide();
     }
-  } else {
-    $('#categories').addClass('objectPadding');
-  }
-
-  $('.showCategories').on('click', function(e) {
-    e.preventDefault();
-    e.stopImmediatePropagation();
-    $('#categories a').toggle();
-    $('#categories').toggleClass('objectPadding');
-    $('.showCategories').toggleClass('sidebarIconAnimate90');
-  });
-
-  if( $('#attributes').children().length > 5) {
-    if (pageUrl.indexOf('product_tag') > -1) {
-      $('.showAttributes').toggleClass('sidebarIconAnimate90');
-      $('#attributes a').show();
-      $('#attributes').toggleClass('objectPadding');
-    } else {
+    if ($('#attributes').children().length >= 5) {
       $('#attributes a').hide();
     }
-  } else {
-    $('#attributes').addClass('objectPadding');
-  }
+    $('#contentTriggger').on('DOMSubtreeModified', function () {
+      console.log('changed');
+    });
 
-  $('.showAttributes').on('click', function(e) {
-    e.preventDefault();
-    e.stopImmediatePropagation();
-    $('#attributes a').toggle();
-    $('#attributes').toggleClass('objectPadding');
-    $('.showAttributes').toggleClass('sidebarIconAnimate90');
-  });
+    //Animate filtering arrow on click, show links
+    $('.showCategories').on('click', function () {
+      $('#categories a').toggle();
+      $('.showCategories img').toggleClass('sidebarIconAnimate90');
+    });
 
-  if(pageUrl.indexOf('?') == -1 ){
-    $('.clearButton').hide();
-  }
+    $('.showAttributes').on('click', function () {
+      $('#attributes a').toggle();
+      $('.showAttributes img').toggleClass('sidebarIconAnimate90');
+    });
 
-  //hidenslide
-  $('#sidebarIcon').on('click', function(e){
-    e.preventDefault();
-    e.stopImmediatePropagation();
-    $('#sidebar').toggle(500);
-    $('#sidebar').css({
+    if (pageUrl.indexOf('?') == -1) {
+      $('.clearButton').hide();
+    }
+
+//Filter switch toggles
+    $(document).on('click', '.conditionInput', function () {
+      if ($('.conditionInput').prop('checked') == true) {
+        $(conditionText).text('Used')
+      }
+      else {
+        $(conditionText).text('New')
+      }
+    });
+    $(document).on('click', '.saleInput', function () {
+      if ($('.saleInput').prop('checked') == true) {
+        $(saleText).text('Yes')
+      }
+      else {
+        $(saleText).text('No')
+      }
+    });
+
+
+    //Hidenslide for mobile filter
+    $('#sidebarIcon').on('click', function (e) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      $('#sidebar').toggle(500);
+      $('#sidebar').css({
         "-webkit-box-shadow": "5px 5px 7px 5px #000000",
         "box-shadow": "5px 5px 7px 5px #000000",
-    });
-    $('#sidebarIcon img').toggleClass('sidebarIconAnimate');
-    $('#sidebarContainer').css({
-        "position":"absolute",
+      });
+      $('#sidebarIcon img').toggleClass('sidebarIconAnimate');
+      $('#sidebarContainer').css({
+        "position": "absolute",
         "width": "50%"
+      });
     });
-  });
+  }
 
+  sidebar();
   //Sidebar ajax queries
   //Clean this up
   $(document).on('click', '#categories a', function() {
@@ -298,12 +314,13 @@ jQuery(document).ready(function($) {
       },
       success: function (response) {
         $('#contentTrigger').replaceWith(response);
+        sidebar();
       },
       error: function (response) {
         console.log(response);
       }
     })
-    return idObj;
+    return idObj, pageUrl;
   });
 
     $(document).on('click', '#attributes a', function(){
@@ -324,11 +341,13 @@ jQuery(document).ready(function($) {
         },
         success: function (response) {
           $('#contentTrigger').replaceWith( response );
+          sidebar();
         },
         error: function (response) {
           console.log(response);
         }
       })
+      return idObj, tagObj;
     });
 
     $(document).on('click', `.conditionInput`, function(){
@@ -344,11 +363,13 @@ jQuery(document).ready(function($) {
         },
         success: function (response) {
           $('#contentTrigger').replaceWith( response );
+          sidebar();
         },
         error: function (response) {
           console.log(response);
         }
       })
+      return idObj;
     });
 
   $(document).on('click', `.saleInput`, function(){
@@ -366,6 +387,7 @@ jQuery(document).ready(function($) {
       },
       success: function (response) {
         $('#contentTrigger').replaceWith( response );
+        sidebar();
       },
       error: function (response) {
         console.log(response);
@@ -389,6 +411,7 @@ jQuery(document).ready(function($) {
       },
       success: function (response) {
         $('#contentTrigger').replaceWith( response );
+        sidebar();
       },
       error: function (response) {
         console.log(response);
@@ -412,6 +435,7 @@ jQuery(document).ready(function($) {
       },
       success: function (response) {
         $('#contentTrigger').replaceWith( response );
+        sidebar();
       },
       error: function (response) {
         console.log(response);

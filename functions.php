@@ -454,7 +454,7 @@ function load_results() {
     $categoryDescription = category_description($idObj);
     $term = get_term_by('id', $idObj, 'product_cat');
 
-    echo '<div id="contentTrigger" >
+    echo '<div id="contentTrigger">
             <div class="container display">
                 <div class="row">
                     <h2>' . $term->name . '</h2>
@@ -483,16 +483,23 @@ function content_shortcode(){
     global $post;
     $slug = $post->post_name;
     $id = get_term_by('slug', $slug, 'product_cat');
-    $idObj = $id->term_id;
+//    $idObj = $id->term_id;
     $tagObj ='';
     $attribute = '';
     $orderByOjb = '';
     $onSaleObj = '';
 
+    if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
+    {
+        $idObj = $_REQUEST['idObj'];
+    } else {
+        $idObj = $id->term_id;
+    }
+
     $categoryDescription = category_description($idObj);
     $term = get_term_by('id', $idObj, 'product_cat');
 
-    echo '<div id="contentTrigger" >
+    echo '<div id="contentTrigger">
             <div class="container display">
                 <div class="row">
                     <h2>' . $term->name . '</h2>

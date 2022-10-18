@@ -1081,13 +1081,22 @@ div .form-footer{
   height: 25px;
   width: 100%;
   padding: 2px 0;
-  //border-radius: 0 2px 30px 0;
   -webkit-box-shadow: inset -5px -5px 10px -2px #000000;
   box-shadow: inset -5px -5px 10px -2px #000000;
 }
 .filterHeading p{
   margin: 0;
-  padding-left: 5px;
+  color: nth($rpsBrand, 4);
+  padding-left: 15px;
+}
+.filterHeading img{
+  float: right;
+  height: 100%;
+  padding: 5px 0;
+}
+.filterHeading a{
+  width: 100%;
+  height: 100%;
 }
 .display{
   margin-bottom: 5%;
@@ -1097,6 +1106,9 @@ div .form-footer{
    margin-right: 10px;
    clear: both;
  }
+.sidebarActive{
+  padding: 10px;
+}
 #categories a{
   display: block;
   padding: 3px 0;

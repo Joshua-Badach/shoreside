@@ -1,8 +1,6 @@
 <?php
     global $post;
     $slug = $post->post_name;
-
-
     $id = get_term_by('slug', $slug, 'product_cat');
     $preOwnedObj = get_term_by('slug', 'pre-owned', 'product_cat');
 
@@ -49,7 +47,7 @@
 
     <?php
     echo '<div class="filterHeading">
-        <p>Category: <a href="" class="showCategories"><img width="10px" height="10px" src="' . get_template_directory_uri(). '/assets/src/library/images/arrow-icon.png\' ?>" alt="Menu Arrow"></a></p>
+        <a class="showCategories"><p>Category: <img width="10px" height="10px" src="' . get_template_directory_uri(). '/assets/src/library/images/arrow-icon.png\' ?>" alt="Menu Arrow"></p></a>
     </div>
     <div id="categories">';
 //    data-url="' . admin_url('admin-ajax.php') . '" this was in a tag
@@ -60,7 +58,7 @@
     echo '</div>';
 
     echo '<div class="filterHeading">
-        <p>Manufacturer: <a href="" class="showAttributes"><img width="10px" height="10px" src="' . get_template_directory_uri(). '/assets/src/library/images/arrow-icon.png\' ?>" alt="Menu Arrow"></a></p>
+        <a class="showAttributes"><p>Manufacturer: <img width="10px" height="10px" src="' . get_template_directory_uri(). '/assets/src/library/images/arrow-icon.png\' ?>" alt="Menu Arrow"></p></a>
     </div>
 <div id="attributes">';
 
@@ -95,17 +93,20 @@
         </div>';
 
 
-    if ( $slug == 'showroom' ) {
-    echo '<div class="filterHeading">
+//    if ( $slug == 'showroom' ) {
+    echo '<div id="showroomToggle">
+        <div class="filterHeading">
             <p>Condition: </p>
         </div>' .
         '<div class="switchContainer objectPadding">
             <label class="switch">
-            <input type="checkbox" name="condition" class="conditionInput" data-category="' . $idObj . '" data-value="' . $preOwnedObj->term_id .'">
-            <span class="slider round"></span>
-        </label>
-        <span class="condition">New</span></div>';
-}
+                <input type="checkbox" name="condition" class="conditionInput" data-category="' . $idObj . '" data-value="' . $preOwnedObj->term_id .'">
+                <span class="slider round"></span>
+            </label>
+            <span class="condition">New</span>
+        </div>
+    </div>';
+//}
 echo '<div class="filterHeading">
         <p>On Sale: </p>
       </div>' . '<div class="switchContainer objectPadding">
@@ -115,9 +116,6 @@ echo '<div class="filterHeading">
         </label>
         <span class="on_sale">No</span></div>';
 ?>
-<!--    <div class="submitButton">-->
-<!--        <button type="button" class="button-3d" id="submit">Filter</button>-->
-<!--    </div>-->
         <div class="clearButton">
             <button type="button" class="button-3d" id="clear">Clear</button>
         </div>
