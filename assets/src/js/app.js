@@ -4,15 +4,15 @@ jQuery(document).ready(function($) {
 
   var navbar = document.getElementById("navbar");
   var sticky = navbar.offsetTop;
-  var win = jQuery(this);
+  var win = $(this);
 
-  jQuery(".contactform").hide();
+  $(".contactform").hide();
 
-  jQuery(".emailButton").click(function(){
-    jQuery(".contactForm").toggle();
+  $(".emailButton").click(function(){
+    $(".contactForm").toggle();
   });
 
-    jQuery(window).on('resize', function(){
+    $(window).on('resize', function(){
     if (win.width() <= 769 ){
       $('.brands h3').hide();
       $('.brands p').hide();
@@ -34,7 +34,7 @@ jQuery(document).ready(function($) {
     }
   }
 
-  jQuery(window).resize(brandShuffle());
+  $(window).resize(brandShuffle());
 
   function navStick() {
     if (window.pageYOffset >= sticky) {
@@ -44,14 +44,14 @@ jQuery(document).ready(function($) {
     }
   }
 
-  jQuery(document).on('click', '.search', function(event){
+  $(document).on('click', '.search', function(event){
     input = jQuery('<form role="search" method="GET" id="searchform" class="searchform"><input name="s" value="" name="s" id="s" type="text"><button type="submit" class="searchFormButton">ok</button></form>');
 
-    jQuery('.search a').replaceWith(input);
+    $('.search a').replaceWith(input);
  });
 
   // Slider carousel code
-  jQuery('.carousel').slick({
+  $('.carousel').slick({
     infinite: false,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -64,7 +64,7 @@ jQuery(document).ready(function($) {
   });
 
   //Portrait carousel code
-  jQuery('.carousel-product').slick({
+  $('.carousel-product').slick({
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
@@ -77,7 +77,7 @@ jQuery(document).ready(function($) {
     // mobileFirst: true,
     dots: false,
   });
-  jQuery('.carousel-product-nav').slick({
+  $('.carousel-product-nav').slick({
     slidesToShow: 3,
     slidesToScroll:1,
     speed: 1000,
@@ -102,10 +102,6 @@ jQuery(document).ready(function($) {
   } else {
     $('#sidebarIcon').hide();
     $('#sidebarHeader').show();
-    $('#sidebar').css({
-      'border-right':'1px solid #d3d3d3',
-      'border-bottom':'1px solid #d3d3d3',
-    });
     // Pan and zoom code removed for now, keeping it in case minds are changed
     // $(".portrait")
     // // tile mouse actions
@@ -168,21 +164,15 @@ jQuery(document).ready(function($) {
     $('#prompt-CWnFXGNPWNYNiMFgwS5X-iframe').fadeOut('slow');
   }, 10000 );
 
-  //refine later, check if ?filters= exists, if unique filter - append, if same filter - replace
 
   function sidebar() {
     var pageUrl = document.location.href;
     var saleText = $('.on_sale');
     var conditionText = $('.condition');
 
-    if (pageUrl.indexOf('on_sale=sale') != -1) {
+    if (pageUrl.indexOf('on_sale=true') != -1) {
       $('input:checkbox[name="sale"]').prop('checked', true);
       $(saleText).text('Yes')
-    }
-    //hardcoded product cat for now
-    if (pageUrl.indexOf('product_cat=pre-owned') != -1) {
-      // $('input:checkbox[name="condition"]').prop('checked', true);
-      $(conditionText).text('Used')
     }
 
     //filter prevent default, clear url state
@@ -192,59 +182,34 @@ jQuery(document).ready(function($) {
       location.reload();
     });
 
-    //hide sidebar links if over 5, modularize if more attributes are needed
-    //clean this up later, lazy but I'm on a time crunch
-
-    // if( $('#categories').children().length > 5) {
-    //   if (pageUrl.indexOf('product_cat') > -1) {
-    //     $('.showCategories img').toggleClass('sidebarIconAnimate90');
-    //     $('#categories a').show();
-    //   } else {
-    //     $('#categories a').hide();
-    //     // $('#categories').toggleClass('sidebarActive');
-    //   }
-    // }
-    //
-    // if( $('#attributes').children().length > 5) {
-    //   if (pageUrl.indexOf('product_tag') > -1) {
-    //     $('.showAttributes img').toggleClass('sidebarIconAnimate90');
-    //     $('#attributes a').show();
-    //   } else {
-    //     $('#attributes a').hide();
-    //   }
-    // }
-
-    //move all this crap into functions later
-
-    // $('#contentTrigger .test').on('click', 'a', function(){
-    //   console.log('clicked');
-    // });
-
     //Show sale toggle if user is in showroom
     if (pageUrl.indexOf('showroom') == -1) {
       $('#showroomToggle').hide();
     }
 
     //Prevent defaults for filter heading dropdowns
-    function preventDefaults() {
       $('#contentTrigger .filterHeading').on('click', 'a', function (e) {
         e.preventDefault();
         e.stopImmediatePropagation();
-        console.log('heading clicked');
       });
-    }
 
-    //Hide filters on load if more than 5 children
-    //Need to handle this differently, probably active class
-    if ($('#contentTrigger #categories').children().length >= 5) {
-      $('#categories a').hide();
+    //Hide filters on load if more than 5 children, push state to url, check if state exists if so expand filter
+    if ($('#categories').children().length >= 5) {
+      if (pageUrl.indexOf('product_cat') > -1) {
+        $('.showCategories img').toggleClass('sidebarIconAnimate90');
+        $('#categories a').show();
+      } else {
+        $('#categories a').hide();
+      }
     }
     if ($('#attributes').children().length >= 5) {
-      $('#attributes a').hide();
+        if (pageUrl.indexOf('product_tag') > -1) {
+          $('.showAttributes img').toggleClass('sidebarIconAnimate90');
+          $('#attributes a').show();
+        } else {
+          $('#attributes a').hide();
+        }
     }
-    $('#contentTriggger').on('DOMSubtreeModified', function () {
-      console.log('changed');
-    });
 
     //Animate filtering arrow on click, show links
     $('.showCategories').on('click', function () {
@@ -279,7 +244,6 @@ jQuery(document).ready(function($) {
       }
     });
 
-
     //Hidenslide for mobile filter
     $('#sidebarIcon').on('click', function (e) {
       e.preventDefault();
@@ -300,6 +264,7 @@ jQuery(document).ready(function($) {
   sidebar();
   //Sidebar ajax queries
   //Clean this up
+
   $(document).on('click', '#categories a', function() {
     var idObj = $(this).data('value');
     var ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";
@@ -315,6 +280,7 @@ jQuery(document).ready(function($) {
       success: function (response) {
         $('#contentTrigger').replaceWith(response);
         sidebar();
+        history.pushState({}, '', '?product_cat=' + idObj);
       },
       error: function (response) {
         console.log(response);
@@ -342,6 +308,7 @@ jQuery(document).ready(function($) {
         success: function (response) {
           $('#contentTrigger').replaceWith( response );
           sidebar();
+          history.pushState({}, '', '?tag_ID=' + tagObj);
         },
         error: function (response) {
           console.log(response);
@@ -350,7 +317,7 @@ jQuery(document).ready(function($) {
       return idObj, tagObj;
     });
 
-    $(document).on('click', `.conditionInput`, function(){
+    $(document).on('click', `.conditionInput`, function(pageUrl){
       var idObj = $(this).data('value');
       var ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";
       $.ajax({
@@ -364,6 +331,11 @@ jQuery(document).ready(function($) {
         success: function (response) {
           $('#contentTrigger').replaceWith( response );
           sidebar();
+          history.pushState({}, '', '?product_cat=' + idObj);
+          if (pageUrl.indexOf('product_cat='+idObj) != -1) {
+            // $('input:checkbox[name="condition"]').prop('checked', true);
+            $(conditionText).text('Used')
+          }
         },
         error: function (response) {
           console.log(response);
@@ -388,6 +360,7 @@ jQuery(document).ready(function($) {
       success: function (response) {
         $('#contentTrigger').replaceWith( response );
         sidebar();
+        history.pushState({}, '', '?on_sale=' + onSaleObj);
       },
       error: function (response) {
         console.log(response);
@@ -395,7 +368,7 @@ jQuery(document).ready(function($) {
     })
   });
 
-  $(document).on('click', '#asc', function(){
+  $(document).on('click', '#prices a', function(){
     var idObj = $(this).data('category');
     var orderByOjb = $(this).data('value');
     var ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";
@@ -412,30 +385,8 @@ jQuery(document).ready(function($) {
       success: function (response) {
         $('#contentTrigger').replaceWith( response );
         sidebar();
-      },
-      error: function (response) {
-        console.log(response);
-      }
-    })
-  });
-
-  $(document).on('click', '#desc', function(){
-    var idObj = $(this).data('category');
-    var orderByOjb = $(this).data('value');
-    var ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";
-
-    $.ajax({
-      url:            ajaxUrl,
-      dataType:       'html',
-      data: {
-        type:         'POST',
-        idObj:        idObj,
-        orderByObj:   orderByOjb,
-        action:       'load_results'
-      },
-      success: function (response) {
-        $('#contentTrigger').replaceWith( response );
-        sidebar();
+        // May not need the below push, one less append to worry about
+        // history.pushState({}, '', '?orderby=' + orderByOjb);
       },
       error: function (response) {
         console.log(response);

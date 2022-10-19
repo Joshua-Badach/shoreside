@@ -483,17 +483,34 @@ function content_shortcode(){
     global $post;
     $slug = $post->post_name;
     $id = get_term_by('slug', $slug, 'product_cat');
-//    $idObj = $id->term_id;
-    $tagObj ='';
-    $attribute = '';
-    $orderByOjb = '';
-    $onSaleObj = '';
+
 
     if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
     {
-        $idObj = $_REQUEST['idObj'];
+        $idObj              =           $_REQUEST['idObj'];
+        $attribute          =           $_REQUEST['attribute'];
+        $tagObj             =           $_REQUEST['tagObj'];
+        $orderByOjb         =           $_REQUEST['orderByObj'];
+        $orderObj           =           $_REQUEST['orderObj'];
+        $onSaleObj          =           $_REQUEST['onSaleObj'];
     } else {
-        $idObj = $id->term_id;
+        if ($_SERVER['QUERY_STRING']){
+            $idObj              =           $_GET['product_cat'];
+            if ($_GET['tag_ID'] != '') {
+                $tagObj             =           $_GET['tag_ID'];
+                $attribute          =           'pa_manufacturer';
+            }
+            $orderByOjb             =           $_GET['orderby'];
+            $onSaleObj              =           $_GET['on_sale'];
+
+        } else {
+            $idObj = $id->term_id;
+            $attribute = '';
+            $tagObj = '';
+            $orderByOjb = '';
+            $orderObj = '';
+            $onSaleObj = '';
+        }
     }
 
     $categoryDescription = category_description($idObj);
@@ -546,7 +563,7 @@ remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_singl
 remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart');
 remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 20);
 
-
+//Woocommerce custom tabs for product page
 add_filter('woocommerce_product_tabs', 'woo_new_product_tab');
 function woo_new_product_tab($tabs) {
     if ( has_term('parts-and-accessories', 'product_cat')) {
@@ -573,83 +590,11 @@ function woo_new_product_tab_one_content() {
 function woo_new_product_tab_two_content() {
     include('template-parts/components/warranty.php');
 }
+
 //remove woocommerce default filtering, need to unhook all of the filtering stuff or the format breaks alltogether
 remove_action( 'woocommerce_before_shop_loop', 'woocommerce_output_all_notices', 10 );
 remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
 remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
-
-//add_filter( 'woocommerce_catalog_orderby', 'shoreside_add_custom_sorting_options');
-//function shoreside_add_custom_sorting_options($options){
-//    $options[ 'new' ] = 'New';
-//    $options[ 'used' ] = 'Used';
-//
-//    return $options;
-//}
-//add_filter( 'woocommerce_get_catalog_ordering_args', 'shoreside_custom_product_sorting' );
-//function shoreside_custom_product_sorting( $args ) {
-//
-//    // Sort alphabetically
-//    if ( isset( $_GET[ 'orderby' ] ) && 'title' === $_GET[ 'orderby' ] ) {
-//        $args[ 'orderby' ] = 'title';
-//        $args[ 'order' ] = 'asc';
-//    }
-//
-//    // Show products in stock first
-//    if( isset( $_GET[ 'orderby' ] ) && 'in-stock' === $_GET[ 'orderby' ] ) {
-//        $args[ 'meta_key' ] = '_stock_status';
-//        $args[ 'orderby' ] = array( 'meta_value' => 'ASC' );
-//    }
-//
-//    return $args;
-//}
-//
-//add_theme_support( 'wc-product-gallery-zoom' );
-//add_theme_support( 'wc-product-gallery-lightbox' );
-
-//custom ordering
-//function woocommerce_catalog_ordering() {
-//    if ( ! wc_get_loop_prop( 'is_paginated' ) || ! woocommerce_products_will_display() ) {
-//        return;
-//    }
-//    $show_default_orderby    = 'menu_order' === apply_filters( 'woocommerce_default_catalog_orderby', get_option( 'woocommerce_default_catalog_orderby', 'menu_order' ) );
-//    $catalog_orderby_options = apply_filters(
-//        'woocommerce_catalog_orderby',
-//        array(
-//            'menu_order'    => __( '---', 'woocommerce' ),
-//            'pre-owned'     => __( 'Pre Owned', 'woocommerce'),
-//            'price'         => __( 'Price: low to high', 'woocommerce' ),
-//            'price-desc'    => __( 'Price: high to low', 'woocommerce' ),
-//        )
-//    );
-//
-//    $default_orderby = wc_get_loop_prop( 'is_search' ) ? 'relevance' : apply_filters( 'woocommerce_default_catalog_orderby', get_option( 'woocommerce_default_catalog_orderby', '' ) );
-//    // phpcs:disable WordPress.Security.NonceVerification.Recommended
-//    $orderby = isset( $_GET['orderby'] ) ? wc_clean( wp_unslash( $_GET['orderby'] ) ) : $default_orderby;
-//    // phpcs:enable WordPress.Security.NonceVerification.Recommended
-//
-//    if ( wc_get_loop_prop( 'is_search' ) ) {
-//        $catalog_orderby_options = array_merge( array( 'relevance' => __( 'Relevance', 'woocommerce' ) ), $catalog_orderby_options );
-//
-//        unset( $catalog_orderby_options['menu_order'] );
-//    }
-//
-//    if ( ! $show_default_orderby ) {
-//        unset( $catalog_orderby_options['menu_order'] );
-//    }
-//
-//    if ( ! array_key_exists( $orderby, $catalog_orderby_options ) ) {
-//        $orderby = current( array_keys( $catalog_orderby_options ) );
-//    }
-//
-//    wc_get_template(
-//        'loop/orderby.php',
-//        array(
-//            'catalog_orderby_options' => $catalog_orderby_options,
-//            'orderby'                 => $orderby,
-//            'show_default_orderby'    => $show_default_orderby,
-//        )
-//    );
-//}
 
 // First, this will disable support for comments and trackbacks in post types
 function df_disable_comments_post_types_support() {

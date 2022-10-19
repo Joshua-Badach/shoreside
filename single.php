@@ -24,5 +24,5 @@
         }
     }
     echo '</div>';
-echo 'Single page';
+//echo 'Single page';
 get_footer();

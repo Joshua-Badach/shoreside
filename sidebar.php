@@ -6,9 +6,30 @@
 
     if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
     {
-        $idObj = $_REQUEST['idObj'];
+        $idObj              =           $_REQUEST['idObj'];
+        $attribute          =           $_REQUEST['attribute'];
+        $tagObj             =           $_REQUEST['tagObj'];
+        $orderByOjb         =           $_REQUEST['orderByObj'];
+        $orderObj           =           $_REQUEST['orderObj'];
+        $onSaleObj          =           $_REQUEST['onSaleObj'];
     } else {
-        $idObj = $id->term_id;
+        if ($_SERVER['QUERY_STRING']){
+            $idObj              =           $_GET['product_cat'];
+            if ($_GET['tag_ID'] != '') {
+                $tagObj             =           $_GET['tag_ID'];
+                $attribute          =           'pa_manufacturer';
+            }
+            $orderByOjb             =           $_GET['orderby'];
+            $onSaleObj              =           $_GET['on_sale'];
+
+        } else {
+            $idObj = $id->term_id;
+            $attribute = '';
+            $tagObj = '';
+            $orderByOjb = '';
+            $orderObj = '';
+            $onSaleObj = '';
+        }
     }
 
     $taxonomy       = 'product_cat';

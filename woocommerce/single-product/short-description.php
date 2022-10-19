@@ -22,6 +22,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $post;
 $product = wc_get_product($post);
 $video = $product->get_attribute( 'Video' );
+$ad = $product->get_attribute( 'Ad' );
+//$adImage = get_attachment_url_by_slug( $ad );
 $short_description = apply_filters( 'woocommerce_short_description', $post->post_excerpt );
 if ( ! $short_description ) {
 	return;
@@ -35,8 +37,9 @@ if ( ! $short_description ) {
         echo '<iframe class="productVideo" name="productVideo" scrolling="no" frameborder="1" src="https://www.youtube.com/embed/' . $video . '" marginwidth="0px" allowfullscreen></iframe>
 ';
     }
+    if ( $ad != '' ){
+        echo '<img src="' . $ad . '">';
+    }
 
-//    echo $purchase_note;
-//    var_dump($purchase_note);
 ?>
 </div>
