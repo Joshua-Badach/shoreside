@@ -167,13 +167,22 @@ jQuery(document).ready(function($) {
 
   function sidebar() {
     var pageUrl = document.location.href;
-    var saleText = $('.on_sale');
-    var conditionText = $('.condition');
 
+    //Filter switch toggles
+    if (pageUrl.indexOf('product_cat=pre-owned') != -1) {
+      $('input:checkbox[name="condition"]').prop('checked', true);
+    }
+    $(document).on('click', '.conditionInput', function () {
+      if ($('.conditionInput').prop('checked') == true) {
+      }
+    });
     if (pageUrl.indexOf('on_sale=true') != -1) {
       $('input:checkbox[name="sale"]').prop('checked', true);
-      $(saleText).text('Yes')
     }
+    $(document).on('click', '.saleInput', function () {
+      if ($('.saleInput').prop('checked') == true) {
+      }
+    });
 
     //filter prevent default, clear url state
     //handle this via ajax later
@@ -194,6 +203,8 @@ jQuery(document).ready(function($) {
       });
 
     //Hide filters on load if more than 5 children, push state to url, check if state exists if so expand filter
+
+    //below portion does not fire after ajax, troubleshoot
     if ($('#categories').children().length >= 5) {
       if (pageUrl.indexOf('product_cat') > -1) {
         $('.showCategories img').toggleClass('sidebarIconAnimate90');
@@ -202,6 +213,9 @@ jQuery(document).ready(function($) {
         $('#categories a').hide();
       }
     }
+    if ($('#categories').children().length == 0) {
+      $('#categoryTab').hide();
+    }
     if ($('#attributes').children().length >= 5) {
         if (pageUrl.indexOf('product_tag') > -1) {
           $('.showAttributes img').toggleClass('sidebarIconAnimate90');
@@ -209,6 +223,9 @@ jQuery(document).ready(function($) {
         } else {
           $('#attributes a').hide();
         }
+    }
+    if ($('#attributes').children().length == 0) {
+      $('#attributeTab').hide();
     }
 
     //Animate filtering arrow on click, show links
@@ -225,24 +242,6 @@ jQuery(document).ready(function($) {
     if (pageUrl.indexOf('?') == -1) {
       $('.clearButton').hide();
     }
-
-//Filter switch toggles
-    $(document).on('click', '.conditionInput', function () {
-      if ($('.conditionInput').prop('checked') == true) {
-        $(conditionText).text('Used')
-      }
-      else {
-        $(conditionText).text('New')
-      }
-    });
-    $(document).on('click', '.saleInput', function () {
-      if ($('.saleInput').prop('checked') == true) {
-        $(saleText).text('Yes')
-      }
-      else {
-        $(saleText).text('No')
-      }
-    });
 
     //Hidenslide for mobile filter
     $('#sidebarIcon').on('click', function (e) {
@@ -280,6 +279,8 @@ jQuery(document).ready(function($) {
       success: function (response) {
         $('#contentTrigger').replaceWith(response);
         sidebar();
+        $('#categories a').show();
+        $('.showCategories img').toggleClass('sidebarIconAnimate90');
         history.pushState({}, '', '?product_cat=' + idObj);
       },
       error: function (response) {
@@ -308,6 +309,9 @@ jQuery(document).ready(function($) {
         success: function (response) {
           $('#contentTrigger').replaceWith( response );
           sidebar();
+          //May not need below as once selected there are no child attributes
+          // $('#attributesa').show();
+          // $('.showAttributes img').toggleClass('sidebarIconAnimate90');
           history.pushState({}, '', '?tag_ID=' + tagObj);
         },
         error: function (response) {
@@ -317,8 +321,9 @@ jQuery(document).ready(function($) {
       return idObj, tagObj;
     });
 
-    $(document).on('click', `.conditionInput`, function(pageUrl){
+    $(document).on('click', `.conditionInput`, function(){
       var idObj = $(this).data('value');
+      var conditionText = $('.condition');
       var ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";
       $.ajax({
         url:            ajaxUrl,
@@ -332,16 +337,13 @@ jQuery(document).ready(function($) {
           $('#contentTrigger').replaceWith( response );
           sidebar();
           history.pushState({}, '', '?product_cat=' + idObj);
-          if (pageUrl.indexOf('product_cat='+idObj) != -1) {
-            // $('input:checkbox[name="condition"]').prop('checked', true);
-            $(conditionText).text('Used')
-          }
+          $('input:checkbox[name="condition"]').prop('checked', true);
         },
         error: function (response) {
           console.log(response);
         }
       })
-      return idObj;
+      return idObj, conditionText;
     });
 
   $(document).on('click', `.saleInput`, function(){
@@ -360,12 +362,14 @@ jQuery(document).ready(function($) {
       success: function (response) {
         $('#contentTrigger').replaceWith( response );
         sidebar();
-        history.pushState({}, '', '?on_sale=' + onSaleObj);
+        $('input:checkbox[name="sale"]').prop('checked', true);
+        history.pushState({}, '', '?on_sale=' + onSaleObj + '&product_cat=' + idObj);
       },
       error: function (response) {
         console.log(response);
       }
     })
+    return idObj, saleText;
   });
 
   $(document).on('click', '#prices a', function(){

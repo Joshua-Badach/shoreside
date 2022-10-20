@@ -67,8 +67,9 @@
     <div id="sidebar">
 
     <?php
-    echo '<div class="filterHeading">
-        <a class="showCategories"><p>Category: <img width="10px" height="10px" src="' . get_template_directory_uri(). '/assets/src/library/images/arrow-icon.png\' ?>" alt="Menu Arrow"></p></a>
+    echo '<div id="categoryTab">
+        <div class="filterHeading">
+            <a class="showCategories"><p>Category: <img width="10px" height="10px" src="' . get_template_directory_uri(). '/assets/src/library/images/arrow-icon.png\' ?>" alt="Menu Arrow"></p></a>
     </div>
     <div id="categories">';
 //    data-url="' . admin_url('admin-ajax.php') . '" this was in a tag
@@ -76,9 +77,11 @@
         echo '<a data-value="' . $cat->term_id . '" >' . $cat->cat_name . '</a>';
     }
 
-    echo '</div>';
+    echo '</div>
+    </div>';
 
-    echo '<div class="filterHeading">
+    echo '<div id="attributeTab">
+        <div class="filterHeading">
         <a class="showAttributes"><p>Manufacturer: <img width="10px" height="10px" src="' . get_template_directory_uri(). '/assets/src/library/images/arrow-icon.png\' ?>" alt="Menu Arrow"></p></a>
     </div>
 <div id="attributes">';
@@ -105,6 +108,7 @@
         echo '<a data-category="' . $idObj . '" data-value="' . $termCheck[$i] . '">' . $termName[$i] . '</a>';
     }
     echo '</div>
+</div>
         <div class="filterHeading">
             <p>Price: </p>
         </div>
@@ -120,22 +124,25 @@
             <p>Condition: </p>
         </div>' .
         '<div class="switchContainer objectPadding">
+            <span>New</span>
             <label class="switch">
-                <input type="checkbox" name="condition" class="conditionInput" data-category="' . $idObj . '" data-value="' . $preOwnedObj->term_id .'">
+                <input type="checkbox" name="condition" class="conditionInput" data-category="' . $idObj . '" data-value="' . $preOwnedObj->slug .'">
                 <span class="slider round"></span>
             </label>
-            <span class="condition">New</span>
+            <span>Used</span>
         </div>
     </div>';
 //}
 echo '<div class="filterHeading">
         <p>On Sale: </p>
       </div>' . '<div class="switchContainer objectPadding">
+        <span>No</span>
         <label class="switch">
             <input type="checkbox" name="sale" class="saleInput" data-category="' . $idObj . '" data-value="true">
             <span class="slider round"></span>
         </label>
-        <span class="on_sale">No</span></div>';
+        <span>Yes</span>
+        </div>';
 ?>
         <div class="clearButton">
             <button type="button" class="button-3d" id="clear">Clear</button>
