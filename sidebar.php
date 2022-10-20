@@ -72,9 +72,8 @@
             <a class="showCategories"><p>Category: <img width="10px" height="10px" src="' . get_template_directory_uri(). '/assets/src/library/images/arrow-icon.png\' ?>" alt="Menu Arrow"></p></a>
     </div>
     <div id="categories">';
-//    data-url="' . admin_url('admin-ajax.php') . '" this was in a tag
     foreach ($categories as $cat) {
-        echo '<a data-value="' . $cat->term_id . '" >' . $cat->cat_name . '</a>';
+        echo '<a data-category="' . $cat->term_id . '" >' . $cat->cat_name . '</a>';
     }
 
     echo '</div>
@@ -89,7 +88,6 @@
     $unique = array();
     $name = array();
 
-    //function getAttributes($query_args){
     foreach (wc_get_products($query_args) as $product) {
         foreach ($product->get_attributes() as $tax => $attribute) {
             foreach ($attribute->get_terms() as $term) {
@@ -102,10 +100,9 @@
             }
         }
     }
-    //}
 //Tweak this for contextual attribute return based on current products
     foreach ($termCheck as $i => $aTerm) {
-        echo '<a data-category="' . $idObj . '" data-value="' . $termCheck[$i] . '">' . $termName[$i] . '</a>';
+        echo '<a data-category="' . $idObj . '" data-attribute="manufacturer" data-term="' . $termCheck[$i] . '">' . $termName[$i] . '</a>';
     }
     echo '</div>
 </div>
@@ -113,12 +110,11 @@
             <p>Price: </p>
         </div>
         <div id="prices" class="objectPadding">
-            <a id="asc" data-category="' . $idObj . '" data-value="price">Low to High</a>
-            <a id="desc" data-category="' . $idObj . '" data-value="price-desc">High to Low</a>
+            <a id="asc" data-category="' . $idObj . '" data-orderby="price">Low to High</a>
+            <a id="desc" data-category="' . $idObj . '" data-orderby="price-desc">High to Low</a>
         </div>';
 
 
-//    if ( $slug == 'showroom' ) {
     echo '<div id="showroomToggle">
         <div class="filterHeading">
             <p>Condition: </p>
@@ -132,13 +128,13 @@
             <span>Used</span>
         </div>
     </div>';
-//}
 echo '<div class="filterHeading">
         <p>On Sale: </p>
-      </div>' . '<div class="switchContainer objectPadding">
+      </div>
+      <div class="switchContainer objectPadding">
         <span>No</span>
         <label class="switch">
-            <input type="checkbox" name="sale" class="saleInput" data-category="' . $idObj . '" data-value="true">
+            <input type="checkbox" name="sale" class="saleInput" data-category="' . $idObj . '" data-sale="true">
             <span class="slider round"></span>
         </label>
         <span>Yes</span>
