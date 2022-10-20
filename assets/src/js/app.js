@@ -288,6 +288,12 @@ jQuery(document).ready(function($) {
       success: function (response) {
         $('#contentTrigger').html(response);
         sidebar();
+        if (idObj == 'pre-owned'){
+          $('.conditionInput').prop('checked', true);
+        }
+        if (onSaleObj == true){
+          $('.saleInput').prop('checked', true);
+        }
         // $('#categories a').show();
         // $('.showCategories img').toggleClass('sidebarIconAnimate90');
         // history.pushState({}, '', '?product_cat=' + idObj);

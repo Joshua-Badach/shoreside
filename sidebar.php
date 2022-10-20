@@ -13,31 +13,24 @@
         $orderObj           =           $_REQUEST['orderObj'];
         $onSaleObj          =           $_REQUEST['onSaleObj'];
     } else {
-        if ($_SERVER['QUERY_STRING']){
-            $idObj              =           $_GET['product_cat'];
-            if ($_GET['tag_ID'] != '') {
-                $tagObj             =           $_GET['tag_ID'];
-                $attribute          =           'pa_manufacturer';
-            }
-            $orderByOjb             =           $_GET['orderby'];
-            $onSaleObj              =           $_GET['on_sale'];
-
-        } else {
-            $idObj = $id->term_id;
-            $attribute = '';
-            $tagObj = '';
-            $orderByOjb = '';
-            $orderObj = '';
-            $onSaleObj = '';
-        }
+        $idObj              =           $id->term_id;
+        $attribute          =           '';
+        $tagObj             =           '';
+        $orderByOjb         =           '';
+        $orderObj           =           '';
+        $onSaleObj          =           '';
     }
 
-    $taxonomy       = 'product_cat';
-    $hierarchical   = 1;      // 1 for yes, 0 for no
-    $title          = '';
-    $empty          = 0;
-    $limit          = -1;
-    $status         ='publish';
+        $taxonomy           =           'product_cat';
+        $hierarchical       =           1;      // 1 for yes, 0 for no
+        $title              =           '';
+        $empty              =           0;
+        $limit              =           -1;
+        $status             =           'publish';
+
+        $tagObj             =           '';
+        $orderByObj         =           '';
+        $onSaleObj          =           '';
 
     $args = array(
         'status'                        => $status,
@@ -114,7 +107,6 @@
             <a id="desc" data-category="' . $idObj . '" data-orderby="price-desc">High to Low</a>
         </div>';
 
-
     echo '<div id="showroomToggle">
         <div class="filterHeading">
             <p>Condition: </p>
@@ -122,7 +114,7 @@
         '<div class="switchContainer objectPadding">
             <span>New</span>
             <label class="switch">
-                <input type="checkbox" name="condition" class="conditionInput" data-category="' . $idObj . '" data-value="' . $preOwnedObj->slug .'">
+                <input type="checkbox" name="condition" class="conditionInput" data-category="' . $preOwnedObj->slug .'">
                 <span class="slider round"></span>
             </label>
             <span>Used</span>
@@ -134,7 +126,7 @@ echo '<div class="filterHeading">
       <div class="switchContainer objectPadding">
         <span>No</span>
         <label class="switch">
-            <input type="checkbox" name="sale" class="saleInput" data-category="' . $idObj . '" data-sale="true">
+            <input type="checkbox" name="sale" class="saleInput" data-category="' . $idObj . '" data-sale="true" data-term="' . $tagObj . '">
             <span class="slider round"></span>
         </label>
         <span>Yes</span>
