@@ -262,7 +262,7 @@ jQuery(document).ready(function($) {
 
   sidebar();
   //Sidebar ajax queries
-  //Clean this up, starting to move everything into one call
+  //Clean this up
 
   $(document).on('click', '#sidebar a, #sidebar input', function() {
     var idObj = $(this).data('category');
@@ -294,124 +294,13 @@ jQuery(document).ready(function($) {
         if (onSaleObj == true){
           $('.saleInput').prop('checked', true);
         }
-        // $('#categories a').show();
-        // $('.showCategories img').toggleClass('sidebarIconAnimate90');
-        // history.pushState({}, '', '?product_cat=' + idObj);
       },
       error: function (response) {
         console.log(response);
       }
     });
-    // return idObj, attribute, tagObj, orderByOjb, onSaleObj;
+    return idObj, attribute, tagObj, orderByOjb, onSaleObj;
   });
-    //
-    // $(document).on('click', '#attributes a', function(){
-    //   var idObj = $(this).data('category');
-    //   var attribute = 'manufacturer';
-    //   var tagObj = $(this).data('term');
-    //   var orderByObj = $(this).data('orderby');
-    //
-    //   var ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";
-    //
-    //   $.ajax({
-    //     url:            ajaxUrl,
-    //     dataType:       'html',
-    //     data: {
-    //       type:       'POST',
-    //       idObj:      idObj,
-    //       tagObj:     tagObj,
-    //       attribute:  attribute,
-    //       action:     'load_results',
-    //     },
-    //     success: function (response) {
-    //       $('#contentTrigger').replaceWith( response );
-    //       sidebar();
-    //       //May not need below as once selected there are no child attributes
-    //       // $('#attributesa').show();
-    //       // $('.showAttributes img').toggleClass('sidebarIconAnimate90');
-    //       history.pushState({}, '', '?tag_ID=' + tagObj);
-    //     },
-    //     error: function (response) {
-    //       console.log(response);
-    //     }
-    //   })
-    //   return idObj, tagObj;
-    // });
-
-    // $(document).on('click', `.conditionInput`, function(){
-    //   var idObj = $(this).data('value');
-    //   var ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";
-    //   $.ajax({
-    //     url:            ajaxUrl,
-    //     dataType:       'html',
-    //     data: {
-    //       type:       'POST',
-    //       idObj:      idObj,
-    //       action:     'load_results'
-    //     },
-    //     success: function (response) {
-    //       $('#contentTrigger').replaceWith( response );
-    //       sidebar();
-    //       history.pushState({}, '', '?product_cat=' + idObj);
-    //       $('input:checkbox[name="condition"]').prop('checked', true);
-    //     },
-    //     error: function (response) {
-    //       console.log(response);
-    //     }
-    //   })
-    //   return idObj, conditionText;
-    // });
-
-  // $(document).on('click', `.saleInput`, function(){
-  //   var idObj = $(this).data('category');
-  //   var ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";
-  //   $.ajax({
-  //     url:            ajaxUrl,
-  //     dataType:       'html',
-  //     data: {
-  //       type:         'POST',
-  //       idObj:        idObj,
-  //       onSaleObj:    onSaleObj,
-  //       action:       'load_results'
-  //     },
-  //     success: function (response) {
-  //       $('#contentTrigger').replaceWith( response );
-  //       sidebar();
-  //       $('input:checkbox[name="sale"]').prop('checked', true);
-  //       history.pushState({}, '', '?on_sale=' + onSaleObj + '&product_cat=' + idObj);
-  //     },
-  //     error: function (response) {
-  //       console.log(response);
-  //     }
-  //   })
-  //   return idObj, saleText;
-  // });
-
-  // $(document).on('click', '#prices a', function(){
-  //   var idObj = $(this).data('category');
-  //   var orderByOjb = $(this).data('value');
-  //   var ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";
-  //
-  //   $.ajax({
-  //     url:            ajaxUrl,
-  //     dataType:       'html',
-  //     data: {
-  //       type:         'POST',
-  //       idObj:        idObj,
-  //       orderByObj:   orderByOjb,
-  //       action:       'load_results'
-  //     },
-  //     success: function (response) {
-  //       $('#contentTrigger').replaceWith( response );
-  //       sidebar();
-  //       // May not need the below push, one less append to worry about
-  //       // history.pushState({}, '', '?orderby=' + orderByOjb);
-  //     },
-  //     error: function (response) {
-  //       console.log(response);
-  //     }
-  //   })
-  // });
 
   checkWidth();
   $(window).resize(checkWidth);

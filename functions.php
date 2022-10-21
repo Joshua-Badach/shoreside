@@ -468,7 +468,7 @@ function load_results() {
             </div>
             <div class="content">';
     get_sidebar();
-    echo '<div id="contentTrigger" class="container">';
+    echo '<div class="container">';
     echo do_shortcode('[products category="' . $idObj . '" attribute="' . $attribute . '"  terms="' . $tagObj . '" per_page="-1" columns="5" orderby="' . $orderByOjb . '" on_sale="' . $onSaleObj . '" order="ASC" operator="IN"]');
     echo '</div>
         </div>
@@ -530,7 +530,7 @@ function content_shortcode(){
             </div>
             <div class="content">';
                 get_sidebar();
-                echo '<div id="contentTrigger" class="container">';
+                echo '<div class="container">';
                     echo do_shortcode('[products category="' . $idObj . '" attribute="' . $attribute . '"  terms="' . $tagObj . '" per_page="-1" columns="5" orderby="' . $orderByOjb . '" on_sale="' . $onSaleObj . '" order="ASC" operator="IN"]');
                 echo '</div>
             </div>
