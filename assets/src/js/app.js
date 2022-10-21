@@ -301,9 +301,9 @@ jQuery(document).ready(function($) {
           $('.saleInput').prop('checked', true);
         };
         //Filter push url state
-        $(document).on('click', '#categories a', function() {
-          window.history.pushState({}, "?product_cat=" + idObj, pageUrl);
-        });
+        // $(document).on('click', '#categories a', function() {
+        //   window.history.pushState({}, "?product_cat=" + idObj, pageUrl);
+        // });
       },
       error: function (response) {
         console.log(response);

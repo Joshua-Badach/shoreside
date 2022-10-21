@@ -95,7 +95,7 @@
     }
 //Tweak this for contextual attribute return based on current products
     foreach ($termCheck as $i => $aTerm) {
-        echo '<a data-category="' . $idObj . '" data-attribute="manufacturer" data-term="' . $termCheck[$i] . '">' . $termName[$i] . '</a>';
+        echo '<a data-category="' . $_REQUEST['idObj'] . '" data-attribute="manufacturer" data-term="' . $termCheck[$i] . '">' . $termName[$i] . '</a>';
     }
     echo '</div>
 </div>
@@ -103,8 +103,8 @@
             <p>Price: </p>
         </div>
         <div id="prices" class="objectPadding">
-            <a id="asc" data-category="' . $idObj . '" data-orderby="price">Low to High</a>
-            <a id="desc" data-category="' . $idObj . '" data-orderby="price-desc">High to Low</a>
+            <a id="asc" data-category="' . $_REQUEST['idObj'] . '" data-attribute="' . $_REQUEST['attribute'] . '" data-term="' . $_REQUEST['tagObj'] . '" data-orderby="price">Low to High</a>
+            <a id="desc" data-category="' . $_REQUEST['idObj'] . '" data-attribute="' . $_REQUEST['attribute'] . '" data-term="' . $_REQUEST['tagObj'] . '" data-orderby="price-desc">High to Low</a>
         </div>';
 
     echo '<div id="showroomToggle">
@@ -114,7 +114,7 @@
         '<div class="switchContainer objectPadding">
             <span>New</span>
             <label class="switch">
-                <input type="checkbox" name="condition" class="conditionInput" data-category="' . $preOwnedObj->slug .'" data-attribute="' . $_REQUEST['attribute'] . '" data-term="' . $_REQUEST['tagObj'] . '">
+                <input type="checkbox" name="condition" class="conditionInput" data-category="' . $preOwnedObj->slug .'" data-sale="' . $_REQUEST['onSaleObj'] . '" data-attribute="' . $_REQUEST['attribute'] . '" data-term="' . $_REQUEST['tagObj'] . '">
                 <span class="slider round"></span>
             </label>
             <span>Used</span>
@@ -126,7 +126,7 @@ echo '<div class="filterHeading">
       <div class="switchContainer objectPadding">
         <span>No</span>
         <label class="switch">
-            <input type="checkbox" name="sale" class="saleInput" data-category="' . $_REQUEST['idObj'] . '" data-sale="true" data-attribute="' . $_REQUEST['attribute'] . '" data-term="' . $_REQUEST['tagObj'] . '">
+            <input type="checkbox" name="sale" class="saleInput" data-category="'; if ($_REQUEST['idObj'] == '') { echo $idObj; } else { echo $_REQUEST['idObj']; } echo '" data-sale="true" data-attribute="' . $_REQUEST['attribute'] . '" data-term="' . $_REQUEST['tagObj'] . '">
             <span class="slider round"></span>
         </label>
         <span>Yes</span>

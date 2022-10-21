@@ -444,12 +444,14 @@ add_shortcode('service-content', 'service_shortcode');
 
 function load_results() {
 
-    $idObj              =           $_REQUEST['idObj'];
-    $attribute          =           $_REQUEST['attribute'];
-    $tagObj             =           $_REQUEST['tagObj'];
-    $orderByOjb         =           $_REQUEST['orderByObj'];
-    $orderObj           =           $_REQUEST['orderObj'];
-    $onSaleObj          =           $_REQUEST['onSaleObj'];
+        if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
+    {
+        $idObj              =           $_REQUEST['idObj'];
+        $attribute          =           $_REQUEST['attribute'];
+        $tagObj             =           $_REQUEST['tagObj'];
+        $orderByOjb         =           $_REQUEST['orderByObj'];
+        $onSaleObj          =           $_REQUEST['onSaleObj'];
+    }
 
     $categoryDescription = category_description($idObj);
     $term = get_term_by('id', $idObj, 'product_cat');
