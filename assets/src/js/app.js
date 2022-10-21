@@ -1,5 +1,10 @@
 jQuery(document).ready(function($) {
 
+  window.LoadResultsPayload = {
+    type: 'POST',
+    action: 'load_results',
+  };
+
   window.onscroll = function() {navStick()};
 
   var navbar = document.getElementById("navbar");
@@ -273,18 +278,18 @@ jQuery(document).ready(function($) {
 
     var ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";
 
+    window.LoadResultsPayload.idObj = idObj;
+    window.LoadResultsPayload.attribute = attribute;
+    window.LoadResultsPayload.tagObj = tagObj;
+    window.LoadResultsPayload.orderByOjb = orderByOjb;
+    window.LoadResultsPayload.onSaleObj = onSaleObj;
+
+
     $.ajax({
       url: ajaxUrl,
       dataType: 'html',
-      data: {
-        type:                 'POST',
-        idObj:                idObj,
-        attribute:            attribute,
-        tagObj:               tagObj,
-        orderByObj:           orderByOjb,
-        onSaleObj:            onSaleObj,
-        action:               'load_results',
-      },
+      data: window.LoadResultsPayload,
+
       success: function (response) {
         $('#contentTrigger').html(response);
         sidebar();
