@@ -209,7 +209,6 @@ jQuery(document).ready(function($) {
 
     //Hide filters on load if more than 5 children, push state to url, check if state exists if so expand filter
 
-    //below portion does not fire after ajax, troubleshoot
     if ($('#categories').children().length >= 5) {
       if (pageUrl.indexOf('product_cat') > -1) {
         $('.showCategories img').toggleClass('sidebarIconAnimate90');
@@ -247,6 +246,8 @@ jQuery(document).ready(function($) {
     if (pageUrl.indexOf('?') == -1) {
       $('.clearButton').hide();
     }
+
+
 
     //Hidenslide for mobile filter
     $('#sidebarIcon').on('click', function (e) {
@@ -295,10 +296,14 @@ jQuery(document).ready(function($) {
         sidebar();
         if (idObj == 'pre-owned'){
           $('.conditionInput').prop('checked', true);
-        }
+        };
         if (onSaleObj == true){
           $('.saleInput').prop('checked', true);
-        }
+        };
+        //Filter push url state
+        $(document).on('click', '#categories a', function() {
+          window.history.pushState({}, "?product_cat=" + idObj, pageUrl);
+        });
       },
       error: function (response) {
         console.log(response);

@@ -114,7 +114,7 @@
         '<div class="switchContainer objectPadding">
             <span>New</span>
             <label class="switch">
-                <input type="checkbox" name="condition" class="conditionInput" data-category="' . $preOwnedObj->slug .'">
+                <input type="checkbox" name="condition" class="conditionInput" data-category="' . $preOwnedObj->slug .'" data-attribute="' . $_REQUEST['attribute'] . '" data-term="' . $_REQUEST['tagObj'] . '">
                 <span class="slider round"></span>
             </label>
             <span>Used</span>
@@ -126,7 +126,7 @@ echo '<div class="filterHeading">
       <div class="switchContainer objectPadding">
         <span>No</span>
         <label class="switch">
-            <input type="checkbox" name="sale" class="saleInput" data-category="' . $idObj . '" data-sale="true" data-term="' . $tagObj . '">
+            <input type="checkbox" name="sale" class="saleInput" data-category="' . $_REQUEST['idObj'] . '" data-sale="true" data-attribute="' . $_REQUEST['attribute'] . '" data-term="' . $_REQUEST['tagObj'] . '">
             <span class="slider round"></span>
         </label>
         <span>Yes</span>
