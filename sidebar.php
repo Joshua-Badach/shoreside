@@ -4,7 +4,19 @@
     $id = get_term_by('slug', $slug, 'product_cat');
     $preOwnedObj = get_term_by('slug', 'pre-owned', 'product_cat');
 
-    if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
+    $taxonomy           =           'product_cat';
+    $hierarchical       =           1;      // 1 for yes, 0 for no
+    $title              =           '';
+    $empty              =           0;
+    $limit              =           -1;
+    $status             =           'publish';
+
+    $tagObj             =           '';
+    $orderByObj         =           '';
+    $onSaleObj          =           '';
+
+
+if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
     {
         $idObj              =           $_REQUEST['idObj'];
         $attribute          =           $_REQUEST['attribute'];
@@ -12,6 +24,7 @@
         $orderByOjb         =           $_REQUEST['orderByObj'];
         $orderObj           =           $_REQUEST['orderObj'];
         $onSaleObj          =           $_REQUEST['onSaleObj'];
+        $slug               =           $_REQUEST['slug'];
     } else {
         $idObj              =           $id->term_id;
         $attribute          =           '';
@@ -20,17 +33,6 @@
         $orderObj           =           '';
         $onSaleObj          =           '';
     }
-
-        $taxonomy           =           'product_cat';
-        $hierarchical       =           1;      // 1 for yes, 0 for no
-        $title              =           '';
-        $empty              =           0;
-        $limit              =           -1;
-        $status             =           'publish';
-
-        $tagObj             =           '';
-        $orderByObj         =           '';
-        $onSaleObj          =           '';
 
     $args = array(
         'status'                        => $status,
@@ -46,9 +48,11 @@
         'status'                        => $status,
         'limit'                         => $limit,
         'hierarchical'                  => $hierarchical,
-//        'parent'                        => $idObj,
+        'show_option_none'              => '',
         'hide_empty'                    => $empty,
-        'category'                      => array( $slug ),
+//        'parent'                        => $slug,
+        'taxonomy'                      => $taxonomy,
+        'category'                      => $slug,
     );
 
     $categories = get_categories($args);
@@ -66,8 +70,13 @@
     </div>
     <div id="categories">';
     foreach ($categories as $cat) {
-        echo '<a data-category="' . $cat->term_id . '" >' . $cat->cat_name . '</a>';
+        if ( $cat->category_count == 0 ) {
+            continue;
+        } else {
+            echo '<a data-category="' . $cat->term_id . '" data-slug="' . $cat->cat_name . '">' . $cat->cat_name . '</a>';
+        }
     }
+//    var_dump($categories);
 
     echo '</div>
     </div>';
@@ -93,9 +102,14 @@
             }
         }
     }
-//Tweak this for contextual attribute return based on current products
     foreach ($termCheck as $i => $aTerm) {
-        echo '<a data-category="' . $_REQUEST['idObj'] . '" data-attribute="manufacturer" data-term="' . $termCheck[$i] . '">' . $termName[$i] . '</a>';
+        echo '<a data-category="';
+                if ($_REQUEST['idObj'] == '' ) {
+                    echo $idObj;
+                } else {
+                    echo $_REQUEST['idObj'];
+                }
+                echo'" data-attribute="manufacturer" data-term="' . $termCheck[$i] . '">' . $termName[$i] . '</a>';
     }
     echo '</div>
 </div>
@@ -114,7 +128,7 @@
         '<div class="switchContainer objectPadding">
             <span>New</span>
             <label class="switch">
-                <input type="checkbox" name="condition" class="conditionInput" data-category="' . $preOwnedObj->slug .'" data-sale="' . $_REQUEST['onSaleObj'] . '" data-attribute="' . $_REQUEST['attribute'] . '" data-term="' . $_REQUEST['tagObj'] . '">
+                <input type="checkbox" name="condition" class="conditionInput" data-category="' . $preOwnedObj->slug .'" data-slug="' . $preOwnedObj->slug .'" data-sale="' . $_REQUEST['onSaleObj'] . '" data-attribute="' . $_REQUEST['attribute'] . '" data-term="' . $_REQUEST['tagObj'] . '">
                 <span class="slider round"></span>
             </label>
             <span>Used</span>
@@ -126,7 +140,7 @@ echo '<div class="filterHeading">
       <div class="switchContainer objectPadding">
         <span>No</span>
         <label class="switch">
-            <input type="checkbox" name="sale" class="saleInput" data-category="'; if ($_REQUEST['idObj'] == '') { echo $idObj; } else { echo $_REQUEST['idObj']; } echo '" data-sale="true" data-attribute="' . $_REQUEST['attribute'] . '" data-term="' . $_REQUEST['tagObj'] . '">
+            <input type="checkbox" name="sale" class="saleInput" data-category="'; if ($_REQUEST['idObj'] == '') { echo $idObj; } else { echo $_REQUEST['idObj']; } echo '" data-slug="' . $_REQUEST['slug'] . '" data-sale="true" data-attribute="' . $_REQUEST['attribute'] . '" data-term="' . $_REQUEST['tagObj'] . '">
             <span class="slider round"></span>
         </label>
         <span>Yes</span>

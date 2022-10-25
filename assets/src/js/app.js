@@ -276,6 +276,7 @@ jQuery(document).ready(function($) {
     var tagObj = $(this).data('term');
     var orderByOjb = $(this).data('orderby');
     var onSaleObj = $(this).data('sale');
+    var slug = $(this).data('slug');
 
     var ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";
 
@@ -284,6 +285,7 @@ jQuery(document).ready(function($) {
     window.LoadResultsPayload.tagObj = tagObj;
     window.LoadResultsPayload.orderByOjb = orderByOjb;
     window.LoadResultsPayload.onSaleObj = onSaleObj;
+    window.LoadResultsPayload.slug = slug;
 
 
     $.ajax({
@@ -309,7 +311,7 @@ jQuery(document).ready(function($) {
         console.log(response);
       }
     });
-    return idObj, attribute, tagObj, orderByOjb, onSaleObj;
+    return idObj, attribute, tagObj, orderByOjb, onSaleObj, slug;
   });
 
   checkWidth();
