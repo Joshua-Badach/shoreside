@@ -43,6 +43,7 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
         'hide_empty'                    => $empty,
         'parent'                        => $idObj,
         'taxonomy'                      => $taxonomy,
+        'category'                      => $slug,
     );
 
     $query_args = array(
@@ -74,7 +75,7 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
         if ( $cat->category_count == 0 ) {
             continue;
         } else {
-            echo '<a data-category="' . $cat->term_id . '" data-slug="' . $cat->cat_name . '">' . $cat->cat_name . '</a>';
+            echo '<a data-category="' . $cat->term_id . '" data-attribute="' . $_REQUEST['attribute'] . '" data-term="' . $_REQUEST['tagObj'] . '" data-orderby="' . $_REQUEST['orderByObj'] . '" data-slug="' . $cat->cat_name . '">' . $cat->cat_name . '</a>';
         }
     }
 
@@ -103,13 +104,7 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
         }
     }
     foreach ($termCheck as $i => $aTerm) {
-        echo '<a data-category="';
-                if ($_REQUEST['idObj'] == '' ) {
-                    echo $idObj;
-                } else {
-                    echo $_REQUEST['idObj'];
-                }
-                echo'" data-slug="' . $termName[$i] . '" data-attribute="manufacturer" data-term="' . $termCheck[$i] .
+        echo '<a data-category="'. $idObj . '" data-slug="' . $termName[$i] . '" data-attribute="manufacturer" data-term="' . $termCheck[$i] .
              '">' . $termName[$i] . '</a>';
     }
     echo '</div>
@@ -141,20 +136,29 @@ echo '<div class="filterHeading">
       <div class="switchContainer objectPadding">
         <span>No</span>
         <label class="switch">
-            <input type="checkbox" name="sale" class="saleInput" data-category="'; if ($_REQUEST['idObj'] == '') { echo $idObj; } else { echo $_REQUEST['idObj']; } echo '" data-slug="' . $_REQUEST['slug'] . '" data-sale="true" data-attribute="' . $_REQUEST['attribute'] . '" data-term="' . $_REQUEST['tagObj'] . '">
+            <input type="checkbox" name="sale" class="saleInput" 
+                data-category="';
+                    if ($_REQUEST['idObj'] == '') {
+                        echo $idObj;
+                    } else {
+                        echo $_REQUEST['idObj'];
+                    };
+                echo '"
+                data-sale="true" 
+                data-slug="' . $_REQUEST['slug'] . '" 
+                data-attribute="' . $_REQUEST['attribute'] . '" 
+                data-term="' . $_REQUEST['tagObj'] . '">
             <span class="slider round"></span>
         </label>
-        <span class="test" data-category="">Yes</span>
+        <span>Yes</span>
         </div>';
 
     if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
     {
-
-            echo '<hr>
-            <div class="clearButton">
-                <button type="button" class="button-3d" id="clear">Clear</button>
-            </div>
-            ';
+        echo '<hr>
+        <div class="clearButton">
+            <button type="button" class="button-3d" id="clear">Clear</button>
+        </div>';
     }
 ?>
     </div>

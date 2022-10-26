@@ -189,13 +189,6 @@ jQuery(document).ready(function($) {
       }
     });
 
-    //filter prevent default, clear url state
-    //handle this via ajax later
-    // $(document).on('click', '#clear', function () {
-    //   window.history.pushState({}, "", pageUrl.split("?")[0]);
-    //   location.reload();
-    // });
-
     //Show sale toggle if user is in showroom
     if (pageUrl.indexOf('showroom') == -1) {
       $('#showroomToggle').hide();
@@ -208,7 +201,6 @@ jQuery(document).ready(function($) {
       });
 
     //Hide filters on load if more than 5 children, push state to url, check if state exists if so expand filter
-
     if ($('#categories').children().length >= 5) {
       if (pageUrl.indexOf('product_cat') > -1) {
         $('.showCategories img').toggleClass('sidebarIconAnimate90');
@@ -246,12 +238,6 @@ jQuery(document).ready(function($) {
       $('#attributes a').toggle();
       $('.showAttributes img').toggleClass('sidebarIconAnimate90');
     });
-
-    // if (pageUrl.indexOf('?') == -1) {
-    //   $('.clearButton').hide();
-    // }
-
-
 
     //Hidenslide for mobile filter
     $('#sidebarIcon').on('click', function (e) {
@@ -302,11 +288,22 @@ jQuery(document).ready(function($) {
         sidebar();
         if (idObj == 'pre-owned'){
           $('.conditionInput').prop('checked', true);
+          $('.conditionInput').on('click', function(){
+            $('.conditionInput').data('category', pageObj );
+          });
         };
         if (onSaleObj == true){
           $('.saleInput').prop('checked', true);
+          $('.saleInput').on('click', function(){
+            $('.saleInput').data('sale', 'false' );
+          });
         };
         $('#clear').data('category', pageObj );
+        $('#clear').data('attribute', '' );
+        $('#clear').data('term', '' );
+        $('#clear').data('orderby', '' );
+        $('#clear').data('slug', slug );
+        $('#clear').data('sale', '' );
 
       },
       error: function (response) {

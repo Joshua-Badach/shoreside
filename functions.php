@@ -451,6 +451,9 @@ function load_results() {
         $tagObj             =           $_REQUEST['tagObj'];
         $orderByOjb         =           $_REQUEST['orderByObj'];
         $onSaleObj          =           $_REQUEST['onSaleObj'];
+        $pageObj            =           $_REQUEST['pageObj'];
+        $slug               =           $_REQUEST['slug'];
+
     }
 
     $categoryDescription = category_description($idObj);
