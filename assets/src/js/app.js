@@ -191,10 +191,10 @@ jQuery(document).ready(function($) {
 
     //filter prevent default, clear url state
     //handle this via ajax later
-    $(document).on('click', '#clear', function () {
-      window.history.pushState({}, "", pageUrl.split("?")[0]);
-      location.reload();
-    });
+    // $(document).on('click', '#clear', function () {
+    //   window.history.pushState({}, "", pageUrl.split("?")[0]);
+    //   location.reload();
+    // });
 
     //Show sale toggle if user is in showroom
     if (pageUrl.indexOf('showroom') == -1) {
@@ -216,6 +216,8 @@ jQuery(document).ready(function($) {
       } else {
         $('#categories a').hide();
       }
+    } else {
+      $('.showCategories img').toggleClass('sidebarIconAnimate90');
     }
     if ($('#categories').children().length == 0) {
       $('#categoryTab').hide();
@@ -227,6 +229,8 @@ jQuery(document).ready(function($) {
         } else {
           $('#attributes a').hide();
         }
+    } else {
+      $('.showAttributes img').toggleClass('sidebarIconAnimate90');
     }
     if ($('#attributes').children().length == 0) {
       $('#attributeTab').hide();
@@ -243,9 +247,9 @@ jQuery(document).ready(function($) {
       $('.showAttributes img').toggleClass('sidebarIconAnimate90');
     });
 
-    if (pageUrl.indexOf('?') == -1) {
-      $('.clearButton').hide();
-    }
+    // if (pageUrl.indexOf('?') == -1) {
+    //   $('.clearButton').hide();
+    // }
 
 
 
@@ -270,13 +274,14 @@ jQuery(document).ready(function($) {
   //Sidebar ajax queries
   //Clean this up
 
-  $(document).on('click', '#sidebar a, #sidebar input', function() {
+  $(document).on('click', '#sidebar a, #sidebar input, #sidebar button', function() {
     var idObj = $(this).data('category');
     var attribute = $(this).data('attribute');
     var tagObj = $(this).data('term');
     var orderByOjb = $(this).data('orderby');
     var onSaleObj = $(this).data('sale');
     var slug = $(this).data('slug');
+    var pageObj = $('#contentTrigger').data('page');
 
     var ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";
 
@@ -286,7 +291,6 @@ jQuery(document).ready(function($) {
     window.LoadResultsPayload.orderByOjb = orderByOjb;
     window.LoadResultsPayload.onSaleObj = onSaleObj;
     window.LoadResultsPayload.slug = slug;
-
 
     $.ajax({
       url: ajaxUrl,
@@ -302,16 +306,14 @@ jQuery(document).ready(function($) {
         if (onSaleObj == true){
           $('.saleInput').prop('checked', true);
         };
-        //Filter push url state
-        // $(document).on('click', '#categories a', function() {
-        //   window.history.pushState({}, "?product_cat=" + idObj, pageUrl);
-        // });
+        $('#clear').data('category', pageObj );
+
       },
       error: function (response) {
         console.log(response);
       }
     });
-    return idObj, attribute, tagObj, orderByOjb, onSaleObj, slug;
+    // return idObj, attribute, tagObj, orderByOjb, onSaleObj, slug;
   });
 
   checkWidth();

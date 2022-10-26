@@ -32,7 +32,8 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
         $orderByOjb         =           '';
         $orderObj           =           '';
         $onSaleObj          =           '';
-    }
+
+}
 
     $args = array(
         'status'                        => $status,
@@ -76,7 +77,6 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
             echo '<a data-category="' . $cat->term_id . '" data-slug="' . $cat->cat_name . '">' . $cat->cat_name . '</a>';
         }
     }
-//    var_dump($categories);
 
     echo '</div>
     </div>';
@@ -109,7 +109,8 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
                 } else {
                     echo $_REQUEST['idObj'];
                 }
-                echo'" data-attribute="manufacturer" data-term="' . $termCheck[$i] . '">' . $termName[$i] . '</a>';
+                echo'" data-slug="' . $termName[$i] . '" data-attribute="manufacturer" data-term="' . $termCheck[$i] .
+             '">' . $termName[$i] . '</a>';
     }
     echo '</div>
 </div>
@@ -143,11 +144,18 @@ echo '<div class="filterHeading">
             <input type="checkbox" name="sale" class="saleInput" data-category="'; if ($_REQUEST['idObj'] == '') { echo $idObj; } else { echo $_REQUEST['idObj']; } echo '" data-slug="' . $_REQUEST['slug'] . '" data-sale="true" data-attribute="' . $_REQUEST['attribute'] . '" data-term="' . $_REQUEST['tagObj'] . '">
             <span class="slider round"></span>
         </label>
-        <span>Yes</span>
+        <span class="test" data-category="">Yes</span>
         </div>';
+
+    if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
+    {
+
+            echo '<hr>
+            <div class="clearButton">
+                <button type="button" class="button-3d" id="clear">Clear</button>
+            </div>
+            ';
+    }
 ?>
-        <div class="clearButton">
-            <button type="button" class="button-3d" id="clear">Clear</button>
-        </div>
     </div>
 </div>
