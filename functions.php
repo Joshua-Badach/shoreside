@@ -459,8 +459,7 @@ function load_results() {
     $categoryDescription = category_description($idObj);
     $term = get_term_by('id', $idObj, 'product_cat');
 
-    echo '<div id="contentTrigger">
-            <div class="container display">
+    echo '<div class="container display">
                 <div class="row">
                     <h2>' . $term->name . '</h2>
                     ' . $categoryDescription . '
@@ -476,8 +475,7 @@ function load_results() {
     echo '<div class="container">';
     echo do_shortcode('[products category="' . $idObj . '" attribute="' . $attribute . '"  terms="' . $tagObj . '" per_page="-1" columns="5" orderby="' . $orderByOjb . '" on_sale="' . $onSaleObj . '" order="ASC" operator="IN"]');
     echo '</div>
-        </div>
-    </div>';
+        </div>';
 
     die();
 }
@@ -493,7 +491,7 @@ function content_shortcode(){
     $categoryDescription = category_description($idObj);
     $term = get_term_by('id', $idObj, 'product_cat');
 
-    echo '<div id="contentTrigger" data-page="' . $idObj . '">
+    echo '<div id="contentTrigger" data-page="' . $idObj . '" data-slug="' . $term->slug .'">
             <div class="container display">
                 <div class="row">
                     <h2>' . $term->name . '</h2>
@@ -508,7 +506,7 @@ function content_shortcode(){
             <div class="content">';
                 get_sidebar();
                 echo '<div class="container">';
-                    echo do_shortcode('[products category="' . $idObj . '" attribute="' . $attribute . '"  terms="' . $tagObj . '" per_page="-1" columns="5" orderby="' . $orderByOjb . '" on_sale="' . $onSaleObj . '" order="ASC" operator="IN"]');
+                    echo do_shortcode('[products category="' . $idObj . '" attribute=""  terms="" per_page="-1" columns="5" orderby="" on_sale="" order="ASC" operator="IN"]');
                 echo '</div>
             </div>
     </div>';

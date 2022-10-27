@@ -262,12 +262,13 @@ jQuery(document).ready(function($) {
 
   $(document).on('click', '#sidebar a, #sidebar input, #sidebar button', function() {
     var idObj = $(this).data('category');
+    var pageObj = $('#contentTrigger').data('page');
+    var slugObj = $('#contentTrigger').data('slug');
     var attribute = $(this).data('attribute');
     var tagObj = $(this).data('term');
-    var orderByOjb = $(this).data('orderby');
+    var orderByOjb = $(this).data('order');
     var onSaleObj = $(this).data('sale');
     var slug = $(this).data('slug');
-    var pageObj = $('#contentTrigger').data('page');
 
     var ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";
 
@@ -302,7 +303,7 @@ jQuery(document).ready(function($) {
         $('#clear').data('attribute', '' );
         $('#clear').data('term', '' );
         $('#clear').data('orderby', '' );
-        $('#clear').data('slug', slug );
+        $('#clear').data('slug', slugObj );
         $('#clear').data('sale', '' );
 
       },

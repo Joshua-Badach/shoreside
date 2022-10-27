@@ -75,7 +75,12 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
         if ( $cat->category_count == 0 ) {
             continue;
         } else {
-            echo '<a data-category="' . $cat->term_id . '" data-attribute="' . $_REQUEST['attribute'] . '" data-term="' . $_REQUEST['tagObj'] . '" data-orderby="' . $_REQUEST['orderByObj'] . '" data-slug="' . $cat->cat_name . '">' . $cat->cat_name . '</a>';
+            echo '<a data-category="' . $cat->term_id . '" 
+            data-attribute="' . $_REQUEST['attribute'] . '" 
+            data-term="' . $_REQUEST['tagObj'] . '" 
+            data-order="' . $_REQUEST['orderByObj'] . '"
+            data-sale="' . $_REQUEST['onSaleObj'] . '" 
+            data-slug="' . $cat->slug . '">' . $cat->cat_name . '</a>';
         }
     }
 
@@ -99,55 +104,55 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
                     $termCheck = array_unique($unique);
                     $name[] = $term->name;
                     $termName = array_unique($name, SORT_LOCALE_STRING);
+                    $termSlug[] = $term->slug;
                 }
             }
         }
     }
     foreach ($termCheck as $i => $aTerm) {
-        echo '<a data-category="'. $idObj . '" data-slug="' . $termName[$i] . '" data-attribute="manufacturer" data-term="' . $termCheck[$i] .
-             '">' . $termName[$i] . '</a>';
+        echo '<a 
+        data-category="'. $idObj . '" 
+        data-attribute="manufacturer" 
+        data-term="' . $termCheck[$i] . '"
+        data-order="' . $_REQUEST['orderby'] . '"
+        data-sale="' . $_REQUEST['onSaleObj'] . '"
+        data-slug="' . $termSlug[$i] . '" >
+        ' . $termName[$i] . '</a>';
     }
     echo '</div>
-</div>
-        <div class="filterHeading">
-            <p>Price: </p>
-        </div>
-        <div id="prices" class="objectPadding">
-            <a id="asc" data-category="' . $_REQUEST['idObj'] . '" data-attribute="' . $_REQUEST['attribute'] . '" data-term="' . $_REQUEST['tagObj'] . '" data-orderby="price">Low to High</a>
-            <a id="desc" data-category="' . $_REQUEST['idObj'] . '" data-attribute="' . $_REQUEST['attribute'] . '" data-term="' . $_REQUEST['tagObj'] . '" data-orderby="price-desc">High to Low</a>
-        </div>';
-
-    echo '<div id="showroomToggle">
+</div>      
+        <div id="showroomToggle">
         <div class="filterHeading">
             <p>Condition: </p>
         </div>' .
         '<div class="switchContainer objectPadding">
             <span>New</span>
             <label class="switch">
-                <input type="checkbox" name="condition" class="conditionInput" data-category="' . $preOwnedObj->slug .'" data-slug="' . $preOwnedObj->slug .'" data-sale="' . $_REQUEST['onSaleObj'] . '" data-attribute="' . $_REQUEST['attribute'] . '" data-term="' . $_REQUEST['tagObj'] . '">
+                <input type="checkbox" name="condition" class="conditionInput" 
+                data-category="' . $preOwnedObj->slug .'" 
+                data-attribute="' . $_REQUEST['attribute'] . '" 
+                data-term="' . $_REQUEST['tagObj'] . '"
+                data-order="' . $_REQUEST['orderby'] . '"
+                data-sale="' . $_REQUEST['onSaleObj'] . '" 
+                data-slug="' . $preOwnedObj->slug .'"> 
                 <span class="slider round"></span>
             </label>
             <span>Used</span>
         </div>
-    </div>';
-echo '<div class="filterHeading">
+    </div>
+    <div class="filterHeading">
         <p>On Sale: </p>
       </div>
       <div class="switchContainer objectPadding">
         <span>No</span>
         <label class="switch">
             <input type="checkbox" name="sale" class="saleInput" 
-                data-category="';
-                    if ($_REQUEST['idObj'] == '') {
-                        echo $idObj;
-                    } else {
-                        echo $_REQUEST['idObj'];
-                    };
-                echo '"
-                data-sale="true" 
-                data-slug="' . $_REQUEST['slug'] . '" 
+                data-category="' . $idObj . '"
                 data-attribute="' . $_REQUEST['attribute'] . '" 
-                data-term="' . $_REQUEST['tagObj'] . '">
+                data-term="' . $_REQUEST['tagObj'] . '"
+                data-order="' . $_REQUEST['orderby'] . '"
+                data-sale="true" 
+                data-slug="' . $_REQUEST['slug'] . '" >
             <span class="slider round"></span>
         </label>
         <span>Yes</span>
