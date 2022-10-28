@@ -93,20 +93,20 @@ jQuery(document).ready(function($) {
     focusOnSelect: true,
   });
 
+  $('#sidebarContainer').hide();
 
   //Mobile check
   var mobile = (/iphone|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));
   if (mobile) {
     $('.slick-arrow').delay(10000).fadeOut('slow');
-    $('#sidebar').hide();
-    $('#mobileFilter').show();
-    $('#contentTrigger').removeClass('content');
-    $('#sidebarHeader').hide();
-    // $('.select2-container').removeAttr('style').css('z-index', '100');
+    // $('#mobileFilter').show();
+    // $('#contentTrigger').removeClass('content');
+    // $('#sidebarHeader').hide();
 
   } else {
-    $('#sidebarIcon').hide();
-    $('#sidebarHeader').show();
+    // $('#sidebarIcon').hide();
+    // $('#sidebarHeader').show();
+    // $('#mobileFilter').hide();
     // Pan and zoom code removed for now, keeping it in case minds are changed
     // $(".portrait")
     // // tile mouse actions
@@ -243,16 +243,11 @@ jQuery(document).ready(function($) {
     $('#sidebarIcon').on('click', function (e) {
       e.preventDefault();
       e.stopImmediatePropagation();
-      $('#sidebar').toggle(500);
-      $('#sidebar').css({
-        "-webkit-box-shadow": "5px 5px 7px 5px #000000",
-        "box-shadow": "5px 5px 7px 5px #000000",
-      });
+      $('#sidebarContainer').toggle(500);
       $('#sidebarIcon img').toggleClass('sidebarIconAnimate');
-      $('#sidebarContainer').css({
-        "position": "absolute",
-        "width": "50%"
-      });
+      if (mobile) {
+        $('#sidebarContainer').css('position', 'absolute');
+      }
     });
   }
 
@@ -299,6 +294,10 @@ jQuery(document).ready(function($) {
             $('.saleInput').data('sale', 'false' );
           });
         };
+        if (mobile) {
+          $('#sidebarContainer').css('position', 'absolute');
+        }
+        $('#sidebarIcon img').toggleClass('sidebarIconAnimate');
         $('#clear').data('category', pageObj );
         $('#clear').data('attribute', '' );
         $('#clear').data('term', '' );

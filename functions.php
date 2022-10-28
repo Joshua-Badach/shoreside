@@ -465,7 +465,7 @@ function load_results() {
                     ' . $categoryDescription . '
                 </div>
             </div>
-            <div id="mobileFilter" style="display: none">
+            <div id="mobileFilter">
                 <a id="sidebarIcon" href="">
                     <img width="30px" height="30px" src="' . get_template_directory_uri(). '/assets/src/library/images/menu-icon.svg\' ?>" alt="Menu Icon">
                 </a>
@@ -498,7 +498,7 @@ function content_shortcode(){
                     ' . $categoryDescription . '
                 </div>
             </div>
-            <div id="mobileFilter" style="display: none">
+            <div id="mobileFilter">
                 <a id="sidebarIcon" href="">
                     <img width="30px" height="30px" src="' . get_template_directory_uri(). '/assets/src/library/images/menu-icon.svg\' ?>" alt="Menu Icon">
                 </a>

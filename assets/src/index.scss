@@ -678,14 +678,21 @@ footer .logo{
 .appended{
   text-align: center;
 }
+#sidebarContainer {
+  //position: absolute;
+  height: fit-content;
+  z-index: 10;
+  box-shadow: rgb(0, 0, 0) 5px 5px 7px 5px;
+  border-radius: 0 30px 30px 0;
+}
+.content > .container{
+  margin-top: 15px;
+}
 
 //extra small mobile
 @media (min-width: 320px) and (max-width: 480px) {
   .home-block{
     top: -30vw;
-  }
-  #sidebar{
-    margin-top: -15px;
   }
   .home-block img{
     width: 20%;
@@ -750,9 +757,6 @@ footer .logo{
   }
   .home-block img{
     width: 20%;
-  }
-  #sidebar{
-    margin-top: -15px;
   }
   .brandCard img{
     width: 100%;
@@ -907,7 +911,7 @@ div .form-footer{
 }
 #mobileFilter{
   width: 100%;
-  margin-bottom: 15px;
+  //margin-bottom: 15px;
   padding: 1px 0;
   background: nth($rpsBrand, 1);
   -webkit-box-shadow: inset 0px -5px 15px -2px #000000;
@@ -1021,12 +1025,9 @@ div .form-footer{
 #sidebar{
   height: 100%;
   width: 200px;
-  //border-right: 1px solid #d3d3d3;
-  //border-bottom: 1px solid #d3d3d3;
   border-radius: 0 0 30px 0;
   background: nth($rpsBrand, 4);
   z-index: 10;
-  //padding: 20px 10px;
 }
 #sidebar a{
   color: nth($rpsBrand, 2);
@@ -1035,10 +1036,6 @@ div .form-footer{
   background-color: nth($rpsBrand, 1);
   color: nth($rpsBrand, 1);
   border-color: nth($rpsBrand, 1);
-}
-#sidebarContainer{
-  height: fit-content;
-  z-index: 10;
 }
 .single-product{
    margin-top: 5%;
@@ -1108,10 +1105,6 @@ div .form-footer{
  }
 .sidebarActive{
   padding: 10px;
-}
-#sidebar{
-border-right: 1px solid #d3d3d3;
-border-bottom: 1px solid #d3d3d3;
 }
 #categories a{
   display: block;
@@ -1237,10 +1230,13 @@ input:checked + .slider:before {
 .clearButton{
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  padding-bottom: 20px;
 }
 #sidebar a{
-  //margin: 10px 0;
   cursor: pointer;
   text-decoration: none;
+}
+.contentPush{
+  margin-left: 15%;
+  margin-right: 5%;
 }

@@ -1,3 +1,4 @@
+<!--Filtering code-->
 <div class="filterHeading">
     <p>Price: </p>
 </div>
