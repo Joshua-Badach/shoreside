@@ -200,7 +200,7 @@ jQuery(document).ready(function($) {
         e.stopImmediatePropagation();
       });
 
-    //Hide filters on load if more than 5 children, push state to url, check if state exists if so expand filter
+    //Hide filters on load if more than 5 children
     if ($('#categories').children().length >= 5) {
       if (pageUrl.indexOf('product_cat') > -1) {
         $('.showCategories img').toggleClass('sidebarIconAnimate90');
