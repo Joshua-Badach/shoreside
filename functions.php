@@ -531,7 +531,7 @@ add_action( 'woocommerce_single_product_summary', 'show_sku', 20 );
 function show_sku(){
     global $product;
     if ($product->get_sku() != '' ) {
-        echo 'SKU: ' . $product->get_sku();
+        echo '<div class="skuContainer"><span>SKU: ' . '<span class="sku"><strong>' . $product->get_sku() . '</strong></span></span></div>';
     }
 }
 
