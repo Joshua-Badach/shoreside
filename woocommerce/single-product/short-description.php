@@ -38,9 +38,6 @@ function get_attachment_url_by_slug( $slug )
 }
 $header_url = get_attachment_url_by_slug($ad);
 
-//$productAdImage = wp_get_attachment_image($ad);
-//$productAdImage = wp_get_attachment_url($ad);
-
 $short_description = apply_filters( 'woocommerce_short_description', $post->post_excerpt );
 if ( ! $short_description ) {
 	return;
