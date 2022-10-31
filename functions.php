@@ -526,6 +526,15 @@ add_shortcode('catalog', 'catalog_shortcode');
 
 //Woocommerce code
 
+//Display sku
+add_action( 'woocommerce_single_product_summary', 'show_sku', 20 );
+function show_sku(){
+    global $product;
+    if ($product->get_sku() != '' ) {
+        echo 'SKU: ' . $product->get_sku();
+    }
+}
+
 add_action('woocommerce_single_product_summary', 'woocommerce_template_single_title', 8);
 
 // remove product meta
