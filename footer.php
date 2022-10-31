@@ -29,6 +29,7 @@ $newsletterQuery = new WP_Query(array(
                         <li><a href="/service/">Service</a></li>
                         <li><a href="/about/">About Us</a></li>
                         <li><a href="/contact/">Contact</a></li>
+                        <li><a href="/privacy/">Privacy</a></li>
                     </ul>
                     <p><a class="location" href="https://maps.google.com/?q=Recreational+Power+Sports" target="_blank" rel="noopener">11204 154 Street NW Edmonton, AB T5M 1X7</a></p>
                 </div>
@@ -80,8 +81,7 @@ $newsletterQuery = new WP_Query(array(
             <div class="row">
                 <span class="col-lg-12">&copy; 2022 Recreational Power Sports</span>
             </div>
-<!--            turned off for local development -->
-<!--            <script async src='https://bit.ly/3wO0rkP' type='text/javascript'></script>-->
+            <script async src='https://bit.ly/3wO0rkP' type='text/javascript'></script>
         </footer>
     </body>
 </html>

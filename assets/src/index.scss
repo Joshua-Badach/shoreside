@@ -682,6 +682,7 @@ footer .logo{
   //position: absolute;
   height: fit-content;
   z-index: 10;
+  -webkit-box-shadow: rgb(0, 0, 0) 5px 5px 7px 5px;
   box-shadow: rgb(0, 0, 0) 5px 5px 7px 5px;
   border-radius: 0 30px 30px 0;
 }
@@ -749,7 +750,6 @@ footer .logo{
     display: block;
   }
 }
-
 //mobile and tablet
 @media (min-width: 481px) and (max-width: 768px) {
   .home-block{
@@ -919,7 +919,7 @@ div .form-footer{
 }
 #sidebarHeader{
   //hardcoded width to stop overhang
-  width: 199px;
+  width: 200px;
   height: 25px;
   border-radius: 0 30px 0 0;
   padding: 2px 0;
@@ -1166,7 +1166,6 @@ div .form-footer{
   width: 40px;
   height: 20px;
 }
-
 /* Hide default HTML checkbox */
 .switch input {
   opacity: 0;
@@ -1189,7 +1188,6 @@ div .form-footer{
   -webkit-transition: .4s;
   transition: .4s;
 }
-
 .slider:before {
   position: absolute;
   content: "";
@@ -1201,26 +1199,21 @@ div .form-footer{
   -webkit-transition: .4s;
   transition: .4s;
 }
-
 input:checked + .slider {
   background-color: lightgray;
 }
-
 input:focus + .slider {
   box-shadow: 0 0 1px #2196F3;
 }
-
 input:checked + .slider:before {
   -webkit-transform: translateX(17px);
   -ms-transform: translateX(17px);
   transform: translateX(17px);
 }
-
 /* Rounded sliders */
 .slider.round {
   border-radius: 45px;
 }
-
 .slider.round:before {
   border-radius: 50%;
 }
@@ -1241,4 +1234,8 @@ input:checked + .slider:before {
 .contentPush{
   margin-left: 15%;
   margin-right: 5%;
+}
+.privacy{
+  margin-top: 5%;
+  margin-bottom: 5%;
 }

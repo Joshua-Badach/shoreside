@@ -248,7 +248,12 @@ jQuery(document).ready(function($) {
       if (mobile) {
         $('#sidebarContainer').css('position', 'absolute');
       }
+      if (!mobile) {
+        $('#sidebarContainer').show();
+      }
     });
+
+
   }
 
   sidebar();

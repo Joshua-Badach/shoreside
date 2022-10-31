@@ -744,19 +744,3 @@ function contact_blurb(){
             echo '<div class="productContact">' . $content . '</div>';
 }
 add_action('woocommerce_single_product_summary', 'contact_blurb', 45);
-
-//May not need this for now as I'm using sidebar.php
-//function product_widget_area(){
-//    register_sidebar(
-//            array(
-//                    'id'                => 'product-widget-area',
-//                    'name'              => esc_html__('Product Search Widget', 'shoreside'),
-//                    'description'       => esc_html__('Product widget area for filtering'),
-//                    'before_widget'     => '<div id="%1$s" class="widget %2$s">',
-//                    'after_widget'      => '</div>',
-//                    'before_title'      => '',
-//                    'after_title'       => ''
-//            )
-//    );
-//}
-//add_action( 'widgets_init', 'product_widget_area');
