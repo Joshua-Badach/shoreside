@@ -200,44 +200,38 @@ jQuery(document).ready(function($) {
         e.stopImmediatePropagation();
       });
 
-    //Hide filters on load if more than 5 children
-    if ($('#categories').children().length >= 5) {
-      if (pageUrl.indexOf('product_cat') > -1) {
-        $('.showCategories img').toggleClass('sidebarIconAnimate90');
-        $('#categories a').show();
-      } else {
+      //Hide filters on load if mobile
+      if (!mobile) {
+          $('.showCategories img').toggleClass('sidebarIconAnimate90');
+          $('#categories a').show();
+        } else {
         $('#categories a').hide();
       }
-    } else {
-      $('.showCategories img').toggleClass('sidebarIconAnimate90');
-    }
-    if ($('#categories').children().length == 0) {
-      $('#categoryTab').hide();
-    }
-    if ($('#attributes').children().length >= 5) {
-        if (pageUrl.indexOf('product_tag') > -1) {
-          $('.showAttributes img').toggleClass('sidebarIconAnimate90');
-          $('#attributes a').show();
-        } else {
+      //Hide filters on load if more than 5 children
+      if ($('#attributes').children().length >= 5) {
           $('#attributes a').hide();
-        }
-    } else {
-      $('.showAttributes img').toggleClass('sidebarIconAnimate90');
-    }
-    if ($('#attributes').children().length == 0) {
-      $('#attributeTab').hide();
-    }
+      } else {
+        $('.showAttributes img').toggleClass('sidebarIconAnimate90');
+        $('#attributes a').show();
+      }
 
-    //Animate filtering arrow on click, show links
-    $('.showCategories').on('click', function () {
-      $('#categories a').toggle();
-      $('.showCategories img').toggleClass('sidebarIconAnimate90');
-    });
+      if ($('#categories').children().length == 0) {
+        $('#categoryTab').hide();
+      }
+      if ($('#attributes').children().length == 0) {
+        $('#attributeTab').hide();
+      }
 
-    $('.showAttributes').on('click', function () {
-      $('#attributes a').toggle();
-      $('.showAttributes img').toggleClass('sidebarIconAnimate90');
-    });
+      //Animate filtering arrow on click, show links
+      $('.showCategories').on('click', function () {
+        $('#categories a').toggle();
+        $('.showCategories img').toggleClass('sidebarIconAnimate90');
+      });
+
+      $('.showAttributes').on('click', function () {
+        $('#attributes a').toggle();
+        $('.showAttributes img').toggleClass('sidebarIconAnimate90');
+      });
 
     //Hidenslide for mobile filter
     if (mobile) {

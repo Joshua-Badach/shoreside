@@ -80,7 +80,7 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
             data-term="' . $_REQUEST['tagObj'] . '" 
             data-order="' . $_REQUEST['orderByObj'] . '"
             data-sale="' . $_REQUEST['onSaleObj'] . '" 
-            data-slug="' . $cat->slug . '">' . $cat->cat_name . '</a>';
+            data-slug="' . $_REQUEST['slug'] . '">' . $cat->cat_name . '</a>';
         }
     }
 
