@@ -23,7 +23,24 @@ global $post;
 $product = wc_get_product($post);
 $video = $product->get_attribute( 'Video' );
 $ad = $product->get_attribute( 'Ad' );
-//$adImage = get_attachment_url_by_slug( $ad );
+
+function get_attachment_url_by_slug( $slug )
+{
+    $args = array(
+        'post_type' => 'attachment',
+        'name' => sanitize_title($slug),
+        'posts_per_page' => 1,
+        'post_status' => 'inherit',
+    );
+    $_head = get_posts($args);
+    $header = $_head ? array_pop($_head) : null;
+    return $header ? wp_get_attachment_url($header->ID) : '';
+}
+$header_url = get_attachment_url_by_slug($ad);
+
+//$productAdImage = wp_get_attachment_image($ad);
+//$productAdImage = wp_get_attachment_url($ad);
+
 $short_description = apply_filters( 'woocommerce_short_description', $post->post_excerpt );
 if ( ! $short_description ) {
 	return;
@@ -38,7 +55,7 @@ if ( ! $short_description ) {
 ';
     }
     if ( $ad != '' ){
-        echo '<img src="' . $ad . '">';
+        echo '<img class="productBanner" src="' . $header_url . '">';
     }
 
 ?>
