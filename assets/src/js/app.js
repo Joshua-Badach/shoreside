@@ -240,19 +240,21 @@ jQuery(document).ready(function($) {
     });
 
     //Hidenslide for mobile filter
-    $('#sidebarIcon').on('click', function (e) {
-      e.preventDefault();
-      e.stopImmediatePropagation();
-      $('#sidebarContainer').toggle(500);
-      $('#sidebarIcon img').toggleClass('sidebarIconAnimate');
-      if (mobile) {
-        $('#sidebarContainer').css('position', 'absolute');
-      }
-      if (!mobile) {
-        $('#sidebarContainer').show();
-      }
-    });
-
+    if (mobile) {
+      $('#sidebarIcon').on('click', function (e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        $('#sidebarContainer').toggle(500);
+        $('#sidebarIcon img').toggleClass('sidebarIconAnimate');
+        if (mobile) {
+          $('#sidebarContainer').css('position', 'absolute');
+        }
+      });
+    } else {
+      $('#sidebarIcon img, #mobileFilter a').hide();
+      $('#mobileFilter').css('height', '30px');
+      $('#sidebarContainer').css('display', 'block');
+    }
 
   }
 
