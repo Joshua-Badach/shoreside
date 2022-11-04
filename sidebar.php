@@ -74,7 +74,7 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
     </div>
     <div id="categories">';
     foreach ($categories as $cat) {
-        if ( $cat->category_count == 0 ) {
+        if ( $cat->category_count == 0 || $cat->name == 'Pre-Owned') {
             continue;
         } else {
             echo '<a data-category="' . $cat->term_id . '" 
@@ -101,23 +101,23 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
 
     foreach (wc_get_products($query_args) as $product) {
         foreach ($product->get_attributes() as $tax => $attribute) {
-            foreach ($attribute->get_terms() as $term) {
+            foreach ($attribute->get_terms() as $i => $term) {
                 if ($term->taxonomy == 'pa_manufacturer') {
                     $unique[] = $term->term_id;
-                    $termCheck = array_unique($unique);
-                    sort($termCheck);
                     $name[] = $term->name;
-                    $termName = array_unique($name, SORT_LOCALE_STRING);
-                    sort($termName);
                     $termSlug[] = $term->slug;
+                    $termCheck = array_unique($unique);
+                    $termName = array_unique($name, SORT_LOCALE_STRING);
+                    asort($termName);
                 }
             }
         }
     }
-    foreach ($termCheck as $i => $aTerm) {
-        echo '<a 
-        data-category="'. $idObj . '" 
-        data-attribute="manufacturer" 
+
+    foreach ($termName as $i => $aTerm) {
+        echo '<a
+        data-category="'. $idObj . '"
+        data-attribute="manufacturer"
         data-term="' . $termCheck[$i] . '"
         data-orderby="' . $_REQUEST['orderByObj'] . '"
         data-order="' . $_REQUEST['orderObj'] . '"
