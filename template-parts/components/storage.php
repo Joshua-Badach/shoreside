@@ -7,7 +7,8 @@
        data-category="' . $idObj . '"
        data-attribute="' . $_REQUEST['attribute'] . '"
        data-term="' . $_REQUEST['tagObj'] . '"
-       data-order="price"
+       data-orderby="' . $_REQUEST['orderByObj'] . '"
+       data-order="ASC"
        data-sale="' . $_REQUEST['onSaleObj'] . '"
        data-slug="' . $_REQUEST['slug'] . '">Low to High
     </a>
@@ -16,7 +17,8 @@
        data-category="' . $idObj . '"
        data-attribute="' . $_REQUEST['attribute'] . '"
        data-term="' . $_REQUEST['tagObj'] . '"
-       data-order="price-desc"
+       data-orderby="' . $orderByObj . '"
+       data-order="DESC"
        data-sale="' . $_REQUEST['onSaleObj'] . '"
        data-slug="' . $_REQUEST['slug'] . '">High to Low
     </a>

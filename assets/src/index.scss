@@ -705,7 +705,7 @@ footer .logo{
     font-size: 10px!important;
   }
   .woocommerce-product-gallery{
-    height: inherit!important;
+    height: 100%;
   }
   .brandCard img{
     width: 100%;
@@ -905,9 +905,6 @@ div .form-footer{
 }
 .products ul h2{
   color: nth($rpsBrand, 1);
-}
-.woocommerce-product-gallery{
-  height: 44.688rem;
 }
 #mobileFilter{
   width: 100%;
@@ -1248,4 +1245,26 @@ input:checked + .slider:before {
 }
 .sku{
   color: #77a464;
+}
+.modal{
+  position: fixed;
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  -webkit-align-items: center;
+  justify-content: center;
+  -webkit-justify-content: center;
+  height: auto;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background-color: rgba(50, 50, 50, .5);
+}
+#modalBackground{
+  height: 100%;
+  padding: 5%;
+  overflow-y: scroll;
+  z-index: 1100;
+  background-color: nth($rpsBrand, 4);
 }

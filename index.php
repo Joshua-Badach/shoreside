@@ -11,8 +11,12 @@ $slug = $post->post_name;
 //} else {
 //    echo '<div class="container">';
 //}
-
 if ($slug != 'search') {
+    echo '<div class="modal" style="display: none">
+        <div id="modalBackground" class="container">
+            <div id="modalContent"></div>
+        </div>    
+    </div>';
 
     if (have_posts()) {
         while (have_posts()) {

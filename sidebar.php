@@ -21,7 +21,7 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
         $idObj              =           $_REQUEST['idObj'];
         $attribute          =           $_REQUEST['attribute'];
         $tagObj             =           $_REQUEST['tagObj'];
-        $orderByOjb         =           $_REQUEST['orderByObj'];
+        $orderByObj         =           $_REQUEST['orderByObj'];
         $orderObj           =           $_REQUEST['orderObj'];
         $onSaleObj          =           $_REQUEST['onSaleObj'];
         $slug               =           $_REQUEST['slug'];
@@ -29,7 +29,7 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
         $idObj              =           $id->term_id;
         $attribute          =           '';
         $tagObj             =           '';
-        $orderByOjb         =           '';
+        $orderByObj         =           '';
         $orderObj           =           '';
         $onSaleObj          =           '';
 
@@ -55,6 +55,8 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
 //        'parent'                        => $slug,
         'taxonomy'                      => $taxonomy,
         'category'                      => $slug,
+        'orderby'                       => $orderByObj,
+        'order'                         => $orderObj,
     );
 
     $categories = get_categories($args);
@@ -78,9 +80,10 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
             echo '<a data-category="' . $cat->term_id . '" 
             data-attribute="' . $_REQUEST['attribute'] . '" 
             data-term="' . $_REQUEST['tagObj'] . '" 
-            data-order="' . $_REQUEST['orderByObj'] . '"
+            data-orderby="' . $_REQUEST['orderByObj'] . '"
+            data-order="' . $_REQUEST['orderObj'] . '"
             data-sale="' . $_REQUEST['onSaleObj'] . '" 
-            data-slug="' . $_REQUEST['slug'] . '">' . $cat->cat_name . '</a>';
+            data-slug="' . $cat->slug . '">' . $cat->cat_name . '</a>';
         }
     }
 
@@ -102,8 +105,10 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
                 if ($term->taxonomy == 'pa_manufacturer') {
                     $unique[] = $term->term_id;
                     $termCheck = array_unique($unique);
+                    sort($termCheck);
                     $name[] = $term->name;
                     $termName = array_unique($name, SORT_LOCALE_STRING);
+                    sort($termName);
                     $termSlug[] = $term->slug;
                 }
             }
@@ -114,13 +119,15 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
         data-category="'. $idObj . '" 
         data-attribute="manufacturer" 
         data-term="' . $termCheck[$i] . '"
-        data-order="' . $_REQUEST['orderby'] . '"
+        data-orderby="' . $_REQUEST['orderByObj'] . '"
+        data-order="' . $_REQUEST['orderObj'] . '"
         data-sale="' . $_REQUEST['onSaleObj'] . '"
         data-slug="' . $termSlug[$i] . '" >
         ' . $termName[$i] . '</a>';
     }
     echo '</div>
 </div>      
+
         <div id="showroomToggle">
         <div class="filterHeading">
             <p>Condition: </p>
@@ -132,7 +139,8 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
                 data-category="' . $preOwnedObj->slug .'" 
                 data-attribute="' . $_REQUEST['attribute'] . '" 
                 data-term="' . $_REQUEST['tagObj'] . '"
-                data-order="' . $_REQUEST['orderby'] . '"
+                data-orderby="' . $_REQUEST['orderByObj'] . '"
+                data-order="' . $_REQUEST['orderObj'] . '"
                 data-sale="' . $_REQUEST['onSaleObj'] . '" 
                 data-slug="' . $preOwnedObj->slug .'"> 
                 <span class="slider round"></span>
@@ -150,7 +158,8 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
                 data-category="' . $idObj . '"
                 data-attribute="' . $_REQUEST['attribute'] . '" 
                 data-term="' . $_REQUEST['tagObj'] . '"
-                data-order="' . $_REQUEST['orderby'] . '"
+                data-orderby="' . $_REQUEST['orderByObj'] . '"
+                data-order="' . $_REQUEST['orderObj'] . '"
                 data-sale="true" 
                 data-slug="' . $_REQUEST['slug'] . '" >
             <span class="slider round"></span>

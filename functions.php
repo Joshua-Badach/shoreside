@@ -442,6 +442,46 @@ function service_shortcode(){
 }
 add_shortcode('service-content', 'service_shortcode');
 
+function load_product(){
+    $productUrl       =           $_REQUEST['product'];
+    $productId        =           url_to_postid($productUrl);
+//    $postType         =           'product';
+
+//    $args = array(
+//            'p'                 =>         $productId,
+//            'post_type'         =>         $postType,
+//    );
+//
+//    $query = new WP_Query($args);
+
+//
+//    do_action( 'woocommerce_before_main_content' );
+//
+//        while ($query->have_posts()) : $query->the_post();
+//            wc_get_template_part( 'content', 'single-product' );
+//        endwhile;
+//
+//    do_action( 'woocommerce_after_main_content' );
+
+
+//    $content_post     =           get_post($productId);
+//    $content          =           $content_post->post_content;
+//    $content          =           str_replace(']]>', ']]&gt;', $content);
+
+//    $output           =           "";
+//    $output           .=          get_the_post_thumbnail( $productId, 'medium' );
+//    $output           .=          $content;
+
+//    is_product($productId);
+
+//    var_dump($query);
+    echo do_shortcode('[product_page id="' . $productId . '"]');
+
+    exit();
+}
+add_action('wp_ajax_load_product', 'load_product');
+add_action('wp_ajax_nopriv_load_product', 'load_product');
+
 function load_results() {
 
     if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
@@ -449,11 +489,11 @@ function load_results() {
         $idObj              =           $_REQUEST['idObj'];
         $attribute          =           $_REQUEST['attribute'];
         $tagObj             =           $_REQUEST['tagObj'];
-        $orderByOjb         =           $_REQUEST['orderByObj'];
+        $orderByObj         =           $_REQUEST['orderByObj'];
+        $orderObj           =           $_REQUEST['orderObj'];
         $onSaleObj          =           $_REQUEST['onSaleObj'];
         $pageObj            =           $_REQUEST['pageObj'];
         $slug               =           $_REQUEST['slug'];
-
     }
 
     $categoryDescription = category_description($idObj);
@@ -473,7 +513,7 @@ function load_results() {
             <div class="content">';
     get_sidebar();
     echo '<div class="container">';
-    echo do_shortcode('[products category="' . $idObj . '" attribute="' . $attribute . '"  terms="' . $tagObj . '" per_page="-1" columns="5" orderby="' . $orderByOjb . '" on_sale="' . $onSaleObj . '" order="ASC" operator="IN"]');
+    echo do_shortcode('[products category="' . $idObj . '" attribute="' . $attribute . '"  terms="' . $tagObj . '" per_page="-1" columns="5" orderby="' . $orderByOjb . '" order="' . $orderObj . '" on_sale="' . $onSaleObj . '" operator="IN"]');
     echo '</div>
         </div>';
 
@@ -506,7 +546,7 @@ function content_shortcode(){
             <div class="content">';
                 get_sidebar();
                 echo '<div class="container">';
-                    echo do_shortcode('[products category="' . $idObj . '" attribute=""  terms="" per_page="-1" columns="5" orderby="" on_sale="" order="ASC" operator="IN"]');
+                    echo do_shortcode('[products category="' . $idObj . '" attribute=""  terms="" per_page="-1" columns="5" orderby="meta_value_num" on_sale="" order="" operator="IN"]');
                 echo '</div>
             </div>
     </div>';
@@ -527,7 +567,7 @@ add_shortcode('catalog', 'catalog_shortcode');
 //Woocommerce code
 
 //Display sku
-add_action( 'woocommerce_single_product_summary', 'show_sku', 20 );
+add_action( 'woocommerce_single_product_summary', 'show_sku', 10 );
 function show_sku(){
     global $product;
     if ($product->get_sku() != '' ) {

@@ -4,6 +4,10 @@ jQuery(document).ready(function($) {
     type: 'POST',
     action: 'load_results',
   };
+  window.modalPayload = {
+    type: 'POST',
+    action: 'load_product',
+  };
 
   window.onscroll = function() {navStick()};
 
@@ -69,30 +73,31 @@ jQuery(document).ready(function($) {
   });
 
   //Portrait carousel code
-  $('.carousel-product').slick({
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    lazyLoad: 'ondemand',
-    speed: 1000,
-    autoplaySpeed: 10000,
-    fade: true,
-    asNavFor: '.carousel-product-nav',
-    adaptiveHeight: true,
-    // mobileFirst: true,
-    dots: false,
-  });
-  $('.carousel-product-nav').slick({
-    slidesToShow: 3,
-    slidesToScroll:1,
-    speed: 1000,
-    arrows: false,
-    asNavFor: '.carousel-product',
-    dots: false,
-    centerMode: true,
-    focusOnSelect: true,
-  });
-
+  function carouselProduct() {
+    $('.carousel-product').slick({
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      autoplay: true,
+      lazyLoad: 'ondemand',
+      speed: 1000,
+      autoplaySpeed: 10000,
+      fade: true,
+      asNavFor: '.carousel-product-nav',
+      adaptiveHeight: true,
+      mobileFirst: true,
+      dots: false,
+    });
+    $('.carousel-product-nav').slick({
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      speed: 1000,
+      arrows: false,
+      asNavFor: '.carousel-product',
+      dots: false,
+      centerMode: true,
+      focusOnSelect: true,
+    });
+  }
   $('#sidebarContainer').hide();
 
   //Mobile check
@@ -253,6 +258,38 @@ jQuery(document).ready(function($) {
   }
 
   sidebar();
+
+  //modal grey out
+  $(document).on('click', '.modal-link a', function(e){
+    var ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";
+    var productUrl = $(this).attr('href');
+
+    window.modalPayload.product = productUrl;
+
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    $('.modal').show();
+    $(document.body.parentNode).css('overflow', 'hidden')
+    $(document).on('click', '.modal', function(){
+      $('.modal').hide();
+      $(document.body.parentNode).css('overflow', '')
+    });
+    $.ajax({
+
+      url: ajaxUrl,
+      dataType: 'html',
+      data: window.modalPayload,
+
+      success: function (response) {
+        $('#modalContent').html(response);
+        carouselProduct();
+      },
+      error: function (response) {
+        console.log(response);
+      }
+    });
+  });
+
   //Sidebar ajax queries
   //Clean this up
 
