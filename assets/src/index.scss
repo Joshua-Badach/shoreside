@@ -1268,3 +1268,13 @@ input:checked + .slider:before {
   z-index: 1100;
   background-color: nth($rpsBrand, 4);
 }
+#loading{
+  height: 101%;
+  width: 100%;
+  top: 0;
+  background-color: rgba(50, 50, 50, .5);
+  position: fixed;
+  overflow: hidden;
+  //Absurd z-index because that text us button has an absurd one
+  z-index: 10000000000;
+}

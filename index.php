@@ -1,6 +1,8 @@
 <?php
 get_header();
 $slug = $post->post_name;
+
+echo '<div id="loading" style="display: none"></div>';
 //global $wp;
 //$url = home_url( $wp->request );
 //$partsCheck = 'parts-and-accessories';
