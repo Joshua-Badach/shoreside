@@ -494,10 +494,15 @@ function load_results() {
         $onSaleObj          =           $_REQUEST['onSaleObj'];
         $pageObj            =           $_REQUEST['pageObj'];
         $slug               =           $_REQUEST['slug'];
-    }
 
-    $categoryDescription = category_description($idObj);
-    $term = get_term_by('id', $idObj, 'product_cat');
+        if ($_REQUEST['idObj'] == 'pre-owned'){
+            $term = get_term_by('slug', $slug, 'product_cat');
+            $categoryDescription = category_description($term);
+        } else {
+            $term = get_term_by('id', $idObj, 'product_cat');
+            $categoryDescription = category_description($term);
+        }
+    }
 
     echo '<div class="container display">
                 <div class="row">
@@ -526,12 +531,19 @@ function content_shortcode(){
     global $post;
     $slug = $post->post_name;
     $id = get_term_by('slug', $slug, 'product_cat');
-    $idObj = $id->term_id;
+    $idObjConst = $id->term_id;
 
-    $categoryDescription = category_description($idObj);
-    $term = get_term_by('id', $idObj, 'product_cat');
+    if ($_REQUEST['product_cat'] != ''){
+        $idObj = $_REQUEST['product_cat'];
+        $term = get_term_by('slug', 'pre-owned', 'product_cat');
+        $categoryDescription = category_description($term);
+    } else {
+        $idObj = $id->term_id;
+        $term = get_term_by('id', $idObj, 'product_cat');
+        $categoryDescription = category_description($term);
+    }
 
-    echo '<div id="contentTrigger" data-page="' . $idObj . '" data-slug="' . $term->slug .'">
+    echo '<div id="contentTrigger" data-page="' . $idObjConst . '" data-slug="' . $term->slug .'">
             <div class="container display">
                 <div class="row">
                     <h2>' . $term->name . '</h2>

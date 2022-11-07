@@ -172,25 +172,19 @@ jQuery(document).ready(function($) {
     $('#prompt-CWnFXGNPWNYNiMFgwS5X-iframe').fadeOut('slow');
   }, 10000 );
 
-
   function sidebar() {
     var pageUrl = document.location.href;
+    var pageObj = $('#contentTrigger').data('page');
+    var slugObj = $('#contentTrigger').data('slug');
+    var uri = window.location.toString();
+
+    $('#clear').hide();
 
     //Filter switch toggles
     if (pageUrl.indexOf('product_cat=pre-owned') != -1) {
       $('input:checkbox[name="condition"]').prop('checked', true);
+      $('#clear').show();
     }
-    $(document).on('click', '.conditionInput', function () {
-      if ($('.conditionInput').prop('checked') == true) {
-      }
-    });
-    if (pageUrl.indexOf('on_sale=true') != -1) {
-      $('input:checkbox[name="sale"]').prop('checked', true);
-    }
-    $(document).on('click', '.saleInput', function () {
-      if ($('.saleInput').prop('checked') == true) {
-      }
-    });
 
     //Show sale toggle if user is in showroom
     if (pageUrl.indexOf('showroom') == -1) {
@@ -198,7 +192,7 @@ jQuery(document).ready(function($) {
     }
 
     //Prevent defaults for filter heading dropdowns
-      $('#contentTrigger .filterHeading').on('click', 'a', function (e) {
+      $('#contentTrigger .filterHeading').on('click', 'a', function(e) {
         e.preventDefault();
         e.stopImmediatePropagation();
       });
@@ -253,9 +247,29 @@ jQuery(document).ready(function($) {
       $('#sidebarContainer').css('display', 'block');
     }
 
-  }
+    $('#clear').on('click', function(){
+      var clear_uri = uri.substring(0, uri.indexOf("?"));
+
+      $(this).data('category', pageObj);
+      $(this).data('attribute', '');
+      $(this).data('term', '');
+      $(this).data('orderby', '');
+      $(this).data('slug', slugObj);
+      $(this).data('sale', '');
+      window.history.replaceState({}, document.title, clear_uri);
+
+    });
+  };
 
   sidebar();
+
+  //Loading screen
+  $(document).ajaxStart(function(){
+    $('#loading').show();
+  });
+  $(document).ajaxStop(function(){
+    $('#loading').hide();
+  });
 
   // $(document).on('click', '.modal-link a', function(e){
   //   var ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";
@@ -285,21 +299,12 @@ jQuery(document).ready(function($) {
   //     }
   //   });
   // });
-  //Loading screen
-  $(document).ajaxStart(function(){
-    $('#loading').show();
-  });
-  $(document).ajaxStop(function(){
-    $('#loading').hide();
-  });
 
   //Sidebar ajax queries
   //Clean this up
 
   $(document).on('click', '#sidebar a, #sidebar input, #sidebar button', function() {
     var idObj = $(this).data('category');
-    var pageObj = $('#contentTrigger').data('page');
-    var slugObj = $('#contentTrigger').data('slug');
     var attribute = $(this).data('attribute');
     var tagObj = $(this).data('term');
     var orderByOjb = $(this).data('order');
@@ -339,13 +344,7 @@ jQuery(document).ready(function($) {
             $('#sidebarContainer').css('position', 'absolute');
           };
 
-          $('#sidebarIcon img').toggleClass('sidebarIconAnimate');
-          $('#clear').data('category', pageObj);
-          $('#clear').data('attribute', '');
-          $('#clear').data('term', '');
-          $('#clear').data('orderby', '');
-          $('#clear').data('slug', slugObj);
-          $('#clear').data('sale', '');
+          $('#clear').show();
 
         },
         error: function (response) {

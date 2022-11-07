@@ -4,6 +4,12 @@
     $id = get_term_by('slug', $slug, 'product_cat');
     $preOwnedObj = get_term_by('slug', 'pre-owned', 'product_cat');
 
+    if ($_REQUEST['product_cat'] != ''){
+        $idObj = $_REQUEST['product_cat'];
+    } else {
+        $idObj = $id->term_id;
+    }
+
     $taxonomy           =           'product_cat';
     $hierarchical       =           1;      // 1 for yes, 0 for no
     $title              =           '';
@@ -26,13 +32,11 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
         $onSaleObj          =           $_REQUEST['onSaleObj'];
         $slug               =           $_REQUEST['slug'];
     } else {
-        $idObj              =           $id->term_id;
         $attribute          =           '';
         $tagObj             =           '';
         $orderByObj         =           '';
         $orderObj           =           '';
         $onSaleObj          =           '';
-
 }
 
     $args = array(
@@ -131,8 +135,8 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
         <div id="showroomToggle">
         <div class="filterHeading">
             <p>Condition: </p>
-        </div>' .
-        '<div class="switchContainer objectPadding">
+        </div>
+        <div class="switchContainer objectPadding">
             <span>New</span>
             <label class="switch">
                 <input type="checkbox" name="condition" class="conditionInput" 
@@ -167,13 +171,13 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
         <span>Yes</span>
         </div>';
 
-    if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
-    {
+//    if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
+//    {
         echo '<hr>
         <div class="clearButton">
             <button type="button" class="button-3d" id="clear">Clear</button>
         </div>';
-    }
+//    }
 ?>
     </div>
 </div>
