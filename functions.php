@@ -543,7 +543,7 @@ function content_shortcode(){
         $categoryDescription = category_description($term);
     }
 
-    echo '<div id="contentTrigger" data-page="' . $idObjConst . '" data-slug="' . $term->slug .'">
+    echo '<section id="contentTrigger" data-page="' . $idObjConst . '" data-slug="' . $slug .'">
             <div class="container display">
                 <div class="row">
                     <h2>' . $term->name . '</h2>
@@ -561,7 +561,7 @@ function content_shortcode(){
                     echo do_shortcode('[products category="' . $idObj . '" attribute=""  terms="" per_page="-1" columns="5" orderby="meta_value_num" on_sale="" order="" operator="IN"]');
                 echo '</div>
             </div>
-    </div>';
+    </section>';
 }
 add_shortcode('content', 'content_shortcode');
 

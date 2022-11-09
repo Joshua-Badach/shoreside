@@ -177,12 +177,19 @@ jQuery(document).ready(function($) {
     var pageObj = $('#contentTrigger').data('page');
     var slugObj = $('#contentTrigger').data('slug');
     var uri = window.location.toString();
+    var clear_uri = uri.substring(0, uri.indexOf("?"));
 
+
+    $('#sidebar hr').hide();
     $('#clear').hide();
 
     //Filter switch toggles
     if (pageUrl.indexOf('product_cat=pre-owned') != -1) {
       $('input:checkbox[name="condition"]').prop('checked', true);
+      $('.conditionInput').attr('data-category', pageObj);
+      $('.conditionInput').attr('data-slug', slugObj);
+      window.history.replaceState({}, document.title, clear_uri);
+      $('#sidebar hr').show();
       $('#clear').show();
     }
 
@@ -248,8 +255,6 @@ jQuery(document).ready(function($) {
     }
 
     $('#clear').on('click', function(){
-      var clear_uri = uri.substring(0, uri.indexOf("?"));
-
       $(this).data('category', pageObj);
       $(this).data('attribute', '');
       $(this).data('term', '');
@@ -321,7 +326,6 @@ jQuery(document).ready(function($) {
     window.LoadResultsPayload.orderByOjb = orderByOjb;
     window.LoadResultsPayload.onSaleObj = onSaleObj;
     window.LoadResultsPayload.slug = slug;
-    // window.LoadResultsPayload.pageObj = pageObj;
 
       $.ajax({
         url: ajaxUrl,
@@ -335,10 +339,13 @@ jQuery(document).ready(function($) {
             $('.conditionInput').prop('checked', true);
             $('.conditionInput').attr('data-category', pageObj);
             $('.conditionInput').attr('data-slug', slugObj);
-            // $('.conditionInput').on('click', function () {
-            //   // $('.conditionInput').attr('category', pageObj);
-            //   idObj = pageObj;
-            // });
+          } else {
+            $('.conditionInput').prop('checked', false);
+            $('#conditionInput').attr('category', idObj);
+            $('#conditionInput').attr('slug', slug);
+            var uri = window.location.toString();
+            var clear_uri = uri.substring(0, uri.indexOf("?"));
+            window.history.replaceState({}, document.title, clear_uri);
           };
           if (onSaleObj == true) {
             $('.saleInput').prop('checked', true);
@@ -347,15 +354,14 @@ jQuery(document).ready(function($) {
           if (mobile) {
             $('#sidebarContainer').css('position', 'absolute');
           };
-
           $('#clear').show();
+          $('#sidebar hr').show();
 
         },
         error: function (response) {
           console.log(response);
         }
       });
-    // return idObj, attribute, tagObj, orderByOjb, onSaleObj, slug;
   });
 
 

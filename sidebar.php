@@ -140,7 +140,7 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
             <span>New</span>
             <label class="switch">
                 <input type="checkbox" name="condition" class="conditionInput" 
-                data-category="' . $preOwnedObj->slug .'" 
+                data-category="' . $preOwnedObj->slug . '" 
                 data-attribute="' . $_REQUEST['attribute'] . '" 
                 data-term="' . $_REQUEST['tagObj'] . '"
                 data-orderby="' . $_REQUEST['orderByObj'] . '"

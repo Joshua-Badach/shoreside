@@ -11,8 +11,7 @@ nav h6{
 //==========fonts==========
 //tired of fighting about the font, it's default now...
 $font: inherit, inherit, inherit;
-$fontSizing: 1.75vh, 3.25vh, 4vw, 4.75vh, 5.5vh, 6.25vh;
-//Tweak fontSizing later... these are way off.
+$fontSizing: 17px, 20px, 21px, 22px;
 $errorFont: 'D-DIN Condensed Bold', #ffffff, 15rem;
 
 //==========colors==========
@@ -36,50 +35,6 @@ footer ::-moz-selection{
 .search{
   margin-right: 20px;
 }
-//.container a:hover{
-//  background: nth($rpsBrand, 1);
-//  color: nth($rpsBrand, 4);
-//}
-//a:hover{
-//  background: nth($rpsBrand, 1);
-//  color: nth($rpsBrand, 4);
-//}
-//.categoryItems img {
-//  transition: all 1s ease-in-out;
-//}
-//.categoryItems img:hover{
-//  -webkit-transform: scale(1.5);
-//  -moz-transform: scale(1.5);
-//  -ms-transform: scale(1.5);
-//  -o-transform: scale(1.5);
-//  transform: scale(1.5);
-//  -webkit-box-shadow: 5px 5px 15px 5px #000000;
-//  box-shadow: 5px 5px 15px 5px #000000;
-//}
-//.search.active {
-//  background: rgba(0, 0, 0, 0.4);
-//  width: 500px;
-//}
-//.search.active form {
-//  display: inline-block;
-//}
-//.search {
-//  margin-top: 25px;
-//  margin-right: 25px;
-//  background-color: #448aff;
-//  width: 50px;
-//  height: 50px;
-//  border-radius: 25px;
-//  text-align: center;
-//  color: white;
-//  cursor: pointer;
-//  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-//  transition: all 500ms ease;
-//}
-//.search > i {
-//  line-height: 50px;
-//  text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
-//}
 footer li a:hover{
   background: nth($rpsBrand, 2);
   color: nth($rpsBrand, 4);
@@ -1277,4 +1232,7 @@ input:checked + .slider:before {
   overflow: hidden;
   //Absurd z-index because that text us button has an absurd one
   z-index: 10000000000;
+}
+.woocommerce-loop-product__title{
+  color: nth($rpsBrand, 1);
 }
