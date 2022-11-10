@@ -18,10 +18,10 @@ $newsletterQuery = new WP_Query(array(
             <div class="row">
                 <span class="col-lg-3">
                     <a href="<?php echo site_url() ?>">
-                        <img class="logo" src="<?php echo get_template_directory_uri() . '/assets/src/library/images/logo.png' ?>" alt="Recreational Power Sports Logo">
+                        <img itemprop="logo" class="logo" src="<?php echo get_template_directory_uri() . '/assets/src/library/images/logo.png' ?>" alt="Recreational Power Sports Logo">
                     </a>
                 </span>
-                <div itemscope itemtype="https://schema.org/Store" class="col-lg-2 contactLinks">
+                <div class="col-lg-2 contactLinks">
                     <ul>
                         <li class="mobileShow"><a href="<?php echo site_url() ?>">Home</a></li>
                         <li><a href="/showroom/">Showroom</a></li>
@@ -40,7 +40,7 @@ $newsletterQuery = new WP_Query(array(
                         </a>
                     </p>
                 </div>
-                <div itemscope itemtype="https://schema.org/Store"  class="col-lg-2">
+                <div class="col-lg-2">
                     <?php
                     while ($hoursQuery->have_posts()){
                         $hoursQuery->the_post();

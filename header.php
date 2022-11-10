@@ -32,13 +32,13 @@ $featured = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'si
     ?>
     <?php wp_head(); ?>
 </head>
-<body>
+<body itemscope itemtype="https://schema.org/Store">
 <?php get_template_part('template-parts/components/news') ?>
 <h1 class="bodyOutline"><?php
     if ( is_home() || is_front_page() )
-        echo ($site_name . ' - Home');
+        echo ('<span itemprop="name">' . $site_name . '</span>' . ' - Home');
     else
-        echo ($site_name . ' - ' . $site_suffix);
+        echo ('<span itemprop="name">' . $site_name . '</span>' . ' - ' . $site_suffix);
     ?></h1>
 <header>
     <?php get_template_part( 'template-parts/components/nav' ); ?>

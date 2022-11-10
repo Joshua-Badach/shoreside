@@ -18,7 +18,7 @@ $query = new WP_Query(array(
                     $content = get_the_content();
                 }
                 wp_reset_postdata();
-                echo $content;
+                echo '<p itemprop="description">' . $content . '</p>';
             ?>
         </section>
     </div>

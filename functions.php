@@ -230,15 +230,15 @@ function brands_shortcode(){
         $content = $cat->description;
         $trimmed_content = wp_trim_words( $content, 75, '...' . '<p class="appended">[ read more ]</p>');
 
-        echo '<section class="col-3">
-            <a href="' . $cat->slug . '">
+        echo '<section itemscope itemtype="https://schema.org/Brand" class="col-3">
+            <a itemprop="url" href="' . $cat->slug . '">
                 <div class="brandCard brands">
                     <div class="brandImage">
-                        <img src="'. $image . '" width="150px" height="150px">
+                        <img itemprop="logo" src="'. $image . '" width="150px" height="150px">
                     </div>   
                     <div class="brandsContent">    
-                        <h3 class="hidden">' . $cat->name . '</h3>
-                        <p>'; echo $trimmed_content . '</p> 
+                        <h3 itemprop="name" class="hidden">' . $cat->name . '</h3>
+                        <p itemprop="description">'; echo $trimmed_content . '</p> 
                     </div>
                 </div>    
             </a>
