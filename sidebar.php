@@ -78,7 +78,7 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
     </div>
     <div id="categories">';
     foreach ($categories as $cat) {
-        if ( $cat->category_count == 0 || $cat->name == 'Pre-Owned') {
+        if ( $cat->category_count == 0 || $cat->name == 'Pre-Owned' || $cat->name == 'Avalon' || $cat->name == 'Mercury' || $cat->name == 'MirroCraft' || $cat->name == 'ShoreStation') {
             continue;
         } else {
             echo '<a data-category="' . $cat->term_id . '" 
@@ -120,7 +120,7 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
 
     foreach ($termName as $i => $aTerm) {
         echo '<a
-        data-category="'. $idObj . '"
+        data-category="'. $_REQUEST['idObj'] . '"
         data-attribute="manufacturer"
         data-term="' . $termCheck[$i] . '"
         data-orderby="' . $_REQUEST['orderByObj'] . '"

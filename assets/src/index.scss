@@ -526,7 +526,7 @@ footer .logo{
   width: 45%;
   font-size: nth($rpsBrand, 1);
   padding: 10px;
-  margin-top: -30%;
+  margin-top: -20%;
   max-height: 365px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -644,6 +644,12 @@ footer .logo{
 .content > .container{
   margin-top: 15px;
 }
+.slick-list{
+  height: 48vw;
+}
+.slick-track{
+  height: inherit;
+}
 
 //extra small mobile
 @media (min-width: 320px) and (max-width: 480px) {
@@ -652,6 +658,9 @@ footer .logo{
   }
   .home-block img{
     width: 20%;
+  }
+  .slick-list{
+    height: 65vw;
   }
   .sliderText h2{
     font-size: 12px!important
@@ -734,7 +743,7 @@ footer .logo{
     display: none;
   }
   .sliderText{
-    transform: translate(30%, -50%);
+    transform: translate(30%);
     max-height: 200px;
   }
   .sliderText h2{

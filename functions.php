@@ -231,7 +231,7 @@ function brands_shortcode(){
         $trimmed_content = wp_trim_words( $content, 75, '...' . '<p class="appended">[ read more ]</p>');
 
         echo '<section class="col-3">
-            <a href="/' . $cat->slug . '/">
+            <a href="' . $cat->slug . '">
                 <div class="brandCard brands">
                     <div class="brandImage">
                         <img src="'. $image . '" width="150px" height="150px">
@@ -249,6 +249,36 @@ function brands_shortcode(){
 
 }
 add_shortcode('brands', 'brands_shortcode');
+
+function brandContent_shortcode(){
+    global $post;
+    $slug = $post->post_name;
+
+    $brandsQuery = new WP_Query(array(
+        'category_name'     =>  $slug,
+        'order'             => 'DESC',
+        'post_status'       => ' publish',
+        'posts_per_page'    => 1
+    ));
+
+    echo '<section class="container"> 
+            <div class="row">';
+    while ($brandsQuery->have_posts()){
+        $brandsQuery->the_post(); ?>
+        <h2 class="col-sm-3"><?php the_title() ?> </h2>
+        </div>
+        <div class="row">
+            <p class="col-sm-12"> <?php the_content(); ?></p>
+        </div>
+        <?php
+    }
+    wp_reset_postdata();
+    echo '</div>
+      </section>';
+
+}
+add_shortcode('brand-content', 'brandContent_shortcode');
+
 
 function hero_shortcode(){
     include('template-parts/components/heroVideo.php');
@@ -326,35 +356,6 @@ function vision_shortcode(){
 </div>';
 }
 add_shortcode('vision', 'vision_shortcode');
-
-function brandContent_shortcode(){
-    global $post;
-    $slug = $post->post_name;
-
-    $brandsQuery = new WP_Query(array(
-        'category_name'     =>  $slug,
-        'order'             => 'DESC',
-        'post_status'       => ' publish',
-        'posts_per_page'    => 1
-    ));
-
-    echo '<section class="container"> 
-            <div class="row">';
-    while ($brandsQuery->have_posts()){
-        $brandsQuery->the_post(); ?>
-        <h2 class="col-sm-3"><?php the_title() ?> </h2>
-        </div>
-        <div class="row">
-            <p class="col-sm-12"> <?php the_content(); ?></p>
-        </div>
-        <?php
-    }
-    wp_reset_postdata();
-    echo '</div>
-      </section>';
-
-}
-add_shortcode('brand-content', 'brandContent_shortcode');
 
 function service_shortcode(){
     global $post;
@@ -495,7 +496,7 @@ function load_results() {
         $pageObj            =           $_REQUEST['pageObj'];
         $slug               =           $_REQUEST['slug'];
 
-        if ($_REQUEST['idObj'] == 'pre-owned'){
+        if ($_REQUEST['idObj'] != ''){
             $term = get_term_by('slug', $slug, 'product_cat');
             $categoryDescription = category_description($term);
         } else {
@@ -535,13 +536,20 @@ function content_shortcode(){
 
     if ($_REQUEST['product_cat'] != ''){
         $idObj = $_REQUEST['product_cat'];
-        $term = get_term_by('slug', 'pre-owned', 'product_cat');
-        $categoryDescription = category_description($term);
+        $term = get_term_by('slug', $idObj, 'product_cat');
     } else {
         $idObj = $id->term_id;
         $term = get_term_by('id', $idObj, 'product_cat');
-        $categoryDescription = category_description($term);
     }
+//    if ($_REQUEST['term'] != ''){
+//        $tagObj = $_REQUEST['term'];
+//        $attribute = 'manufacturer';
+//    } else {
+//        $tagObj = '';
+//        $attribute = '';
+//    }
+
+    $categoryDescription = category_description($term);
 
     echo '<section id="contentTrigger" data-page="' . $idObjConst . '" data-slug="' . $slug .'">
             <div class="container display">

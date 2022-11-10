@@ -21,7 +21,7 @@ $newsletterQuery = new WP_Query(array(
                         <img class="logo" src="<?php echo get_template_directory_uri() . '/assets/src/library/images/logo.png' ?>" alt="Recreational Power Sports Logo">
                     </a>
                 </span>
-                <div class="col-lg-2 contactLinks">
+                <div itemscope itemtype="https://schema.org/Store" class="col-lg-2 contactLinks">
                     <ul>
                         <li class="mobileShow"><a href="<?php echo site_url() ?>">Home</a></li>
                         <li><a href="/showroom/">Showroom</a></li>
@@ -31,9 +31,16 @@ $newsletterQuery = new WP_Query(array(
                         <li><a href="/contact/">Contact</a></li>
                         <li><a href="/privacy/">Privacy</a></li>
                     </ul>
-                    <p><a class="location" href="https://maps.google.com/?q=Recreational+Power+Sports" target="_blank" rel="noopener">11204 154 Street NW Edmonton, AB T5M 1X7</a></p>
+                    <p itemscope itemtype="https://schema.org/PostalAddress" itemprop="address">
+                        <a class="location" href="https://maps.google.com/?q=Recreational+Power+Sports" target="_blank" rel="noopener">
+                            <span itemprop="streetAddress">11204 154 Street NW</span>
+                            <span itemprop="addressLocality">Edmonton,</span>
+                            <span itemprop="addressRegion">AB</span>
+                            <span itemprop="postalCode">T5M 1X7</span>
+                        </a>
+                    </p>
                 </div>
-                <div class="col-lg-2">
+                <div itemscope itemtype="https://schema.org/Store"  class="col-lg-2">
                     <?php
                     while ($hoursQuery->have_posts()){
                         $hoursQuery->the_post();
