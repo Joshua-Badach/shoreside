@@ -24,7 +24,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	return;
 }
 ?>
-<li <?php wc_product_class( 'modal-link ', $product ); ?>>
+<li itemscope itemtype="https://schema.org/Product" <?php wc_product_class( 'modal-link ', $product ); ?>>
 	<?php
 	/**
 	 * Hook: woocommerce_before_shop_loop_item.
@@ -39,7 +39,11 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	 * @hooked woocommerce_show_product_loop_sale_flash - 10
 	 * @hooked woocommerce_template_loop_product_thumbnail - 10
 	 */
-	do_action( 'woocommerce_before_shop_loop_item_title' );
+//	do_action( 'woocommerce_before_shop_loop_item_title' );
+
+    echo the_post_thumbnail('thumbnail', array('itemprop' => 'image'));
+
+//    echo '<img itemprop="image" src="' . get_the_post_thumbnail_url() . '">';
 
 	/**
 	 * Hook: woocommerce_shop_loop_item_title.
@@ -47,7 +51,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	 * @hooked woocommerce_template_loop_product_title - 10
 	 */
 //	do_action( 'woocommerce_shop_loop_item_title' );
-    echo '<p class="' . esc_attr( apply_filters( 'woocommerce_product_loop_title_classes', 'woocommerce-loop-product__title' ) ) . '">' . get_the_title() . '</p>';
+    echo '<p itemprop="name" class="' . esc_attr( apply_filters( 'woocommerce_product_loop_title_classes', 'woocommerce-loop-product__title' ) ) . '">' . get_the_title() . '</p>';
 
 	/**
 	 * Hook: woocommerce_after_shop_loop_item_title.
