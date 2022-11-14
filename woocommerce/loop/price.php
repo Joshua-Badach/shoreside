@@ -23,5 +23,8 @@ global $product;
 ?>
 
 <?php if ( $price_html = $product->get_price_html() ) : ?>
-	<div itemscope itemprop="offers" itemtype="https://schema.org/Offer"><span itemprop="price" class="price"><?php echo $price_html; ?></span></div>
+	<div itemscope itemprop="offers" itemtype="https://schema.org/Offer">
+        <meta itemprop="priceCurrency" content="CAD" />
+        <span itemprop="price" class="price"><?php echo $price_html; ?></span>
+    </div>
 <?php endif; ?>

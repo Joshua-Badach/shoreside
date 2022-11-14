@@ -24,7 +24,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	return;
 }
 ?>
-<li itemscope itemtype="https://schema.org/Product" <?php wc_product_class( 'modal-link ', $product ); ?>>
+<li itemscope itemtype="https://schema.org/ProductCollection" <?php wc_product_class( 'modal-link ', $product ); ?>>
 	<?php
 	/**
 	 * Hook: woocommerce_before_shop_loop_item.
@@ -42,7 +42,6 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 //	do_action( 'woocommerce_before_shop_loop_item_title' );
 
     echo the_post_thumbnail('thumbnail', array('itemprop' => 'image'));
-
 //    echo '<img itemprop="image" src="' . get_the_post_thumbnail_url() . '">';
 
 	/**
