@@ -209,32 +209,37 @@ function brands_shortcode(){
                 <h2>Our Brands</h2>';
         foreach ($all_categories as $cat) {
             if ($cat->name === $test[0] ) {
-                brand_cards($cat);
+                $url = 'https://www.avalonpontoons.com/';
+                brand_cards($cat, $url);
             }
             if ($cat->name === $test[1] ) {
-                brand_cards($cat);
+                $url = 'https://www.mirrocraft.com/';
+                brand_cards($cat, $url);
             }
             if ($cat->name === $test[2] ) {
-                brand_cards($cat);
+                $url = 'https://www.mercurymarine.com/en/ca/';
+                brand_cards($cat, $url);
             }
             if ($cat->name === $test[3] ) {
-                brand_cards($cat);
+                $url = 'https://www.mercurymarine.com/en/ca/';
+                brand_cards($cat, $url);
             }
         }
         echo '</section>';
     }
 
-    function brand_cards($cat){
+    function brand_cards($cat, $url){
         $thumbnail_id = get_term_meta( $cat->term_id, 'thumbnail_id', true );
         $image = wp_get_attachment_url( $thumbnail_id );
         $content = $cat->description;
         $trimmed_content = wp_trim_words( $content, 75, '...' . '<p class="appended">[ read more ]</p>');
 
         echo '<section itemscope itemtype="https://schema.org/Brand" class="col-3">
-            <a itemprop="url" href="' . $cat->slug . '">
+            <a href="' . $cat->slug . '">
                 <div class="brandCard brands">
                     <div class="brandImage">
                         <img itemprop="logo" src="'. $image . '" width="150px" height="150px">
+                        <span hidden itemprop="url"> ' . $url . '</span>
                     </div>   
                     <div class="brandsContent">    
                         <h3 itemprop="name" class="hidden">' . $cat->name . '</h3>

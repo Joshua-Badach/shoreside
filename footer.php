@@ -19,6 +19,7 @@ $newsletterQuery = new WP_Query(array(
                 <span class="col-lg-3">
                     <a href="<?php echo site_url() ?>">
                         <img itemprop="logo" class="logo" src="<?php echo get_template_directory_uri() . '/assets/src/library/images/logo.png' ?>" alt="Recreational Power Sports Logo">
+                        <span hidden itemprop="url">https://recreationalpowersports.com</span>
                     </a>
                 </span>
                 <div class="col-lg-2 contactLinks">
