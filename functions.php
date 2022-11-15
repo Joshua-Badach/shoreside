@@ -546,13 +546,6 @@ function content_shortcode(){
         $idObj = $id->term_id;
         $term = get_term_by('id', $idObj, 'product_cat');
     }
-//    if ($_REQUEST['term'] != ''){
-//        $tagObj = $_REQUEST['term'];
-//        $attribute = 'manufacturer';
-//    } else {
-//        $tagObj = '';
-//        $attribute = '';
-//    }
 
     $categoryDescription = category_description($term);
 
@@ -596,7 +589,7 @@ add_action( 'woocommerce_single_product_summary', 'show_sku', 10 );
 function show_sku(){
     global $product;
     if ($product->get_sku() != '' ) {
-        echo '<div class="skuContainer"><span>SKU: ' . '<span class="sku"><strong>' . $product->get_sku() . '</strong></span></span></div>';
+        echo '<div class="skuContainer" itemprop="sku"><span>SKU: ' . '<span class="sku"><strong>' . $product->get_sku() . '</strong></span></span></div>';
     }
 }
 

@@ -16,19 +16,21 @@
  */
 
 defined( 'ABSPATH' ) || exit;
-
 global $product;
-$manufacturer = array_shift( wc_get_product_terms( $product->id, 'pa_manufacturer', array( 'fields' => 'names' ) ) );
 
 // Ensure visibility.
 if ( empty( $product ) || ! $product->is_visible() ) {
 	return;
 }
+//do a check later
+$manufacturer = array_shift( wc_get_product_terms( $product->id, 'pa_manufacturer', array( 'fields' => 'names' ) ) );
+$sku = $product->get_sku();
 ?>
 <li itemscope itemtype="https://schema.org/ProductCollection" <?php wc_product_class( 'modal-link ', $product ); ?>>
 	<?php
-    echo '<meta itemprop="url" content="'. get_the_permalink() . '" />';
-    echo '<meta itemprop="brand" content="'. $manufacturer . '" />';
+    echo '<meta itemprop="url" content="'. get_the_permalink() . '" />
+    <meta itemprop="brand" content="'. $manufacturer . '" />
+    <meta itemprop="sku" content="'. $sku . '" />';
 	/**
 	 * Hook: woocommerce_before_shop_loop_item.
 	 *
