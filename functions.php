@@ -600,19 +600,22 @@ function payments(){
     $categories = $product->get_categories();
     $gst = 1.05;
     $fees = 750;
-    $interest = (10.99 / 100);
-    $monthlyInterest = round(($interest / 12), 4);
     $principle = (($price * $gst) + $fees);
 
-    function financeCalc($monthlyInterest, $months, $principle){
-        $a = $monthlyInterest * ((1 + $monthlyInterest) ** $months);
-        $b = ((1 + $monthlyInterest) ** $months) - 1;
-        $c = $a / $b;
-        $result = $principle * $c;
-        $d = round($result / 2, 2);
-        $biweekly = number_format((float)$d, 2, '.', '');
+    function financeCalc($months, $principle, $interest, $apr){
+        if ($months != '') {
+            $monthlyInterest = round(($interest / 12), 4);
 
-        echo '<p>Availible for as low as $' . $biweekly . ' biweekly over ' . $months . ' months</p>';
+            $a = $monthlyInterest * ((1 + $monthlyInterest) ** $months);
+            $b = ((1 + $monthlyInterest) ** $months) - 1;
+            $c = $a / $b;
+            $result = $principle * $c;
+            $d = round($result / 2, 2);
+            $biweekly = number_format((float)$d, 2, '.', '');
+
+            echo '<p>Financing available for $' . $biweekly . ' biweekly*</p>
+             <p><em>*On approved credit. Estimated payment is calculated using the maximum term of ' . $months . ' Months at a rate of ' . $apr . '% APR. Alternative lenders and better rates may be available. $0.00 down payment assumed. Some fees, freight, and additional charges may not be factored into this estimate.</em></p>';
+        }
     }
 
     if ($price != '') {
@@ -626,7 +629,9 @@ function payments(){
             } elseif ($principle > 20000) {
                 $months = 240;
             }
-            financeCalc($monthlyInterest, $months, $principle);
+            $interest = (10.99 / 100);
+            $apr = '10.99';
+            financeCalc($months, $principle, $interest, $apr);
         } elseif (str_contains($categories, 'Snowmobile') || str_contains($categories, 'ATV')) {
             if ($principle > 3000 && $principle < 7499) {
                 $months = 84;
@@ -635,14 +640,18 @@ function payments(){
             } elseif ($principle > 20000) {
                 $months = 120;
             }
-            financeCalc($monthlyInterest, $months, $principle);
+            $interest = (10.99 / 100);
+            $apr = '10.99';
+            financeCalc($months, $principle, $interest, $apr);
         } elseif (str_contains($categories, 'Trailers')) {
             if ($principle > 500 && $principle < 2999) {
                 $months = 36;
             } elseif ($principle > 3000) {
                 $months = 60;
             }
-            financeCalc($monthlyInterest, $months, $principle);
+            $interest = (14.99 / 100);
+            $apr = '14.99';
+            financeCalc($months, $principle, $interest, $apr);
         }
     }
 }
