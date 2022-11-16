@@ -593,6 +593,44 @@ function show_sku(){
     }
 }
 
+add_action( 'woocommerce_single_product_summary', 'payments', 50);
+function payments(){
+    global $product;
+    $price = $product->get_price();
+    $gst = 1.05;
+    $fees = 750;
+    $interest = (10.99 / 100);
+    $monthlyInterest = round(($interest / 12), 4);
+    $principle = (($price * $gst) + $fees);
+
+    if($principle > 3000 && $principle < 4999){
+        $months = 36;
+    } elseif ($principle > 5000 && $principle < 9999) {
+        $months = 84;
+    } elseif ($principle > 10000 && $principle < 19999) {
+        $months = 180;
+    } elseif ($principle > 20000 ){
+        $months = 240;
+    }
+
+    $a = $monthlyInterest * ( (1 + $monthlyInterest) ** $months);
+    $b = ( (1 + $monthlyInterest) ** $months) - 1;
+    $c = $a / $b;
+    $result = $principle * $c;
+    $d = round($result / 2 , 2);
+    $biweekly = number_format((float)$d, 2, '.', '');
+
+    echo '<p>Availible for as low as: $' . $biweekly . ' biweekly</p>';
+
+    $categories = get_the_terms($product->term_id, 'product_cat');
+//    $categories = get_categories($product->id, 'product_cat');
+
+    if ($categories->slug == 'boats'){
+        echo 'boats detected';
+    }
+    var_dump($categories);
+}
+
 add_action('woocommerce_single_product_summary', 'woocommerce_template_single_title', 8);
 
 // remove product meta
