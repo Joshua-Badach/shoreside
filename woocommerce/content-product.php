@@ -17,11 +17,17 @@
 
 defined( 'ABSPATH' ) || exit;
 global $product;
+$tags = wc_get_product_tag_list($product->get_id);
 
 // Ensure visibility.
 if ( empty( $product ) || ! $product->is_visible() ) {
 	return;
 }
+
+if ($tags != ''){
+    echo '<span class="pending">Pending</span>';
+}
+
 //do a check later
 $manufacturer = array_shift( wc_get_product_terms( $product->id, 'pa_manufacturer', array( 'fields' => 'names' ) ) );
 $sku = $product->get_sku();

@@ -585,11 +585,22 @@ add_shortcode('catalog', 'catalog_shortcode');
 //Woocommerce code
 
 //Display sku
-add_action( 'woocommerce_single_product_summary', 'show_sku', 10 );
+add_action( 'woocommerce_single_product_summary', 'show_sku', 9 );
 function show_sku(){
     global $product;
     if ($product->get_sku() != '' ) {
-        echo '<div class="skuContainer" itemprop="sku"><span>SKU: ' . '<span class="sku"><strong>' . $product->get_sku() . '</strong></span></span></div>';
+        echo '<div class="skuContainer" itemprop="sku"><span>SKU: ' . '<span class="sku">' . $product->get_sku() . '</span></span></div>';
+    }
+}
+add_action('woocommerce_single_product_summary', 'pending_banner' , 9);
+function pending_banner(){
+    global $product;
+    $tags = wc_get_product_tag_list($product->get_id);
+
+    if ($tags != '') {
+        echo '<div class="pendingBanner">
+                <img src="' . get_template_directory_uri() . '/assets/src/library/images/pending.jpg' . '">
+              </div>';
     }
 }
 
@@ -598,8 +609,13 @@ function payments(){
     global $product;
     $price = $product->get_price();
     $categories = $product->get_categories();
+
     $gst = 1.05;
-    $fees = 750;
+    if (str_contains($categories, 'Trailers')) {
+        $fees = 400;
+    } else {
+        $fees = 750;
+    }
     $principle = (($price * $gst) + $fees);
 
     function financeCalc($months, $principle, $interest, $apr){
@@ -613,45 +629,51 @@ function payments(){
             $d = round($result / 2, 2);
             $biweekly = number_format((float)$d, 2, '.', '');
 
-            echo '<p>Financing available for $' . $biweekly . ' biweekly*</p>
-             <p><em>*On approved credit. Estimated payment is calculated using the maximum term of ' . $months . ' Months at a rate of ' . $apr . '% APR. Alternative lenders and better rates may be available. $0.00 down payment assumed. Some fees, freight, and additional charges may not be factored into this estimate.</em></p>';
+            echo '<p class="financingText">Financing available for $' . $biweekly . ' biweekly*</p>
+             <sub><em>*On approved credit. Estimated payment is calculated using the maximum term of ' . $months . ' Months at a rate of ' . $apr . '% APR. Alternative lenders and better rates may be available. $0.00 down payment assumed. Some fees, freight, and additional charges may not be factored into this estimate.</em></sub>';
         }
     }
 
     if ($price != '') {
-        if (str_contains($categories, 'Boats') || str_contains($categories, 'Outboards')) {
-            if ($principle > 3000 && $principle < 4999) {
-                $months = 36;
-            } elseif ($principle > 5000 && $principle < 9999) {
-                $months = 84;
-            } elseif ($principle > 10000 && $principle < 19999) {
-                $months = 180;
-            } elseif ($principle > 20000) {
-                $months = 240;
+        if (str_contains($categories, 'Boats') || str_contains($categories, 'Outboards') || str_contains($categories, 'Electric Surfboards')){
+            if ($principle > 3000) {
+                if ($principle > 3000 && $principle < 4999) {
+                    $months = 36;
+                } elseif ($principle > 5000 && $principle < 9999) {
+                    $months = 84;
+                } elseif ($principle > 10000 && $principle < 19999) {
+                    $months = 180;
+                } elseif ($principle > 20000) {
+                    $months = 240;
+                }
+                $interest = (10.99 / 100);
+                $apr = '10.99';
+                financeCalc($months, $principle, $interest, $apr);
             }
-            $interest = (10.99 / 100);
-            $apr = '10.99';
-            financeCalc($months, $principle, $interest, $apr);
         } elseif (str_contains($categories, 'Snowmobile') || str_contains($categories, 'ATV')) {
-            if ($principle > 3000 && $principle < 7499) {
-                $months = 84;
-            } elseif ($principle > 7500 && $principle < 19999) {
-                $months = 120;
-            } elseif ($principle > 20000) {
-                $months = 120;
+            if ($principle > 3000) {
+                if ($principle > 3000 && $principle < 7499) {
+                    $months = 84;
+                } elseif ($principle > 7500 && $principle < 19999) {
+                    $months = 120;
+                } elseif ($principle > 20000) {
+                    $months = 120;
+                }
+                $interest = (10.99 / 100);
+                $apr = '10.99';
+                financeCalc($months, $principle, $interest, $apr);
             }
-            $interest = (10.99 / 100);
-            $apr = '10.99';
-            financeCalc($months, $principle, $interest, $apr);
-        } elseif (str_contains($categories, 'Trailers')) {
-            if ($principle > 500 && $principle < 2999) {
-                $months = 36;
-            } elseif ($principle > 3000) {
-                $months = 60;
+        } elseif (str_contains($categories, 'Trailers') || str_contains($categories, 'Tents')) {
+            if ($principle > 500) {
+                if ($principle > 500 && $principle < 2999) {
+                    $months = 36;
+                } elseif ($principle > 3000) {
+                    $months = 60;
+                }
+                $interest = (14.99 / 100);
+                $apr = '14.99';
+                financeCalc($months, $principle, $interest, $apr);
             }
-            $interest = (14.99 / 100);
-            $apr = '14.99';
-            financeCalc($months, $principle, $interest, $apr);
         }
     }
 }

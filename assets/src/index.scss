@@ -185,7 +185,7 @@ button span{
   margin: 0;
   padding-top: 5px;
 }
-.news p a{
+.news p a, .news p a span{
   font-size: 12px;
   text-decoration: underline;
   color: nth($rpsBrand, 4);
@@ -199,7 +199,7 @@ footer{
   background-color: nth($rpsBrand, 1);
   padding: 10px;
 }
-footer span, sub{
+footer span{
   text-align: center;
   color: nth($rpsBrand, 4);
 }
@@ -527,7 +527,7 @@ footer .logo{
   font-size: nth($rpsBrand, 1);
   padding: 10px;
   margin-top: -20%;
-  max-height: 365px;
+  max-height: 200px;
   overflow: hidden;
   text-overflow: ellipsis;
   transform: translate(20%, -40%);
@@ -570,6 +570,9 @@ footer .logo{
   //border: 2px solid nth($rpsBrand,4) !important;
   text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
   border-radius: 45px !important;
+}
+.slick-slide{
+  max-height: 750px;
 }
 .detailsForm{
   background: nth($rpsBrand, 1);
@@ -659,6 +662,10 @@ footer .logo{
   .home-block img{
     width: 20%;
   }
+  #sidebarContainer{
+    height: inherit;
+    background: white;
+  }
   .slick-list{
     height: 65vw;
   }
@@ -721,6 +728,9 @@ footer .logo{
   }
   .home-block img{
     width: 20%;
+  }
+  #sidebarContainer{
+    height: inherit;
   }
   .brandCard img{
     width: 100%;
@@ -971,9 +981,11 @@ div .form-footer{
   margin-bottom: 7%;
 }
 .productButtons{
-  margin-left: 5px;
-  margin-right: 5px;
+  margin: 15px 5px;
   text-align: center;
+}
+.thumbnails .draggable{
+  max-height: 100px;
 }
 .thumbnails img{
   margin: 5px;
@@ -1070,12 +1082,16 @@ div .form-footer{
 #categories a{
   display: block;
   padding: 3px 0;
-  margin-left: 5px;
+  margin: 5px;
+}
+#attributes{
+  max-height: 200px;
+  overflow-y: scroll;
 }
 #attributes a{
   display: block;
   padding: 3px 0;
-  margin-left: 5px;
+  margin: 5px;
 }
 #prices a{
   display: block;
@@ -1208,6 +1224,9 @@ input:checked + .slider:before {
   margin: 15px 0;
 }
 .sku{
+  color: nth($rpsBrand, 1);
+}
+.financingText{
   color: #77a464;
 }
 .modal{
@@ -1244,4 +1263,8 @@ input:checked + .slider:before {
 }
 .woocommerce-loop-product__title{
   color: nth($rpsBrand, 1);
+}
+.pending{
+  position: absolute;
+  z-index: 1;
 }
