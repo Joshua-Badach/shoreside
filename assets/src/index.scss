@@ -934,7 +934,6 @@ div .form-footer{
   color: nth($rpsBrand, 4);
 }
 .onsale{
-  background: nth($rpsBrand, 1)!important;
   -webkit-box-shadow: 5px 5px 5px -5px #000000;
   box-shadow: 5px 5px 5px -5px #000000;
   border: 1px solid #000000;
@@ -1265,6 +1264,22 @@ input:checked + .slider:before {
   color: nth($rpsBrand, 1);
 }
 .pending{
+  min-height: 4em;
+  padding: 0.202em;
+  font-weight: 700;
   position: absolute;
+  text-align: center;
+  line-height: 3.8;
+  margin: 0;
+  border-radius: 100%;
+  background-color: nth($rpsBrand, 1);
+  color: white;
+  font-size: 0.7em;
   z-index: 1;
+  aspect-ratio: 1/1;
+  -webkit-transform: translate(140px, 0) rotate(35deg);
+  -moz-transform: translate(140px, 0) rotate(35deg);
+  -ms-transform: translate(140px, 0) rotate(35deg);
+  -o-transform: translate(140px, 0) rotate(35deg);
+  transform: translate(140px, 0) rotate(35deg);
 }
