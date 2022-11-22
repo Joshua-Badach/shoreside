@@ -612,22 +612,22 @@ function payments(){
 
     $gst = 1.05;
     if (str_contains($categories, 'Trailers')) {
-        $fees = 400;
+        $fees = 400.00;
     } else {
-        $fees = 750;
+        $fees = 750.00;
     }
-    $principle = (($price * $gst) + $fees);
+    $principle =  number_format((float)(($price * $gst) + $fees), 2, '.', '');
 
     function financeCalc($months, $principle, $interest, $apr){
         if ($months != '') {
-            $monthlyInterest = round(($interest / 12), 4);
 
-            $a = $monthlyInterest * ((1 + $monthlyInterest) ** $months);
-            $b = ((1 + $monthlyInterest) ** $months) - 1;
-            $c = $a / $b;
-            $result = $principle * $c;
-            $d = round($result / 2, 2);
-            $biweekly = number_format((float)$d, 2, '.', '');
+            $monthlyInterest = round($interest / 12 , 5);
+
+//            the /100 is super hackey, but it works for now
+
+            $result = ($principle * ($monthlyInterest * (1+$monthlyInterest)**$months)) / ((1+$monthlyInterest)**$months-1);
+
+            $biweekly = round($result / 2, 2);
 
             echo '<p class="financingText">Financing available for $' . $biweekly . ' biweekly*</p>
              <sub><em>*On approved credit. Estimated payment is calculated using the maximum term of ' . $months . ' Months at a rate of ' . $apr . '% APR. Alternative lenders and better rates may be available. $0.00 down payment assumed. Some fees, freight, and additional charges may not be factored into this estimate.</em></sub>';
@@ -646,7 +646,7 @@ function payments(){
                 } elseif ($principle > 20000) {
                     $months = 240;
                 }
-                $interest = (10.99 / 100);
+                $interest = 0.1099;
                 $apr = '10.99';
                 financeCalc($months, $principle, $interest, $apr);
             }
@@ -659,7 +659,7 @@ function payments(){
                 } elseif ($principle > 20000) {
                     $months = 120;
                 }
-                $interest = (10.99 / 100);
+                $interest = 10.99;
                 $apr = '10.99';
                 financeCalc($months, $principle, $interest, $apr);
             }
@@ -670,7 +670,7 @@ function payments(){
                 } elseif ($principle > 3000) {
                     $months = 60;
                 }
-                $interest = (14.99 / 100);
+                $interest = 14.99;
                 $apr = '14.99';
                 financeCalc($months, $principle, $interest, $apr);
             }
@@ -778,7 +778,7 @@ function product_contact_row(){
             </a>';
             }
        echo '</div>
-        <br><br>
+        <br>
     <div class="contactForm">
          
     <iframe
@@ -794,7 +794,7 @@ function product_contact_row(){
       min-width: 100%;
       height:539px;
       border:none;"
-      scrolling="no"
+      scrolling="yes"
     >
     </iframe>
     <script type="text/javascript">

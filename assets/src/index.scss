@@ -662,6 +662,14 @@ footer .logo{
   .home-block img{
     width: 20%;
   }
+  .home-heading{
+    font-size: 12px;
+  }
+  .sliderText{
+    margin-top: -25%;
+    width: 80%;
+    transform: translate(10%, -40%);
+  }
   #sidebarContainer{
     height: inherit;
     background: white;
@@ -728,6 +736,12 @@ footer .logo{
   }
   .home-block img{
     width: 20%;
+  }
+  .home-heading{
+    font-size: 18px;
+  }
+  .sliderText{
+    margin-top: -30%;
   }
   #sidebarContainer{
     height: inherit;
@@ -971,6 +985,11 @@ div .form-footer{
   margin-left: 5px;
   margin-right: 5px;
   width: inherit;
+  max-height: 1000px;
+}
+.contactForm iframe{
+  height: inherit;
+  max-height: 500px;
 }
 .productContact{
   padding: 5px;
@@ -1282,4 +1301,7 @@ input:checked + .slider:before {
   -ms-transform: translate(140px, 0) rotate(35deg);
   -o-transform: translate(140px, 0) rotate(35deg);
   transform: translate(140px, 0) rotate(35deg);
+}
+.pendingBanner img{
+  width: 100%;
 }
