@@ -109,23 +109,10 @@ function remove_img_attr ($html)
 
 add_filter( 'post_thumbnail_html', 'remove_img_attr' );
 
-//function modal(){
-//    if (!is_admin()){
-//        echo 'not admin';
-//    }
-//}
-//add_action();
 global $wp;
 $current_url = home_url( add_query_arg( array(), $wp->request ) );
 $site_name = get_bloginfo( 'name' );
 $site_slug = $post->post_name;
-
-//add_action('init', 'add_get_val');
-//function add_get_val(){
-//    global $wp;
-//    $wp->add_query_var('product_cat');
-//}
-
 
 //Shortcodes
 
@@ -171,11 +158,54 @@ function carousel_shortcode(){
         ));
         wp_loop_slider($query);
 
+    elseif ( is_page('promotional') ):
+        $query = new WP_Query(array(
+            'category_name'         => 'home-slider',
+            'posts_per_page'        => -1
+        ));
+        wp_loop_slider($query);
+
     endif;
 
     echo '</div>';
 }
 add_shortcode('carousel', 'carousel_shortcode');
+
+function promotional_shortcode(){
+    if ( is_home() == false ){
+        echo '<h2 class="hidden">';
+        the_title();
+        echo ' Offerings';
+        echo '</h2>';
+    }
+    echo '<div class="carousel">';
+
+    function promotional_slider($query){
+        while ($query->have_posts()){
+            $query->the_post();
+            echo ('<section class="sliderContent">');
+            the_post_thumbnail('', array( 'loading' => 'lazy' ));
+            ?><div class="sliderText">
+            <h2><?php the_title(); ?></h2>
+            <?php the_content(); ?>
+            </div><?php
+            echo ('</section>');
+        }
+        wp_reset_postdata();
+    }
+
+    if ( is_page('promotional') ):
+        $query = new WP_Query(array(
+            'category_name'         => 'slider',
+            'posts_per_page'        => -1
+        ));
+        promotional_slider($query);
+
+    endif;
+
+    echo '</div>';
+}
+add_shortcode('promotion-carousel', 'promotional_shortcode');
 
 function brands_shortcode(){
 
@@ -523,6 +553,9 @@ function load_results() {
             </div>
             <div class="content">';
     get_sidebar();
+    if ( is_page('promotional') ){
+        echo 'Promotional detected';
+    }
     echo '<div class="container">';
     echo do_shortcode('[products category="' . $idObj . '" attribute="' . $attribute . '"  terms="' . $tagObj . '" per_page="-1" columns="5" orderby="' . $orderByOjb . '" order="' . $orderObj . '" on_sale="' . $onSaleObj . '" operator="IN"]');
     echo '</div>
@@ -571,6 +604,44 @@ function content_shortcode(){
 }
 add_shortcode('content', 'content_shortcode');
 
+function promotional_content_shortcode(){
+    global $post;
+    $slug = $post->post_name;
+    $id = get_term_by('slug', $slug, 'product_cat');
+    $idObjConst = $id->term_id;
+
+    if ($_REQUEST['product_cat'] != ''){
+        $idObj = $_REQUEST['product_cat'];
+        $term = get_term_by('slug', $idObj, 'product_cat');
+    } else {
+        $idObj = $id->term_id;
+        $term = get_term_by('id', $idObj, 'product_cat');
+    }
+
+    $categoryDescription = category_description($term);
+
+    echo '<section id="contentTrigger" data-page="' . $idObjConst . '" data-slug="' . $slug .'">
+            <div class="container display">
+                <div class="row">
+                    <h2>' . $term->name . '</h2>
+                    ' . $categoryDescription . '
+                </div>
+            </div>
+            <div id="mobileFilter">
+                <a id="sidebarIcon" href="">
+                    <img width="30px" height="30px" src="' . get_template_directory_uri(). '/assets/src/library/images/menu-icon.svg\' ?>" alt="Menu Icon">
+                </a>
+            </div>
+            <div class="content">';
+    get_sidebar();
+    echo '<div class="container">';
+    echo do_shortcode('[products category="' . $idObj . '" attribute=""  terms="" per_page="-1" columns="5" orderby="meta_value_num" on_sale="" order="" operator="IN"]');
+    echo '</div>
+            </div>
+    </section>';
+}
+add_shortcode('promotion-content', 'promotional_content_shortcode');
+
 //No results found for above code
 function woocommerce_shortcode_products_loop_no_results( $attributes ) {
     echo __( 'No products matching your query', 'woocommerce' );
@@ -597,86 +668,91 @@ function pending_banner(){
     global $product;
     $tags = wc_get_product_tag_list($product->get_id);
 
-    if ($tags != '') {
+    if ( str_contains($tags, 'Pending') == true ) {
         echo '<div class="pendingBanner">
-                <img src="' . get_template_directory_uri() . '/assets/src/library/images/pending.jpg' . '">
+                <img src="' . get_template_directory_uri() . '/assets/src/library/images/pendingBanner.jpg' . '">
+              </div>';
+    }
+    if ( str_contains($tags, 'Order') == true ) {
+        echo '<div class="orderBanner">
+                <img src="' . get_template_directory_uri() . '/assets/src/library/images/onOrderBanner.jpg' . '">
               </div>';
     }
 }
-
-add_action( 'woocommerce_single_product_summary', 'payments', 50);
-function payments(){
-    global $product;
-    $price = $product->get_price();
-    $categories = $product->get_categories();
-
-    $gst = 1.05;
-    if (str_contains($categories, 'Trailers')) {
-        $fees = 400.00;
-    } else {
-        $fees = 750.00;
-    }
-    $principle =  number_format((float)(($price * $gst) + $fees), 2, '.', '');
-
-    function financeCalc($months, $principle, $interest, $apr){
-        if ($months != '') {
-
-            $monthlyInterest = round($interest / 12 , 5);
-
-//            the /100 is super hackey, but it works for now
-
-            $result = ($principle * ($monthlyInterest * (1+$monthlyInterest)**$months)) / ((1+$monthlyInterest)**$months-1);
-
-            $biweekly = round($result / 2, 2);
-
-            echo '<p class="financingText">Financing available for $' . $biweekly . ' biweekly*</p>
-             <sub><em>*On approved credit. Estimated payment is calculated using the maximum term of ' . $months . ' Months at a rate of ' . $apr . '% APR. Alternative lenders and better rates may be available. $0.00 down payment assumed. Some fees, freight, and additional charges may not be factored into this estimate.</em></sub>';
-        }
-    }
-
-    if ($price != '') {
-        if (str_contains($categories, 'Boats') || str_contains($categories, 'Outboards') || str_contains($categories, 'Electric Surfboards')){
-            if ($principle > 3000) {
-                if ($principle > 3000 && $principle < 4999) {
-                    $months = 36;
-                } elseif ($principle > 5000 && $principle < 9999) {
-                    $months = 84;
-                } elseif ($principle > 10000 && $principle < 19999) {
-                    $months = 180;
-                } elseif ($principle > 20000) {
-                    $months = 240;
-                }
-                $interest = 0.1099;
-                $apr = '10.99';
-                financeCalc($months, $principle, $interest, $apr);
-            }
-        } elseif (str_contains($categories, 'Snowmobile') || str_contains($categories, 'ATV')) {
-            if ($principle > 3000) {
-                if ($principle > 3000 && $principle < 7499) {
-                    $months = 84;
-                } elseif ($principle > 7500 && $principle < 19999) {
-                    $months = 120;
-                } elseif ($principle > 20000) {
-                    $months = 120;
-                }
-                $interest = 10.99;
-                $apr = '10.99';
-                financeCalc($months, $principle, $interest, $apr);
-            }
-        } elseif (str_contains($categories, 'Trailers') || str_contains($categories, 'Tents')) {
-            if ($principle > 500) {
-                if ($principle > 500 && $principle < 2999) {
-                    $months = 36;
-                } elseif ($principle > 3000) {
-                    $months = 60;
-                }
-                $interest = 14.99;
-                $apr = '14.99';
-                financeCalc($months, $principle, $interest, $apr);
-            }
-        }
-    }
-}
+//
+//add_action( 'woocommerce_single_product_summary', 'payments', 50);
+//function payments(){
+//    global $product;
+//    $price = $product->get_price();
+//    $categories = $product->get_categories();
+//
+//    $gst = 1.05;
+//    if (str_contains($categories, 'Trailers')) {
+//        $fees = 400.00;
+//    } else {
+//        $fees = 750.00;
+//    }
+//    $principle =  number_format((float)(($price * $gst) + $fees), 2, '.', '');
+//
+//    function financeCalc($months, $principle, $interest, $apr){
+//        if ($months != '') {
+//
+//            $monthlyInterest = round($interest / 12 , 5);
+//
+////            the /100 is super hackey, but it works for now
+//
+//            $result = ($principle * ($monthlyInterest * (1+$monthlyInterest)**$months)) / ((1+$monthlyInterest)**$months-1);
+//
+//            $biweekly = round($result / 2, 2);
+//
+//            echo '<p class="financingText">Financing available for $' . $biweekly . ' biweekly*</p>
+//             <sub><em>*On approved credit. Estimated payment is calculated using the maximum term of ' . $months . ' Months at a rate of ' . $apr . '% APR. Alternative lenders and better rates may be available. $0.00 down payment assumed. Some fees, freight, and additional charges may not be factored into this estimate.</em></sub>';
+//        }
+//    }
+//
+//    if ($price != '') {
+//        if (str_contains($categories, 'Boats') || str_contains($categories, 'Outboards') || str_contains($categories, 'Electric Surfboards')){
+//            if ($principle > 3000) {
+//                if ($principle > 3000 && $principle < 4999) {
+//                    $months = 36;
+//                } elseif ($principle > 5000 && $principle < 9999) {
+//                    $months = 84;
+//                } elseif ($principle > 10000 && $principle < 19999) {
+//                    $months = 180;
+//                } elseif ($principle > 20000) {
+//                    $months = 240;
+//                }
+//                $interest = 0.1099;
+//                $apr = '10.99';
+//                financeCalc($months, $principle, $interest, $apr);
+//            }
+//        } elseif (str_contains($categories, 'Snowmobile') || str_contains($categories, 'ATV')) {
+//            if ($principle > 3000) {
+//                if ($principle > 3000 && $principle < 7499) {
+//                    $months = 84;
+//                } elseif ($principle > 7500 && $principle < 19999) {
+//                    $months = 120;
+//                } elseif ($principle > 20000) {
+//                    $months = 120;
+//                }
+//                $interest = 10.99;
+//                $apr = '10.99';
+//                financeCalc($months, $principle, $interest, $apr);
+//            }
+//        } elseif (str_contains($categories, 'Trailers') || str_contains($categories, 'Tents')) {
+//            if ($principle > 500) {
+//                if ($principle > 500 && $principle < 2999) {
+//                    $months = 36;
+//                } elseif ($principle > 3000) {
+//                    $months = 60;
+//                }
+//                $interest = 14.99;
+//                $apr = '14.99';
+//                financeCalc($months, $principle, $interest, $apr);
+//            }
+//        }
+//    }
+//}
 
 function woo_related_products_limit() {
     global $product;

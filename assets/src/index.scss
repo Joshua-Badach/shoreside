@@ -947,12 +947,6 @@ div .form-footer{
   font-size: 12px;
   color: nth($rpsBrand, 4);
 }
-.onsale{
-  -webkit-box-shadow: 5px 5px 5px -5px #000000;
-  box-shadow: 5px 5px 5px -5px #000000;
-  border: 1px solid #000000;
-  transform: rotateZ(15deg);
-}
 .serviceGrid{
   border: 2px solid nth($rpsBrand, 1);
 }
@@ -1284,6 +1278,12 @@ input:checked + .slider:before {
 }
 .pending{
   min-height: 4em;
+  max-height: 68px;
+  top: 0 !important;
+  bottom: auto !important;
+  left: auto !important;
+  right: auto !important;
+  margin: 0 !important;
   padding: 0.202em;
   font-weight: 700;
   position: absolute;
@@ -1304,4 +1304,57 @@ input:checked + .slider:before {
 }
 .pendingBanner img{
   width: 100%;
+}
+.onOrder{
+  min-height: 4em;
+  max-height: 68px;
+  top: auto !important;
+  bottom: 80px !important;
+  left: 0 !important;
+  right: auto !important;
+  margin: 0 !important;
+  padding: 0.202em;
+  font-weight: 700;
+  position: absolute;
+  text-align: center;
+  line-height: 4.2;
+  margin: 0;
+  border-radius: 100%;
+  background-color: #f2700d;
+  color: white;
+  font-size: 0.65em;
+  z-index: 1;
+  aspect-ratio: 1/1;
+  -webkit-transform: rotate(35deg);
+  -moz-transform: rotate(35deg);
+  -ms-transform: rotate(35deg);
+  -o-transform: rotate(35deg);
+  transform: rotate(35deg);
+}
+.orderBanner img{
+  width: 100%;
+}
+.onsale{
+  min-height: 4em;
+  max-height: 68px;
+  top: 0 !important;
+  bottom: auto !important;
+  left: 0 !important;
+  right: auto !important;
+  margin: 0 !important;
+  padding: 0.202em;
+  font-weight: 700;
+  position: absolute;
+  text-align: center;
+  line-height: 4.2;
+  border-radius: 100%;
+  color: white;
+  font-size: 0.65em !important;
+  z-index: 1;
+  aspect-ratio: 1/1;
+  -webkit-transform: rotate(-35deg);
+  -moz-transform: rotate(-35deg);
+  -ms-transform: rotate(-35deg);
+  -o-transform: rotate(-35deg);
+  transform: rotate(-35deg);
 }

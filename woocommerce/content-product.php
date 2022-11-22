@@ -18,6 +18,10 @@
 defined( 'ABSPATH' ) || exit;
 global $product;
 $tags = wc_get_product_tag_list($product->get_id);
+$sale_price = get_post_meta( $product->id, '_price', true);
+$regular_price = get_post_meta( $product->id, '_regular_price', true);
+
+//var_dump($tags);
 
 // Ensure visibility.
 if ( empty( $product ) || ! $product->is_visible() ) {
@@ -30,8 +34,14 @@ $sku = $product->get_sku();
 ?>
 <li itemscope itemtype="https://schema.org/ProductCollection" <?php wc_product_class( 'modal-link ', $product ); ?>>
 	<?php
-    if ($tags != ''){
+    if ( str_contains($tags, 'Pending') == true ){
         echo '<span class="pending">Pending</span>';
+    }
+    if ( str_contains($tags, 'Order') == true ){
+        echo '<span class="onOrder">On Order</span>';
+    }
+    if ( !empty( $regular_price ) && !empty( $sale_price ) && $regular_price > $sale_price ) {
+        echo '<span class="onsale">On Sale</span>';
     }
     echo '<meta itemprop="url" content="'. get_the_permalink() . '" />
     <meta itemprop="brand" content="'. $manufacturer . '" />
