@@ -678,6 +678,19 @@ function payments(){
     }
 }
 
+function woo_related_products_limit() {
+    global $product;
+
+    $args['posts_per_page'] = 5;
+    return $args;
+}
+add_filter( 'woocommerce_output_related_products_args', 'related_products_args', 20 );
+function related_products_args( $args ) {
+    $args['posts_per_page'] = 5; // 4 related products
+    $args['columns'] = 5; // arranged in 2 columns
+    return $args;
+}
+
 add_action('woocommerce_single_product_summary', 'woocommerce_template_single_title', 8);
 
 // remove product meta
