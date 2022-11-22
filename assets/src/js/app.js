@@ -354,9 +354,12 @@ jQuery(document).ready(function($) {
           if (mobile) {
             $('#sidebarContainer').css('position', 'absolute');
           };
+          if (tagObj != ''){
+            $('#categoryTab').hide();
+          };
+
           $('#clear').show();
           $('#sidebar hr').show();
-
         },
         error: function (response) {
           console.log(response);
