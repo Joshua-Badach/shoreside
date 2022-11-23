@@ -158,13 +158,6 @@ function carousel_shortcode(){
         ));
         wp_loop_slider($query);
 
-    elseif ( is_page('promotional') ):
-        $query = new WP_Query(array(
-            'category_name'         => 'home-slider',
-            'posts_per_page'        => -1
-        ));
-        wp_loop_slider($query);
-
     endif;
 
     echo '</div>';
@@ -553,9 +546,6 @@ function load_results() {
             </div>
             <div class="content">';
     get_sidebar();
-    if ( is_page('promotional') ){
-        echo 'Promotional detected';
-    }
     echo '<div class="container">';
     echo do_shortcode('[products category="' . $idObj . '" attribute="' . $attribute . '"  terms="' . $tagObj . '" per_page="-1" columns="5" orderby="' . $orderByOjb . '" order="' . $orderObj . '" on_sale="' . $onSaleObj . '" operator="IN"]');
     echo '</div>
@@ -605,37 +595,28 @@ function content_shortcode(){
 add_shortcode('content', 'content_shortcode');
 
 function promotional_content_shortcode(){
-    global $post;
-    $slug = $post->post_name;
-    $id = get_term_by('slug', $slug, 'product_cat');
-    $idObjConst = $id->term_id;
+    $promotionQuery = new WP_Query(array(
+        'category_name'     => 'promotion-text',
+        'order'             => 'DESC',
+        'post_status'       => 'publish',
+        'posts_per_page'    => 1
+    ));
 
-    if ($_REQUEST['product_cat'] != ''){
-        $idObj = $_REQUEST['product_cat'];
-        $term = get_term_by('slug', $idObj, 'product_cat');
-    } else {
-        $idObj = $id->term_id;
-        $term = get_term_by('id', $idObj, 'product_cat');
-    }
-
-    $categoryDescription = category_description($term);
-
-    echo '<section id="contentTrigger" data-page="' . $idObjConst . '" data-slug="' . $slug .'">
+    echo '<section id="contentTrigger">
             <div class="container display">
-                <div class="row">
-                    <h2>' . $term->name . '</h2>
-                    ' . $categoryDescription . '
-                </div>
-            </div>
-            <div id="mobileFilter">
-                <a id="sidebarIcon" href="">
-                    <img width="30px" height="30px" src="' . get_template_directory_uri(). '/assets/src/library/images/menu-icon.svg\' ?>" alt="Menu Icon">
-                </a>
+                <div class="row">';
+                while ($promotionQuery->have_posts()){
+                        $promotionQuery->the_post();
+                        $title = get_the_title();
+                        $content = get_the_content();
+                        echo '<h2 class="col-12">' . $title . '</h2>' .
+                        '<p class="col-12">' . $content . '</p>';
+    }
+                echo'</div>
             </div>
             <div class="content">';
-    get_sidebar();
     echo '<div class="container">';
-    echo do_shortcode('[products category="' . $idObj . '" attribute=""  terms="" per_page="-1" columns="5" orderby="meta_value_num" on_sale="" order="" operator="IN"]');
+        echo do_shortcode('[products tag="promotional" per_page="-1" columns="5" orderby="meta_value_num" on_sale="" order="" operator="IN"]');
     echo '</div>
             </div>
     </section>';
@@ -679,80 +660,82 @@ function pending_banner(){
               </div>';
     }
 }
-//
-//add_action( 'woocommerce_single_product_summary', 'payments', 50);
-//function payments(){
-//    global $product;
-//    $price = $product->get_price();
-//    $categories = $product->get_categories();
-//
-//    $gst = 1.05;
-//    if (str_contains($categories, 'Trailers')) {
-//        $fees = 400.00;
-//    } else {
-//        $fees = 750.00;
-//    }
-//    $principle =  number_format((float)(($price * $gst) + $fees), 2, '.', '');
-//
-//    function financeCalc($months, $principle, $interest, $apr){
-//        if ($months != '') {
-//
-//            $monthlyInterest = round($interest / 12 , 5);
-//
-////            the /100 is super hackey, but it works for now
-//
-//            $result = ($principle * ($monthlyInterest * (1+$monthlyInterest)**$months)) / ((1+$monthlyInterest)**$months-1);
-//
-//            $biweekly = round($result / 2, 2);
-//
-//            echo '<p class="financingText">Financing available for $' . $biweekly . ' biweekly*</p>
-//             <sub><em>*On approved credit. Estimated payment is calculated using the maximum term of ' . $months . ' Months at a rate of ' . $apr . '% APR. Alternative lenders and better rates may be available. $0.00 down payment assumed. Some fees, freight, and additional charges may not be factored into this estimate.</em></sub>';
-//        }
-//    }
-//
-//    if ($price != '') {
-//        if (str_contains($categories, 'Boats') || str_contains($categories, 'Outboards') || str_contains($categories, 'Electric Surfboards')){
-//            if ($principle > 3000) {
-//                if ($principle > 3000 && $principle < 4999) {
-//                    $months = 36;
-//                } elseif ($principle > 5000 && $principle < 9999) {
-//                    $months = 84;
-//                } elseif ($principle > 10000 && $principle < 19999) {
-//                    $months = 180;
-//                } elseif ($principle > 20000) {
-//                    $months = 240;
-//                }
-//                $interest = 0.1099;
-//                $apr = '10.99';
-//                financeCalc($months, $principle, $interest, $apr);
-//            }
-//        } elseif (str_contains($categories, 'Snowmobile') || str_contains($categories, 'ATV')) {
-//            if ($principle > 3000) {
-//                if ($principle > 3000 && $principle < 7499) {
-//                    $months = 84;
-//                } elseif ($principle > 7500 && $principle < 19999) {
-//                    $months = 120;
-//                } elseif ($principle > 20000) {
-//                    $months = 120;
-//                }
-//                $interest = 10.99;
-//                $apr = '10.99';
-//                financeCalc($months, $principle, $interest, $apr);
-//            }
-//        } elseif (str_contains($categories, 'Trailers') || str_contains($categories, 'Tents')) {
-//            if ($principle > 500) {
-//                if ($principle > 500 && $principle < 2999) {
-//                    $months = 36;
-//                } elseif ($principle > 3000) {
-//                    $months = 60;
-//                }
-//                $interest = 14.99;
-//                $apr = '14.99';
-//                financeCalc($months, $principle, $interest, $apr);
-//            }
-//        }
-//    }
-//}
+
+add_action( 'woocommerce_single_product_summary', 'payments', 50);
+function payments(){
+    global $product;
+    $price = $product->get_price();
+    $categories = $product->get_categories();
+
+    $gst = 1.05;
+    if (str_contains($categories, 'Trailers')) {
+        $fees = 400.00;
+    } else {
+        $fees = 750.00;
+    }
+    $principle =  number_format((float)(($price * $gst) + $fees), 2, '.', '');
+
+    function financeCalc($months, $principle, $interest, $apr){
+        if ($months != '') {
+
+            $monthlyInterest = round($interest / 12 , 5);
+
+            $result = ($principle * ($monthlyInterest * (1+$monthlyInterest)**$months)) / ((1+$monthlyInterest)**$months-1);
+
+            //            /1.09, result is off by 9% I don't understand the discrepancy between their financial calculator and the formula given to me. Either I'm missing something in the code or financit is doing something slightly different than the given formula.
+
+            $correction = $result / 1.09;
+
+            $biweekly = round($correction / 2);
+
+            echo '<p class="financingText">Financing available for $' . $biweekly . ' biweekly*</p>
+             <sub><em>*On approved credit. Estimated payment is calculated using the maximum term of ' . $months . ' Months at a rate of ' . $apr . '% APR. Alternative lenders and better rates may be available. $0.00 down payment assumed. Some fees, freight, and additional charges may not be factored into this estimate.</em></sub>';
+        }
+    }
+
+    if ($price != '') {
+        if (str_contains($categories, 'Boats') || str_contains($categories, 'Outboards') || str_contains($categories, 'Electric Surfboards')){
+            if ($principle > 3000) {
+                if ($principle > 3000 && $principle < 4999) {
+                    $months = 36;
+                } elseif ($principle > 5000 && $principle < 9999) {
+                    $months = 84;
+                } elseif ($principle > 10000 && $principle < 19999) {
+                    $months = 180;
+                } elseif ($principle > 20000) {
+                    $months = 240;
+                }
+                $interest = 0.1099;
+                $apr = '10.99';
+                financeCalc($months, $principle, $interest, $apr);
+            }
+        } elseif (str_contains($categories, 'Snowmobile') || str_contains($categories, 'ATV')) {
+            if ($principle > 3000) {
+                if ($principle > 3000 && $principle < 7499) {
+                    $months = 84;
+                } elseif ($principle > 7500 && $principle < 19999) {
+                    $months = 120;
+                } elseif ($principle > 20000) {
+                    $months = 120;
+                }
+                $interest = 0.1099;
+                $apr = '10.99';
+                financeCalc($months, $principle, $interest, $apr);
+            }
+        } elseif (str_contains($categories, 'Trailers') || str_contains($categories, 'Tents')) {
+            if ($principle > 500) {
+                if ($principle > 500 && $principle < 2999) {
+                    $months = 36;
+                } elseif ($principle > 3000) {
+                    $months = 60;
+                }
+                $interest = 0.1499;
+                $apr = '14.99';
+                financeCalc($months, $principle, $interest, $apr);
+            }
+        }
+    }
+}
 
 function woo_related_products_limit() {
     global $product;
