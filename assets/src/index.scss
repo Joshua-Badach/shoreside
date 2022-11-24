@@ -469,20 +469,26 @@ footer .logo{
 }
 .carousel{
   width: 100%;
+  height: 500px;
   //position: absolute;
   //aspect-ratio: 16 / 9;
 }
 .carousel img{
-  object-fit: fill;
+  height: 500px;
+}
+.carousel div{
+  height: inherit;
 }
 .carousel-product{
   width: 100%;
-  //position: absolute;
-  //margin-top: 15% !important;
+  max-height: 600px;
+  background: nth($rpsBrand, 1);
 }
-//.carousel-product img {
-//  transition: transform .5s ease;
-//}
+.carousel-product img {
+  display: flex!important;
+  justify-content: center!important;
+  max-height: 600px;
+}
 //.carousel-product:hover img {
 //  transform: scale(1.5);
 //}
@@ -972,23 +978,17 @@ div .form-footer{
   margin-top: 5%;
 }
 .contactForm{
-  display: none;
-  position: absolute;
   z-index: 100;
   padding: 5px;
   margin-left: 5px;
   margin-right: 5px;
   width: inherit;
-  max-height: 1000px;
 }
 .contactForm iframe{
   height: inherit;
-  max-height: 500px;
 }
 .productContact{
-  padding: 5px;
   margin-top: 7%;
-  margin-left: 5px;
   margin-right: 5px;
   margin-bottom: 7%;
 }
@@ -1239,7 +1239,22 @@ input:checked + .slider:before {
   color: nth($rpsBrand, 1);
 }
 .financingText{
+  float: right;
   color: #77a464;
+}
+.price{
+  font-size: 17px !important;
+  float: left;
+  font-weight: bold;
+}
+.jotform-form .main{
+  margin-top: 0 !important;;
+}
+.woocommerce-product-details__short-description{
+  clear: both;
+}
+.disclaimer{
+  display: none;
 }
 .modal{
   position: fixed;

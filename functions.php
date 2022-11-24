@@ -436,7 +436,7 @@ function service_shortcode(){
     );
 
     $products = get_posts($args);
-    echo '<div class="container mission">
+    echo '<div  class="container mission">
             <div class="row">
                 <div class="col-lg-12">';
                     echo '<h2>' . $term->name . '</h2>';
@@ -462,9 +462,12 @@ function service_shortcode(){
     foreach ($products as $service) {
         $price = wc_get_product( $service )->get_price();
 
-        echo '<a class="row tableItem" href="' . get_permalink( $service->ID ) . '"> 
-                    <span class="col-3">' . $service->post_title . '</span>
-                    <span class="col-2">' . $price .  '</span><span class="col-7">' . $service->post_excerpt . '</span>
+        echo '<a class="row tableItem" itemscope itemtype="https://schema.org/ProductCollection" href="' . get_permalink( $service->ID ) . '"> 
+                    <span class="col-3" itemprop="name">' . $service->post_title . '</span>
+                    <span class="row" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                        <span class="col-2" itemprop="price">' . $price .  '</span>
+                        <span class="col-7" itemprop="description">' . $service->post_excerpt . '</span>
+                    </span>
                   </a>';
     }
     echo '</div>';
@@ -637,14 +640,14 @@ add_shortcode('catalog', 'catalog_shortcode');
 //Woocommerce code
 
 //Display sku
-add_action( 'woocommerce_single_product_summary', 'show_sku', 9 );
+add_action( 'woocommerce_single_product_summary', 'show_sku', 20 );
 function show_sku(){
     global $product;
     if ($product->get_sku() != '' ) {
-        echo '<div class="skuContainer" itemprop="sku"><span>SKU: ' . '<span class="sku">' . $product->get_sku() . '</span></span></div>';
+        echo '<div class="skuContainer"><span>SKU: ' . '<span class="sku"><strong>' . $product->get_sku() . '</strong></span></span></div>';
     }
 }
-add_action('woocommerce_single_product_summary', 'pending_banner' , 9);
+add_action('woocommerce_single_product_summary', 'pending_banner' , 14);
 function pending_banner(){
     global $product;
     $tags = wc_get_product_tag_list($product->get_id);
@@ -660,8 +663,12 @@ function pending_banner(){
               </div>';
     }
 }
+//add_filter( 'woocommerce_get_price_html', 'remove_product_price' );
+//function remove_product_price( $price ) {
+//    return '';
+//}
 
-add_action( 'woocommerce_single_product_summary', 'payments', 50);
+add_action( 'woocommerce_single_product_summary', 'payments', 10);
 function payments(){
     global $product;
     $price = $product->get_price();
@@ -688,8 +695,8 @@ function payments(){
 
             $biweekly = round($correction / 2);
 
-            echo '<p class="financingText">Financing available for $' . $biweekly . ' biweekly*</p>
-             <sub><em>*On approved credit. Estimated payment is calculated using the maximum term of ' . $months . ' Months at a rate of ' . $apr . '% APR. Alternative lenders and better rates may be available. $0.00 down payment assumed. Some fees, freight, and additional charges may not be factored into this estimate.</em></sub>';
+            echo '<p class="financingText">Financing available for <strong>$' . $biweekly . '</strong> biweekly*</p>
+             <sub class="disclaimer"><em>*On approved credit. Estimated payment is calculated using the maximum term of ' . $months . ' Months at a rate of ' . $apr . '% APR. Alternative lenders and better rates may be available. $0.00 down payment assumed. Some fees, freight, and additional charges may not be factored into this estimate.</em></sub>';
         }
     }
 
@@ -734,6 +741,7 @@ function payments(){
                 financeCalc($months, $principle, $interest, $apr);
             }
         }
+
     }
 }
 
@@ -778,9 +786,13 @@ function woo_new_product_tab($tabs) {
             'callback' => 'woo_new_product_tab_two_content'
         );
         return $tabs;
-    } else {
-        return $tabs;
     }
+    $tabs['product_inquiry'] = array(
+        'title' => __('Product Inquiry', 'woocommerce'),
+        'priority' => 55,
+        'callback' => 'woo_new_product_tab_three_content'
+    );
+    return $tabs;
 }
 
 function woo_new_product_tab_one_content() {
@@ -789,70 +801,12 @@ function woo_new_product_tab_one_content() {
 function woo_new_product_tab_two_content() {
     include('template-parts/components/warranty.php');
 }
-
-//remove woocommerce default filtering, need to unhook all of the filtering stuff or the format breaks alltogether
-remove_action( 'woocommerce_before_shop_loop', 'woocommerce_output_all_notices', 10 );
-remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
-remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
-
-// First, this will disable support for comments and trackbacks in post types
-function df_disable_comments_post_types_support() {
-    $post_types = get_post_types();
-    foreach ($post_types as $post_type) {
-        if(post_type_supports($post_type, 'comments')) {
-            remove_post_type_support($post_type, 'comments');
-            remove_post_type_support($post_type, 'trackbacks');
-        }
-    }
-}
-//test for git
-add_action('admin_init', 'df_disable_comments_post_types_support');
-
-// Then close any comments open comments on the front-end just in case
-function df_disable_comments_status() {
-    return false;
-}
-add_filter('comments_open', 'df_disable_comments_status', 20, 2);
-add_filter('pings_open', 'df_disable_comments_status', 20, 2);
-
-// Finally, hide any existing comments that are on the site.
-function df_disable_comments_hide_existing_comments($comments) {
-    $comments = array();
-    return $comments;
-}
-add_filter('comments_array', 'df_disable_comments_hide_existing_comments', 10, 2);
-
-function my_login_logo_url() {
-    return home_url();
-}
-add_filter( 'login_headerurl', 'my_login_logo_url' );
-
-function my_login_logo_url_title() {
-    return 'Your Site Name and Info';
-}
-add_filter( 'login_headertitle', 'my_login_logo_url_title' );
-
-//product buttons/jotform code
-function product_contact_row(){
+function woo_new_product_tab_three_content(){
     $product = get_page_by_title( 'Product Title', OBJECT, 'product' );
     $productUrl = get_permalink( $product->ID );
     $productName = get_the_title( $product->ID );
-    echo '<div class="productButtons">
-            <a href="tel:7807321004">
-                <button class="callButton button-3d">Call Us</button>
-            </a>
-            <span>
-                <button class="emailButton button-3d">Email Us</button>
-            </span>';
-        if ( has_term( 'Sales Showroom', 'product_cat')){
-            echo'<a href="/financing/">
-                <button class="financeButton button-3d">Apply for Financing</button>
-            </a>';
-            }
-       echo '</div>
-        <br>
-    <div class="contactForm">
-         
+    echo '<div class="contactForm">
+
     <iframe
       id="JotFormIFrame-222166143744251"
       title="Product Form"
@@ -864,9 +818,8 @@ function product_contact_row(){
       frameborder="0"
       style="
       min-width: 100%;
-      height:539px;
       border:none;"
-      scrolling="yes"
+      scrolling="no"
     >
     </iframe>
     <script type="text/javascript">
@@ -951,7 +904,54 @@ function product_contact_row(){
       </script>
         </div>';
 }
-add_action('woocommerce_single_product_summary', 'product_contact_row', 50);
+
+//remove woocommerce default filtering, need to unhook all of the filtering stuff or the format breaks alltogether
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_output_all_notices', 10 );
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
+
+// First, this will disable support for comments and trackbacks in post types
+function df_disable_comments_post_types_support() {
+    $post_types = get_post_types();
+    foreach ($post_types as $post_type) {
+        if(post_type_supports($post_type, 'comments')) {
+            remove_post_type_support($post_type, 'comments');
+            remove_post_type_support($post_type, 'trackbacks');
+        }
+    }
+}
+//test for git
+add_action('admin_init', 'df_disable_comments_post_types_support');
+
+// Then close any comments open comments on the front-end just in case
+function df_disable_comments_status() {
+    return false;
+}
+add_filter('comments_open', 'df_disable_comments_status', 20, 2);
+add_filter('pings_open', 'df_disable_comments_status', 20, 2);
+
+// Finally, hide any existing comments that are on the site.
+function df_disable_comments_hide_existing_comments($comments) {
+    $comments = array();
+    return $comments;
+}
+add_filter('comments_array', 'df_disable_comments_hide_existing_comments', 10, 2);
+
+function my_login_logo_url() {
+    return home_url();
+}
+add_filter( 'login_headerurl', 'my_login_logo_url' );
+
+function my_login_logo_url_title() {
+    return 'Your Site Name and Info';
+}
+add_filter( 'login_headertitle', 'my_login_logo_url_title' );
+
+////product buttons/jotform code
+//function product_contact_row(){
+//
+//}
+//add_action('woocommerce_single_product_summary', 'product_contact_row', 50);
 
 function contact_blurb(){
     $contactQuery = new WP_Query(array(

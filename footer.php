@@ -41,7 +41,7 @@ $newsletterQuery = new WP_Query(array(
                         </a>
                     </p>
                 </div>
-                <div class="col-lg-2">
+                <div class="col-lg-3">
                     <?php
                     while ($hoursQuery->have_posts()){
                         $hoursQuery->the_post();
@@ -49,11 +49,11 @@ $newsletterQuery = new WP_Query(array(
                         $content = get_the_content();
                     }
                     wp_reset_postdata();
-                    echo '<p>' . $title . '</p>';
-                    echo $content;
+                    echo '<p><strong>' . $title . '</strong></p>';
+                    echo '<p>' . $content . '</p>';
                     ?>
                 </div>
-                <div class="col-lg-4 offset-lg-1">
+                <div class="col-lg-4">
                     <?php
                     while ($newsletterQuery->have_posts()){
                         $newsletterQuery->the_post();
@@ -61,8 +61,8 @@ $newsletterQuery = new WP_Query(array(
                         $content = get_the_content();
                     }
                     wp_reset_postdata();
-                    echo '<p>' . $title . '</p>';
-                    echo $content;
+                    echo '<p><strong>' . $title . '</strong></p>';
+                    echo '<p>' . $content . '</p>';
                     ?>
                     <button class="button-3d register" onclick="location.href='http://eepurl.com/duHsr5'">I'd Like to Register</button>
                 </div>

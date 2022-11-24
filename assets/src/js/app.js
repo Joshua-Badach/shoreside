@@ -15,11 +15,11 @@ jQuery(document).ready(function($) {
   var sticky = navbar.offsetTop;
   var win = $(this);
 
-  $(".contactform").hide();
-
-  $(".emailButton").click(function(){
-    $(".contactForm").toggle();
-  });
+  // $(".contactform").hide();
+  //
+  // $(".emailButton").click(function(){
+  //   $(".contactForm").toggle();
+  // });
 
     $(window).on('resize', function(){
     if (win.width() <= 769 ){
@@ -82,7 +82,7 @@ jQuery(document).ready(function($) {
       autoplaySpeed: 10000,
       fade: true,
       asNavFor: '.carousel-product-nav',
-      adaptiveHeight: true,
+      adaptiveHeight: false,
       mobileFirst: true,
       dots: false,
     });
@@ -107,6 +107,7 @@ jQuery(document).ready(function($) {
     // $('#sidebarHeader').hide();
 
   } else {
+
     // $('#sidebarIcon').hide();
     // $('#sidebarHeader').show();
     // $('#mobileFilter').hide();
