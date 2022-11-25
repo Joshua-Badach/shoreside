@@ -696,7 +696,7 @@ function payments(){
             $biweekly = round($correction / 2);
 
             echo '<p class="financingText">Financing available for <strong>$' . $biweekly . '</strong> biweekly*</p>
-             <sub class="disclaimer"><em>*On approved credit. Estimated payment is calculated using the maximum term of ' . $months . ' Months at a rate of ' . $apr . '% APR. Alternative lenders and better rates may be available. $0.00 down payment assumed. Some fees, freight, and additional charges may not be factored into this estimate.</em></sub>';
+             <div class="disclaimer"><sub><em>*On approved credit. Estimated payment is calculated using the maximum term of ' . $months . ' Months at a rate of ' . $apr . '% APR. Alternative lenders and better rates may be available. $0.00 down payment assumed. Some fees, freight, and additional charges may not be factored into this estimate.</em></sub></div>';
         }
     }
 

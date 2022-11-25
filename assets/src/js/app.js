@@ -80,9 +80,10 @@ jQuery(document).ready(function($) {
       lazyLoad: 'ondemand',
       speed: 1000,
       autoplaySpeed: 10000,
+      centerMode: true,
       fade: true,
       asNavFor: '.carousel-product-nav',
-      adaptiveHeight: false,
+      adaptiveHeight: true,
       mobileFirst: true,
       dots: false,
     });
@@ -169,9 +170,19 @@ jQuery(document).ready(function($) {
   //finish modal later
   }
 
+
   setTimeout(function(){
     $('#prompt-CWnFXGNPWNYNiMFgwS5X-iframe').fadeOut('slow');
   }, 10000 );
+
+  $('.financingText').hover(
+    function(){
+      $('.disclaimer').show();
+    },
+    function(){
+      $('.disclaimer').fadeOut(2000);
+    }
+  );
 
   function sidebar() {
     var pageUrl = document.location.href;
@@ -189,7 +200,6 @@ jQuery(document).ready(function($) {
       $('input:checkbox[name="condition"]').prop('checked', true);
       $('.conditionInput').attr('data-category', pageObj);
       $('.conditionInput').attr('data-slug', slugObj);
-      window.history.replaceState({}, document.title, clear_uri);
       $('#sidebar hr').show();
       $('#clear').show();
     }
@@ -254,17 +264,6 @@ jQuery(document).ready(function($) {
       $('#mobileFilter').css('height', '30px');
       $('#sidebarContainer').css('display', 'block');
     }
-
-    $('#clear').on('click', function(){
-      $(this).data('category', pageObj);
-      $(this).data('attribute', '');
-      $(this).data('term', '');
-      $(this).data('orderby', '');
-      $(this).data('slug', slugObj);
-      $(this).data('sale', '');
-      window.history.replaceState({}, document.title, clear_uri);
-
-    });
   };
 
   sidebar();
@@ -352,15 +351,31 @@ jQuery(document).ready(function($) {
             $('.saleInput').prop('checked', true);
             $('.saleInput').attr('data-sale', false);
           };
+          if (idObj != pageObj) {
+              window.history.replaceState({}, document.title, '?product_cat=' + idObj);
+          };
           if (mobile) {
             $('#sidebarContainer').css('position', 'absolute');
           };
           if (tagObj != ''){
             $('#categoryTab').hide();
           };
-
-          $('#clear').show();
-          $('#sidebar hr').show();
+          $('#clear').on('click', function(){
+            $(this).data('category', pageObj);
+            $(this).data('attribute', '');
+            $(this).data('term', '');
+            $(this).data('orderby', '');
+            $(this).data('slug', slugObj);
+            $(this).data('sale', '');
+            window.history.replaceState({}, document.title, clear_uri);
+          });
+          if (idObj != pageObj){
+            $('#clear').show();
+            $('#sidebar hr').show();
+          } else {
+            $('#clear').hide();
+            $('#sidebar hr').hide();
+          }
         },
         error: function (response) {
           console.log(response);

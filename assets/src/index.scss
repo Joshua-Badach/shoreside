@@ -469,28 +469,24 @@ footer .logo{
 }
 .carousel{
   width: 100%;
-  height: 500px;
+  //height: 500px;
   //position: absolute;
   //aspect-ratio: 16 / 9;
 }
 .carousel img{
-  height: 500px;
+  //height: 500px;
 }
 .carousel div{
   height: inherit;
 }
-.carousel-product{
-  width: 100%;
-  max-height: 600px;
-  background: nth($rpsBrand, 1);
-}
-.carousel-product img {
-  display: flex!important;
-  justify-content: center!important;
-  max-height: 600px;
-}
-//.carousel-product:hover img {
-//  transform: scale(1.5);
+//.portrait{
+//  width: 100%;
+//  touch-action: auto !important;
+//  max-height: 600px;
+//  background: nth($rpsBrand, 1);
+//}
+//.portrait .slick-list{
+//  max-height: 600px;
 //}
 .quote{
   position: relative;
@@ -1114,9 +1110,6 @@ div .form-footer{
   margin-right: 10px;
   clear: both;
 }
-.portrait {
-  touch-action: auto !important;
-}
 //#lightbox {
 //  position: fixed;
 //  z-index: 9999999999;
@@ -1255,6 +1248,17 @@ input:checked + .slider:before {
 }
 .disclaimer{
   display: none;
+  position: absolute;
+  bottom: 4px;
+  background: nth($rpsBrand, 4);
+  top: 75px;
+  padding: 10px;
+  z-index: 10;
+  height: 110px;
+  border: 5px nth($rpsBrand, 1) solid;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
 }
 .modal{
   position: fixed;
