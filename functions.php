@@ -192,11 +192,11 @@ function promotional_content_shortcode(){
                     wp_reset_postdata();
                 echo'</div>
             </div>
-            <div class="container">
-                <div class="row row-cols-4">';
+            <div>
+                <div class="row promotionRow row-cols-4">';
                 while ($promotionAdQuery->have_posts()){
                     $promotionAdQuery->the_post();
-                    $promotions = get_the_post_thumbnail('', array( 'loading' => 'lazy' ));
+                    $promotions = get_the_post_thumbnail();
                     echo '<p class="col promotions">' . $promotions . '</p>';
                 }
                 wp_reset_postdata();
