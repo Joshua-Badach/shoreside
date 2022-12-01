@@ -663,10 +663,6 @@ function pending_banner(){
               </div>';
     }
 }
-//add_filter( 'woocommerce_get_price_html', 'remove_product_price' );
-//function remove_product_price( $price ) {
-//    return '';
-//}
 
 add_action( 'woocommerce_single_product_summary', 'payments', 10);
 function payments(){
@@ -695,7 +691,7 @@ function payments(){
 
             $biweekly = round($correction / 2);
 
-            echo '<p class="financingText">Financing available for <strong>$' . $biweekly . '</strong> biweekly*</p>
+            echo '<p class="financingText">Financing available for <span class="biweekly"><strong>$' . $biweekly . '</strong> biweekly</span>*</p>
              <div class="disclaimer"><sub><em>*On approved credit. Estimated payment is calculated using the maximum term of ' . $months . ' Months at a rate of ' . $apr . '% APR. Alternative lenders and better rates may be available. $0.00 down payment assumed. Some fees, freight, and additional charges may not be factored into this estimate.</em></sub></div>';
         }
     }
@@ -946,12 +942,6 @@ function my_login_logo_url_title() {
     return 'Your Site Name and Info';
 }
 add_filter( 'login_headertitle', 'my_login_logo_url_title' );
-
-////product buttons/jotform code
-//function product_contact_row(){
-//
-//}
-//add_action('woocommerce_single_product_summary', 'product_contact_row', 50);
 
 function contact_blurb(){
     $contactQuery = new WP_Query(array(

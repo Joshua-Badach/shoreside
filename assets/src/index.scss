@@ -655,7 +655,20 @@ footer .logo{
 .slick-track{
   height: inherit;
 }
-
+.disclaimer{
+  display: none;
+  position: absolute;
+  bottom: 4px;
+  background: nth($rpsBrand, 4);
+  //top: 4%;
+  padding: 10px;
+  z-index: 10;
+  height: fit-content;
+  border: 5px nth($rpsBrand, 1) solid;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
 //extra small mobile
 @media (min-width: 320px) and (max-width: 480px) {
   .home-block{
@@ -666,6 +679,9 @@ footer .logo{
   }
   .home-heading{
     font-size: 12px;
+  }
+  .disclaimer{
+    top: 20%
   }
   .sliderText{
     margin-top: -25%;
@@ -739,6 +755,9 @@ footer .logo{
   .home-block img{
     width: 20%;
   }
+  .disclaimer{
+    top: 21.5%
+  }
   .home-heading{
     font-size: 18px;
   }
@@ -803,6 +822,7 @@ footer .logo{
   .brandSpan{
     margin-top: -20%;
   }
+
   .home-block{
     top: -310px;
   }
@@ -812,6 +832,19 @@ footer .logo{
     padding-left: 2%;
     padding-right: 2%;
     height: auto;
+  }
+  .disclaimer{
+    top: 25%
+  }
+  .disclaimer:before{
+    content: "";
+    position: absolute;
+    right: 5%;
+    margin-left: -15px;
+    top: -30px;
+    border: solid 15px transparent;
+    border-bottom-color: nth($rpsBrand, 1);
+    z-index: 1;
   }
 }
 
@@ -827,7 +860,93 @@ footer .logo{
     height: auto;
     margin-left: 16%;
   }
+  .disclaimer{
+    top: 4%
+  }
+  .disclaimer:before{
+    content: "";
+    position: absolute;
+    right: 5%;
+    margin-left: -15px;
+    top: -30px;
+    border: solid 15px transparent;
+    border-bottom-color: nth($rpsBrand, 1);
+    z-index: 1;
+  }
 }
+@media (min-width: 1201px){
+  .disclaimer{
+    top: 5.5%;
+  }
+  .disclaimer:before{
+    content: "";
+    position: absolute;
+    right: 5%;
+    margin-left: -15px;
+    top: -30px;
+    border: solid 15px transparent;
+    border-bottom-color: nth($rpsBrand, 1);
+    z-index: 1;
+  }
+}
+body::-webkit-scrollbar{
+  width: 15px;
+}
+body::-webkit-scrollbar-button:after{
+  box-shadow: inset -5px 0px 5px -2px #000;
+  -webkit-box-shadow: inset -5px 0px 5px -2px #000;
+}
+//body::-webkit-scrollbar-button{
+//  width: 15px;
+//  height: 15px;
+//  box-shadow: inset -5px 0px 5px -2px #000;
+//  -webkit-box-shadow: inset -5px 0px 5px -2px #000;
+//  border: 1px solid black;
+//  background: nth($rpsBrand, 1);
+//}
+body::-webkit-scrollbar-track{
+  background: transparent;
+  border: 1px solid nth($rpsBrand, 1);
+}
+body::-webkit-scrollbar-thumb{
+  background: nth($rpsBrand, 1);
+  border-radius: 5px;
+  border: 1px solid black;
+  height: 200px;
+  box-shadow: inset -5px 0px 5px -2px #000;
+  -webkit-box-shadow: inset -5px 0px 5px -2px #000;
+}
+//
+///* Up */
+//::-webkit-scrollbar-button:vertical:decrement
+//{
+//  //border-left: 3px solid transparent;
+//  //border-right: 3px solid transparent;
+//  //border-bottom: 3px solid white;
+//  //padding: 3px;
+//  width: 15px;
+//  height: 15px;
+//  //border-width: 0 6px 6px 6px;
+//  //border-color: transparent transparent white transparent;
+//}
+//::-webkit-scrollbar-button:vertical:decrement:hover
+//{
+//  //border-color: transparent transparent white transparent;
+//}
+//
+///* Down */
+//::-webkit-scrollbar-button:vertical:increment
+//{
+//  width: 15px;
+//  height: 15px;
+//  //border-width: 6px 6px 0 6px;
+//  //border-color: white transparent transparent transparent;
+//}
+//::-webkit-scrollbar-button:vertical:increment:hover
+//{
+//  //border-color: white transparent transparent transparent;
+//}
+
 .contactSelection{
   margin-top: 100px;
   margin-bottom: 100px;
@@ -1233,32 +1352,25 @@ input:checked + .slider:before {
 }
 .financingText{
   float: right;
-  color: #77a464;
+  color: #ce2020!important;
 }
 .price{
   font-size: 17px !important;
   float: left;
   font-weight: bold;
+  color: #ce2020 !important;
+}
+.woocommerce-Price-amount .amount{
+  color: #ce2020 !important;
 }
 .jotform-form .main{
-  margin-top: 0 !important;;
+  margin-top: 0 !important;
 }
 .woocommerce-product-details__short-description{
   clear: both;
 }
-.disclaimer{
-  display: none;
-  position: absolute;
-  bottom: 4px;
-  background: nth($rpsBrand, 4);
-  top: 75px;
-  padding: 10px;
-  z-index: 10;
-  height: 110px;
-  border: 5px nth($rpsBrand, 1) solid;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+.financingText:hover{
+  cursor: pointer;
 }
 .modal{
   position: fixed;
@@ -1376,4 +1488,7 @@ input:checked + .slider:before {
   -ms-transform: rotate(-35deg);
   -o-transform: rotate(-35deg);
   transform: rotate(-35deg);
+}
+.biweekly{
+  text-decoration: underline;
 }

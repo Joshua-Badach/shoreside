@@ -99,6 +99,18 @@ jQuery(document).ready(function($) {
     });
   $('#sidebarContainer').hide();
 
+  $('.financingText').on( 'click', function(){
+    $('.disclaimer').show();
+  });
+
+  $(document).mouseup(function(e){
+    var disclaimer = $('.disclaimer');
+    var financing = $('.financingText');
+    if (!financing.is(e.target) && financing.has(e.target).length === 0){
+      disclaimer.hide();
+    };
+  });
+
   //Mobile check
   var mobile = (/iphone|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));
   if (mobile) {
@@ -108,6 +120,15 @@ jQuery(document).ready(function($) {
     // $('#sidebarHeader').hide();
 
   } else {
+
+    // $('.financingText').hover(
+    //   function(){
+    //     $('.disclaimer').show();
+    //   },
+    //   function(){
+    //     $('.disclaimer').fadeOut(2000);
+    //   }
+    // );
 
     // $('#sidebarIcon').hide();
     // $('#sidebarHeader').show();
@@ -174,15 +195,6 @@ jQuery(document).ready(function($) {
   setTimeout(function(){
     $('#prompt-CWnFXGNPWNYNiMFgwS5X-iframe').fadeOut('slow');
   }, 10000 );
-
-  $('.financingText').hover(
-    function(){
-      $('.disclaimer').show();
-    },
-    function(){
-      $('.disclaimer').fadeOut(2000);
-    }
-  );
 
   function sidebar() {
     var pageUrl = document.location.href;
