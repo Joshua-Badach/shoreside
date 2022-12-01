@@ -164,6 +164,48 @@ function carousel_shortcode(){
 }
 add_shortcode('carousel', 'carousel_shortcode');
 
+function promotional_content_shortcode(){
+    $promotionQuery = new WP_Query(array(
+        'category_name'     => 'promotions-text',
+        'order'             => 'DESC',
+        'post_status'       => 'publish',
+        'posts_per_page'    => 1
+    ));
+
+    $promotionAdQuery = new WP_Query(array(
+        'category_name'     =>      'promotions-ad',
+        'order'             =>      'ASC',
+        'post_status'       =>      'publish',
+        'posts_per_page'    =>      -1
+    ));
+
+    echo '<section>
+            <div class="container">
+                <div class="row">';
+                    while ($promotionQuery->have_posts()){
+                        $promotionQuery->the_post();
+                        $title = get_the_title();
+                        $content = get_the_content();
+                        echo '<h2 class="col-12">' . $title . '</h2>' .
+                        '<p class="col-12">' . $content . '</p>';
+                    }
+                    wp_reset_postdata();
+                echo'</div>
+            </div>
+            <div class="container">
+                <div class="row row-cols-4">';
+                while ($promotionAdQuery->have_posts()){
+                    $promotionAdQuery->the_post();
+                    $promotions = get_the_post_thumbnail('', array( 'loading' => 'lazy' ));
+                    echo '<p class="col promotions">' . $promotions . '</p>';
+                }
+                wp_reset_postdata();
+            echo '</div>
+            </div>
+    </section>';
+}
+add_shortcode('promotion-content', 'promotional_content_shortcode');
+
 function promotional_shortcode(){
     if ( is_home() == false ){
         echo '<h2 class="hidden">';
@@ -186,15 +228,6 @@ function promotional_shortcode(){
         }
         wp_reset_postdata();
     }
-
-    if ( is_page('promotional') ):
-        $query = new WP_Query(array(
-            'category_name'         => 'slider',
-            'posts_per_page'        => -1
-        ));
-        promotional_slider($query);
-
-    endif;
 
     echo '</div>';
 }
@@ -327,6 +360,11 @@ function socmed_shortcode(){
     include('template-parts/components/socmed.php');
 }
 add_shortcode('socmed', 'socmed_shortcode');
+
+function promotions_shortcode(){
+    echo do_shortcode('[instagram-feed feed=2]');
+}
+add_shortcode('socmed-promotions', 'promotions_shortcode');
 
 function product_gallery_shortcode(){
     include('template-parts/components/productGallery.php');
@@ -464,10 +502,8 @@ function service_shortcode(){
 
         echo '<a class="row tableItem" itemscope itemtype="https://schema.org/ProductCollection" href="' . get_permalink( $service->ID ) . '"> 
                     <span class="col-3" itemprop="name">' . $service->post_title . '</span>
-                    <span class="row" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
                         <span class="col-2" itemprop="price">' . $price .  '</span>
                         <span class="col-7" itemprop="description">' . $service->post_excerpt . '</span>
-                    </span>
                   </a>';
     }
     echo '</div>';
@@ -596,35 +632,6 @@ function content_shortcode(){
     </section>';
 }
 add_shortcode('content', 'content_shortcode');
-
-function promotional_content_shortcode(){
-    $promotionQuery = new WP_Query(array(
-        'category_name'     => 'promotion-text',
-        'order'             => 'DESC',
-        'post_status'       => 'publish',
-        'posts_per_page'    => 1
-    ));
-
-    echo '<section id="contentTrigger">
-            <div class="container display">
-                <div class="row">';
-                while ($promotionQuery->have_posts()){
-                        $promotionQuery->the_post();
-                        $title = get_the_title();
-                        $content = get_the_content();
-                        echo '<h2 class="col-12">' . $title . '</h2>' .
-                        '<p class="col-12">' . $content . '</p>';
-    }
-                echo'</div>
-            </div>
-            <div class="content">';
-    echo '<div class="container">';
-        echo do_shortcode('[products tag="promotional" per_page="-1" columns="5" orderby="meta_value_num" on_sale="" order="" operator="IN"]');
-    echo '</div>
-            </div>
-    </section>';
-}
-add_shortcode('promotion-content', 'promotional_content_shortcode');
 
 //No results found for above code
 function woocommerce_shortcode_products_loop_no_results( $attributes ) {
