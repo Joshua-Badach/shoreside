@@ -115,10 +115,6 @@ jQuery(document).ready(function($) {
   var mobile = (/iphone|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));
   if (mobile) {
     $('.slick-arrow').delay(10000).fadeOut('slow');
-    // $('#mobileFilter').show();
-    // $('#contentTrigger').removeClass('content');
-    // $('#sidebarHeader').hide();
-
   } else {
 
     // $('.financingText').hover(
@@ -203,17 +199,24 @@ jQuery(document).ready(function($) {
     var uri = window.location.toString();
     var clear_uri = uri.substring(0, uri.indexOf("?"));
 
-
     $('#sidebar hr').hide();
     $('#clear').hide();
 
     //Filter switch toggles
-    if (pageUrl.indexOf('product_cat=pre-owned') != -1) {
+    if (slugObj.indexOf('Pre-Owned') != -1) {
       $('input:checkbox[name="condition"]').prop('checked', true);
       $('.conditionInput').attr('data-category', pageObj);
       $('.conditionInput').attr('data-slug', slugObj);
       $('#sidebar hr').show();
       $('#clear').show();
+    }
+    // Secondary catch for the slug, removed the unhide for the clear button for now. Don't really need it if it's not an ajax call
+    if (uri.indexOf('pre-owned') != -1){
+      $('input:checkbox[name="condition"]').prop('checked', true);
+      $('.conditionInput').attr('data-category', pageObj);
+      $('.conditionInput').attr('data-slug', slugObj);
+      // $('#sidebar hr').show();
+      // $('#clear').show();
     }
 
     //Show sale toggle if user is in showroom
@@ -242,6 +245,7 @@ jQuery(document).ready(function($) {
         $('#attributes a').show();
       }
 
+      // Hide tabs if empty
       if ($('#categories').children().length == 0) {
         $('#categoryTab').hide();
       }
@@ -276,6 +280,21 @@ jQuery(document).ready(function($) {
       $('#mobileFilter').css('height', '30px');
       $('#sidebarContainer').css('display', 'block');
     }
+
+    if (pageUrl.indexOf('/?') != -1) {
+      $('#clear').show();
+      $('#sidebar hr').show();
+    }
+
+    $('#clear').on('click', function(){
+      $(this).data('category', pageObj);
+      $(this).data('attribute', '');
+      $(this).data('term', '');
+      $(this).data('orderby', '');
+      $(this).data('slug', slugObj);
+      $(this).data('sale', '');
+      window.history.replaceState({}, document.title, clear_uri);
+    });
   };
 
   sidebar();
@@ -346,10 +365,11 @@ jQuery(document).ready(function($) {
 
         success: function (response) {
           $('#contentTrigger').html(response);
+
           sidebar();
-          if (idObj == 'pre-owned') {
+          if (slugObj.indexOf('pre-owned') != -1) {
             $('.conditionInput').prop('checked', true);
-            $('.conditionInput').attr('data-category', pageObj);
+            $('.conditionInput').attr('data-category', idObj);
             $('.conditionInput').attr('data-slug', slugObj);
           } else {
             $('.conditionInput').prop('checked', false);
@@ -372,15 +392,6 @@ jQuery(document).ready(function($) {
           if (tagObj != ''){
             $('#categoryTab').hide();
           };
-          $('#clear').on('click', function(){
-            $(this).data('category', pageObj);
-            $(this).data('attribute', '');
-            $(this).data('term', '');
-            $(this).data('orderby', '');
-            $(this).data('slug', slugObj);
-            $(this).data('sale', '');
-            window.history.replaceState({}, document.title, clear_uri);
-          });
           if (idObj != pageObj){
             $('#clear').show();
             $('#sidebar hr').show();
@@ -394,9 +405,5 @@ jQuery(document).ready(function($) {
         }
       });
   });
-
-
-  checkWidth();
-  $(window).resize(checkWidth);
 
 });

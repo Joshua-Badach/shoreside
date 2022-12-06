@@ -42,4 +42,4 @@ function product_gallery($idObj, $args){
 
 $term = get_term_by('id', 'product_cat');
 product_gallery($idObj, $args);
-?>
+

@@ -57,6 +57,23 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
         }
         add_action( 'wp_enqueue_scripts', 'add_theme_scripts' ,0);
 
+        function gutenburg_editor_assets() {
+            wp_enqueue_style( 'bundle', get_template_directory_uri() . '/assets/dist/bundle.css', null, null, false );
+            wp_enqueue_script( 'main', get_template_directory_uri() . '/assets/dist/main.bundle.js', array('jquery'), null, true );
+//            wp_enqueue_script(
+//                'main-js-gutenburg',
+//                plugins_url( '/assets/dist/main.bundle.js', dirname( __FILE__ ) ),
+//                array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ),
+//                true
+//            );
+//            wp_enqueue_style(
+//                'main-css-gutenburg',
+//                plugins_url( '/assets/dist/bundle.css', dirname( __FILE__ ) ),
+//                array( 'wp-edit-blocks' )
+//            );
+        }
+        add_editor_style( 'enqueue_block_editor_assets', 'gutenburg_editor_assets' );
+
         function isMobile() {
             return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
         }
@@ -66,6 +83,8 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
         }
         add_action('init', 'shoreside_custom_menu');
 
+
+
         add_theme_support( 'editor-styles' );
 
         add_theme_support( 'title-tag' );
@@ -73,6 +92,9 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
         add_theme_support( 'post-thumbnails' );
 
         add_theme_support('wp-block-styles');
+
+        add_theme_support( 'align-wide' );
+
 
 //    custom menu setup
         function register_menu( $locations = array() ){
@@ -423,7 +445,7 @@ function vision_shortcode(){
 }
 add_shortcode('vision', 'vision_shortcode');
 
-function service_shortcode(){
+function winterize_shortcode(){
     global $post;
     $slug = $post->post_name;
 
@@ -508,6 +530,29 @@ function service_shortcode(){
     }
     echo '</div>';
 }
+add_shortcode('winterize-content', 'winterize_shortcode');
+
+function service_shortcode(){
+    global $post;
+    $slug = $post->post_name;
+
+    $id = get_term_by('slug', $slug, 'product_cat');
+    $idObj = $id->term_id;
+    $categoryDescription = category_description($idObj);
+    $term = get_term_by('id', $idObj, 'product_cat');
+
+    echo '<div  class="container">
+            <div class="row">
+                <div class="col-lg-6 serviceWriteup">';
+                    echo '<h2>' . $term->name . '</h2>';
+                    echo $categoryDescription .
+                '</div>
+                <div class="col-lg-6 serviceForm">
+                    <script type="text/javascript" src="https://form.jotform.com/jsform/223384426868063"></script>
+                </div>
+            </div>
+        </div>';
+}
 add_shortcode('service-content', 'service_shortcode');
 
 function load_product(){
@@ -574,7 +619,7 @@ function load_results() {
 
     echo '<div class="container display">
                 <div class="row">
-                    <h2>' . $term->name . '</h2>
+                    <h2 id="categoryTitle">' . $term->name . '</h2>
                     ' . $categoryDescription . '
                 </div>
             </div>
@@ -601,14 +646,13 @@ function content_shortcode(){
     $id = get_term_by('slug', $slug, 'product_cat');
     $idObjConst = $id->term_id;
 
-    if ($_REQUEST['product_cat'] != ''){
+    if ($_GET['product_cat'] != ''){
         $idObj = $_REQUEST['product_cat'];
-        $term = get_term_by('slug', $idObj, 'product_cat');
     } else {
         $idObj = $id->term_id;
-        $term = get_term_by('id', $idObj, 'product_cat');
     }
 
+    $term = get_term_by('id', $idObj, 'product_cat');
     $categoryDescription = category_description($term);
 
     echo '<section id="contentTrigger" data-page="' . $idObjConst . '" data-slug="' . $slug .'">
@@ -792,7 +836,7 @@ function woo_new_product_tab($tabs) {
     }
     $tabs['product_inquiry'] = array(
         'title' => __('Product Inquiry', 'woocommerce'),
-        'priority' => 55,
+        'priority' => 10,
         'callback' => 'woo_new_product_tab_three_content'
     );
     return $tabs;

@@ -124,14 +124,7 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
         <div class="switchContainer objectPadding">
             <span>New</span>
             <label class="switch">
-                <input type="checkbox" name="condition" class="conditionInput" 
-                data-category="' . $preOwnedObj->slug . '" 
-                data-attribute="' . $_REQUEST['attribute'] . '" 
-                data-term="' . $_REQUEST['tagObj'] . '"
-                data-orderby="' . $_REQUEST['orderByObj'] . '"
-                data-order="' . $_REQUEST['orderObj'] . '"
-                data-sale="' . $_REQUEST['onSaleObj'] . '" 
-                data-slug="' . $preOwnedObj->slug .'"> 
+                <input type="checkbox" name="condition" class="conditionInput" data-category="' . $preOwnedObj->term_id . '" data-attribute="' . $_REQUEST['attribute'] . '" data-term="' . $_REQUEST['tagObj'] . '" data-orderby="' . $_REQUEST['orderByObj'] . '" data-order="' . $_REQUEST['orderObj'] . '" data-sale="' . $_REQUEST['onSaleObj'] . '" data-slug="' . $preOwnedObj->slug .'"> 
                 <span class="slider round"></span>
             </label>
             <span>Used</span>
@@ -143,26 +136,17 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
       <div class="switchContainer objectPadding">
         <span>No</span>
         <label class="switch">
-            <input type="checkbox" name="sale" class="saleInput" 
-                data-category="' . $idObj . '"
-                data-attribute="' . $_REQUEST['attribute'] . '" 
-                data-term="' . $_REQUEST['tagObj'] . '"
-                data-orderby="' . $_REQUEST['orderByObj'] . '"
-                data-order="' . $_REQUEST['orderObj'] . '"
-                data-sale="true" 
-                data-slug="' . $_REQUEST['slug'] . '" >
+            <input type="checkbox" name="sale" class="saleInput" data-category="' . $idObj . '" data-attribute="' . $_REQUEST['attribute'] . '" data-term="' . $_REQUEST['tagObj'] . '" data-orderby="' . $_REQUEST['orderByObj'] . '" data-order="' . $_REQUEST['orderObj'] . '" data-sale="true" data-slug="' . $_REQUEST['slug'] . '" >
             <span class="slider round"></span>
         </label>
         <span>Yes</span>
         </div>';
 
-//    if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
-//    {
         echo '<hr>
         <div class="clearButton">
-            <button type="button" class="button-3d" id="clear">Clear</button>
+            <button type="button" data-category="" class="button-3d" id="clear">Clear</button>
         </div>';
-//    }
+
 ?>
     </div>
 </div>

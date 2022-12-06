@@ -1071,10 +1071,6 @@ div .form-footer{
 .serviceGrid{
   border: 2px solid nth($rpsBrand, 1);
 }
-.catalog{
-  text-align: center;
-  overflow: hidden;
-}
 .singleheading{
   text-align: center;
 }
@@ -1497,4 +1493,24 @@ input:checked + .slider:before {
 }
 .promotions img{
   width: 100%;
+}
+.serviceWriteup{
+  align-self: center;
+}
+.serviceForm{
+  margin-bottom: 5%;
+}
+.catalog{
+  text-align: center;
+  overflow: hidden;
+  align-self: center;
+  margin-top: 0;
+  margin-bottom: auto;
+}
+.catalog img{
+  max-width: 255px;
+  min-height: 300px;
+  border: 1px solid nth($rpsBrand, 1);
+  -webkit-box-shadow: 5px 5px 10px 0px #000000;
+  box-shadow: 5px 5px 10px 0px #000000;
 }
