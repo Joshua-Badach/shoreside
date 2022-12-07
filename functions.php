@@ -747,7 +747,7 @@ function payments(){
         }
     }
 
-    if ($price != '') {
+    if ($price != '' && str_contains($categories, 'Showroom') == true) {
         if (str_contains($categories, 'Boats') || str_contains($categories, 'Outboards') || str_contains($categories, 'Electric Surfboards')){
             if ($principle > 3000) {
                 if ($principle > 3000 && $principle < 4999) {
@@ -820,12 +820,12 @@ remove_action('woocommerce_single_product_summary', 'woocommerce_template_single
 //Woocommerce custom tabs for product page
 add_filter('woocommerce_product_tabs', 'woo_new_product_tab');
 function woo_new_product_tab($tabs) {
+    $tabs['product_inquiry'] = array(
+        'title' => __('Product Inquiry', 'woocommerce'),
+        'priority' => 1,
+        'callback' => 'woo_new_product_tab_three_content'
+    );
     if ( has_term('parts-and-accessories', 'product_cat')) {
-        $tabs['product_inquiry'] = array(
-            'title' => __('Product Inquiry', 'woocommerce'),
-            'priority' => 10,
-            'callback' => 'woo_new_product_tab_three_content'
-        );
         $tabs['return_policy'] = array(
             'title' => __('Return Policy', 'woocommerce'),
             'priority' => 50,
@@ -839,11 +839,6 @@ function woo_new_product_tab($tabs) {
         );
         return $tabs;
     }
-    $tabs['product_inquiry'] = array(
-        'title' => __('Product Inquiry', 'woocommerce'),
-        'priority' => 10,
-        'callback' => 'woo_new_product_tab_three_content'
-    );
     return $tabs;
 }
 
@@ -853,21 +848,6 @@ function woo_new_product_tab_one_content() {
 function woo_new_product_tab_two_content() {
     include('template-parts/components/warranty.php');
 }
-
-function product_contact_row(){
-    global $post;
-    $product = wc_get_product($post);
-    $shop = $product->get_attribute( 'Shop' );
-
-    if ( $shop != '' ){
-    echo '<div class="productButtons">
-        <a href="' . $shop . '" target="_blank">
-            <button class="button-3d">Shop</button>
-        </a>
-    </div>';
-    }
-}
-add_action('woocommerce_single_product_summary', 'product_contact_row', 50);
 
 function woo_new_product_tab_three_content(){
     $product = get_page_by_title( 'Product Title', OBJECT, 'product' );
@@ -972,6 +952,21 @@ function woo_new_product_tab_three_content(){
       </script>
         </div>';
 }
+
+function product_contact_row(){
+    global $post;
+    $product = wc_get_product($post);
+    $shop = $product->get_attribute( 'Shop' );
+
+    if ( $shop != '' ){
+        echo '<div class="productButtons">
+        <a href="' . $shop . '" target="_blank">
+            <button class="button-3d">Shop</button>
+        </a>
+    </div>';
+    }
+}
+add_action('woocommerce_single_product_summary', 'product_contact_row', 50);
 
 //remove woocommerce default filtering, need to unhook all of the filtering stuff or the format breaks alltogether
 remove_action( 'woocommerce_before_shop_loop', 'woocommerce_output_all_notices', 10 );
