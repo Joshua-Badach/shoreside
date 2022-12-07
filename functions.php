@@ -748,7 +748,7 @@ function payments(){
     }
 
     if ($price != '' && str_contains($categories, 'Showroom') == true) {
-        if (str_contains($categories, 'Boats') || str_contains($categories, 'Outboards') || str_contains($categories, 'Electric Surfboards')){
+        if (str_contains($categories, 'Boats') || str_contains($categories, 'Outboard Motors') || str_contains($categories, 'Electric Surfboards')){
             if ($principle > 3000) {
                 if ($principle > 3000 && $principle < 4999) {
                     $months = 36;
