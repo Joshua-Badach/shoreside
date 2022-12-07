@@ -848,6 +848,23 @@ function woo_new_product_tab_one_content() {
 function woo_new_product_tab_two_content() {
     include('template-parts/components/warranty.php');
 }
+
+
+function product_contact_row(){
+    global $post;
+    $product = wc_get_product($post);
+    $shop = $product->get_attribute( 'Shop' );
+
+    if ( $shop != '' ){
+    echo '<div class="productButtons">
+        <a href="' . $shop . '" target="_blank">
+            <button class="button-3d">Shop</button>
+        </a>
+    </div>';
+    }
+}
+add_action('woocommerce_single_product_summary', 'product_contact_row', 50);
+
 function woo_new_product_tab_three_content(){
     $product = get_page_by_title( 'Product Title', OBJECT, 'product' );
     $productUrl = get_permalink( $product->ID );
