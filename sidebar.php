@@ -114,6 +114,7 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
     foreach ($termName as $i => $aTerm) {
         echo '<a data-category="'. $idObj . '" data-attribute="manufacturer" data-term="' . $termCheck[$i] . '" data-orderby="' . $_REQUEST['orderByObj'] . '" data-order="' . $_REQUEST['orderObj'] . '" data-sale="' . $_REQUEST['onSaleObj'] . '" data-slug="' . $termSlug[$i] . '" > ' . $termName[$i] . '</a>';
     }
+//    Maybe request check for product_cat then swap out if needed?
     echo '</div>
 </div>      
 

@@ -645,6 +645,11 @@ function content_shortcode(){
     $slug = $post->post_name;
     $id = get_term_by('slug', $slug, 'product_cat');
     $idObjConst = $id->term_id;
+    $tagObj = $_REQUEST['terms'];
+
+    if ($tagObj != ''){
+        $attribute = 'manufacturer';
+    }
 
     if ($_GET['product_cat'] != ''){
         $idObj = $_REQUEST['product_cat'];
@@ -670,7 +675,7 @@ function content_shortcode(){
             <div class="content">';
                 get_sidebar();
                 echo '<div class="container">';
-                    echo do_shortcode('[products category="' . $idObj . '" attribute=""  terms="" per_page="-1" columns="5" orderby="meta_value_num" on_sale="" order="" operator="IN"]');
+                    echo do_shortcode('[products category="' . $idObj . '" attribute="' . $attribute . '"  terms="' . $tagObj . '" per_page="-1" columns="5" orderby="meta_value_num" on_sale="" order="" operator="IN"]');
                 echo '</div>
             </div>
     </section>';
