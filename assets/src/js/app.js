@@ -196,6 +196,7 @@ jQuery(document).ready(function($) {
     var pageUrl = document.location.href;
     var pageObj = $('#contentTrigger').data('page');
     var slugObj = $('#contentTrigger').data('slug');
+    var slug = $('#contentTrigger h2').data('cat');
     var uri = window.location.toString();
     var clear_uri = uri.substring(0, uri.indexOf("?"));
 
@@ -203,20 +204,12 @@ jQuery(document).ready(function($) {
     $('#clear').hide();
 
     //Filter switch toggles
-    if (slugObj.indexOf('Pre-Owned') != -1) {
+    if (slug.indexOf('pre-owned') != -1) {
       $('input:checkbox[name="condition"]').prop('checked', true);
       $('.conditionInput').attr('data-category', pageObj);
       $('.conditionInput').attr('data-slug', slugObj);
       $('#sidebar hr').show();
       $('#clear').show();
-    }
-    // Secondary catch for the slug, removed the unhide for the clear button for now. Don't really need it if it's not an ajax call
-    if (uri.indexOf('pre-owned') != -1){
-      $('input:checkbox[name="condition"]').prop('checked', true);
-      $('.conditionInput').attr('data-category', pageObj);
-      $('.conditionInput').attr('data-slug', slugObj);
-      // $('#sidebar hr').show();
-      // $('#clear').show();
     }
 
     //Show sale toggle if user is in showroom
@@ -367,7 +360,7 @@ jQuery(document).ready(function($) {
           $('#contentTrigger').html(response);
 
           sidebar();
-          if (slugObj.indexOf('pre-owned') != -1) {
+          if (slug.indexOf('pre-owned') != -1) {
             $('.conditionInput').prop('checked', true);
             $('.conditionInput').attr('data-category', idObj);
             $('.conditionInput').attr('data-slug', slugObj);

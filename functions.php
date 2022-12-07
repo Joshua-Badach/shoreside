@@ -619,7 +619,7 @@ function load_results() {
 
     echo '<div class="container display">
                 <div class="row">
-                    <h2 id="categoryTitle">' . $term->name . '</h2>
+                    <h2 id="categoryTitle" data-cat="' . $term->slug . '">' . $term->name . '</h2>
                     ' . $categoryDescription . '
                 </div>
             </div>
@@ -658,7 +658,7 @@ function content_shortcode(){
     echo '<section id="contentTrigger" data-page="' . $idObjConst . '" data-slug="' . $slug .'">
             <div class="container display">
                 <div class="row">
-                    <h2>' . $term->name . '</h2>
+                    <h2 id="categoryTitle" data-cat="' . $term->slug . '">' . $term->name . '</h2>
                     ' . $categoryDescription . '
                 </div>
             </div>
@@ -821,6 +821,11 @@ remove_action('woocommerce_single_product_summary', 'woocommerce_template_single
 add_filter('woocommerce_product_tabs', 'woo_new_product_tab');
 function woo_new_product_tab($tabs) {
     if ( has_term('parts-and-accessories', 'product_cat')) {
+        $tabs['product_inquiry'] = array(
+            'title' => __('Product Inquiry', 'woocommerce'),
+            'priority' => 10,
+            'callback' => 'woo_new_product_tab_three_content'
+        );
         $tabs['return_policy'] = array(
             'title' => __('Return Policy', 'woocommerce'),
             'priority' => 50,
@@ -848,7 +853,6 @@ function woo_new_product_tab_one_content() {
 function woo_new_product_tab_two_content() {
     include('template-parts/components/warranty.php');
 }
-
 
 function product_contact_row(){
     global $post;
