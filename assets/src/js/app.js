@@ -340,6 +340,7 @@ jQuery(document).ready(function($) {
     var onSaleObj = $(this).data('sale');
     var slug = $(this).data('slug');
 
+    var uri = window.location.toString();
     var pageObj = $('#contentTrigger').data('page');
     var slugObj = $('#contentTrigger').data('slug');
     var ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";
@@ -370,14 +371,25 @@ jQuery(document).ready(function($) {
             $('#conditionInput').attr('slug', slug);
             var uri = window.location.toString();
             var clear_uri = uri.substring(0, uri.indexOf("?"));
-            window.history.replaceState({}, document.title, clear_uri);
+            window.history.pushState({}, document.title, clear_uri);
           };
           if (onSaleObj == true) {
             $('.saleInput').prop('checked', true);
             $('.saleInput').attr('data-sale', false);
           };
           if (idObj != pageObj) {
+            if (window.location.href.indexOf("?terms=") > -1) {
+              window.history.replaceState({}, document.title, uri + '&product_cat=' + idObj);
+            } else {
               window.history.replaceState({}, document.title, '?product_cat=' + idObj);
+            }
+          };
+          if (tagObj != ''){
+            if (window.location.href.indexOf("?product_cat=") > -1){
+              window.history.replaceState({}, document.title, uri + '&terms=' + tagObj);
+            } else {
+              window.history.replaceState({}, document.title, '?terms=' + tagObj);
+            }
           };
           if (mobile) {
             $('#sidebarContainer').css('position', 'absolute');
@@ -385,7 +397,7 @@ jQuery(document).ready(function($) {
           if (tagObj != ''){
             $('#categoryTab').hide();
           };
-          if (idObj != pageObj){
+          if (idObj != pageObj || tagObj != ''){
             $('#clear').show();
             $('#sidebar hr').show();
           } else {
