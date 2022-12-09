@@ -378,7 +378,7 @@ jQuery(document).ready(function($) {
             var newUri;
             if (window.location.href.indexOf("?terms=") > -1) {
               newUri = uri + '&product_cat=' + idObj;
-              window.history.replaceState({}, document.title, newUri);
+              window.history.pushState({}, document.title, newUri);
             } else {
               newUri = '?product_cat=' + idObj;
               window.history.pushState({}, document.title, newUri);
@@ -387,7 +387,7 @@ jQuery(document).ready(function($) {
           if (tagObj != ''){
             if (window.location.href.indexOf("?product_cat=") > -1){
               newUri = uri + '&terms=' + tagObj;
-              window.history.replaceState({}, document.title, newUri);
+              window.history.pushState({}, document.title, newUri);
             } else {
               newUri = '?terms=' + tagObj;
               window.history.pushState({}, document.title, newUri);

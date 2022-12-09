@@ -612,23 +612,21 @@ function load_results() {
             if ($_REQUEST['idObj'] != '') {
                 $value = $slug;
                 $field = 'slug';
-                $filter = 'product_cat';
+                $taxonomy = 'product_cat';
             } else {
                 $value = $idObj;
                 $field = 'id';
-                $filter = 'product_cat';
-            }
-        } else {
-            if ($tagObj != ''){
-                $attribute = 'manufacturer';
-                $value = $tagObj;
-                $field = 'term_id';
-                $filter = 'pa_manufacturer';
+                $taxonomy = 'product_cat';
             }
         }
+        if ($tagObj != ''){
+            $attribute = 'manufacturer';
+            $value = $tagObj;
+            $field = 'term_id';
+            $taxonomy = 'pa_manufacturer';
+        }
 
-
-        $term = get_term_by($field, $value, $filter);
+        $term = get_term_by($field, $value, $taxonomy);
         $categoryDescription = category_description($term);
     }
 
@@ -655,33 +653,35 @@ function load_results() {
 add_action('wp_ajax_load_results', 'load_results');
 add_action('wp_ajax_nopriv_load_results', 'load_results');
 
-function content_shortcode()
-{
+function content_shortcode(){
     global $post;
     $slug = $post->post_name;
     $id = get_term_by('slug', $slug, 'product_cat');
     $idObjConst = $id->term_id;
     $tagObj = $_REQUEST['terms'];
 
-    if ($_GET['attribute'] == '' || $_GET['product_cat'] != '') {
-        $idObj = $_REQUEST['product_cat'];
-        $value = $idObj;
-        $field = 'id';
-        $filter = 'product_cat';
-    } else {
-        $idObj = $id->term_id;
-        $value = $idObj;
-        $field = 'id';
-        $filter = 'product_cat';
+
+    if ($_GET['attribute'] == '') {
+        if ($_GET['product_cat'] != '') {
+            $idObj = $_REQUEST['product_cat'];
+            $value = $idObj;
+            $field = 'id';
+            $taxonomy = 'product_cat';
+        } else {
+            $idObj = $id->term_id;
+            $value = $idObj;
+            $field = 'id';
+            $taxonomy = 'product_cat';
+        }
     }
     if ($tagObj != '') {
         $attribute = 'manufacturer';
         $value = $tagObj;
         $field = 'term_id';
-        $filter = 'pa_manufacturer';
+        $taxonomy = 'pa_manufacturer';
     }
 
-    $term = get_term_by($field, $value, $filter);
+    $term = get_term_by($field, $value, $taxonomy);
     $categoryDescription = category_description($term);
 
 

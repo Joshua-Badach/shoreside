@@ -21,7 +21,6 @@
     $orderByObj         =           '';
     $onSaleObj          =           '';
 
-
 if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
     {
         $idObj              =           $_REQUEST['idObj'];
@@ -31,12 +30,14 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
         $orderObj           =           $_REQUEST['orderObj'];
         $onSaleObj          =           $_REQUEST['onSaleObj'];
         $slug               =           $_REQUEST['slug'];
+        $slugObj            =           get_term($idObj, 'product_cat');
     } else {
         $attribute          =           '';
         $tagObj             =           '';
         $orderByObj         =           '';
         $orderObj           =           '';
         $onSaleObj          =           '';
+        $slugObj            =           get_term($idObj, 'product_cat');
 }
 
     $args = array(
@@ -58,7 +59,7 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
         'hide_empty'                    => $empty,
 //        'parent'                        => $slug,
         'taxonomy'                      => $taxonomy,
-        'category'                      => $slug,
+        'category'                      => $slugObj,
         'orderby'                       => $orderByObj,
         'order'                         => $orderObj,
     );
@@ -112,7 +113,7 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
     }
 
     foreach ($termName as $i => $aTerm) {
-        echo '<a data-category="'. $idObj . '" data-attribute="manufacturer" data-term="' . $termCheck[$i] . '" data-orderby="' . $_REQUEST['orderByObj'] . '" data-order="' . $_REQUEST['orderObj'] . '" data-sale="' . $_REQUEST['onSaleObj'] . '" data-slug="' . $termSlug[$i] . '" > ' . $termName[$i] . '</a>';
+        echo '<a data-category="'. $_REQUEST['idObj'] . '" data-attribute="' . $_REQUEST['attribute'] . '" data-term="' . $termCheck[$i] . '" data-orderby="' . $_REQUEST['orderByObj'] . '" data-order="' . $_REQUEST['orderObj'] . '" data-sale="' . $_REQUEST['onSaleObj'] . '" data-slug="' . $termSlug[$i] . '" > ' . $termName[$i] . '</a>';
     }
 //    Maybe request check for product_cat then swap out if needed?
     echo '</div>
