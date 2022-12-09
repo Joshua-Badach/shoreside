@@ -30,7 +30,7 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
         $orderObj           =           $_REQUEST['orderObj'];
         $onSaleObj          =           $_REQUEST['onSaleObj'];
         $slug               =           $_REQUEST['slug'];
-        $slugObj            =           get_term($idObj, 'product_cat');
+        $slugObj            =           $_REQUEST['slug'];
     } else {
         $attribute          =           '';
         $tagObj             =           '';
