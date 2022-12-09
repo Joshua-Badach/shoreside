@@ -608,13 +608,28 @@ function load_results() {
         $pageObj            =           $_REQUEST['pageObj'];
         $slug               =           $_REQUEST['slug'];
 
-        if ($_REQUEST['idObj'] != ''){
-            $term = get_term_by('slug', $slug, 'product_cat');
-            $categoryDescription = category_description($term);
+        if ($_REQUEST['attribute'] == '') {
+            if ($_REQUEST['idObj'] != '') {
+                $value = $slug;
+                $field = 'slug';
+                $filter = 'product_cat';
+            } else {
+                $value = $idObj;
+                $field = 'id';
+                $filter = 'product_cat';
+            }
         } else {
-            $term = get_term_by('id', $idObj, 'product_cat');
-            $categoryDescription = category_description($term);
+            if ($tagObj != ''){
+                $attribute = 'manufacturer';
+                $value = $tagObj;
+                $field = 'term_id';
+                $filter = 'pa_manufacturer';
+            }
         }
+
+
+        $term = get_term_by($field, $value, $filter);
+        $categoryDescription = category_description($term);
     }
 
     echo '<div class="container display">
@@ -640,25 +655,35 @@ function load_results() {
 add_action('wp_ajax_load_results', 'load_results');
 add_action('wp_ajax_nopriv_load_results', 'load_results');
 
-function content_shortcode(){
+function content_shortcode()
+{
     global $post;
     $slug = $post->post_name;
     $id = get_term_by('slug', $slug, 'product_cat');
     $idObjConst = $id->term_id;
     $tagObj = $_REQUEST['terms'];
 
-    if ($tagObj != ''){
-        $attribute = 'manufacturer';
-    }
-
-    if ($_GET['product_cat'] != ''){
+    if ($_GET['attribute'] == '' || $_GET['product_cat'] != '') {
         $idObj = $_REQUEST['product_cat'];
+        $value = $idObj;
+        $field = 'id';
+        $filter = 'product_cat';
     } else {
         $idObj = $id->term_id;
+        $value = $idObj;
+        $field = 'id';
+        $filter = 'product_cat';
+    }
+    if ($tagObj != '') {
+        $attribute = 'manufacturer';
+        $value = $tagObj;
+        $field = 'term_id';
+        $filter = 'pa_manufacturer';
     }
 
-    $term = get_term_by('id', $idObj, 'product_cat');
+    $term = get_term_by($field, $value, $filter);
     $categoryDescription = category_description($term);
+
 
     echo '<section id="contentTrigger" data-page="' . $idObjConst . '" data-slug="' . $slug .'">
             <div class="container display">

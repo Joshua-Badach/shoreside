@@ -195,10 +195,9 @@ jQuery(document).ready(function($) {
   function sidebar() {
     var pageUrl = document.location.href;
     var pageObj = $('#contentTrigger').data('page');
-    var slugObj = $('#contentTrigger').data('slug');
-    var slug = $('#contentTrigger h2').data('cat');
+    var slug = $('#contentTrigger').data('slug');
     var uri = window.location.toString();
-    var clear_uri = uri.substring(0, uri.indexOf("?"));
+    var clear_uri = uri.substring(0, uri.lastIndexOf('/') + 1);
 
     $('#sidebar hr').hide();
     $('#clear').hide();
@@ -207,9 +206,7 @@ jQuery(document).ready(function($) {
     if (slug.indexOf('pre-owned') != -1) {
       $('input:checkbox[name="condition"]').prop('checked', true);
       $('.conditionInput').attr('data-category', pageObj);
-      $('.conditionInput').attr('data-slug', slugObj);
-      $('#sidebar hr').show();
-      $('#clear').show();
+      $('.conditionInput').attr('data-slug', slug);
     }
 
     //Show sale toggle if user is in showroom
@@ -284,7 +281,7 @@ jQuery(document).ready(function($) {
       $(this).data('attribute', '');
       $(this).data('term', '');
       $(this).data('orderby', '');
-      $(this).data('slug', slugObj);
+      $(this).data('slug', slug);
       $(this).data('sale', '');
       window.history.replaceState({}, document.title, clear_uri);
     });
@@ -340,12 +337,12 @@ jQuery(document).ready(function($) {
     var onSaleObj = $(this).data('sale');
     var slug = $(this).data('slug');
 
-    var uri = window.location.toString();
     var pageObj = $('#contentTrigger').data('page');
     var slugObj = $('#contentTrigger').data('slug');
     var ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";
 
     window.LoadResultsPayload.idObj = idObj;
+    window.LoadResultsPayload.pageObj = pageObj;
     window.LoadResultsPayload.attribute = attribute;
     window.LoadResultsPayload.tagObj = tagObj;
     window.LoadResultsPayload.orderByOjb = orderByOjb;
@@ -363,7 +360,7 @@ jQuery(document).ready(function($) {
           sidebar();
           if (slug.indexOf('pre-owned') != -1) {
             $('.conditionInput').prop('checked', true);
-            $('.conditionInput').attr('data-category', idObj);
+            $('.conditionInput').attr('data-category', pageObj);
             $('.conditionInput').attr('data-slug', slugObj);
           } else {
             $('.conditionInput').prop('checked', false);
@@ -378,17 +375,22 @@ jQuery(document).ready(function($) {
             $('.saleInput').attr('data-sale', false);
           };
           if (idObj != pageObj) {
+            var newUri;
             if (window.location.href.indexOf("?terms=") > -1) {
-              window.history.replaceState({}, document.title, uri + '&product_cat=' + idObj);
+              newUri = uri + '&product_cat=' + idObj;
+              window.history.replaceState({}, document.title, newUri);
             } else {
-              window.history.replaceState({}, document.title, '?product_cat=' + idObj);
+              newUri = '?product_cat=' + idObj;
+              window.history.pushState({}, document.title, newUri);
             }
           };
           if (tagObj != ''){
             if (window.location.href.indexOf("?product_cat=") > -1){
-              window.history.replaceState({}, document.title, uri + '&terms=' + tagObj);
+              newUri = uri + '&terms=' + tagObj;
+              window.history.replaceState({}, document.title, newUri);
             } else {
-              window.history.replaceState({}, document.title, '?terms=' + tagObj);
+              newUri = '?terms=' + tagObj;
+              window.history.pushState({}, document.title, newUri);
             }
           };
           if (mobile) {
