@@ -627,13 +627,12 @@ function load_results() {
         }
 
         $term = get_term_by($field, $value, $taxonomy);
-        $categoryDescription = category_description($term);
     }
 
     echo '<div class="container display">
                 <div class="row">
-                    <h2 id="categoryTitle" data-cat="' . $term->slug . '">' . $term->name . '</h2>
-                    ' . $categoryDescription . '
+                    <h2 id="categoryTitle" class="col-12" data-cat="' . $term->slug . '">' . $term->name . '</h2>
+                    <p class="col-12">' . $term->description . '</p>
                 </div>
             </div>
             <div id="mobileFilter">
@@ -682,14 +681,12 @@ function content_shortcode(){
     }
 
     $term = get_term_by($field, $value, $taxonomy);
-    $categoryDescription = category_description($term);
-
 
     echo '<section id="contentTrigger" data-page="' . $idObjConst . '" data-slug="' . $slug .'">
             <div class="container display">
                 <div class="row">
-                    <h2 id="categoryTitle" data-cat="' . $term->slug . '">' . $term->name . '</h2>
-                    ' . $categoryDescription . '
+                    <h2 id="categoryTitle" class="col-12" data-cat="' . $term->slug . '">' . $term->name . '</h2>
+                    <p class="col-12">' . $term->description . '</p>
                 </div>
             </div>
             <div id="mobileFilter">
