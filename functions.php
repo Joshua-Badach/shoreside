@@ -607,6 +607,8 @@ function load_results() {
         $onSaleObj          =           $_REQUEST['onSaleObj'];
         $pageObj            =           $_REQUEST['pageObj'];
         $slug               =           $_REQUEST['slug'];
+//        $parent             =           $_REQUEST['product_cat'];
+
 
         if ($_REQUEST['attribute'] == '') {
             if ($_REQUEST['idObj'] != '') {
@@ -629,7 +631,10 @@ function load_results() {
         $term = get_term_by($field, $value, $taxonomy);
     }
 
-    echo '<div class="container display">
+    $parent = $_REQUEST['idObj'];
+    $test = get_term_by('id', $parent, 'product_cat');
+
+    echo '<div data-parent="' . $test->slug . '" class="container display">
                 <div class="row">
                     <h2 id="categoryTitle" class="col-12" data-cat="' . $term->slug . '">' . $term->name . '</h2>
                     <p class="col-12">' . $term->description . '</p>
@@ -654,11 +659,11 @@ add_action('wp_ajax_nopriv_load_results', 'load_results');
 
 function content_shortcode(){
     global $post;
-    $slug = $post->post_name;
-    $id = get_term_by('slug', $slug, 'product_cat');
-    $idObjConst = $id->term_id;
-    $tagObj = $_REQUEST['terms'];
-
+    $slug               =           $post->post_name;
+    $id                 =           get_term_by('slug', $slug, 'product_cat');
+    $idObjConst         =           $id->term_id;
+    $tagObj             =           $_REQUEST['terms'];
+    $parent             =           $_REQUEST['product_cat'];
 
     if ($_GET['attribute'] == '') {
         if ($_GET['product_cat'] != '') {
@@ -681,11 +686,12 @@ function content_shortcode(){
     }
 
     $term = get_term_by($field, $value, $taxonomy);
+    $test = get_term_by('id', $parent, 'product_cat');
 
     echo '<section id="contentTrigger" data-page="' . $idObjConst . '" data-slug="' . $slug .'">
-            <div class="container display">
+            <div data-parent="' . $test->slug . '" class="container display">
                 <div class="row">
-                    <h2 id="categoryTitle" class="col-12" data-cat="' . $term->slug . '">' . $term->name . '</h2>
+                    <h2 id="categoryTitle" class="col-12"  data-cat="' . $term->slug . '">' . $term->name . '</h2>
                     <p class="col-12">' . $term->description . '</p>
                 </div>
             </div>

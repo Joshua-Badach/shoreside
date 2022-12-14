@@ -3,6 +3,8 @@
     $slug = $post->post_name;
     $id = get_term_by('slug', $slug, 'product_cat');
     $preOwnedObj = get_term_by('slug', 'pre-owned', 'product_cat');
+    $parent = $_REQUEST['product_cat'];
+    $test = get_term_by('id', $parent, 'product_cat');
 
     if ($_REQUEST['product_cat'] != ''){
         $idObj = $_REQUEST['product_cat'];

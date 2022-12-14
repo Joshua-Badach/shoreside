@@ -196,6 +196,7 @@ jQuery(document).ready(function($) {
     var pageUrl = document.location.href;
     var pageObj = $('#contentTrigger').data('page');
     var slug = $('#contentTrigger').data('slug');
+    var catSlug = $('.display').data('parent');
     var uri = window.location.toString();
     var clear_uri = uri.substring(0, uri.lastIndexOf('/') + 1);
 
@@ -203,7 +204,7 @@ jQuery(document).ready(function($) {
     $('#clear').hide();
 
     //Filter switch toggles
-    if (slug.indexOf('pre-owned') != -1) {
+    if (catSlug.indexOf('pre-owned') != -1) {
       $('input:checkbox[name="condition"]').prop('checked', true);
       $('.conditionInput').attr('data-category', pageObj);
       $('.conditionInput').attr('data-slug', slug);
@@ -283,6 +284,7 @@ jQuery(document).ready(function($) {
       $(this).data('orderby', '');
       $(this).data('slug', slug);
       $(this).data('sale', '');
+      $('.display').data('parent', '');
       window.history.replaceState({}, document.title, clear_uri);
     });
   };
@@ -330,12 +332,16 @@ jQuery(document).ready(function($) {
   //Clean this up
 
   $(document).on('click', '#sidebar a, #sidebar input, #sidebar button', function() {
+    // var pageUrl = document.location.href;
+
     var idObj = $(this).data('category');
     var attribute = $(this).data('attribute');
     var tagObj = $(this).data('term');
     var orderByOjb = $(this).data('order');
     var onSaleObj = $(this).data('sale');
     var slug = $(this).data('slug');
+    var catSlug = $('.display').data('parent');
+
 
     var pageObj = $('#contentTrigger').data('page');
     var slugObj = $('#contentTrigger').data('slug');
@@ -348,6 +354,7 @@ jQuery(document).ready(function($) {
     window.LoadResultsPayload.orderByOjb = orderByOjb;
     window.LoadResultsPayload.onSaleObj = onSaleObj;
     window.LoadResultsPayload.slug = slug;
+    window.LoadResultsPayload.catSlug = catSlug;
 
       $.ajax({
         url: ajaxUrl,
@@ -358,7 +365,7 @@ jQuery(document).ready(function($) {
           $('#contentTrigger').html(response);
 
           sidebar();
-          if (slug.indexOf('pre-owned') != -1) {
+          if (slug.indexOf('pre-owned') != -1 || catSlug.indexOf('pre-owned') != -1) {
             $('.conditionInput').prop('checked', true);
             $('.conditionInput').attr('data-category', pageObj);
             $('.conditionInput').attr('data-slug', slugObj);
