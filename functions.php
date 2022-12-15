@@ -256,16 +256,14 @@ function promotional_shortcode(){
 add_shortcode('promotion-carousel', 'promotional_shortcode');
 
 function brands_shortcode(){
+    global $post;
+    $slug = $post->post_name;
 
-//idObj is set to 0 because that is the top level boat category
-
-    $idObj = 0;
-
-    $taxonomy       = 'product_cat';
+    $taxonomy       = 'pa_manufacturer';
     $orderby        = 'name';
-    $show_count     = 0;      // 1 for yes, 0 for no
-    $pad_counts     = 0;      // 1 for yes, 0 for no
-    $hierarchical   = 1;      // 1 for yes, 0 for no
+    $show_count     = 0;
+    $pad_counts     = 0;
+    $hierarchical   = 1;
     $title          = '';
     $empty          = 0;
 
@@ -279,61 +277,101 @@ function brands_shortcode(){
         'hide_empty'                => $empty
     );
 
-    function brand_loop($idObj, $args){
-        $all_categories = get_categories( $args );
-        $test = ['Avalon', 'MirroCraft', 'Mercury', 'Shorestation' ];
+
+    function brand_loop($args){
+        $taxonomy           =           'product_cat';
+        $hierarchical       =           1;
+        $empty              =           0;
+        $limit              =           -1;
+        $status             =           'publish';
+
+
+        $query_args = array(
+            'status'                        => $status,
+            'limit'                         => $limit,
+            'hierarchical'                  => $hierarchical,
+            'show_option_none'              => '',
+            'hide_empty'                    => $empty,
+            'taxonomy'                      => $taxonomy,
+        );
+
+        $unique = array();
+        $name = array();
+        $test = ['avalon', 'mirrocraft', 'mercury', 'shorestation'];
+
+        foreach (wc_get_products($query_args) as $product) {
+            foreach ($product->get_attributes() as $tax => $attribute) {
+                foreach ($attribute->get_terms() as $i => $term) {
+                    if ($term->taxonomy == 'pa_manufacturer') {
+                        if ( in_array($term->slug, $test[$i] ) ) {
+                            $unique[] = $term->term_id;
+                            $name[] = $term->name;
+                            $termSlug[] = $term->slug;
+                            $termCheck = array_unique($unique);
+                            $termName = array_unique($name, SORT_LOCALE_STRING);
+                            asort($termName);
+                        }
+                    }
+                }
+            }
+        }
+//        foreach ($termName as $i => $aTerm) {
+//            echo $termName[$i] . '<br>';
+//        }
+
+        $terms = get_categories($args);
+
         echo '<section class="container"> 
                 <div class="row brandSpan">
                 <h2>Our Brands</h2>';
-        foreach ($all_categories as $cat) {
-            if ($cat->name === $test[0] ) {
+        foreach ($terms as $term) {
+            if ($term->slug === $test[0] ) {
                 $url = 'https://www.avalonpontoons.com/';
-                brand_cards($cat, $url);
+                brand_cards($term, $url);
             }
-            if ($cat->name === $test[1] ) {
+            if ($term->slug === $test[1] ) {
                 $url = 'https://www.mirrocraft.com/';
-                brand_cards($cat, $url);
+                brand_cards($term, $url);
             }
-            if ($cat->name === $test[2] ) {
+            if ($term->slug === $test[2] ) {
                 $url = 'https://www.mercurymarine.com/en/ca/';
-                brand_cards($cat, $url);
+                brand_cards($term, $url);
             }
-            if ($cat->name === $test[3] ) {
+            if ($term->slug === $test[3] ) {
                 $url = 'https://www.mercurymarine.com/en/ca/';
-                brand_cards($cat, $url);
+                brand_cards($term, $url);
             }
         }
         echo '</section>';
     }
 
-    function brand_cards($cat, $url){
-        $thumbnail_id = get_term_meta( $cat->term_id, 'thumbnail_id', true );
-        $image = wp_get_attachment_url( $thumbnail_id );
-        $content = $cat->description;
+    function brand_cards($term, $url){
+        $image_slug = $term->slug.'-logo';
+        $image_id = get_page_by_title($image_slug, OBJECT, 'attachment');
+        $image = $image_id->guid;
+        $content = $term->description;
         $trimmed_content = wp_trim_words( $content, 75, '...' . '<p class="appended">[ read more ]</p>');
 
         echo '<section itemscope itemtype="https://schema.org/Brand" class="col-3">
-            <a href="' . $cat->slug . '">
+            <a href="' . $term->slug . '">
                 <div class="brandCard brands">
                     <div class="brandImage">
                         <img itemprop="logo" src="'. $image . '" width="150px" height="150px">
                         <span hidden itemprop="url"> ' . $url . '</span>
                     </div>   
                     <div class="brandsContent">    
-                        <h3 itemprop="name" class="hidden">' . $cat->name . '</h3>
+                        <h3 itemprop="name" class="hidden">' . $term->name . '</h3>
                         <p itemprop="description">'; echo $trimmed_content . '</p> 
                     </div>
                 </div>    
             </a>
     </section>';
     }
-
-    brand_loop($idObj, $args);
-
+    brand_loop($args);
 }
 add_shortcode('brands', 'brands_shortcode');
 
-function brandContent_shortcode(){
+function brand_description_shortcode(){
     global $post;
     $slug = $post->post_name;
 
@@ -360,7 +398,7 @@ function brandContent_shortcode(){
       </section>';
 
 }
-add_shortcode('brand-content', 'brandContent_shortcode');
+add_shortcode('brand-description', 'brand_description_shortcode');
 
 
 function hero_shortcode(){
@@ -523,9 +561,13 @@ function winterize_shortcode(){
         $price = wc_get_product( $service )->get_price();
 
         echo '<a class="row tableItem" itemscope itemtype="https://schema.org/ProductCollection" href="' . get_permalink( $service->ID ) . '"> 
-                    <span class="col-3" itemprop="name">' . $service->post_title . '</span>
-                        <span class="col-2" itemprop="price">' . $price .  '</span>
-                        <span class="col-7" itemprop="description">' . $service->post_excerpt . '</span>
+                    <span class="col-3" itemprop="name">' . $service->post_title . '</span>';
+                        if ($price == '' ) {
+                                echo '<span class="col-2" itemprop = "price" >' . $price .  '</span >';
+                        } else {
+                                echo '<span class="col-2" itemprop = "price" >$' . $price .  '</span >';
+                        }
+                        echo '<span class="col-7" itemprop="description">' . $service->post_excerpt . '</span>
                   </a>';
     }
     echo '</div>';
@@ -709,6 +751,35 @@ function content_shortcode(){
     </section>';
 }
 add_shortcode('content', 'content_shortcode');
+
+function brand_content_shortcode(){
+    global $post;
+    $slug = $post->post_name;
+    $terms = get_terms([
+        'slug'      => $slug,
+        'taxonomy'  => 'pa_manufacturer',
+        'hide_empty'=> false
+    ]);
+    $name = wp_list_pluck($terms, 'name');
+    $description = wp_list_pluck($terms, 'description');
+//    odd way of going about it but I'll take it.can't seem to get a consistent way of handling the manufacturers..
+
+    echo '<section id="contentTrigger">
+            <div class="container display">
+                <div class="row">
+                    <h2 id="categoryTitle" class="col-12">' . $name[0] . '</h2>
+                    <p class="col-12">' . $description[0] . '</p>
+                </div>
+            </div>
+            <div id="mobileFilter"></div>
+            <div class="content">';
+    echo '<div class="container">';
+    echo do_shortcode('[products attribute="manufacturer"  terms="' . $slug . '" per_page="-1" columns="5" orderby="meta_value_num" on_sale="" order="" operator="IN"]');
+    echo '</div>
+            </div>
+    </section>';
+}
+add_shortcode('brand-content', 'brand_content_shortcode');
 
 //No results found for above code
 function woocommerce_shortcode_products_loop_no_results( $attributes ) {

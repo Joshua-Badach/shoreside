@@ -53,6 +53,12 @@ jQuery(document).ready(function($) {
     }
   }
 
+  $(document).ready(function(){
+    var newLogo = $('.nav-logo').html().replace('Home', '<img src ="/wp-content/themes/shoreside/assets/src/library/images/logo.png" />');
+    $('.nav-logo').html(newLogo);
+    // alert('load picked up')
+  });
+
   $(document).on('click', '.search', function(event){
     input = jQuery('<form role="search" method="GET" id="searchform" class="searchform"><input name="s" value="" name="s" id="s" type="text"><button type="submit" class="searchFormButton">ok</button></form>');
 
@@ -67,7 +73,6 @@ jQuery(document).ready(function($) {
     speed: 1000,
     autoplay: true,
     autoplaySpeed: 10000,
-    lazyLoad: 'ondemand',
     mobileFirst: true,
     dots: true,
   });
@@ -77,7 +82,6 @@ jQuery(document).ready(function($) {
       slidesToShow: 1,
       slidesToScroll: 1,
       autoplay: true,
-      lazyLoad: 'ondemand',
       speed: 1000,
       autoplaySpeed: 10000,
       centerMode: true,
@@ -332,7 +336,7 @@ jQuery(document).ready(function($) {
   //Clean this up
 
   $(document).on('click', '#sidebar a, #sidebar input, #sidebar button', function() {
-    // var pageUrl = document.location.href;
+    var pageUrl = document.location.href;
 
     var idObj = $(this).data('category');
     var attribute = $(this).data('attribute');
@@ -383,8 +387,8 @@ jQuery(document).ready(function($) {
           };
           if (idObj != pageObj) {
             var newUri;
-            if (window.location.href.indexOf("?terms=") > -1) {
-              newUri = uri + '&product_cat=' + idObj;
+            if (window.location.href.indexOf("?terms=") != -1) {
+              newUri =  '&product_cat=' + idObj;
               window.history.pushState({}, document.title, newUri);
             } else {
               newUri = '?product_cat=' + idObj;
@@ -392,8 +396,8 @@ jQuery(document).ready(function($) {
             }
           };
           if (tagObj != ''){
-            if (window.location.href.indexOf("?product_cat=") > -1){
-              newUri = uri + '&terms=' + tagObj;
+            if (window.location.href.indexOf("?product_cat=") != -1){
+              newUri = '&terms=' + tagObj;
               window.history.pushState({}, document.title, newUri);
             } else {
               newUri = '?terms=' + tagObj;
