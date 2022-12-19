@@ -164,14 +164,14 @@ button span{
 //====================Header Styling====================
 //switch from hard coding when content is populated dynamically
 .home-block{
-  top: -550px;
+  top: -400px;
   margin-bottom: -200px;
 }
 .home-block img{
   width: 150px;
 }
 .home-heading{
-  font-size: nth($fontSizing, 3);
+  font-size: 32px;
   font-family: nth($font, 1);
   color: nth($rpsBrand, 4);
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
@@ -201,7 +201,7 @@ button span{
   color: nth($rpsBrand, 4);
 }
 .container a{
-  color: nth($rpsBrand, 2);
+  color: nth($rpsBrand, 1);
   text-decoration: none;
 }
 //====================Footer Styling====================
@@ -353,8 +353,13 @@ footer .logo{
 }
 .brandSpan{
   //transform: translateY(-275px);
-  margin-top: -19.83vw;
+  margin-top: -11.50vw;
   margin-bottom: 50px;
+}
+.brandSpan .col-lg-2{
+  width: 19.6666667%!important;
+  padding-left: 10px!important;
+  padding-right: 10px!important;
 }
 .brandSpan h2{
   display: none;
@@ -391,10 +396,13 @@ footer .logo{
 }
 .brandImage{
   width: 100%;
+  aspect-ratio: 1/1;
   display: flex;
   text-align: center;
-  aspect-ratio: 4 / 3;
   background-color: nth($rpsBrand, 4);
+}
+.brandImage img{
+  height: 150px;
 }
 .brands img{
   display: flex;
@@ -402,9 +410,9 @@ footer .logo{
   padding-left: 6%;
   padding-right: 6%;
   width: 100%;
+  height: 50%;
 }
 .bannerImage img{
-  width: 100%;
   height: auto;
   aspect-ratio: 4/1;
 }
@@ -469,37 +477,13 @@ footer .logo{
   margin-top: 20vh;
   margin-bottom: 20vh;
 }
-//.crew{
-//  text-align: center;
-//}
-//.crew img{
-//  width: 100%;
-//  height: 100%;
-//}
 .searchButton{
   margin-left: 10px;
 }
-.carousel{
+.mainCarousel{
   width: 100%;
-  //height: 500px;
-  //position: absolute;
-  //aspect-ratio: 16 / 9;
+  aspect-ratio: 4 / 1;
 }
-.carousel img{
-  //height: 500px;
-}
-.carousel div{
-  height: inherit;
-}
-//.portrait{
-//  width: 100%;
-//  touch-action: auto !important;
-//  max-height: 600px;
-//  background: nth($rpsBrand, 1);
-//}
-//.portrait .slick-list{
-//  max-height: 600px;
-//}
 .quote{
   position: relative;
 }
@@ -535,16 +519,17 @@ footer .logo{
   width: 100%;
   height: 100%;
 }
-.sliderText{
+.mainCarousel .sliderText{
   z-index: 1;
   width: 45%;
   font-size: nth($rpsBrand, 1);
   padding: 10px;
-  margin-top: -20%;
+  //margin-top: -45%;
   max-height: 200px;
   overflow: hidden;
   text-overflow: ellipsis;
-  transform: translate(20%, -40%);
+  //sloppy, fix this shit tomorrow...
+  transform: translate(20%, -200%);
   background-color: rgba(255, 255, 255, 0.75);
   -webkit-box-shadow: 2px 2px 5px 1px #000000;
   box-shadow: 2px 2px 5px 1px #000000;
@@ -585,8 +570,8 @@ footer .logo{
   text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
   border-radius: 45px !important;
 }
-.slick-slide{
-  max-height: 750px;
+.carousel .slick-slide{
+  max-height: 480px;
 }
 .detailsForm{
   background: nth($rpsBrand, 1);
@@ -632,7 +617,6 @@ footer .logo{
   margin-top: 4%;
 }
 .categoryItems img{
-  //padding: 10px;
   width: 100%;
   height: 100%;
   aspect-ratio: 1/1;
@@ -695,11 +679,6 @@ footer .logo{
   .disclaimer{
     top: 20%
   }
-  .sliderText{
-    margin-top: -25%;
-    width: 80%;
-    transform: translate(10%, -40%);
-  }
   #sidebarContainer{
     height: inherit;
     background: white;
@@ -719,7 +698,9 @@ footer .logo{
   .brandCard img{
     width: 100%;
     padding: 2%;
-    height: auto;
+    height: 50%;
+    display: flex;
+    align-self: center;
   }
   .brandSpan{
     background: nth($rpsBrand, 1);
@@ -728,9 +709,24 @@ footer .logo{
   .row{
     padding: 10px;
   }
-  .sliderText{
+  .carousel{
+    max-height: 480px;
+    height: 100%;
+    width: 100%;
+  }
+  .carousel .sliderText{
+    position: relative;
+    bottom: 15vw;
+    left: 10vw;
+    z-index: 1;
+    width: 45%;
+    padding: 10px;
     max-height: 200px;
-    transform: translate(20%, -40%);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background-color: rgba(255, 255, 255, 0.75);
+    -webkit-box-shadow: 2px 2px 5px 1px #000000;
+    box-shadow: 2px 2px 5px 1px #000000;
   }
   .sliderText p{
     font-size: nth($fontSizing, 1);
@@ -771,16 +767,15 @@ footer .logo{
   .home-heading{
     font-size: 18px;
   }
-  .sliderText{
-    margin-top: -30%;
-  }
   #sidebarContainer{
     height: inherit;
   }
   .brandCard img{
     width: 100%;
     padding: 2%;
-    height: auto;
+    height: 50%;
+    display: flex;
+    align-self: center;
   }
   .brandSpan{
     background: nth($rpsBrand, 1);
@@ -795,9 +790,24 @@ footer .logo{
   .followUs span{
     display: none;
   }
-  .sliderText{
-    transform: translate(30%);
+  .carousel{
+    max-height: 480px;
+    height: 100%;
+    width: 100%;
+  }
+  .carousel .sliderText{
+    position: relative;
+    bottom: 25vw;
+    left: 15vw;
+    z-index: 1;
+    width: 45%;
+    padding: 10px;
     max-height: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background-color: rgba(255, 255, 255, 0.75);
+    -webkit-box-shadow: 2px 2px 5px 1px #000000;
+    box-shadow: 2px 2px 5px 1px #000000;
   }
   .sliderText h2{
     font-size: 14px;
@@ -830,16 +840,35 @@ footer .logo{
   .brandSpan{
     margin-top: -20%;
   }
-
   .home-block{
     top: -310px;
   }
+  .carousel{
+    max-height: 480px;
+    height: 100%;
+    width: 100%;
+  }
+  .carousel .sliderText{
+    position: relative;
+    bottom: 20vw;
+    left: 10vw;
+    z-index: 1;
+    width: 45%;
+    padding: 10px;
+    max-height: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background-color: rgba(255, 255, 255, 0.75);
+    -webkit-box-shadow: 2px 2px 5px 1px #000000;
+    box-shadow: 2px 2px 5px 1px #000000;
+  }
   .brandCard img{
     width: 100%;
-    padding-top: 25%;
     padding-left: 2%;
     padding-right: 2%;
-    height: auto;
+    height: 50%;
+    display: flex;
+    align-self: center;
   }
   .disclaimer{
     top: 25%
@@ -881,6 +910,25 @@ footer .logo{
     border-bottom-color: nth($rpsBrand, 1);
     z-index: 1;
   }
+  .carousel{
+    max-height: 480px;
+    height: 100%;
+    width: 100%;
+  }
+  .carousel .sliderText{
+    position: relative;
+    bottom: 15vw;
+    left: 10vw;
+    z-index: 1;
+    width: 45%;
+    padding: 10px;
+    max-height: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background-color: rgba(255, 255, 255, 0.75);
+    -webkit-box-shadow: 2px 2px 5px 1px #000000;
+    box-shadow: 2px 2px 5px 1px #000000;
+  }
 }
 @media (min-width: 1201px){
   .disclaimer{
@@ -896,14 +944,33 @@ footer .logo{
     border-bottom-color: nth($rpsBrand, 1);
     z-index: 1;
   }
+  .carousel{
+    max-height: 480px;
+    height: 100%;
+    width: 100%;
+  }
+  .carousel .sliderText{
+    position: relative;
+    bottom: 15vw;
+    left: 10vw;
+    z-index: 1;
+    width: 45%;
+    padding: 10px;
+    max-height: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background-color: rgba(255, 255, 255, 0.75);
+    -webkit-box-shadow: 2px 2px 5px 1px #000000;
+    box-shadow: 2px 2px 5px 1px #000000;
+  }
 }
-body::-webkit-scrollbar{
-  width: 15px;
-}
-body::-webkit-scrollbar-button:after{
-  box-shadow: inset -5px 0px 5px -2px #000;
-  -webkit-box-shadow: inset -5px 0px 5px -2px #000;
-}
+//body::-webkit-scrollbar{
+//  width: 15px;
+//}
+//body::-webkit-scrollbar-button:after{
+//  box-shadow: inset -5px 0px 5px -2px #000;
+//  -webkit-box-shadow: inset -5px 0px 5px -2px #000;
+//}
 //body::-webkit-scrollbar-button{
 //  width: 15px;
 //  height: 15px;
@@ -1135,7 +1202,7 @@ div .form-footer{
   z-index: 10;
 }
 #sidebar a{
-  color: nth($rpsBrand, 2);
+  color: nth($rpsBrand, 1);
 }
 #sidebar hr{
   background-color: nth($rpsBrand, 1);

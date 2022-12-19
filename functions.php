@@ -141,14 +141,17 @@ $site_slug = $post->post_name;
 function carousel_shortcode(){
     if ( is_home() || is_front_page() ){
         echo '<h2 class="col-sm-8">How Recreational Power Sports Does It Better</h2>';
-    }
-    if ( is_home() == false ){
+    } else {
         echo '<h2 class="hidden">';
         the_title();
         echo ' Offerings';
         echo '</h2>';
     }
-    echo '<div class="carousel">';
+    if ( is_home() || is_front_page() ) {
+        echo '<div class="mainCarousel">';
+    } else {
+        echo '<div class="carousel">';
+    }
         $the_page = sanitize_posT($GLOBALS['wp_the_query']->get_queried_object() );
         $slug = $the_page->post_name;
 
@@ -297,7 +300,7 @@ function brands_shortcode(){
 
         $unique = array();
         $name = array();
-        $test = ['avalon', 'mirrocraft', 'mercury', 'shorestation'];
+        $test = ['avalon', 'mirrocraft', 'mercury', 'shorestation', 'argo'];
 
         foreach (wc_get_products($query_args) as $product) {
             foreach ($product->get_attributes() as $tax => $attribute) {
@@ -322,7 +325,7 @@ function brands_shortcode(){
         $terms = get_categories($args);
 
         echo '<section class="container"> 
-                <div class="row brandSpan">
+                <div class="row brandSpan justify-content-center">
                 <h2>Our Brands</h2>';
         foreach ($terms as $term) {
             if ($term->slug === $test[0] ) {
@@ -341,6 +344,10 @@ function brands_shortcode(){
                 $url = 'https://www.mercurymarine.com/en/ca/';
                 brand_cards($term, $url);
             }
+            if ($term->slug === $test[4] ) {
+                $url = 'https://www.argo.com/en/ca/';
+                brand_cards($term, $url);
+            }
         }
         echo '</section>';
     }
@@ -350,9 +357,9 @@ function brands_shortcode(){
         $image_id = get_page_by_title($image_slug, OBJECT, 'attachment');
         $image = $image_id->guid;
         $content = $term->description;
-        $trimmed_content = wp_trim_words( $content, 75, '...' . '<p class="appended">[ read more ]</p>');
+        $trimmed_content = wp_trim_words( $content, 20, '...' . '<p class="appended">[ read more ]</p>');
 
-        echo '<section itemscope itemtype="https://schema.org/Brand" class="col-3">
+        echo '<section itemscope itemtype="https://schema.org/Brand" class="col-lg-2">
             <a href="' . $term->slug . '">
                 <div class="brandCard brands">
                     <div class="brandImage">

@@ -53,12 +53,6 @@ jQuery(document).ready(function($) {
     }
   }
 
-  $(document).ready(function(){
-    var newLogo = $('.nav-logo').html().replace('Home', '<img src ="/wp-content/themes/shoreside/assets/src/library/images/logo.png" />');
-    $('.nav-logo').html(newLogo);
-    // alert('load picked up')
-  });
-
   $(document).on('click', '.search', function(event){
     input = jQuery('<form role="search" method="GET" id="searchform" class="searchform"><input name="s" value="" name="s" id="s" type="text"><button type="submit" class="searchFormButton">ok</button></form>');
 
@@ -67,6 +61,16 @@ jQuery(document).ready(function($) {
 
   // Slider carousel code
   $('.carousel').slick({
+    infinite: false,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    speed: 1000,
+    autoplay: true,
+    autoplaySpeed: 10000,
+    mobileFirst: true,
+    dots: true,
+  });
+  $('.mainCarousel').slick({
     infinite: false,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -387,23 +391,29 @@ jQuery(document).ready(function($) {
           };
           if (idObj != pageObj) {
             var newUri;
+            var appendCat = '&product_cat=';
+            var pushCat = '?product_cat=';
+
             if (window.location.href.indexOf("?terms=") != -1) {
-              newUri =  '&product_cat=' + idObj;
-              window.history.pushState({}, document.title, newUri);
+              newUri = uri + appendCat + idObj;
+              history.pushState({}, document.title, newUri);
             } else {
-              newUri = '?product_cat=' + idObj;
-              window.history.pushState({}, document.title, newUri);
+              newUri = pushCat + idObj;
+              history.pushState({}, document.title, newUri);
             }
           };
-          if (tagObj != ''){
-            if (window.location.href.indexOf("?product_cat=") != -1){
-              newUri = '&terms=' + tagObj;
-              window.history.pushState({}, document.title, newUri);
-            } else {
-              newUri = '?terms=' + tagObj;
-              window.history.pushState({}, document.title, newUri);
-            }
-          };
+          // if (tagObj != ''){
+          //   if (window.location.href.indexOf("?product_cat=") != -1){
+          //     newUri = uri + '&terms=' + tagObj;
+          //     history.pushState({}, document.title, newUri);
+          //     alert(newUri);
+          //   } else {
+          //     newUri = '?terms=' + tagObj;
+          //     history.pushState({}, document.title, newUri);
+          //     alert(newUri);
+          //
+          //   }
+          // };
           if (mobile) {
             $('#sidebarContainer').css('position', 'absolute');
           };
@@ -423,5 +433,4 @@ jQuery(document).ready(function($) {
         }
       });
   });
-
 });
