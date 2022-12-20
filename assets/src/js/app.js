@@ -394,7 +394,7 @@ jQuery(document).ready(function($) {
             var appendCat = '&product_cat=';
             var pushCat = '?product_cat=';
 
-            if (window.location.href.indexOf("?terms=") != -1) {
+            if (window.location.href.indexOf("?terms=") > -1) {
               newUri = uri + appendCat + idObj;
               history.pushState({}, document.title, newUri);
             } else {

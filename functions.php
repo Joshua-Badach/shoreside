@@ -357,19 +357,20 @@ function brands_shortcode(){
         $image_id = get_page_by_title($image_slug, OBJECT, 'attachment');
         $image = $image_id->guid;
         $content = $term->description;
-        $trimmed_content = wp_trim_words( $content, 20, '...' . '<p class="appended">[ read more ]</p>');
+        $trimmed_content = wp_trim_words( $content, 25, '...');
 
         echo '<section itemscope itemtype="https://schema.org/Brand" class="col-lg-2">
             <a href="' . $term->slug . '">
                 <div class="brandCard brands">
                     <div class="brandImage">
-                        <img itemprop="logo" src="'. $image . '" width="150px" height="150px">
+                        <img itemprop="logo" src="'. $image . '">
                         <span hidden itemprop="url"> ' . $url . '</span>
                     </div>   
                     <div class="brandsContent">    
                         <h3 itemprop="name" class="hidden">' . $term->name . '</h3>
-                        <p itemprop="description">'; echo $trimmed_content . '</p> 
+                        <p itemprop="description">'; echo $trimmed_content . '</p>
                     </div>
+                    <p class="appended">Read More</p> 
                 </div>    
             </a>
     </section>';
@@ -656,7 +657,6 @@ function load_results() {
         $onSaleObj          =           $_REQUEST['onSaleObj'];
         $pageObj            =           $_REQUEST['pageObj'];
         $slug               =           $_REQUEST['slug'];
-//        $parent             =           $_REQUEST['product_cat'];
 
 
         if ($_REQUEST['attribute'] == '') {
@@ -675,18 +675,26 @@ function load_results() {
             $value = $tagObj;
             $field = 'term_id';
             $taxonomy = 'pa_manufacturer';
+
+            $image_slug = $slug.'-logo';
+            $image_id = get_page_by_title($image_slug, OBJECT, 'attachment');
+            $image = $image_id->guid;
         }
 
         $term = get_term_by($field, $value, $taxonomy);
     }
 
-    $parent = $_REQUEST['idObj'];
-    $test = get_term_by('id', $parent, 'product_cat');
+    $test = get_term_by('id', $idObj, 'product_cat');
 
     echo '<div data-parent="' . $test->slug . '" class="container display">
-                <div class="row">
-                    <h2 id="categoryTitle" class="col-12" data-cat="' . $term->slug . '">' . $term->name . '</h2>
-                    <p class="col-12">' . $term->description . '</p>
+                <div class="row">';
+                if ($image != ''){
+                        echo '<img class="productLogo col-sm-3" alt="' . $slug . ' logo" src="' . $image . '">
+                        <h2 id="categoryTitle" class="col-12 hide" data-cat="' . $term->slug . '">' . $term->name . '</h2>';
+                    } else {
+                    echo '<h2 id="categoryTitle" class="col-12" data-cat="' . $term->slug . '">' . $term->name . '</h2>';
+                }
+                echo '<p class="col-12">' . $term->description . '</p>
                 </div>
             </div>
             <div id="mobileFilter">
@@ -732,6 +740,10 @@ function content_shortcode(){
         $value = $tagObj;
         $field = 'term_id';
         $taxonomy = 'pa_manufacturer';
+
+        $image_slug = $value.'-logo';
+        $image_id = get_page_by_title($image_slug, OBJECT, 'attachment');
+        $image = $image_id->guid;
     }
 
     $term = get_term_by($field, $value, $taxonomy);
@@ -739,14 +751,19 @@ function content_shortcode(){
 
     echo '<section id="contentTrigger" data-page="' . $idObjConst . '" data-slug="' . $slug .'">
             <div data-parent="' . $test->slug . '" class="container display">
-                <div class="row">
-                    <h2 id="categoryTitle" class="col-12"  data-cat="' . $term->slug . '">' . $term->name . '</h2>
-                    <p class="col-12">' . $term->description . '</p>
+                <div class="row">';
+                    if ($image != ''){
+                        echo '<img class="logoBanner col-sm-3" alt="' . $slug . ' logo" src="' . $image . '">
+                        <h2 id="categoryTitle" class="col-12 hide"  data-cat="' . $term->slug . '">' . $term->name . '</h2>';
+                    } else {
+                        echo '<h2 id="categoryTitle" class="col-12"  data-cat="' . $term->slug . '">' . $term->name . '</h2>';
+                    }
+                    echo '<p class="col-12">' . $term->description . '</p>
                 </div>
             </div>
             <div id="mobileFilter">
                 <a id="sidebarIcon" href="">
-                    <img width="30px" height="30px" src="' . get_template_directory_uri(). '/assets/src/library/images/menu-icon.svg\' ?>" alt="Menu Icon">
+                    <img width="30px" height="30px" src="' . get_template_directory_uri(). '/assets/src/library/images/menu-icon.svg"' . 'alt="Menu Icon">
                 </a>
             </div>
             <div class="content">';
@@ -769,13 +786,21 @@ function brand_content_shortcode(){
     ]);
     $name = wp_list_pluck($terms, 'name');
     $description = wp_list_pluck($terms, 'description');
+    $image_slug = $slug.'-logo';
+    $image_id = get_page_by_title($image_slug, OBJECT, 'attachment');
+    $image = $image_id->guid;
 //    odd way of going about it but I'll take it.can't seem to get a consistent way of handling the manufacturers..
 
     echo '<section id="contentTrigger">
             <div class="container display">
-                <div class="row">
-                    <h2 id="categoryTitle" class="col-12">' . $name[0] . '</h2>
-                    <p class="col-12">' . $description[0] . '</p>
+                <div class="row">';
+                if ($image != ''){
+                        echo '<img class="logoBanner col-sm-3" alt="' . $slug . ' logo" src="' . $image . '">
+                        <h2 id="categoryTitle" class="col-12 hide">' . $name[0] . '</h2>';
+                    } else {
+                        echo '<h2 id="categoryTitle" class="col-12">' . $name[0] . '</h2>';
+                    }
+                    echo '<p class="col-12">' . $description[0] . '</p>
                 </div>
             </div>
             <div id="mobileFilter"></div>
@@ -809,6 +834,7 @@ function show_sku(){
         echo '<div class="skuContainer"><span>SKU: ' . '<span class="sku"><strong>' . $product->get_sku() . '</strong></span></span></div>';
     }
 }
+
 add_action('woocommerce_single_product_summary', 'pending_banner' , 14);
 function pending_banner(){
     global $product;
@@ -902,6 +928,35 @@ function payments(){
 
     }
 }
+
+function contact_blurb(){
+    $contactQuery = new WP_Query(array(
+        'category_name'     => 'contact',
+        'order'             => 'DESC',
+        'post_status'       => ' publish',
+        'posts_per_page'    => 1
+    ));
+    while ($contactQuery->have_posts()){
+        $contactQuery->the_post();
+        $content = get_the_content();
+    }
+    wp_reset_postdata();
+    echo '<div class="productContact">' . $content . '</div>';
+}
+add_action('woocommerce_single_product_summary', 'contact_blurb', 45);
+
+function manufacturer_logo(){
+    global $product;
+    $manufacturer = array_shift( wc_get_product_terms( $product->id, 'pa_manufacturer', array( 'fields' => 'names' ) ) );
+    $image_slug = $manufacturer.'-logo';
+    $image_id = get_page_by_title($image_slug, OBJECT, 'attachment');
+    $image = $image_id->guid;
+
+    if ($image != ''){
+        echo '<img class="logoBanner" src="' . $image . '">';
+    }
+}
+add_action('woocommerce_single_product_summary', 'manufacturer_logo', 10);
 
 function woo_related_products_limit() {
     global $product;
@@ -1120,19 +1175,3 @@ function my_login_logo_url_title() {
     return 'Your Site Name and Info';
 }
 add_filter( 'login_headertitle', 'my_login_logo_url_title' );
-
-function contact_blurb(){
-    $contactQuery = new WP_Query(array(
-        'category_name'     => 'contact',
-        'order'             => 'DESC',
-        'post_status'       => ' publish',
-        'posts_per_page'    => 1
-    ));
-        while ($contactQuery->have_posts()){
-            $contactQuery->the_post();
-            $content = get_the_content();
-        }
-            wp_reset_postdata();
-            echo '<div class="productContact">' . $content . '</div>';
-}
-add_action('woocommerce_single_product_summary', 'contact_blurb', 45);

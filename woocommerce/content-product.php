@@ -31,8 +31,9 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 //do a check later
 $manufacturer = array_shift( wc_get_product_terms( $product->id, 'pa_manufacturer', array( 'fields' => 'names' ) ) );
 $sku = $product->get_sku();
+
 ?>
-<li itemscope itemtype="https://schema.org/ProductCollection" <?php wc_product_class( 'modal-link ', $product ); ?>>
+<li itemscope itemtype="https://schema.org/ProductCollection" <?php wc_product_class( 'modal-link ', $product ); ?> >
 	<?php
     if ( str_contains($tags, 'Pending') == true ){
         echo '<span class="pending">Pending</span>';
@@ -46,6 +47,7 @@ $sku = $product->get_sku();
     echo '<meta itemprop="url" content="'. get_the_permalink() . '" />
     <meta itemprop="brand" content="'. $manufacturer . '" />
     <meta itemprop="sku" content="'. $sku . '" />';
+
 	/**
 	 * Hook: woocommerce_before_shop_loop_item.
 	 *

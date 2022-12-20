@@ -365,7 +365,7 @@ footer .logo{
   display: none;
 }
 .brands{
-  height: 95%;
+  height: 100%;
   background-color: nth($rpsBrand, 1);
   padding-bottom: 10px;
   box-shadow: 9px 6px 4px 0px rgba(0,0,0,0.75);
@@ -386,7 +386,7 @@ footer .logo{
 }
 .brands p{
   color: nth($rpsBrand, 4);
-  padding: 10px;
+  padding: 5px;
   font-size: 1.1vw !important;
 }
 .brands h3{
@@ -410,10 +410,11 @@ footer .logo{
   padding-left: 6%;
   padding-right: 6%;
   width: 100%;
-  height: 50%;
+  height: auto;
 }
 .bannerImage img{
   height: auto;
+  width: 100%;
   aspect-ratio: 4/1;
 }
 .bannerImageTall img{
@@ -631,9 +632,6 @@ footer .logo{
   margin-top: -10vw;
   margin-bottom: 8vw;
 }
-.appended{
-  text-align: center;
-}
 #sidebarContainer {
   //position: absolute;
   height: fit-content;
@@ -664,6 +662,26 @@ footer .logo{
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
+}
+.carousel .sliderText{
+  position: relative;
+  z-index: 1;
+  width: 45%;
+  padding: 10px;
+  max-height: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background-color: rgba(255, 255, 255, 0.75);
+  -webkit-box-shadow: 2px 2px 5px 1px #000000;
+  box-shadow: 2px 2px 5px 1px #000000;
+}
+.brandsContent{
+  display: flex;
+  flex-direction: column;
+  height: 45%;
+}
+.appended{
+  text-align: center;
 }
 //extra small mobile
 @media (min-width: 320px) and (max-width: 480px) {
@@ -715,18 +733,8 @@ footer .logo{
     width: 100%;
   }
   .carousel .sliderText{
-    position: relative;
-    bottom: 15vw;
+    bottom: 40vw;
     left: 10vw;
-    z-index: 1;
-    width: 45%;
-    padding: 10px;
-    max-height: 200px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    background-color: rgba(255, 255, 255, 0.75);
-    -webkit-box-shadow: 2px 2px 5px 1px #000000;
-    box-shadow: 2px 2px 5px 1px #000000;
   }
   .sliderText p{
     font-size: nth($fontSizing, 1);
@@ -796,18 +804,8 @@ footer .logo{
     width: 100%;
   }
   .carousel .sliderText{
-    position: relative;
     bottom: 25vw;
     left: 15vw;
-    z-index: 1;
-    width: 45%;
-    padding: 10px;
-    max-height: 200px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    background-color: rgba(255, 255, 255, 0.75);
-    -webkit-box-shadow: 2px 2px 5px 1px #000000;
-    box-shadow: 2px 2px 5px 1px #000000;
   }
   .sliderText h2{
     font-size: 14px;
@@ -849,18 +847,8 @@ footer .logo{
     width: 100%;
   }
   .carousel .sliderText{
-    position: relative;
     bottom: 20vw;
     left: 10vw;
-    z-index: 1;
-    width: 45%;
-    padding: 10px;
-    max-height: 200px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    background-color: rgba(255, 255, 255, 0.75);
-    -webkit-box-shadow: 2px 2px 5px 1px #000000;
-    box-shadow: 2px 2px 5px 1px #000000;
   }
   .brandCard img{
     width: 100%;
@@ -916,18 +904,8 @@ footer .logo{
     width: 100%;
   }
   .carousel .sliderText{
-    position: relative;
-    bottom: 15vw;
+    bottom: 20vw;
     left: 10vw;
-    z-index: 1;
-    width: 45%;
-    padding: 10px;
-    max-height: 200px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    background-color: rgba(255, 255, 255, 0.75);
-    -webkit-box-shadow: 2px 2px 5px 1px #000000;
-    box-shadow: 2px 2px 5px 1px #000000;
   }
 }
 @media (min-width: 1201px){
@@ -950,18 +928,8 @@ footer .logo{
     width: 100%;
   }
   .carousel .sliderText{
-    position: relative;
-    bottom: 15vw;
+    bottom: 20vw;
     left: 10vw;
-    z-index: 1;
-    width: 45%;
-    padding: 10px;
-    max-height: 200px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    background-color: rgba(255, 255, 255, 0.75);
-    -webkit-box-shadow: 2px 2px 5px 1px #000000;
-    box-shadow: 2px 2px 5px 1px #000000;
   }
 }
 //body::-webkit-scrollbar{
@@ -1070,6 +1038,9 @@ body::-webkit-scrollbar-thumb{
 }
 .hidden{
   display: none;
+}
+.hide{
+  visibility: hidden;
 }
 #sb_instagram{
   margin-bottom: 10%;
@@ -1589,4 +1560,7 @@ input:checked + .slider:before {
   border: 1px solid nth($rpsBrand, 1);
   -webkit-box-shadow: 5px 5px 10px 0px #000000;
   box-shadow: 5px 5px 10px 0px #000000;
+}
+#contentTrigger{
+  margin-top: 5%;
 }
