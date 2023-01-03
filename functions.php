@@ -408,7 +408,6 @@ function brand_description_shortcode(){
 }
 add_shortcode('brand-description', 'brand_description_shortcode');
 
-
 function hero_shortcode(){
     include('template-parts/components/heroVideo.php');
 }
@@ -445,18 +444,12 @@ function quote_shortcode(){
 add_shortcode('quote', 'quote_shortcode');
 
 function banner_shortcode(){
-    echo '<div class="bannerImage">';
-    $featured = get_the_post_thumbnail( $post_id );
-    echo $featured;
-    echo'</div>';
+    include('template-parts/components/banner.php');
 }
 add_shortcode('banner', 'banner_shortcode');
 
 function banner_tall_shortcode(){
-    echo '<div class="bannerImageTall">';
-        $featured = get_the_post_thumbnail( $post_id );
-        echo $featured;
-    echo'</div>';
+    include('template-parts/components/banner-tall.php');
 }
 add_shortcode('banner-tall', 'banner_tall_shortcode');
 
@@ -471,23 +464,7 @@ function map_shortcode(){
 add_shortcode('map', 'map_shortcode');
 
 function vision_shortcode(){
-    $visionQuery = new WP_Query(array(
-        'category_name'     => 'vision',
-        'order'             => 'DESC',
-        'post_status'       => 'publish',
-        'posts_per_page'    => 1
-    ));
-
-    echo '<div class="container">
-    <section class="row justify-content-sm-center vision">';
-        while ($visionQuery->have_posts()){
-        $visionQuery->the_post();
-            echo '<h2 class="col-sm-4">' . get_the_title() . '</h2>';
-            echo '<p class="offset-sm-1  col-sm-8">' .  get_the_content() . '</p>';
-        }
-        wp_reset_postdata();
-    echo '</section>
-</div>';
+    include('template-parts/components/vision.php');
 }
 add_shortcode('vision', 'vision_shortcode');
 
@@ -587,39 +564,7 @@ function content_shortcode(){
 add_shortcode('content', 'content_shortcode');
 
 function brand_content_shortcode(){
-    global $post;
-    $slug = $post->post_name;
-    $terms = get_terms([
-        'slug'      => $slug,
-        'taxonomy'  => 'pa_manufacturer',
-        'hide_empty'=> false
-    ]);
-    $name = wp_list_pluck($terms, 'name');
-    $description = wp_list_pluck($terms, 'description');
-    $image_slug = $slug.'-logo';
-    $image_id = get_page_by_title($image_slug, OBJECT, 'attachment');
-    $image = $image_id->guid;
-//    odd way of going about it but I'll take it.can't seem to get a consistent way of handling the manufacturers..
-
-    echo '<section id="contentTrigger">
-            <div class="container display">
-                <div class="row">';
-                if ($image != ''){
-                        echo '<img class="logoBanner col-sm-3" alt="' . $slug . ' logo" src="' . $image . '">
-                        <h2 id="categoryTitle" class="col-12 hide">' . $name[0] . '</h2>';
-                    } else {
-                        echo '<h2 id="categoryTitle" class="col-12">' . $name[0] . '</h2>';
-                    }
-                    echo '<p class="col-12">' . $description[0] . '</p>
-                </div>
-            </div>
-            <div id="mobileFilter"></div>
-            <div class="content">';
-    echo '<div class="container">';
-    echo do_shortcode('[products attribute="manufacturer"  terms="' . $slug . '" per_page="-1" columns="5" orderby="meta_value_num" on_sale="" order="" operator="IN"]');
-    echo '</div>
-            </div>
-    </section>';
+    include('template-parts/components/brand-content.php');
 }
 add_shortcode('brand-content', 'brand_content_shortcode');
 

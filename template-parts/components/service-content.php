@@ -74,9 +74,8 @@ echo '<div class="container serviceLayout">
             <h2>' . $term->name . '</h2>
             <div class="row">
                 <div class="col-lg-6">';
-echo $categoryDescription .
-    '
-                <img class="serviceInfo" src="'. $infoImage .'" alt="Services We Offer">
+                echo $categoryDescription . '
+                    <img class="serviceInfo" src="'. $infoImage .'" alt="Services We Offer">
                 </div>
                 <div class="col-lg-6">
                 <h2>Contact Us To Book</h2>

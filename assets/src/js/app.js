@@ -123,6 +123,7 @@ jQuery(document).ready(function($) {
   var mobile = (/iphone|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));
   if (mobile) {
     $('.slick-arrow').delay(10000).fadeOut('slow');
+    $('.mega-toggle-blocks-left').append($('<img>', {id:'theLogo', src:'/wp-content/themes/shoreside/assets/src/library/images/logo.png'}));
   } else {
 
     // $('.financingText').hover(
