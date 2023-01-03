@@ -518,7 +518,7 @@ footer .logo{
 }
 .sliderContent img{
   width: 100%;
-  height: 100%;
+  height: 480px;
 }
 .mainCarousel .sliderText{
   z-index: 1;
@@ -642,9 +642,6 @@ footer .logo{
 }
 .content > .container{
   margin-top: 15px;
-}
-.slick-list{
-  height: 48vw;
 }
 .slick-track{
   height: inherit;
@@ -839,7 +836,7 @@ footer .logo{
     margin-top: -20%;
   }
   .home-block{
-    top: -310px;
+    top: -300px;
   }
   .carousel{
     max-height: 480px;
@@ -912,6 +909,9 @@ footer .logo{
   .disclaimer{
     top: 5.5%;
   }
+  .home-block{
+    top: -300px;
+  }
   .disclaimer:before{
     content: "";
     position: absolute;
@@ -932,64 +932,6 @@ footer .logo{
     left: 10vw;
   }
 }
-//body::-webkit-scrollbar{
-//  width: 15px;
-//}
-//body::-webkit-scrollbar-button:after{
-//  box-shadow: inset -5px 0px 5px -2px #000;
-//  -webkit-box-shadow: inset -5px 0px 5px -2px #000;
-//}
-//body::-webkit-scrollbar-button{
-//  width: 15px;
-//  height: 15px;
-//  box-shadow: inset -5px 0px 5px -2px #000;
-//  -webkit-box-shadow: inset -5px 0px 5px -2px #000;
-//  border: 1px solid black;
-//  background: nth($rpsBrand, 1);
-//}
-body::-webkit-scrollbar-track{
-  background: transparent;
-  border: 1px solid nth($rpsBrand, 1);
-}
-body::-webkit-scrollbar-thumb{
-  background: nth($rpsBrand, 1);
-  border-radius: 5px;
-  border: 1px solid black;
-  height: 200px;
-  box-shadow: inset -5px 0px 5px -2px #000;
-  -webkit-box-shadow: inset -5px 0px 5px -2px #000;
-}
-//
-///* Up */
-//::-webkit-scrollbar-button:vertical:decrement
-//{
-//  //border-left: 3px solid transparent;
-//  //border-right: 3px solid transparent;
-//  //border-bottom: 3px solid white;
-//  //padding: 3px;
-//  width: 15px;
-//  height: 15px;
-//  //border-width: 0 6px 6px 6px;
-//  //border-color: transparent transparent white transparent;
-//}
-//::-webkit-scrollbar-button:vertical:decrement:hover
-//{
-//  //border-color: transparent transparent white transparent;
-//}
-//
-///* Down */
-//::-webkit-scrollbar-button:vertical:increment
-//{
-//  width: 15px;
-//  height: 15px;
-//  //border-width: 6px 6px 0 6px;
-//  //border-color: white transparent transparent transparent;
-//}
-//::-webkit-scrollbar-button:vertical:increment:hover
-//{
-//  //border-color: white transparent transparent transparent;
-//}
-
 .contactSelection{
   margin-top: 100px;
   margin-bottom: 100px;
@@ -1019,7 +961,6 @@ body::-webkit-scrollbar-thumb{
 }
 .form-1,.form-2,.form-3,.form-4,.form-5{
   animation: moveInRight .5s ease-out;
-
 }
 @keyframes moveInRight {
   0% {
@@ -1125,6 +1066,8 @@ div .form-footer{
   color: nth($rpsBrand,4);
   background: nth($rpsBrand, 1);
   border: 2px solid nth($rpsBrand, 1);
+  //padding: 5px;
+
 }
 .tableItem{
   border-left: 2px solid nth($rpsBrand, 1);
@@ -1541,12 +1484,6 @@ input:checked + .slider:before {
 .promotions img{
   width: 100%;
 }
-.serviceWriteup{
-  align-self: center;
-}
-.serviceForm{
-  margin-bottom: 5%;
-}
 .catalog{
   text-align: center;
   overflow: hidden;
@@ -1563,4 +1500,34 @@ input:checked + .slider:before {
 }
 #contentTrigger{
   margin-top: 5%;
+}
+.service-main{
+  margin-top: 5%;
+}
+.serviceLayout .row{
+  margin-top: 5%;
+  //background-color: lightgray;
+}
+.serviceLayout > h2:first-child{
+  font-size: 36px;
+}
+.table .col-lg-6{
+  background-color: nth($rpsBrand, 1);
+}
+.table .tableItem{
+  margin-top: 0!important;
+  background-color: nth($rpsBrand, 4);
+}
+.table{
+  background-color: nth($rpsBrand, 1);
+  border-radius: 10px;
+  margin-bottom: 5%;
+}
+.table h2{
+  color: nth($rpsBrand, 4);
+  text-align: center;
+}
+.serviceInfo{
+  margin-top: 5%;
+  width: inherit;
 }

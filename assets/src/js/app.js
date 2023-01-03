@@ -390,23 +390,29 @@ jQuery(document).ready(function($) {
             $('.saleInput').attr('data-sale', false);
           };
           if (idObj != pageObj) {
+            // defered again for now
             var newUri;
             var appendCat = '&product_cat=';
             var pushCat = '?product_cat=';
 
-            if (window.location.href.indexOf("?terms=") > -1) {
-              newUri = uri + appendCat + idObj;
-              history.pushState({}, document.title, newUri);
-            } else {
+            if (window.location.href.indexOf("?terms=") >= -1) {
               newUri = pushCat + idObj;
               history.pushState({}, document.title, newUri);
+            } else {
+              if (idObj != '') {
+                newUri = uri + appendCat + idObj;
+                history.pushState({}, document.title, newUri);
+              } else {
+                newUri = uri + appendCat + pageObj;
+                history.pushState({}, document.title, newUri);
+              }
             }
           };
           // if (tagObj != ''){
           //   if (window.location.href.indexOf("?product_cat=") != -1){
           //     newUri = uri + '&terms=' + tagObj;
           //     history.pushState({}, document.title, newUri);
-          //     alert(newUri);
+          //     alert('Terms not empty');
           //   } else {
           //     newUri = '?terms=' + tagObj;
           //     history.pushState({}, document.title, newUri);

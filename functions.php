@@ -492,152 +492,19 @@ function vision_shortcode(){
 add_shortcode('vision', 'vision_shortcode');
 
 function winterize_shortcode(){
-    global $post;
-    $slug = $post->post_name;
-
-    $id = get_term_by('slug', $slug, 'product_cat');
-    $idObj = $id->term_id;
-    $categoryDescription = category_description($idObj);
-    $term = get_term_by('id', $idObj, 'product_cat');
-    $product = wc_get_product( $idObj );
-
-    $contactQuery = new WP_Query(array(
-        'category_name'     =>  'contact',
-        'order'             => 'DESC',
-        'post_status'       => ' publish',
-        'posts_per_page'    => 1
-    ));
-
-    $taxonomy       = 'product_cat';
-    $orderby        = 'ID';
-    $show_count     = 0;      // 1 for yes, 0 for no
-    $pad_counts     = 0;      // 1 for yes, 0 for no
-    $hierarchical   = 1;      // 1 for yes, 0 for no
-    $title          = '';
-    $empty          = 0;
-
-    $args = array(
-        'post_type'             => 'product',
-        'post_status'           => 'publish',
-        'posts_per_page'        => '25',
-        'tax_query'             => array(
-            array(
-                'taxonomy'                  => $taxonomy,
-                'terms'                     => $idObj,
-                'orderby'                   => $orderby,
-                'order'                     => 'ASC',
-                'show_count'                => $show_count,
-                'pad_counts'                => $pad_counts,
-                'hierarchical'              => $hierarchical,
-                'title_li'                  => $title,
-                'hide_empty'                => $empty
-            ),
-            array(
-                'taxonomy'      => 'product_visibility',
-                'field'         => 'slug',
-                'terms'         => 'exclude-from-catalog',
-                'operator'      => 'NOT IN'
-            )
-        )
-    );
-
-    $products = get_posts($args);
-    echo '<div  class="container mission">
-            <div class="row">
-                <div class="col-lg-12">';
-                    echo '<h2>' . $term->name . '</h2>';
-                    echo $categoryDescription;
-                echo '</div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">';
-                    while ($contactQuery->have_posts()){
-                        $contactQuery->the_post();
-                        $content = the_content();
-                    $content;
-    }
-    wp_reset_postdata();
-    echo '</div>
-    </div>
-    <div class="row">
-        <span class="col-12"><strong>Prices include all parts, labor and shop supplies. GST not included.</strong></span><br><br>
-    </div>
-    <div class="row tableHeader">
-        <span class="col-3">Name</span><span class="col-2">Price</span><span class="col-7">Description</span>
-    </div>';
-    foreach ($products as $service) {
-        $price = wc_get_product( $service )->get_price();
-
-        echo '<a class="row tableItem" itemscope itemtype="https://schema.org/ProductCollection" href="' . get_permalink( $service->ID ) . '"> 
-                    <span class="col-3" itemprop="name">' . $service->post_title . '</span>';
-                        if ($price == '' ) {
-                                echo '<span class="col-2" itemprop = "price" >' . $price .  '</span >';
-                        } else {
-                                echo '<span class="col-2" itemprop = "price" >$' . $price .  '</span >';
-                        }
-                        echo '<span class="col-7" itemprop="description">' . $service->post_excerpt . '</span>
-                  </a>';
-    }
-    echo '</div>';
+    include('template-parts/components/winterize-content.php');
 }
 add_shortcode('winterize-content', 'winterize_shortcode');
 
 function service_shortcode(){
-    global $post;
-    $slug = $post->post_name;
-
-    $id = get_term_by('slug', $slug, 'product_cat');
-    $idObj = $id->term_id;
-    $categoryDescription = category_description($idObj);
-    $term = get_term_by('id', $idObj, 'product_cat');
-
-    echo '<div  class="container">
-            <div class="row">
-                <div class="col-lg-6 serviceWriteup">';
-                    echo '<h2>' . $term->name . '</h2>';
-                    echo $categoryDescription .
-                '</div>
-                <div class="col-lg-6 serviceForm">
-                    <script type="text/javascript" src="https://form.jotform.com/jsform/223384426868063"></script>
-                </div>
-            </div>
-        </div>';
+    include('template-parts/components/service-content.php');
 }
 add_shortcode('service-content', 'service_shortcode');
 
 function load_product(){
     $productUrl       =           $_REQUEST['product'];
     $productId        =           url_to_postid($productUrl);
-//    $postType         =           'product';
 
-//    $args = array(
-//            'p'                 =>         $productId,
-//            'post_type'         =>         $postType,
-//    );
-//
-//    $query = new WP_Query($args);
-
-//
-//    do_action( 'woocommerce_before_main_content' );
-//
-//        while ($query->have_posts()) : $query->the_post();
-//            wc_get_template_part( 'content', 'single-product' );
-//        endwhile;
-//
-//    do_action( 'woocommerce_after_main_content' );
-
-
-//    $content_post     =           get_post($productId);
-//    $content          =           $content_post->post_content;
-//    $content          =           str_replace(']]>', ']]&gt;', $content);
-
-//    $output           =           "";
-//    $output           .=          get_the_post_thumbnail( $productId, 'medium' );
-//    $output           .=          $content;
-
-//    is_product($productId);
-
-//    var_dump($query);
     echo do_shortcode('[product_page id="' . $productId . '"]');
 
     exit();
@@ -715,64 +582,7 @@ add_action('wp_ajax_load_results', 'load_results');
 add_action('wp_ajax_nopriv_load_results', 'load_results');
 
 function content_shortcode(){
-    global $post;
-    $slug               =           $post->post_name;
-    $id                 =           get_term_by('slug', $slug, 'product_cat');
-    $idObjConst         =           $id->term_id;
-    $tagObj             =           $_REQUEST['terms'];
-    $parent             =           $_REQUEST['product_cat'];
-
-    if ($_GET['attribute'] == '') {
-        if ($_GET['product_cat'] != '') {
-            $idObj = $_REQUEST['product_cat'];
-            $value = $idObj;
-            $field = 'id';
-            $taxonomy = 'product_cat';
-        } else {
-            $idObj = $id->term_id;
-            $value = $idObj;
-            $field = 'id';
-            $taxonomy = 'product_cat';
-        }
-    }
-    if ($tagObj != '') {
-        $attribute = 'manufacturer';
-        $value = $tagObj;
-        $field = 'term_id';
-        $taxonomy = 'pa_manufacturer';
-
-        $image_slug = $value.'-logo';
-        $image_id = get_page_by_title($image_slug, OBJECT, 'attachment');
-        $image = $image_id->guid;
-    }
-
-    $term = get_term_by($field, $value, $taxonomy);
-    $test = get_term_by('id', $parent, 'product_cat');
-
-    echo '<section id="contentTrigger" data-page="' . $idObjConst . '" data-slug="' . $slug .'">
-            <div data-parent="' . $test->slug . '" class="container display">
-                <div class="row">';
-                    if ($image != ''){
-                        echo '<img class="logoBanner col-sm-3" alt="' . $slug . ' logo" src="' . $image . '">
-                        <h2 id="categoryTitle" class="col-12 hide"  data-cat="' . $term->slug . '">' . $term->name . '</h2>';
-                    } else {
-                        echo '<h2 id="categoryTitle" class="col-12"  data-cat="' . $term->slug . '">' . $term->name . '</h2>';
-                    }
-                    echo '<p class="col-12">' . $term->description . '</p>
-                </div>
-            </div>
-            <div id="mobileFilter">
-                <a id="sidebarIcon" href="">
-                    <img width="30px" height="30px" src="' . get_template_directory_uri(). '/assets/src/library/images/menu-icon.svg"' . 'alt="Menu Icon">
-                </a>
-            </div>
-            <div class="content">';
-                get_sidebar();
-                echo '<div class="container">';
-                    echo do_shortcode('[products category="' . $idObj . '" attribute="' . $attribute . '"  terms="' . $tagObj . '" per_page="-1" columns="5" orderby="meta_value_num" on_sale="" order="" operator="IN"]');
-                echo '</div>
-            </div>
-    </section>';
+    include('template-parts/components/content.php');
 }
 add_shortcode('content', 'content_shortcode');
 
