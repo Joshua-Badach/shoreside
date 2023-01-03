@@ -139,272 +139,27 @@ $site_slug = $post->post_name;
 //Shortcodes
 
 function carousel_shortcode(){
-    if ( is_home() || is_front_page() ){
-        echo '<h2 class="col-sm-8">How Recreational Power Sports Does It Better</h2>';
-    } else {
-        echo '<h2 class="hidden">';
-        the_title();
-        echo ' Offerings';
-        echo '</h2>';
-    }
-    if ( is_home() || is_front_page() ) {
-        echo '<div class="mainCarousel">';
-    } else {
-        echo '<div class="carousel">';
-    }
-        $the_page = sanitize_posT($GLOBALS['wp_the_query']->get_queried_object() );
-        $slug = $the_page->post_name;
-
-    function wp_loop_slider($query){
-        while ($query->have_posts()){
-            $query->the_post();
-            echo ('<section class="sliderContent">');
-            the_post_thumbnail('', array( 'loading' => 'lazy' ));
-            ?><div class="sliderText">
-            <h2><?php the_title(); ?></h2>
-            <?php the_content(); ?>
-            </div><?php
-            echo ('</section>');
-        }
-        wp_reset_postdata();
-    }
-
-    if (is_home() || is_front_page() == true ):
-        $query = new WP_Query(array(
-            'category_name'         => 'home-slider',
-            'posts_per_page'        => 5
-        ));
-        wp_loop_slider($query);
-
-    elseif (is_home() == false):
-        $query = new WP_Query(array(
-            'category_name'         => $slug.'-slider',
-            'posts_per_page'        => 5
-        ));
-        wp_loop_slider($query);
-
-    endif;
-
-    echo '</div>';
+    include('template-parts/components/carousel.php');
 }
 add_shortcode('carousel', 'carousel_shortcode');
 
-function promotional_content_shortcode(){
-    $promotionQuery = new WP_Query(array(
-        'category_name'     => 'promotions-text',
-        'order'             => 'DESC',
-        'post_status'       => 'publish',
-        'posts_per_page'    => 1
-    ));
-
-    $promotionAdQuery = new WP_Query(array(
-        'category_name'     =>      'promotions-ad',
-        'order'             =>      'ASC',
-        'post_status'       =>      'publish',
-        'posts_per_page'    =>      -1
-    ));
-
-    echo '<section>
-            <div class="container">
-                <div class="row">';
-                    while ($promotionQuery->have_posts()){
-                        $promotionQuery->the_post();
-                        $title = get_the_title();
-                        $content = get_the_content();
-                        echo '<h2 class="col-12">' . $title . '</h2>' .
-                        '<p class="col-12">' . $content . '</p>';
-                    }
-                    wp_reset_postdata();
-                echo'</div>
-            </div>
-            <div>
-                <div class="row promotionRow row-cols-4">';
-                while ($promotionAdQuery->have_posts()){
-                    $promotionAdQuery->the_post();
-                    $promotions = get_the_post_thumbnail();
-                    echo '<p class="col promotions">' . $promotions . '</p>';
-                }
-                wp_reset_postdata();
-            echo '</div>
-            </div>
-    </section>';
+function promotion_content_shortcode(){
+    include('template-parts/components/promotion-content.php');
 }
-add_shortcode('promotion-content', 'promotional_content_shortcode');
+add_shortcode('promotion-content', 'promotion_content_shortcode');
 
 function promotional_shortcode(){
-    if ( is_home() == false ){
-        echo '<h2 class="hidden">';
-        the_title();
-        echo ' Offerings';
-        echo '</h2>';
-    }
-    echo '<div class="carousel">';
-
-    function promotional_slider($query){
-        while ($query->have_posts()){
-            $query->the_post();
-            echo ('<section class="sliderContent">');
-            the_post_thumbnail('', array( 'loading' => 'lazy' ));
-            ?><div class="sliderText">
-            <h2><?php the_title(); ?></h2>
-            <?php the_content(); ?>
-            </div><?php
-            echo ('</section>');
-        }
-        wp_reset_postdata();
-    }
-
-    echo '</div>';
+    include('template-parts/components/promotion-carousel.php');
 }
 add_shortcode('promotion-carousel', 'promotional_shortcode');
 
 function brands_shortcode(){
-    global $post;
-    $slug = $post->post_name;
-
-    $taxonomy       = 'pa_manufacturer';
-    $orderby        = 'name';
-    $show_count     = 0;
-    $pad_counts     = 0;
-    $hierarchical   = 1;
-    $title          = '';
-    $empty          = 0;
-
-    $args = array(
-        'taxonomy'                  => $taxonomy,
-        'orderby'                   => $orderby,
-        'show_count'                => $show_count,
-        'pad_counts'                => $pad_counts,
-        'hierarchical'              => $hierarchical,
-        'title_li'                  => $title,
-        'hide_empty'                => $empty
-    );
-
-
-    function brand_loop($args){
-        $taxonomy           =           'product_cat';
-        $hierarchical       =           1;
-        $empty              =           0;
-        $limit              =           -1;
-        $status             =           'publish';
-
-
-        $query_args = array(
-            'status'                        => $status,
-            'limit'                         => $limit,
-            'hierarchical'                  => $hierarchical,
-            'show_option_none'              => '',
-            'hide_empty'                    => $empty,
-            'taxonomy'                      => $taxonomy,
-        );
-
-        $unique = array();
-        $name = array();
-        $test = ['avalon', 'mirrocraft', 'mercury', 'shorestation', 'argo'];
-
-        foreach (wc_get_products($query_args) as $product) {
-            foreach ($product->get_attributes() as $tax => $attribute) {
-                foreach ($attribute->get_terms() as $i => $term) {
-                    if ($term->taxonomy == 'pa_manufacturer') {
-                        if ( in_array($term->slug, $test[$i] ) ) {
-                            $unique[] = $term->term_id;
-                            $name[] = $term->name;
-                            $termSlug[] = $term->slug;
-                            $termCheck = array_unique($unique);
-                            $termName = array_unique($name, SORT_LOCALE_STRING);
-                            asort($termName);
-                        }
-                    }
-                }
-            }
-        }
-//        foreach ($termName as $i => $aTerm) {
-//            echo $termName[$i] . '<br>';
-//        }
-
-        $terms = get_categories($args);
-
-        echo '<section class="container"> 
-                <div class="row brandSpan justify-content-center">
-                <h2>Our Brands</h2>';
-        foreach ($terms as $term) {
-            if ($term->slug === $test[0] ) {
-                $url = 'https://www.avalonpontoons.com/';
-                brand_cards($term, $url);
-            }
-            if ($term->slug === $test[1] ) {
-                $url = 'https://www.mirrocraft.com/';
-                brand_cards($term, $url);
-            }
-            if ($term->slug === $test[2] ) {
-                $url = 'https://www.mercurymarine.com/en/ca/';
-                brand_cards($term, $url);
-            }
-            if ($term->slug === $test[3] ) {
-                $url = 'https://www.mercurymarine.com/en/ca/';
-                brand_cards($term, $url);
-            }
-            if ($term->slug === $test[4] ) {
-                $url = 'https://www.argo.com/en/ca/';
-                brand_cards($term, $url);
-            }
-        }
-        echo '</section>';
-    }
-
-    function brand_cards($term, $url){
-        $image_slug = $term->slug.'-logo';
-        $image_id = get_page_by_title($image_slug, OBJECT, 'attachment');
-        $image = $image_id->guid;
-        $content = $term->description;
-        $trimmed_content = wp_trim_words( $content, 25, '...');
-
-        echo '<section itemscope itemtype="https://schema.org/Brand" class="col-lg-2">
-            <a href="' . $term->slug . '">
-                <div class="brandCard brands">
-                    <div class="brandImage">
-                        <img itemprop="logo" src="'. $image . '">
-                        <span hidden itemprop="url"> ' . $url . '</span>
-                    </div>   
-                    <div class="brandsContent">    
-                        <h3 itemprop="name" class="hidden">' . $term->name . '</h3>
-                        <p itemprop="description">'; echo $trimmed_content . '</p>
-                    </div>
-                    <p class="appended">Read More</p> 
-                </div>    
-            </a>
-    </section>';
-    }
-    brand_loop($args);
+    include('template-parts/components/brand-card.php');
 }
 add_shortcode('brands', 'brands_shortcode');
 
 function brand_description_shortcode(){
-    global $post;
-    $slug = $post->post_name;
-
-    $brandsQuery = new WP_Query(array(
-        'category_name'     =>  $slug,
-        'order'             => 'DESC',
-        'post_status'       => ' publish',
-        'posts_per_page'    => 1
-    ));
-
-    echo '<section class="container"> 
-            <div class="row">';
-    while ($brandsQuery->have_posts()){
-        $brandsQuery->the_post(); ?>
-        <h2 class="col-sm-3"><?php the_title() ?> </h2>
-        </div>
-        <div class="row">
-            <p class="col-sm-12"> <?php the_content(); ?></p>
-        </div>
-        <?php
-    }
-    wp_reset_postdata();
-    echo '</div>
-      </section>';
-
+    include('template-parts/components/brand-description.php');
 }
 add_shortcode('brand-description', 'brand_description_shortcode');
 
@@ -478,6 +233,7 @@ function service_shortcode(){
 }
 add_shortcode('service-content', 'service_shortcode');
 
+//Ajax call
 function load_product(){
     $productUrl       =           $_REQUEST['product'];
     $productId        =           url_to_postid($productUrl);
