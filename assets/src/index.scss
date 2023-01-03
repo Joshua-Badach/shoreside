@@ -354,11 +354,14 @@ footer .logo{
 .brandSpan{
   margin-top: -11.50vw;
   margin-bottom: 50px;
-}
-.brandSpan .col-2{
-  width: 19.6666667%!important;
-  padding-left: 10px!important;
-  padding-right: 10px!important;
+
+  .col-2 {
+    width: 19.6666667% !important;
+    flex: 19.6666667% !important;
+    max-width: 20% !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
 }
 .brandSpan h2{
   display: none;
@@ -907,6 +910,9 @@ footer .logo{
 @media (min-width: 1201px){
   .disclaimer{
     top: 90px;
+  }
+  .ourCatalogs{
+    margin-bottom: 10%;
   }
   .home-block{
     top: -300px;

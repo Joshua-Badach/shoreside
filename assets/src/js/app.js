@@ -124,6 +124,7 @@ jQuery(document).ready(function($) {
   if (mobile) {
     $('.slick-arrow').delay(10000).fadeOut('slow');
     $('.mega-toggle-blocks-left').append($('<img>', {id:'theLogo', src:'/wp-content/themes/shoreside/assets/src/library/images/logo.png'}));
+
   } else {
 
     // $('.financingText').hover(
@@ -395,6 +396,8 @@ jQuery(document).ready(function($) {
             var newUri;
             var appendCat = '&product_cat=';
             var pushCat = '?product_cat=';
+            var appendTerm = '&term=';
+            var pushTerm = '?term=';
 
             if (window.location.href.indexOf("?terms=") >= -1) {
               newUri = pushCat + idObj;
@@ -409,18 +412,19 @@ jQuery(document).ready(function($) {
               }
             }
           };
-          // if (tagObj != ''){
-          //   if (window.location.href.indexOf("?product_cat=") != -1){
-          //     newUri = uri + '&terms=' + tagObj;
-          //     history.pushState({}, document.title, newUri);
-          //     alert('Terms not empty');
-          //   } else {
-          //     newUri = '?terms=' + tagObj;
-          //     history.pushState({}, document.title, newUri);
-          //     alert(newUri);
-          //
-          //   }
-          // };
+          //continue here
+          if (tagObj != ''){
+            if (window.location.href.indexOf("?product_cat=") >= -1){
+              newUri = pushTerm + tagObj;
+              history.pushState({}, document.title, newUri);
+              alert('Terms not empty');
+            } else {
+              newUri = pushTerm + tagObj;
+              history.pushState({}, document.title, newUri);
+              alert(newUri);
+
+            }
+          };
           if (mobile) {
             $('#sidebarContainer').css('position', 'absolute');
           };
