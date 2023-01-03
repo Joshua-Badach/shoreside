@@ -437,6 +437,21 @@ function payments(){
             }
         }
 
+    } elseif ($price != '' && str_contains($categories, 'Preowned') == true) {
+        if ($principle > 3000) {
+            if ($principle > 3000 && $principle < 4999) {
+                $months = 36;
+            } elseif ($principle > 5000 && $principle < 9999) {
+                $months = 84;
+            } elseif ($principle > 10000 && $principle < 19999) {
+                $months = 180;
+            } elseif ($principle > 20000) {
+                $months = 240;
+            }
+            $interest = 0.1099;
+            $apr = '10.99';
+            financeCalc($months, $principle, $interest, $apr);
+        }
     }
 }
 
