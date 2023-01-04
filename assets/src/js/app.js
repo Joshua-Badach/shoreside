@@ -342,7 +342,7 @@ jQuery(document).ready(function($) {
   //Clean this up
 
   $(document).on('click', '#sidebar a, #sidebar input, #sidebar button', function() {
-    var pageUrl = document.location.href;
+    // var pageUrl = document.location.href;
 
     var idObj = $(this).data('category');
     var attribute = $(this).data('attribute');
@@ -356,7 +356,6 @@ jQuery(document).ready(function($) {
     var pageObj = $('#contentTrigger').data('page');
     var slugObj = $('#contentTrigger').data('slug');
     var ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";
-
     window.LoadResultsPayload.idObj = idObj;
     window.LoadResultsPayload.pageObj = pageObj;
     window.LoadResultsPayload.attribute = attribute;
@@ -366,15 +365,14 @@ jQuery(document).ready(function($) {
     window.LoadResultsPayload.slug = slug;
     window.LoadResultsPayload.catSlug = catSlug;
 
-      $.ajax({
-        url: ajaxUrl,
-        dataType: 'html',
-        data: window.LoadResultsPayload,
+    $.ajax({
+      url: ajaxUrl,
+      dataType: 'html',
+      data: window.LoadResultsPayload,
+      success: function (response) {
+        $('#contentTrigger').html(response);
 
-        success: function (response) {
-          $('#contentTrigger').html(response);
-
-          sidebar();
+        sidebar();
           if (slug.indexOf('pre-owned') != -1 || catSlug.indexOf('pre-owned') != -1) {
             $('.conditionInput').prop('checked', true);
             $('.conditionInput').attr('data-category', pageObj);
@@ -391,39 +389,25 @@ jQuery(document).ready(function($) {
             $('.saleInput').prop('checked', true);
             $('.saleInput').attr('data-sale', false);
           };
+          var newUri;
+          var pushCat = '?product_cat=';
+          var appendTerm = '&term=';
+          var pushTerm = '?term=';
+
           if (idObj != pageObj) {
-            // defered again for now
-            var newUri;
-            var appendCat = '&product_cat=';
-            var pushCat = '?product_cat=';
-            var appendTerm = '&term=';
-            var pushTerm = '?term=';
-
-            if (window.location.href.indexOf("?terms=") >= -1) {
+            if (idObj != '' && tagObj == '') {
               newUri = pushCat + idObj;
-              history.pushState({}, document.title, newUri);
-            } else {
-              if (idObj != '') {
-                newUri = uri + appendCat + idObj;
-                history.pushState({}, document.title, newUri);
-              } else {
-                newUri = uri + appendCat + pageObj;
-                history.pushState({}, document.title, newUri);
-              }
-            }
-          };
-          //continue here
-          if (tagObj != ''){
-            if (window.location.href.indexOf("?product_cat=") >= -1){
+              window.history.pushState({}, document.title, newUri);
+            };
+            if (idObj != '' && tagObj != ''){
+              newUri = pushCat + idObj + appendTerm + tagObj;
+              window.history.pushState({}, document.title, newUri);
+            };
+          } else {
+            if (tagObj != '') {
               newUri = pushTerm + tagObj;
-              history.pushState({}, document.title, newUri);
-              alert('Terms not empty');
-            } else {
-              newUri = pushTerm + tagObj;
-              history.pushState({}, document.title, newUri);
-              alert(newUri);
-
-            }
+              window.history.pushState({}, document.title, newUri);
+            };
           };
           if (mobile) {
             $('#sidebarContainer').css('position', 'absolute');
@@ -444,4 +428,5 @@ jQuery(document).ready(function($) {
         }
       });
   });
+
 });

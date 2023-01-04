@@ -2,7 +2,7 @@
     global $post;
     $slug = $post->post_name;
     $id = get_term_by('slug', $slug, 'product_cat');
-    $preOwnedObj = get_term_by('slug', 'pre-owned', 'product_cat');
+    $preOwnedObj = get_term_by('slug', 'preowned', 'product_cat');
     $parent = $_REQUEST['product_cat'];
     $test = get_term_by('id', $parent, 'product_cat');
 
@@ -10,6 +10,11 @@
         $idObj = $_REQUEST['product_cat'];
     } else {
         $idObj = $id->term_id;
+    }
+    if ($_REQUEST['term'] != ''){
+        $tagObj = $_REQUEST['term'];
+    } else {
+        $tagObj = $_GET['tagObj'];
     }
 
     $taxonomy           =           'product_cat';
@@ -19,7 +24,6 @@
     $limit              =           -1;
     $status             =           'publish';
 
-    $tagObj             =           '';
     $orderByObj         =           '';
     $onSaleObj          =           '';
 
@@ -35,7 +39,6 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
         $slugObj            =           $_REQUEST['slug'];
     } else {
         $attribute          =           '';
-        $tagObj             =           '';
         $orderByObj         =           '';
         $orderObj           =           '';
         $onSaleObj          =           '';

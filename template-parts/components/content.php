@@ -3,31 +3,32 @@ global $post;
 $slug               =           $post->post_name;
 $id                 =           get_term_by('slug', $slug, 'product_cat');
 $idObjConst         =           $id->term_id;
-$tagObj             =           $_REQUEST['terms'];
+$tagObj             =           $_REQUEST['term'];
 $parent             =           $_REQUEST['product_cat'];
 
 if ($_GET['attribute'] == '') {
-if ($_GET['product_cat'] != '') {
-$idObj = $_REQUEST['product_cat'];
-$value = $idObj;
-$field = 'id';
-$taxonomy = 'product_cat';
-} else {
-$idObj = $id->term_id;
-$value = $idObj;
-$field = 'id';
-$taxonomy = 'product_cat';
+    if ($_GET['product_cat'] != '') {
+        $idObj = $_REQUEST['product_cat'];
+        $value = $idObj;
+        $field = 'id';
+        $taxonomy = 'product_cat';
+    } else {
+        $idObj = $id->term_id;
+        $value = $idObj;
+        $field = 'id';
+        $taxonomy = 'product_cat';
+    }
 }
-}
-if ($tagObj != '') {
-$attribute = 'manufacturer';
-$value = $tagObj;
-$field = 'term_id';
-$taxonomy = 'pa_manufacturer';
 
-$image_slug = $value.'-logo';
-$image_id = get_page_by_title($image_slug, OBJECT, 'attachment');
-$image = $image_id->guid;
+if ($tagObj != '') {
+    $attribute = 'manufacturer';
+    $value = $tagObj;
+    $field = 'term_id';
+    $taxonomy = 'pa_manufacturer';
+
+    $image_slug = $value.'-logo';
+    $image_id = get_page_by_title($image_slug, OBJECT, 'attachment');
+    $image = $image_id->guid;
 }
 
 $term = get_term_by($field, $value, $taxonomy);
