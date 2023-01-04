@@ -27,11 +27,12 @@ if ($tagObj != '') {
     $taxonomy = 'pa_manufacturer';
 }
 
-$image_slug = $value.'-logo';
-$image_id = get_page_by_title($image_slug, OBJECT, 'attachment');
-$image = $image_id->guid;
 $term = get_term_by($field, $value, $taxonomy);
 $test = get_term_by('id', $parent, 'product_cat');
+
+$image_slug = $term->slug.'-logo';
+$image_id = get_page_by_title($image_slug, OBJECT, 'attachment');
+$image = $image_id->guid;
 
 echo '<section id="contentTrigger" data-page="' . $idObjConst . '" data-slug="' . $slug .'">
     <div data-parent="' . $test->slug . '" class="container display">
