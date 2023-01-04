@@ -25,12 +25,11 @@ if ($tagObj != '') {
     $value = $tagObj;
     $field = 'term_id';
     $taxonomy = 'pa_manufacturer';
-
-    $image_slug = $value.'-logo';
-    $image_id = get_page_by_title($image_slug, OBJECT, 'attachment');
-    $image = $image_id->guid;
 }
 
+$image_slug = $value.'-logo';
+$image_id = get_page_by_title($image_slug, OBJECT, 'attachment');
+$image = $image_id->guid;
 $term = get_term_by($field, $value, $taxonomy);
 $test = get_term_by('id', $parent, 'product_cat');
 

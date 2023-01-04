@@ -214,7 +214,7 @@ jQuery(document).ready(function($) {
     $('#clear').hide();
 
     //Filter switch toggles
-    if (catSlug.indexOf('pre-owned') != -1) {
+    if (catSlug.indexOf('preowned') != -1) {
       $('input:checkbox[name="condition"]').prop('checked', true);
       $('.conditionInput').attr('data-category', pageObj);
       $('.conditionInput').attr('data-slug', slug);
@@ -394,7 +394,7 @@ jQuery(document).ready(function($) {
           var appendTerm = '&term=';
           var pushTerm = '?term=';
 
-          if (idObj != pageObj) {
+          if (idObj != pageObj && idObj != '') {
             if (idObj != '' && tagObj == '') {
               newUri = pushCat + idObj;
               window.history.pushState({}, document.title, newUri);
