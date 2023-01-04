@@ -13,8 +13,10 @@
     }
     if ($_REQUEST['term'] != ''){
         $tagObj = $_REQUEST['term'];
+        $slugObj = $tagObj;
     } else {
-        $tagObj = $_GET['tagObj'];
+        $tagObj = $_REQUEST['tagObj'];
+        $slugObj = get_term($idObj, 'product_cat');
     }
 
     $taxonomy           =           'product_cat';
@@ -39,10 +41,10 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
         $slugObj            =           $_REQUEST['slug'];
     } else {
         $attribute          =           '';
+        $tagObj             =           '';
         $orderByObj         =           '';
         $orderObj           =           '';
         $onSaleObj          =           '';
-        $slugObj            =           get_term($idObj, 'product_cat');
 }
 
     $args = array(
