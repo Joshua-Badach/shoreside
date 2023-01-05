@@ -76,6 +76,7 @@ echo '<section class="container serviceLayout">
                 <div class="col-lg-6">';
                 echo $categoryDescription . '
                     <img class="serviceInfo" src="'. $infoImage .'" alt="Services We Offer">
+                    <iframe class="productVideo" name="productVideo" scrolling="no" frameborder="1" src="https://www.youtube.com/embed/' . $video[0] . '" marginwidth="0px" allowfullscreen=""></iframe>
                 </div>
                 <section class="col-lg-6">
                 <h2>Contact Us To Book</h2>
@@ -90,8 +91,8 @@ echo '<div class="row justify-content-around">
                     </div>';
 foreach ($marineProducts as $product){
     echo '<a class="row tableItem" itemscope itemtype="https://schema.org/ProductCollection" href="' . get_permalink( $product->id ) . '"> 
-                        <span class="col-8" itemprop="name">' . $product->name . '</span>
-                        <span class="col-4" itemprop="price">$ ' . round($product->price) .  '</span>
+                            <span class="col-8" itemprop="name">' . $product->name . '</span>
+                            <span class="col-4">$ ' . round($product->price) .  '</span>
                         </a>';
 }
 echo'</section>
@@ -103,7 +104,7 @@ echo'</section>
 foreach ($powerProducts as $product){
     echo '<a class="row tableItem" itemscope itemtype="https://schema.org/ProductCollection" href="' . get_permalink( $product->id ) . '"> 
                             <span class="col-8" itemprop="name">' . $product->name . '</span>
-                            <span class="col-4" itemprop="price">$ ' . round($product->price) .  '</span>
+                            <span class="col-4">$ ' . round($product->price) .  '</span>
                         </a>';
 }
 echo'</section>
@@ -114,6 +115,5 @@ echo'</section>
                 <img class="col-3" src="https://placekitten.com/g/300/300" alt="Services We Offer">          
             </div>
             <div class="row">
-                <iframe class="productVideo col-lg-6" name="productVideo" scrolling="no" frameborder="1" src="https://www.youtube.com/embed/' . $video[0] . '" marginwidth="0px" allowfullscreen=""></iframe>
             </div>
     </section>';
