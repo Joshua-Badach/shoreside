@@ -75,9 +75,11 @@ echo '<section class="container serviceLayout">
             <div class="row">
                 <div class="col-lg-6">';
                 echo $categoryDescription . '
-                    <img class="serviceInfo" src="'. $infoImage .'" alt="Services We Offer">
-                    <iframe class="productVideo" name="productVideo" scrolling="no" frameborder="1" src="https://www.youtube.com/embed/' . $video[0] . '" marginwidth="0px" allowfullscreen=""></iframe>
-                </div>
+                    <img class="serviceInfo" src="'. $infoImage .'" alt="Services We Offer">';
+                    if ($video[0] != '') {
+                        echo '<iframe class="serviceVideo" name="productVideo" scrolling="no" frameborder="1" src="https://www.youtube.com/embed/' . $video[0] . '" marginwidth="0px" allowfullscreen=""></iframe>';
+                    }
+                echo '</div>
                 <section class="col-lg-6">
                 <h2>Contact Us To Book</h2>
                     <script type="text/javascript" src="https://form.jotform.com/jsform/223384426868063"></script>
@@ -113,7 +115,5 @@ echo'</section>
                 <img class="col-3" src="https://placekitten.com/g/300/300" alt="Services We Offer">          
                 <img class="col-3" src="https://placekitten.com/g/300/300" alt="Services We Offer">          
                 <img class="col-3" src="https://placekitten.com/g/300/300" alt="Services We Offer">          
-            </div>
-            <div class="row">
             </div>
     </section>';

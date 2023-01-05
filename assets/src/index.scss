@@ -689,6 +689,15 @@ img{
   text-align: center;
   padding-bottom: 5vw;
 }
+.serviceVideo{
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin-top: 5%;
+
+  iframe{
+    width: 100%;
+  }
+}
 //extra small mobile
 @media (min-width: 320px) and (max-width: 480px) {
   .home-block img{
@@ -1025,9 +1034,10 @@ div .form-footer{
   width: 100%;
   aspect-ratio: 16 / 9;
   margin-bottom: 2%;
-}
-.productVideo iframe{
-  width: 100%;
+
+  iframe{
+    width: 100%;
+  }
 }
 .brands h3{
   display: none!important;

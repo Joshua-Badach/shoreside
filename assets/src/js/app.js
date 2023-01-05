@@ -373,7 +373,7 @@ jQuery(document).ready(function($) {
         $('#contentTrigger').html(response);
 
         sidebar();
-          if (slug.indexOf('pre-owned') != -1 || catSlug.indexOf('pre-owned') != -1) {
+          if (slug.indexOf('preowned') != -1 || catSlug.indexOf('preowned') != -1) {
             $('.conditionInput').prop('checked', true);
             $('.conditionInput').attr('data-category', pageObj);
             $('.conditionInput').attr('data-slug', slugObj);
