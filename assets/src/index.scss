@@ -164,8 +164,8 @@ button span{
 //====================Header Styling====================
 //switch from hard coding when content is populated dynamically
 .home-block{
-  top: -400px;
   margin-bottom: -200px;
+  top: -30vw;
 }
 .home-block img{
   width: 150px;
@@ -334,7 +334,6 @@ footer .logo{
   object-fit: cover;
   //overflow-y: hidden;
 }
-//quick and dirty for now
 .errorPage p{
   color: nth($rpsBrand, 4);
   margin-bottom: 40%;
@@ -342,17 +341,22 @@ footer .logo{
 .heroVideo{
   width: 100%;
   aspect-ratio: 16/ 9;
-}
-.heroVideo video{
+
+video{
   width: 100%;
   height: 100%;
-}
-.heroVideo img{
+  position: relative;
+  margin-top: -85px;
+  z-index: -10;
+  }
+img{
   width: 100%;
   height: 100%;
+  }
 }
+
 .brandSpan{
-  margin-top: -11.50vw;
+  margin-top: -20vw;
   margin-bottom: 50px;
 
   .col-2 {
@@ -362,9 +366,10 @@ footer .logo{
     padding-left: 10px !important;
     padding-right: 10px !important;
   }
-}
-.brandSpan h2{
-  display: none;
+
+  h2{
+    display: none;
+  }
 }
 .brands{
   height: 100%;
@@ -388,7 +393,8 @@ footer .logo{
 }
 .brands p{
   color: nth($rpsBrand, 4);
-  padding: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
   font-size: 1.1vw !important;
 }
 .brands h3{
@@ -681,12 +687,10 @@ footer .logo{
 }
 .appended{
   text-align: center;
+  padding-bottom: 5vw;
 }
 //extra small mobile
 @media (min-width: 320px) and (max-width: 480px) {
-  .home-block{
-    top: -30vw;
-  }
   .home-block img{
     width: 20%;
   }
@@ -762,9 +766,6 @@ footer .logo{
 }
 //mobile and tablet
 @media (min-width: 481px) and (max-width: 768px) {
-  .home-block{
-    top: -220px;
-  }
   .home-block img{
     width: 20%;
   }
@@ -834,12 +835,6 @@ footer .logo{
 
 //small screens
 @media (min-width: 769px) and (max-width: 1024px) {
-  .brandSpan{
-    margin-top: -20%;
-  }
-  .home-block{
-    top: -300px;
-  }
   .carousel{
     max-height: 480px;
     height: 100%;
@@ -874,12 +869,6 @@ footer .logo{
 
 //regular screens
 @media (min-width: 1025px) and (max-width: 1200px) {
-  .brandSpan{
-    margin-top: -70px;
-  }
-  .home-block{
-    top: -310px;
-  }
   .content > .container{
     height: auto;
     margin-left: 16%;
@@ -915,7 +904,7 @@ footer .logo{
     margin-bottom: 10%;
   }
   .home-block{
-    top: -300px;
+    top: -30vw;
   }
   .disclaimer:before{
     content: "";
@@ -1535,4 +1524,9 @@ input:checked + .slider:before {
 .serviceInfo{
   margin-top: 5%;
   width: inherit;
+}
+.logoBanner{
+  max-height: 150px!important;
+  max-width: 200px!important;
+  padding: 5px;
 }

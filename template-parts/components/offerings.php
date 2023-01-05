@@ -28,7 +28,7 @@ function product_gallery($idObj, $args){
         <h2 class="col-lg-12">What we offer</h2>
         <div class="row justify-content-center">';
     foreach ($all_categories as $cat) {
-        if ($cat->category_parent == 0 && $cat->name != 'Uncategorized' && $cat->name != 'Pre-Owned') {
+        if ($cat->category_parent == 0 && $cat->name != 'Uncategorized' && $cat->name != 'Preowned') {
             $thumbnail_id = get_term_meta( $cat->term_id, 'thumbnail_id', true );
             $image = wp_get_attachment_url( $thumbnail_id );
             echo '<a class="col-4 categoryItems" href="' . '/' . $cat->slug . '/' . '">

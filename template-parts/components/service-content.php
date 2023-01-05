@@ -70,17 +70,17 @@ $marineQuery = new WC_Product_Query($args1);
 $powerQuery = new WC_Product_Query($args2);
 $marineProducts = $marineQuery->get_products();
 $powerProducts = $powerQuery->get_products();
-echo '<div class="container serviceLayout">
+echo '<section class="container serviceLayout">
             <h2>' . $term->name . '</h2>
             <div class="row">
                 <div class="col-lg-6">';
                 echo $categoryDescription . '
                     <img class="serviceInfo" src="'. $infoImage .'" alt="Services We Offer">
                 </div>
-                <div class="col-lg-6">
+                <section class="col-lg-6">
                 <h2>Contact Us To Book</h2>
                     <script type="text/javascript" src="https://form.jotform.com/jsform/223384426868063"></script>
-                </div>
+                </section>
             </div>';
 echo '<div class="row justify-content-around">
                 <section class="col-lg-5 table">
@@ -116,4 +116,4 @@ echo'</section>
             <div class="row">
                 <iframe class="productVideo col-lg-6" name="productVideo" scrolling="no" frameborder="1" src="https://www.youtube.com/embed/' . $video[0] . '" marginwidth="0px" allowfullscreen=""></iframe>
             </div>
-    </div>';
+    </section>';

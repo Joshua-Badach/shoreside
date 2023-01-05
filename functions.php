@@ -276,13 +276,11 @@ function load_results() {
             $field = 'term_id';
             $taxonomy = 'pa_manufacturer';
         }
-
         $term = get_term_by($field, $value, $taxonomy);
 
         $image_slug = $term->slug.'-logo';
         $image_id = get_page_by_title($image_slug, OBJECT, 'attachment');
         $image = $image_id->guid;
-
     }
 
     $test = get_term_by('id', $idObj, 'product_cat');
@@ -339,7 +337,7 @@ add_shortcode('catalog', 'catalog_shortcode');
 //Woocommerce code
 
 //Display sku
-add_action( 'woocommerce_single_product_summary', 'show_sku', 20 );
+add_action( 'woocommerce_single_product_summary', 'show_sku', 21 );
 function show_sku(){
     global $product;
     if ($product->get_sku() != '' ) {
@@ -483,7 +481,7 @@ function manufacturer_logo(){
         echo '<img class="logoBanner" src="' . $image . '">';
     }
 }
-add_action('woocommerce_single_product_summary', 'manufacturer_logo', 10);
+add_action('woocommerce_single_product_summary', 'manufacturer_logo', 20);
 
 function woo_related_products_limit() {
     global $product;

@@ -1,11 +1,9 @@
 <?php
+echo '<section>';
 if ( is_home() || is_front_page() ){
     echo '<h2 class="col-sm-8">How Recreational Power Sports Does It Better</h2>';
 } else {
-    echo '<h2 class="hidden">';
-    the_title();
-    echo ' Offerings';
-    echo '</h2>';
+    echo '<h2 class="hidden">' . get_the_title() . ' Offerings</h2>';
 }
 if ( is_home() || is_front_page() ) {
     echo '<div class="mainCarousel">';
@@ -45,4 +43,5 @@ elseif (is_home() == false):
 
 endif;
 
-echo '</div>';
+echo '</div>
+</section>';

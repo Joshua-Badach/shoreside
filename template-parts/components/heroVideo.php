@@ -19,7 +19,7 @@ else { ?>
 ?>
 <div class="container">
     <div class="row">
-        <section class="col-8 home-block">
+        <section class="col-12 home-block">
             <h2 class="home-heading"><?php echo get_option('blogdescription'); ?></h2>
         </section>
     </div>
