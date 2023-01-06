@@ -34,6 +34,11 @@ $image_slug = $term->slug.'-logo';
 $image_id = get_page_by_title($image_slug, OBJECT, 'attachment');
 $image = $image_id->guid;
 
+$logo_id = get_page_by_title('logo', OBJECT, 'attachment');
+$logo_image = $logo_id->guid;
+
+echo $logo_image;
+
 echo '<section id="contentTrigger" data-page="' . $idObjConst . '" data-slug="' . $slug .'">
     <div data-parent="' . $test->slug . '" class="container display">
         <div class="row">';

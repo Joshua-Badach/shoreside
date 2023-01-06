@@ -13,6 +13,8 @@ $promotionAdQuery = new WP_Query(array(
     'posts_per_page'    =>      -1
 ));
 
+$promotionUrl = get_post_custom_values('promotion_url');
+
 echo '<section>
             <div class="container">
                 <div class="row">';
