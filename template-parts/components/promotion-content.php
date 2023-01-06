@@ -13,8 +13,6 @@ $promotionAdQuery = new WP_Query(array(
     'posts_per_page'    =>      -1
 ));
 
-$promotionUrl = get_post_custom_values('promotion_url');
-
 echo '<section>
             <div class="container">
                 <div class="row">';
@@ -33,7 +31,12 @@ echo'</div>
 while ($promotionAdQuery->have_posts()){
     $promotionAdQuery->the_post();
     $promotions = get_the_post_thumbnail();
-    echo '<p class="col promotions">' . $promotions . '</p>';
+    $promotionUrl = get_post_custom_values('promotion_url');
+    if ($promotionUrl != ''){
+        echo '<a href="' . get_site_url() . $promotionUrl[0] . '"><p class="col promotions">' . $promotions . '</p></a>';
+    } else {
+        echo '<p class="col promotions">' . $promotions . '</p>';
+    }
 }
 wp_reset_postdata();
 echo '</div>
