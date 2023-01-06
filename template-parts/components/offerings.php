@@ -13,6 +13,7 @@ $title          = '';
 $empty          = 0;
 
 $args = array(
+    'parent'                    => $idObj,
     'taxonomy'                  => $taxonomy,
     'orderby'                   => $orderby,
     'show_count'                => $show_count,
@@ -28,7 +29,7 @@ function product_gallery($idObj, $args){
         <h2 class="col-lg-12">What we offer</h2>
         <div class="row justify-content-center">';
     foreach ($all_categories as $cat) {
-        if ($cat->category_parent == 0 && $cat->name != 'Uncategorized' && $cat->name != 'Preowned') {
+        if ($cat->name != 'Uncategorized' && $cat->name != 'Preowned') {
             $thumbnail_id = get_term_meta( $cat->term_id, 'thumbnail_id', true );
             $image = wp_get_attachment_url( $thumbnail_id );
             echo '<a class="col-4 categoryItems" href="' . '/' . $cat->slug . '/' . '">

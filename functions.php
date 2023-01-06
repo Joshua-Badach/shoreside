@@ -228,10 +228,25 @@ function winterize_shortcode(){
 }
 add_shortcode('winterize-content', 'winterize_shortcode');
 
-function service_shortcode(){
-    include('template-parts/components/service-content.php');
+function service_header_shortcode(){
+    include('template-parts/components/service-header.php');
 }
-add_shortcode('service-content', 'service_shortcode');
+add_shortcode('service-header', 'service_header_shortcode');
+
+function service_body_summer_shortcode(){
+    include('template-parts/components/service-body-summer.php');
+}
+add_shortcode('service-body-summer', 'service_body_summer_shortcode');
+
+function service_body_winter_shortcode(){
+    include('template-parts/components/service-body-winter.php');
+}
+add_shortcode('service-body-winter', 'service_body_winter_shortcode');
+
+function service_footer_shortcode(){
+    include('template-parts/components/service-footer.php');
+}
+add_shortcode('service-footer', 'service_footer_shortcode');
 
 //Ajax call
 function load_product(){
