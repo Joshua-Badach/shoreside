@@ -267,8 +267,6 @@ function load_results() {
         $idObj              =           $_REQUEST['idObj'];
         $attribute          =           $_REQUEST['attribute'];
         $tagObj             =           $_REQUEST['tagObj'];
-        $orderByObj         =           $_REQUEST['orderByObj'];
-        $orderObj           =           $_REQUEST['orderObj'];
         $onSaleObj          =           $_REQUEST['onSaleObj'];
         $pageObj            =           $_REQUEST['pageObj'];
         $slug               =           $_REQUEST['slug'];
@@ -319,7 +317,7 @@ function load_results() {
             <div class="content">';
     get_sidebar();
     echo '<div class="container">';
-    echo do_shortcode('[products category="' . $idObj . '" attribute="' . $attribute . '"  terms="' . $tagObj . '" per_page="-1" columns="5" orderby="' . $orderByOjb . '" order="' . $orderObj . '" on_sale="' . $onSaleObj . '" operator="IN"]');
+    echo do_shortcode('[products category="' . $idObj . '" attribute="' . $attribute . '"  terms="' . $tagObj . '" per_page="-1" columns="5" on_sale="' . $onSaleObj . '" meta_key="event_date" orderby="meta_value_num" on_sale="" order="DESC" operator="IN"]');
     echo '</div>
         </div>';
 
