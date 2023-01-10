@@ -18,11 +18,11 @@ echo '<section id="contentTrigger">
                 <div class="row">';
 if ($image != ''){
     echo '<img class="logoBanner col-sm-3" alt="' . $slug . ' logo" src="' . $image . '">
-                        <h2 id="categoryTitle" class="col-12 hide">' . $name[0] . '</h2>';
+                        <h2 class="hide">' . $name[0] . '</h2>';
 } else {
-    echo '<h2 id="categoryTitle" class="col-12">' . $name[0] . '</h2>';
+    echo '<h2 id="categoryTitle" class="col-3">' . $name[0] . '</h2>';
 }
-echo '<p class="col-12">' . $description[0] . '</p>
+echo '<p class="col-sm-9 description">' . $description[0] . '</p>
                 </div>
             </div>
             <div id="mobileFilter"></div>

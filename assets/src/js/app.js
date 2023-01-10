@@ -69,6 +69,7 @@ jQuery(document).ready(function($) {
     autoplaySpeed: 10000,
     mobileFirst: true,
     dots: true,
+    arrows: false,
   });
   $('.mainCarousel').slick({
     infinite: false,
@@ -79,30 +80,30 @@ jQuery(document).ready(function($) {
     autoplaySpeed: 10000,
     mobileFirst: true,
     dots: true,
+    arrows: false,
   });
 
   //Portrait carousel code
     $('.carousel-product').slick({
       slidesToShow: 1,
-      slidesToScroll: 1,
       autoplay: true,
-      speed: 1000,
+      speed: 500,
       autoplaySpeed: 10000,
-      centerMode: true,
-      fade: true,
+      arrows: false,
+      fade: false,
       asNavFor: '.carousel-product-nav',
       adaptiveHeight: true,
       mobileFirst: true,
       dots: false,
+      infinite: true,
     });
     $('.carousel-product-nav').slick({
-      slidesToShow: 3,
-      slidesToScroll: 1,
-      speed: 1000,
+      slidesToShow: 4,
+      speed: 500,
       arrows: false,
       asNavFor: '.carousel-product',
       dots: false,
-      centerMode: true,
+      mobileFirst: true,
       focusOnSelect: true,
     });
   $('#sidebarContainer').hide();

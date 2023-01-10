@@ -111,7 +111,6 @@ nav{
   max-height: 50px;
 }
 
-
 //==========animations/buttons==========
 button{
   //height: 30px;
@@ -582,6 +581,18 @@ img{
 .carousel .slick-slide{
   max-height: 480px;
 }
+.slick-slider{
+  -ms-touch-action: auto!important;
+  touch-action: auto!important;
+}
+.carousel-product{
+  -webkit-touch-callout: default;
+  -webkit-user-select: default;
+  -khtml-user-select: default;
+  -moz-user-select: default;
+  -ms-user-select: default;
+  user-select: default;
+}
 .detailsForm{
   background: nth($rpsBrand, 1);
   color: nth($rpsBrand, 4);
@@ -630,6 +641,10 @@ img{
   height: 100%;
   aspect-ratio: 1/1;
 }
+#categoryTitle{
+  display: flex;
+  align-self: center;
+}
 .categoryItems p{
   margin: 0;
 }
@@ -641,7 +656,6 @@ img{
   margin-bottom: 8vw;
 }
 #sidebarContainer {
-  //position: absolute;
   height: fit-content;
   z-index: 10;
   -webkit-box-shadow: rgb(0, 0, 0) 5px 5px 7px 5px;
@@ -668,17 +682,19 @@ img{
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-.carousel .sliderText{
-  position: relative;
-  z-index: 1;
-  width: 45%;
-  padding: 10px;
-  max-height: 200px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  background-color: rgba(255, 255, 255, 0.75);
-  -webkit-box-shadow: 2px 2px 5px 1px #000000;
-  box-shadow: 2px 2px 5px 1px #000000;
+.carousel{
+    .sliderText {
+      position: relative;
+      z-index: 1;
+      width: 45%;
+      padding: 10px;
+      max-height: 200px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      background-color: rgba(255, 255, 255, 0.75);
+      -webkit-box-shadow: 2px 2px 5px 1px #000000;
+      box-shadow: 2px 2px 5px 1px #000000;
+    }
 }
 .brandsContent{
   display: flex;
@@ -984,7 +1000,7 @@ img{
   display: none;
 }
 .hide{
-  visibility: hidden;
+  display: none;
 }
 #sb_instagram{
   margin-bottom: 10%;
@@ -1508,6 +1524,10 @@ input:checked + .slider:before {
 .service-main{
   margin-top: 2.5%;
 }
+.description{
+  display: flex;
+  align-self: center;
+}
 .serviceLayout .row{
   margin-top: 2.5%;
   //background-color: lightgray;
@@ -1536,6 +1556,8 @@ input:checked + .slider:before {
   width: inherit;
 }
 .logoBanner{
+  display: flex;
+  align-self: center;
   max-height: 150px!important;
   max-width: 200px!important;
   padding: 5px;

@@ -44,11 +44,11 @@ echo '<section id="contentTrigger" data-page="' . $idObjConst . '" data-slug="' 
         <div class="row">';
             if ($image != ''){
             echo '<img class="logoBanner col-sm-3" alt="' . $slug . ' logo" src="' . $image . '">
-            <h2 id="categoryTitle" class="col-12 hide"  data-cat="' . $term->slug . '">' . $term->name . '</h2>';
+            <h2 class="hide"  data-cat="' . $term->slug . '">' . $term->name . '</h2>';
             } else {
-            echo '<h2 id="categoryTitle" class="col-12"  data-cat="' . $term->slug . '">' . $term->name . '</h2>';
+            echo '<h2 id="categoryTitle" class="col-3"  data-cat="' . $term->slug . '">' . $term->name . '</h2>';
             }
-            echo '<p class="col-12">' . $term->description . '</p>
+            echo '<p class="col-sm-9 description">' . $term->description . '</p>
         </div>
     </div>
     <div id="mobileFilter">

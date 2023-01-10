@@ -223,11 +223,6 @@ function vision_shortcode(){
 }
 add_shortcode('vision', 'vision_shortcode');
 
-function winterize_shortcode(){
-    include('template-parts/components/winterize-content.php');
-}
-add_shortcode('winterize-content', 'winterize_shortcode');
-
 function service_header_shortcode(){
     include('template-parts/components/service-header.php');
 }
@@ -302,11 +297,11 @@ function load_results() {
                 <div class="row">';
                 if ($image != ''){
                         echo '<img class="productLogo col-sm-3" alt="' . $slug . ' logo" src="' . $image . '">
-                        <h2 id="categoryTitle" class="col-12 hide" data-cat="' . $term->slug . '">' . $term->name . '</h2>';
+                        <h2 class="hide" data-cat="' . $term->slug . '">' . $term->name . '</h2>';
                     } else {
-                    echo '<h2 id="categoryTitle" class="col-12" data-cat="' . $term->slug . '">' . $term->name . '</h2>';
+                    echo '<h2 id="categoryTitle" class="col-3" data-cat="' . $term->slug . '">' . $term->name . '</h2>';
                 }
-                echo '<p class="col-12">' . $term->description . '</p>
+                echo '<p class="col-sm-9 description">' . $term->description . '</p>
                 </div>
             </div>
             <div id="mobileFilter">
