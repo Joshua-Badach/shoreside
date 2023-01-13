@@ -327,11 +327,9 @@ footer .logo{
   position: absolute;
   width: 100%;
   height: auto;
-  //aspect-ratio: 16 / 9;
   z-index: -1;
   -o-object-fit: cover;
   object-fit: cover;
-  //overflow-y: hidden;
 }
 .errorPage p{
   color: nth($rpsBrand, 4);
@@ -532,59 +530,175 @@ img{
   width: 45%;
   font-size: nth($rpsBrand, 1);
   padding: 10px;
-  //margin-top: -45%;
   max-height: 200px;
   overflow: hidden;
   text-overflow: ellipsis;
-  //sloppy, fix this shit tomorrow...
   transform: translate(20%, -200%);
   background-color: rgba(255, 255, 255, 0.75);
   -webkit-box-shadow: 2px 2px 5px 1px #000000;
   box-shadow: 2px 2px 5px 1px #000000;
 }
-//!important hackery because of slick... need a better way to handle this in the future
-.slick-next{
-  z-index: 1 !important;
-  right: 1.5% !important;
+.slick-lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
+  background: black;
+  -webkit-transition: opacity 0.5s ease;
+  transition: opacity 0.5s ease;
 }
-.slick-prev{
-  z-index: 1 !important;
-  left: 1% !important;
+.slick-lightbox .slick-loading .slick-list {
+  background-color: transparent;
 }
-.slick-arrow{
-  width: 75px !important;
-  height: 75px !important;
+.slick-lightbox .slick-prev {
+  left: 15px;
 }
-.slick-arrow:hover{
-  opacity: 1;
+.slick-lightbox .slick-next {
+  right: 15px;
 }
-.slick-dots{
-  bottom: 50px !important;
+
+.slick-lightbox-hide {
+  opacity: 0;
 }
-.slick-dots li{
-  width: 35px !important;
-  height: 35px !important;
+.slick-lightbox-hide.slick-lightbox-ie {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
 }
-.slick-dots li button::before{
-  padding: 3% !important;
-  color: nth($rpsBrand, 1) !important;
-  font-size: 50px !important;
-  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+
+.slick-lightbox-hide-init {
+  position: absolute;
+  top: -9999px;
+  opacity: 0;
 }
-.slick-arrow::before{
-  font-size: 75px !important;
-  color: nth($rpsBrand, 1) !important;
-  //border: 2px solid nth($rpsBrand,4) !important;
-  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
-  border-radius: 45px !important;
+.slick-lightbox-hide-init.slick-lightbox-ie {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
 }
-.carousel .slick-slide{
-  max-height: 480px;
+
+.slick-lightbox-inner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
-.slick-slider{
-  -ms-touch-action: auto!important;
-  touch-action: auto!important;
+
+.slick-lightbox-slick-item {
+  text-align: center;
+  overflow: hidden;
 }
+.slick-lightbox-slick-item:before {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -0.25em;
+}
+.slick-caption-bottom .slick-lightbox-slick-item .slick-lightbox-slick-item .slick-lightbox-slick-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.slick-caption-dynamic .slick-lightbox-slick-item .slick-lightbox-slick-item .slick-lightbox-slick-caption {
+  display: block;
+  text-align: center;
+}
+
+.slick-lightbox-slick-item-inner {
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.slick-lightbox-slick-img {
+  margin: 0 auto;
+  display: block;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.slick-lightbox-slick-caption {
+  margin: 10px 0 0;
+  color: white;
+}
+
+.slick-lightbox-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  display: block;
+  height: 20px;
+  width: 20px;
+  line-height: 0;
+  font-size: 0;
+  cursor: pointer;
+  background: transparent;
+  color: transparent;
+  padding: 0;
+  border: none;
+}
+.slick-lightbox-close:focus {
+  outline: none;
+}
+.slick-lightbox-close:before {
+  font-family: "slick";
+  font-size: 20px;
+  line-height: 1;
+  color: white;
+  opacity: 0.85;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "×";
+}
+////!important hackery because of slick... need a better way to handle this in the future
+//.slick-next{
+//  z-index: 1 !important;
+//  right: 1.5% !important;
+//}
+//.slick-prev{
+//  z-index: 1 !important;
+//  left: 1% !important;
+//}
+//.slick-arrow{
+//  width: 75px !important;
+//  height: 75px !important;
+//}
+//.slick-arrow:hover{
+//  opacity: 1;
+//}
+//.slick-dots{
+//  bottom: 50px !important;
+//}
+//.slick-dots li{
+//  width: 35px !important;
+//  height: 35px !important;
+//}
+//.slick-dots li button::before{
+//  padding: 3% !important;
+//  color: nth($rpsBrand, 1) !important;
+//  font-size: 50px !important;
+//  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+//}
+//.slick-arrow::before{
+//  font-size: 75px !important;
+//  color: nth($rpsBrand, 1) !important;
+//  //border: 2px solid nth($rpsBrand,4) !important;
+//  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+//  border-radius: 45px !important;
+//}
+//.carousel .slick-slide{
+//  max-height: 480px;
+//}
+//.slick-slider{
+//  -ms-touch-action: auto!important;
+//  touch-action: auto!important;
+//}
 .carousel-product{
   -webkit-touch-callout: default;
   -webkit-user-select: default;
@@ -665,9 +779,9 @@ img{
 .content > .container{
   margin-top: 15px;
 }
-.slick-track{
-  height: inherit;
-}
+//.slick-track{
+//  height: inherit;
+//}
 .disclaimer{
   display: none;
   position: absolute;
@@ -729,9 +843,9 @@ img{
     height: inherit;
     background: white;
   }
-  .slick-list{
-    height: 65vw;
-  }
+  //.slick-list{
+  //  height: 65vw;
+  //}
   .sliderText h2{
     font-size: 12px!important
   }

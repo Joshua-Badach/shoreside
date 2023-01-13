@@ -56,10 +56,9 @@ $wrapper_classes   = apply_filters(
             }
 
             foreach ( $image_urls as $image_src_url ) {
-                echo '<img class="portrait-item" src="' . $image_src_url . '">';
+                echo '<a href="' . $image_src_url . '"> <img class="portrait-item" src="' . $image_src_url . '"></a>';
             }
-//            product image lightbox
-//			$html = wc_get_gallery_image_html( $post_thumbnail_id, true );
+
         } else {
             $html  = '<div class="woocommerce-product-gallery__image--placeholder">';
             $html .= sprintf( '<img src="%s" alt="%s" class="wp-post-image" />', esc_url( wc_placeholder_img_src( 'woocommerce_single' ) ), esc_html__( 'Awaiting product image', 'woocommerce' ) );

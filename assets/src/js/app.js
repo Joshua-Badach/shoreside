@@ -106,6 +106,10 @@ jQuery(document).ready(function($) {
       mobileFirst: true,
       focusOnSelect: true,
     });
+    $('.carousel-product').slickLightbox({
+      itemSelector: 'a',
+      navigateByKeyboard: true
+    })
   $('#sidebarContainer').hide();
 
   $('.financingText').on( 'click', function(){

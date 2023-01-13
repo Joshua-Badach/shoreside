@@ -5,11 +5,19 @@ global $wp;
 $current_url = home_url( add_query_arg( array(), $wp->request ) );
 $site_name = get_bloginfo( 'name' );
 $slug = $post->post_name;
-$id = get_term_by('slug', $slug, 'product_cat');
-$idObj = $id->term_id;
+//$id = get_term_by('slug', $slug, 'product_cat');
+//$idObj = $id->term_id;
 $site_suffix = ucwords(str_replace('-', ' ', $slug));
 $featured = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' );
 $description = get_post_custom_values('description', $id);
+
+$field = 'slug';
+$value = $slug;
+$taxonomy = 'product';
+
+$id = get_term_by($field, $value, $taxonomy);
+
+// First check for custom value description
 
 ?>
 <head>
@@ -29,35 +37,18 @@ $description = get_post_custom_values('description', $id);
         $image = $image_id->guid;
         echo '<meta property="og:description" content="' . $description[0] . '"/>';
         echo '<meta property="og:image" content="'. $image . '" />';
-    }  else {
-            $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'single-post-thumbnail');
-            if ($_REQUEST['term'] == '') {
-                if ($_REQUEST['product_cat'] != '') {
-                    $idObj = $_REQUEST['product_cat'];
-                    $field = 'id';
-                    $taxonomy = 'product_cat';
-                } else {
-                    $idObj = $id->term_id;
-                    $field = 'id';
-                    $taxonomy = 'product_cat';
-                }
-            } elseif($_REQUEST['term'] != '') {
-                $idObj = $_REQUEST['term'];
-                $field = 'term_id';
-                $taxonomy = 'pa_manufacturer';
-            }
-            if ($image[0] == ''){
-                $image_id = get_page_by_title('rps-logo-share', OBJECT, 'attachment');
-                $image[0] = $image_id->guid;
-            }
-        $term = get_term_by($field, $idObj, $taxonomy);
-        $description = $term->description;
-        $trim = explode('. ', $description);
-        echo '<meta property="og:description" content="' . $trim[0] . '"/>
-        <meta property="og:image" content="'. $image[0] . '" />';
-        }
-
-        wp_head(); ?>
+    }
+//    if ($image[0] == ''){
+//        $image_id = get_page_by_title('rps-logo-share', OBJECT, 'attachment');
+//        $image[0] = $image_id->guid;
+//    }
+    var_dump($id);
+//        $term = get_term_by($field, $idObj, $taxonomy);
+//        $description = $term->description;
+//        $trim = explode('. ', $description);
+    echo '<meta property="og:description" content="' . $trim[0] . '"/>
+    <meta property="og:image" content="'. $image[0] . '" />';
+    wp_head(); ?>
 </head>
 <body itemscope itemtype="https://schema.org/Store">
 <?php get_template_part('template-parts/components/news') ?>
