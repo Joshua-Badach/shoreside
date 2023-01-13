@@ -2,14 +2,12 @@
 echo '<section>';
 if ( is_home() || is_front_page() ){
     echo '<h2 class="col-sm-8">How Recreational Power Sports Does It Better</h2>';
-} else {
-    echo '<h2 class="hidden">' . get_the_title() . ' Offerings</h2>';
-}
-if ( is_home() || is_front_page() ) {
     echo '<div class="mainCarousel">';
 } else {
+    echo '<h2 class="hidden">' . get_the_title() . ' Offerings</h2>';
     echo '<div class="carousel">';
 }
+
 $the_page = sanitize_posT($GLOBALS['wp_the_query']->get_queried_object() );
 $slug = $the_page->post_name;
 

@@ -523,7 +523,10 @@ img{
 }
 .sliderContent img{
   width: 100%;
-  height: 480px;
+  height: auto;
+}
+.slick-list{
+  height: inherit;
 }
 .mainCarousel .sliderText{
   z-index: 1;
@@ -533,7 +536,7 @@ img{
   max-height: 200px;
   overflow: hidden;
   text-overflow: ellipsis;
-  transform: translate(20%, -200%);
+  transform: translate(20%, -150%);
   background-color: rgba(255, 255, 255, 0.75);
   -webkit-box-shadow: 2px 2px 5px 1px #000000;
   box-shadow: 2px 2px 5px 1px #000000;
@@ -843,9 +846,27 @@ img{
     height: inherit;
     background: white;
   }
-  //.slick-list{
-  //  height: 65vw;
-  //}
+  .carousel{
+    max-height: 320px;
+    height: 100%;
+    width: 100%;
+
+    .slick-list {
+      overflow: hidden;
+    }
+
+    .sliderText{
+      bottom: 59vw;
+      left: 10vw;
+    }
+  }
+  .sliderContent img{
+    width: 100%;
+    height: auto;
+    -o-object-fit: cover;
+    object-fit: cover;
+    aspect-ratio: 2/1.25;
+  }
   .sliderText h2{
     font-size: 12px!important
   }
@@ -868,15 +889,6 @@ img{
   }
   .row{
     padding: 10px;
-  }
-  .carousel{
-    max-height: 480px;
-    height: 100%;
-    width: 100%;
-  }
-  .carousel .sliderText{
-    bottom: 110vw;
-    left: 10vw;
   }
   .sliderText p{
     font-size: nth($fontSizing, 1);
@@ -938,13 +950,25 @@ img{
     display: none;
   }
   .carousel{
-    max-height: 480px;
+    max-height: 481px;
     height: 100%;
     width: 100%;
+
+    .slick-list {
+      overflow: hidden;
+    }
+
+    .sliderText{
+      bottom: 59vw;
+      left: 10vw;
+    }
   }
-  .carousel .sliderText{
-    bottom: 100vw;
-    left: 15vw;
+  .sliderContent img{
+    width: 100%;
+    height: auto;
+    -o-object-fit: cover;
+    object-fit: cover;
+    aspect-ratio: 2/1;
   }
   .sliderText h2{
     font-size: 14px;
@@ -975,13 +999,25 @@ img{
 //small screens
 @media (min-width: 769px) and (max-width: 1024px) {
   .carousel{
-    max-height: 480px;
+    max-height: 769px;
     height: 100%;
     width: 100%;
+
+    .slick-list {
+      overflow: hidden;
+    }
+
+    .sliderText{
+      bottom: 34vw;
+      left: 10vw;
+    }
   }
-  .carousel .sliderText{
-    bottom: 20vw;
-    left: 10vw;
+  .sliderContent img{
+    width: 100%;
+    height: auto;
+    -o-object-fit: cover;
+    object-fit: cover;
+    aspect-ratio: 2/.75;
   }
   .brandCard img{
     width: 100%;
