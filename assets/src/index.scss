@@ -55,15 +55,13 @@ h2{
 }
 h3{
   font-family: nth($font, 2);
-  color: nth($rpsBrand, 4);
-  font-size: nth($fontSizing, 2);
-  -webkit-text-stroke: 1px nth($rpsBrand, 5);
+  color: nth($rpsBrand, 1);
+  font-size: nth($fontSizing, 1);
 }
 h4{
-  font-family: nth($font, 1);
-  color: nth($rpsBrand, 4);
+  font-family: nth($font, 2);
+  color: nth($rpsBrand, 1);
   font-size: nth($fontSizing, 1);
-  -webkit-text-stroke: .5px nth($rpsBrand, 5);
 }
 h5{
   font-family: nth($font, 2);
@@ -488,13 +486,11 @@ img{
 }
 .mainCarousel{
   width: 100%;
-  aspect-ratio: 4 / 1;
+  max-height: 400px;
+  overflow: hidden;
 }
 .quote{
   position: relative;
-}
-.mission{
-  margin-bottom: 20vh;
 }
 .mission a:hover{
   background: nth($rpsBrand, 1);
@@ -528,18 +524,27 @@ img{
 .slick-list{
   height: inherit;
 }
-.mainCarousel .sliderText{
-  z-index: 1;
-  width: 45%;
-  font-size: nth($rpsBrand, 1);
-  padding: 10px;
-  max-height: 200px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  transform: translate(20%, -150%);
-  background-color: rgba(255, 255, 255, 0.75);
-  -webkit-box-shadow: 2px 2px 5px 1px #000000;
-  box-shadow: 2px 2px 5px 1px #000000;
+.mainCarousel {
+  .sliderText {
+    z-index: 1;
+    width: 45%;
+    font-size: nth($fontSizing, 1);
+    padding: 10px;
+    max-height: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transform: translate(20%, -150%);
+    background-color: rgba(255, 255, 255, 0.75);
+    -webkit-box-shadow: 2px 2px 5px 1px #000000;
+    box-shadow: 2px 2px 5px 1px #000000;
+  }
+  a {
+    color: nth($rpsBrand, 1);
+  }
+}
+.carouselWrapper{
+  margin-bottom: 5%;
+  margin-top: 5%;
 }
 .slick-lightbox {
   position: fixed;
@@ -800,7 +805,9 @@ img{
   border-radius: 5px;
 }
 .carousel{
-    .sliderText {
+  overflow: hidden;
+
+  .sliderText {
       position: relative;
       z-index: 1;
       width: 45%;
@@ -846,6 +853,9 @@ img{
     height: inherit;
     background: white;
   }
+  .bannerImage img{
+    aspect-ratio: unset;
+  }
   .carousel{
     max-height: 320px;
     height: 100%;
@@ -867,12 +877,6 @@ img{
     object-fit: cover;
     aspect-ratio: 2/1.25;
   }
-  .sliderText h2{
-    font-size: 12px!important
-  }
-  .sliderText p{
-    font-size: 10px!important;
-  }
   .woocommerce-product-gallery{
     height: 100%;
   }
@@ -890,8 +894,18 @@ img{
   .row{
     padding: 10px;
   }
-  .sliderText p{
-    font-size: nth($fontSizing, 1);
+  .sliderText{
+    p{
+      font-size: 12px;
+    }
+    a{
+      font-size: nth($fontSizing, 1);
+      color: nth($rpsBrand, 1);
+      text-decoration: none;
+    }
+    h2{
+      font-size: 12px!important
+    }
   }
   .followUs span{
     display: none;
@@ -925,6 +939,9 @@ img{
   }
   .home-heading{
     font-size: 18px;
+  }
+  .bannerImage img{
+    aspect-ratio: unset;
   }
   #sidebarContainer{
     height: inherit;
@@ -1011,6 +1028,9 @@ img{
       bottom: 34vw;
       left: 10vw;
     }
+  }
+  .bannerImage img{
+    aspect-ratio: unset;
   }
   .sliderContent img{
     width: 100%;
@@ -1696,6 +1716,7 @@ input:checked + .slider:before {
   background-color: nth($rpsBrand, 1);
   border-radius: 10px;
   margin-bottom: 5%;
+  height: fit-content;
 }
 .table h2{
   color: nth($rpsBrand, 4);

@@ -2,14 +2,12 @@
 <html <?php language_attributes(); ?> >
 <?php
 global $wp;
+
 $current_url = home_url( add_query_arg( array(), $wp->request ) );
 $site_name = get_bloginfo( 'name' );
 $slug = $post->post_name;
-//$id = get_term_by('slug', $slug, 'product_cat');
-//$idObj = $id->term_id;
 $site_suffix = ucwords(str_replace('-', ' ', $slug));
 $featured = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' );
-$description = get_post_custom_values('description', $id);
 
 $field = 'slug';
 $value = $slug;
@@ -32,23 +30,29 @@ $id = get_term_by($field, $value, $taxonomy);
     <meta property="og:locale" content="en_CA" />
     <?php
 
-    if ($description[0] != ''){
+    if ( get_post_custom_values('description', $id) != '') {
         $image_id = get_page_by_title('rps-logo-share', OBJECT, 'attachment');
         $image = $image_id->guid;
-        echo '<meta property="og:description" content="' . $description[0] . '"/>';
-        echo '<meta property="og:image" content="'. $image . '" />';
+        $description = get_post_custom_values('description', $id);
+
+    } elseif ( get_term_by('slug', $slug, 'product_cat') != '' ) {
+        $catId = get_term_by('slug', $slug, 'product_cat');
+        $description[0] = $catId->description;
+        $image = get_the_post_thumbnail_url();
+
+    } elseif ( is_product() ) {
+        $product = wc_get_product( get_the_id() );
+        $imageId = $product->get_image_id();
+        $imageSrc = wp_get_attachment_image_src( get_post_thumbnail_id($image_id), 'small');
+        $image = $imageSrc[0];
+        $description[] = $product->get_short_description();
     }
-//    if ($image[0] == ''){
-//        $image_id = get_page_by_title('rps-logo-share', OBJECT, 'attachment');
-//        $image[0] = $image_id->guid;
-//    }
-    var_dump($id);
-//        $term = get_term_by($field, $idObj, $taxonomy);
-//        $description = $term->description;
-//        $trim = explode('. ', $description);
-    echo '<meta property="og:description" content="' . $trim[0] . '"/>
-    <meta property="og:image" content="'. $image[0] . '" />';
-    wp_head(); ?>
+
+    echo '<meta property="og:description" content="' . filter_var($description[0], FILTER_SANITIZE_STRING) . '"/>';
+    echo '<meta property="og:image" content="'. $image . '" />';
+    wp_head();
+//    var_dump($catId);
+    ?>
 </head>
 <body itemscope itemtype="https://schema.org/Store">
 <?php get_template_part('template-parts/components/news') ?>

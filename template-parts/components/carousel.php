@@ -1,9 +1,11 @@
 <?php
-echo '<section>';
+
 if ( is_home() || is_front_page() ){
+    echo '<section class="carouselWrapper">';
     echo '<h2 class="col-sm-8">How Recreational Power Sports Does It Better</h2>';
     echo '<div class="mainCarousel">';
 } else {
+    echo '<section>';
     echo '<h2 class="hidden">' . get_the_title() . ' Offerings</h2>';
     echo '<div class="carousel">';
 }

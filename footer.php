@@ -75,7 +75,7 @@ $newsletterQuery = new WP_Query(array(
                         </a>
                     </div>
                     <div id="youtubeIcon" class="socmed">
-                        <a href="https://www.youtube.com/channel/UCl8h_s4q3vnYPLc6tWwppgA" target="_blank">
+                        <a href="https://www.youtube.com/@recreationalpowersports" target="_blank">
                             <object data="<?php echo get_template_directory_uri() . '/assets/src/library/images/youtube.svg' ?>"></object>
                         </a>
                     </div>
