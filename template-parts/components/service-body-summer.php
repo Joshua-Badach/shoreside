@@ -68,9 +68,13 @@ echo '<div class="row justify-content-around">
                     </div>';
 foreach ($marineProducts as $product){
     echo '<a class="row tableItem" itemscope itemtype="https://schema.org/ProductCollection" href="' . get_permalink( $product->id ) . '"> 
-                            <span class="col-8" itemprop="name">' . $product->name . '</span>
-                            <span class="col-4">$ ' . round($product->price) .  '</span>
-                        </a>';
+                            <span class="col-8" itemprop="name">' . $product->name . '</span>';
+                            if ($product->price == 0){
+                                echo '<span class="col-4"> - </span>';
+                            } else {
+                                echo '<span class="col-4">$ ' . round($product->price) . '</span>';
+                            }
+                        echo' </a>';
 }
 echo'</section>
                 <section class="col-lg-5 table">
@@ -80,8 +84,12 @@ echo'</section>
                     </div>';
 foreach ($powerProducts as $product){
     echo '<a class="row tableItem" itemscope itemtype="https://schema.org/ProductCollection" href="' . get_permalink( $product->id ) . '"> 
-                            <span class="col-8" itemprop="name">' . $product->name . '</span>
-                            <span class="col-4">$ ' . round($product->price) .  '</span>
-                        </a>';
+                            <span class="col-8" itemprop="name">' . $product->name . '</span>';
+                            if ($product->price == 0){
+                                echo '<span class="col-4"> - </span>';
+                            } else {
+                                echo '<span class="col-4">$ ' . round($product->price) . '</span>';
+                            }
+                        echo'</a>';
 }
 echo'</section>';

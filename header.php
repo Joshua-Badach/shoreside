@@ -23,13 +23,11 @@ $id = get_term_by($field, $value, $taxonomy);
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_CA" />
     <?php
-
     if ( get_post_custom_values('description', $id) != '') {
         $image_id = get_page_by_title('rps-logo-share', OBJECT, 'attachment');
         $image = $image_id->guid;
         $description = get_post_custom_values('description', $id);
         $site_suffix = $post->post_title;
-
     } elseif ( get_term_by('slug', $slug, 'product_cat') != '' ) {
         if ($_REQUEST['product_cat'] != '' && $_REQUEST['term'] == '' ){
             $descId = get_term_by('id', $_REQUEST['product_cat'], 'product_cat');
@@ -39,17 +37,31 @@ $id = get_term_by($field, $value, $taxonomy);
             $descId = get_term_by('slug', $slug, 'product_cat');
         }
         $site_suffix = $descId->name;
-
         $description[0] = $descId->description;
-        $image = get_the_post_thumbnail_url();
-
+        if (get_the_post_thumbnail() != ''){
+            $image = get_the_post_thumbnail_url();
+        } else {
+            $image_id = get_page_by_title('rps-logo-share', OBJECT, 'attachment');
+        }
     } elseif ( is_product() ) {
         $product = wc_get_product( get_the_id() );
-        $imageId = $product->get_image_id();
-        $imageSrc = wp_get_attachment_image_src( get_post_thumbnail_id($image_id), 'small');
-        $image = $imageSrc[0];
+        if ($product->get_image_id() != '') {
+            $imageId = $product->get_image_id();
+            $imageSrc = wp_get_attachment_image_src(get_post_thumbnail_id($image_id), 'small');
+            $image = $imageSrc[0];
+        } else {
+            $image_id = get_page_by_title('rps-logo-share', OBJECT, 'attachment');
+        }
         $site_suffix = $product->get_name();
         $description[] = $product->get_short_description();
+    } else {
+        if (get_the_post_thumbnail() != ''){
+            $image = get_the_post_thumbnail_url();
+        } else {
+            $image_id = get_page_by_title('rps-logo-share', OBJECT, 'attachment');
+            $image = $image_id->guid;
+        }
+        $site_suffix = get_the_title();
     }
     echo '<meta property="og:url" content="' . $current_url . '" />';
     echo '<meta property="og:title" content="' . $site_name . ' - ' . $site_suffix . '" />';
