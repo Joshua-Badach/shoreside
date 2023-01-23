@@ -40,7 +40,7 @@ function brand_loop($args){
 
     $unique = array();
     $name = array();
-    $test = ['avalon', 'mirrocraft', 'mercury', 'shorestation', 'argo'];
+    $test = ['avalon', 'mirrocraft', 'mercury', 'shorestation', 'argo', 'radinn'];
 
     foreach (wc_get_products($query_args) as $product) {
         foreach ($product->get_attributes() as $tax => $attribute) {
@@ -83,6 +83,10 @@ function brand_loop($args){
         }
         if ($term->slug === $test[4] ) {
             $url = 'https://www.argo.com/en/ca/';
+            brand_cards($term, $url);
+        }
+        if ($term->slug === $test[5] ) {
+            $url = 'https://www.https://www.radinn.com/';
             brand_cards($term, $url);
         }
     }

@@ -62,8 +62,9 @@ jQuery(document).ready(function($) {
     autoplay: true,
     autoplaySpeed: 10000,
     mobileFirst: true,
-    dots: true,
+    dots: false,
     arrows: false,
+    lazyLoad: 'ondemand',
   });
   $('.mainCarousel').slick({
     infinite: false,
@@ -73,8 +74,9 @@ jQuery(document).ready(function($) {
     autoplay: true,
     autoplaySpeed: 10000,
     mobileFirst: true,
-    dots: true,
+    dots: false,
     arrows: false,
+    lazyLoad: 'ondemand',
   });
 
   //Portrait carousel code
@@ -90,6 +92,7 @@ jQuery(document).ready(function($) {
       mobileFirst: true,
       dots: false,
       infinite: true,
+      lazyLoad: 'ondemand',
     });
     $('.carousel-product-nav').slick({
       slidesToShow: 4,
@@ -99,11 +102,12 @@ jQuery(document).ready(function($) {
       dots: false,
       mobileFirst: true,
       focusOnSelect: true,
+      lazyLoad: 'ondemand',
     });
     $('.carousel-product').slickLightbox({
       itemSelector: 'a',
       navigateByKeyboard: true
-    })
+    });
   $('#sidebarContainer').hide();
 
   $('.financingText').on( 'click', function(){
@@ -132,6 +136,11 @@ jQuery(document).ready(function($) {
       window.history.replaceState({}, document.title, home);
       location.reload(true);
     });
+
+    // $('.facebook').attr('href', 'fb://profile/358159908692');
+    // $('.youtube').attr('href', 'youtube://channel/UCl8h_s4q3vnYPLc6tWwppgA');
+    // $('.instagram').attr('href', 'instagram://profile/358159908692');
+
   }
   setTimeout(function(){
     $('#prompt-CWnFXGNPWNYNiMFgwS5X-iframe').fadeOut('slow');

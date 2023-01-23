@@ -70,17 +70,17 @@ $newsletterQuery = new WP_Query(array(
             <div class="row">
                 <div class="col-lg-4 offset-lg-4 socmedContainer">
                     <div id="facebookIcon" class="socmed">
-                        <a href="https://www.facebook.com/recpowersports/" target="_blank">
+                        <a class="facebook" href="https://www.facebook.com/recpowersports/" target="_blank">
                             <object data="<?php echo get_template_directory_uri() . '/assets/src/library/images/facebook.svg' ?>" ></object>
                         </a>
                     </div>
                     <div id="youtubeIcon" class="socmed">
-                        <a href="https://www.youtube.com/@recreationalpowersports" target="_blank">
+                        <a class="youtube" href="https://www.youtube.com/@recreationalpowersports" target="_blank">
                             <object data="<?php echo get_template_directory_uri() . '/assets/src/library/images/youtube.svg' ?>"></object>
                         </a>
                     </div>
                     <div id="instaIcon" class="socmed">
-                        <a href="https://www.instagram.com/recreationalpowersports/?hl=en" target="_blank">
+                        <a class="instagram" href="https://www.instagram.com/recreationalpowersports/?hl=en" target="_blank">
                             <object data="<?php echo get_template_directory_uri() . '/assets/src/library/images/instagram.svg' ?>"></object>
                         </a>
                     </div>

@@ -8,17 +8,17 @@ $slug = $post->post_name;
                <div class="followUs">
                 <span>Follow Us</span>
                    <div id="facebookButton" class="socmed">
-                       <a href="https://www.facebook.com/recpowersports/" target="_blank">
+                       <a class="facebook" href="https://www.facebook.com/recpowersports/" target="_blank">
                            <object data="<?php echo get_template_directory_uri() . '/assets/src/library/images/facebook.svg' ?>" ></object>
                        </a>
                    </div>
             <div id="youtubeButton" class="socmed">
-                <a href="https://www.youtube.com/@recreationalpowersports" target="_blank">
+                <a class="youtube" href="https://www.youtube.com/@recreationalpowersports" target="_blank">
                     <object data="<?php echo get_template_directory_uri() . '/assets/src/library/images/youtube.svg' ?>"></object>
                 </a>
             </div>
             <div id="instaButton" class="socmed">
-                <a href="https://www.instagram.com/recreationalpowersports/?hl=en" target="_blank">
+                <a class="instagram" href="https://www.instagram.com/recreationalpowersports/?hl=en" target="_blank">
                     <object data="<?php echo get_template_directory_uri() . '/assets/src/library/images/instagram.svg' ?>"></object>
                 </a>
             </div>

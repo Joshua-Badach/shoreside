@@ -355,9 +355,6 @@ img{
   margin-bottom: 50px;
 
   .col-2 {
-    width: 19.6666667% !important;
-    flex: 19.6666667% !important;
-    max-width: 20% !important;
     padding-left: 10px !important;
     padding-right: 10px !important;
   }
@@ -478,8 +475,8 @@ img{
   margin-bottom: 10vh;
 }
 .vision{
-  margin-top: 20vh;
-  margin-bottom: 20vh;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
 }
 .searchButton{
   margin-left: 10px;
@@ -542,6 +539,23 @@ img{
     color: nth($rpsBrand, 1);
   }
 }
+//.carousel {
+//  height: auto !important;
+//  max-height: 375px;
+//  overflow: no-display;
+//
+//  .slick-list{
+//    max-height: inherit;
+//
+//    .slick-track{
+//      max-height: inherit;
+//
+//      .sliderContent{
+//        max-height: inherit;
+//      }
+//    }
+//  }
+//}
 .carouselWrapper{
   margin-bottom: 5%;
   margin-top: 5%;
@@ -664,6 +678,7 @@ img{
   -moz-osx-font-smoothing: grayscale;
   content: "×";
 }
+
 ////!important hackery because of slick... need a better way to handle this in the future
 //.slick-next{
 //  z-index: 1 !important;
@@ -755,8 +770,6 @@ img{
 }
 .categoryItems{
   text-align: center;
-  margin-bottom: 4%;
-  margin-top: 4%;
 }
 .categoryItems img{
   width: 100%;
@@ -1112,7 +1125,7 @@ img{
     z-index: 1;
   }
   .carousel{
-    max-height: 480px;
+    max-height: 375px;
     height: 100%;
     width: 100%;
   }
