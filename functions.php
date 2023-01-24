@@ -153,6 +153,11 @@ function promotional_shortcode(){
 }
 add_shortcode('promotion-carousel', 'promotional_shortcode');
 
+function featured_brand_shortcode(){
+    include('template-parts/components/featured-brand.php');
+}
+add_shortcode('featured-brand', 'featured_brand_shortcode');
+
 function brands_shortcode(){
     include('template-parts/components/brand-card.php');
 }

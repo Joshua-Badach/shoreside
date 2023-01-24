@@ -341,7 +341,8 @@ video{
   width: 100%;
   height: 100%;
   position: relative;
-  margin-top: -85px;
+  //margin-top: -85px;
+  //going to see if Syd notices, the negative margin makes the 1080 looks odd
   z-index: -10;
   }
 img{
@@ -904,6 +905,7 @@ img{
     background: nth($rpsBrand, 1);
     margin-top: -6.2vw;
   }
+
   .row{
     padding: 10px;
   }
@@ -1028,6 +1030,15 @@ img{
 
 //small screens
 @media (min-width: 769px) and (max-width: 1024px) {
+  #brandContent{
+    margin-top: -35vh;
+  }
+  //Woo breakpoint oddity
+  @media (max-width: 997px){
+    #brandContent{
+      margin-top: -30vh;
+    }
+  }
   .carousel{
     max-height: 769px;
     height: 100%;
@@ -1077,6 +1088,9 @@ img{
 
 //regular screens
 @media (min-width: 1025px) and (max-width: 1200px) {
+  #brandContent{
+    margin-top: -35vh;
+  }
   .content > .container{
     height: auto;
     margin-left: 16%;
@@ -1105,6 +1119,9 @@ img{
   }
 }
 @media (min-width: 1201px){
+  #brandContent{
+    margin-top: -40vh;
+  }
   .disclaimer{
     top: 90px;
   }
@@ -1745,4 +1762,26 @@ input:checked + .slider:before {
   max-height: 150px!important;
   max-width: 200px!important;
   padding: 5px;
+}
+.brandLogo{
+  margin-top: -50%;
+}
+.tagLine{
+  height: fit-content;
+  background: nth($rpsBrand, 1);
+  h2{
+    color: nth($rpsBrand, 4);
+    padding: 20px 0;
+  }
+}
+#brandContent{
+  .brandVideo{
+    aspect-ratio:16/9;
+  }
+  .woocommerce-loop-product__title{
+    visibility: hidden;
+  }
+  .price{
+    visibility: hidden;
+  }
 }
