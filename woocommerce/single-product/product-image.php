@@ -64,19 +64,9 @@ $wrapper_classes   = apply_filters(
             $html .= sprintf( '<img src="%s" alt="%s" class="wp-post-image" />', esc_url( wc_placeholder_img_src( 'woocommerce_single' ) ), esc_html__( 'Awaiting product image', 'woocommerce' ) );
             $html .= '</div>';
         }
-//        call lightbox
-//        echo apply_filters( 'woocommerce_single_product_image_thumbnail_html', $html, $post_thumbnail_id ); // phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
-
-        //        if ( $attachment_ids && $product->get_image_id() ) {
-        //            foreach ( $attachment_ids as $attachment_id ) {
-        //                echo apply_filters( 'woocommerce_single_product_image_thumbnail_html', wc_get_gallery_image_html( $attachment_id ), $attachment_id ); // phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
-        //            }
-        //        }
-//        		do_action( 'woocommerce_product_thumbnails' );
-        ?>
-    </figure>
-    <?php
-    echo '<div class="carousel-product-nav thumbnails">';
+    echo '</figure>
+   
+   <div class="carousel-product-nav thumbnails">';
     if ( $attachment_ids && $product->get_image_id() ) {
         $image_urls[] = wp_get_attachment_url( $attachment_id );
         foreach ( $image_urls as $image_url ) {
