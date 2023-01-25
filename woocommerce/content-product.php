@@ -72,7 +72,7 @@ $sku = $product->get_sku();
 	 * @hooked woocommerce_template_loop_product_title - 10
 	 */
 //	do_action( 'woocommerce_shop_loop_item_title' );
-    echo '<p itemprop="name" class="' . esc_attr( apply_filters( 'woocommerce_product_loop_title_classes', 'woocommerce-loop-product__title' ) ) . '">' . get_the_title() . '</p>';
+    echo '<p itemprop="name" class="shoreside-product-title ' . esc_attr( apply_filters( 'woocommerce_product_loop_title_classes', 'woocommerce-loop-product__title' ) ) . '">' . get_the_title() . '</p>';
 
 	/**
 	 * Hook: woocommerce_after_shop_loop_item_title.

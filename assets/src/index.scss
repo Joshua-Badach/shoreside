@@ -1038,6 +1038,11 @@ img{
 @media (min-width: 769px) and (max-width: 1024px) {
   #brandContent{
     margin-top: -35vh;
+
+    .shoreside-product-title{
+      visibility: hidden;
+      bottom: 55px;
+    }
   }
   //Woo breakpoint oddity
   @media (max-width: 997px){
@@ -1096,6 +1101,11 @@ img{
 @media (min-width: 1025px) and (max-width: 1200px) {
   #brandContent{
     margin-top: -35vh;
+
+    .shoreside-product-title{
+      visibility: hidden;
+      bottom: 55px;
+    }
   }
   .content > .container{
     height: auto;
@@ -1127,6 +1137,11 @@ img{
 @media (min-width: 1201px){
   #brandContent{
     margin-top: -40vh;
+
+    .shoreside-product-title{
+      visibility: hidden;
+      bottom: 55px;
+    }
   }
   .disclaimer{
     top: 90px;
@@ -1730,13 +1745,11 @@ input:checked + .slider:before {
 .service-main{
   margin-top: 2.5%;
 }
-//.description{
-//  display: flex;
-//  align-self: center;
-//}
+.description{
+  align-self: center;
+}
 .serviceLayout .row{
   margin-top: 2.5%;
-  //background-color: lightgray;
 }
 .serviceLayout > h2:first-child{
   font-size: 36px;
@@ -1785,10 +1798,16 @@ input:checked + .slider:before {
   .brandVideo{
     aspect-ratio:16/9;
   }
-  .woocommerce-loop-product__title{
-    visibility: hidden;
-  }
   .price{
     visibility: hidden;
+  }
+  .shoreside-product-title{
+    color: nth($rpsBrand, 4);
+    background-color: nth($rpsBrand, 1);
+    text-align: center;
+    position: relative;
+  }
+  img{
+    margin-bottom: 0;
   }
 }

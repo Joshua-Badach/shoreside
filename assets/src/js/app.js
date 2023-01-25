@@ -15,6 +15,9 @@ jQuery(document).ready(function($) {
   var sticky = navbar.offsetTop;
   var win = $(this);
 
+  //Mobile check
+  var mobile = (/iphone|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));
+
     $(window).on('resize', function(){
     if (win.width() <= 769 ){
       $('.brands h3').hide();
@@ -121,9 +124,16 @@ jQuery(document).ready(function($) {
       disclaimer.hide();
     };
   });
-
-  //Mobile check
-  var mobile = (/iphone|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));
+if(!mobile) {
+  $('#brandContent .product').on({
+    mouseenter: function () {
+      $('#brandContent .shoreside-product-title').css('visibility', 'visible');
+    },
+    mouseleave: function () {
+      $('#brandContent .shoreside-product-title').css('visibility', 'hidden');
+    },
+  });
+}
 
   if (mobile) {
     var home = $(location).attr("origin");
