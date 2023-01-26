@@ -860,6 +860,9 @@ img{
   #brandContent{
     margin-top: 5%;
   }
+  .featured-logo{
+    max-width: 50%;
+  }
   .home-heading{
     font-size: 12px;
   }
@@ -954,6 +957,9 @@ img{
   }
   #brandContent{
     margin-top: 5%;
+  }
+  .featured-logo{
+    max-width: 50%;
   }
   .disclaimer{
     top: 21.5%
@@ -1050,6 +1056,9 @@ img{
       margin-top: -30vh;
     }
   }
+  .featured-logo{
+    max-width: 50%;
+  }
   .carousel{
     max-height: 769px;
     height: 100%;
@@ -1107,6 +1116,9 @@ img{
       bottom: 55px;
     }
   }
+  //.featured-logo{
+  //  max-width: 25%;
+  //}
   .content > .container{
     height: auto;
     margin-left: 16%;
@@ -1143,6 +1155,9 @@ img{
       bottom: 55px;
     }
   }
+  //.featured-logo{
+  //  max-width: 25%;
+  //}
   .disclaimer{
     top: 90px;
   }
@@ -1782,6 +1797,7 @@ input:checked + .slider:before {
   max-width: 200px!important;
   padding: 5px;
 }
+
 .brandLogo{
   margin-top: -50%;
 }
@@ -1792,6 +1808,21 @@ input:checked + .slider:before {
     color: nth($rpsBrand, 4);
     padding: 5px 0;
     font-size: 32px;
+  }
+  img{
+    max-width: 50%;
+  }
+}
+.featuredBrandLogo{
+  margin-top: -50%;
+}
+.tagLine{
+  height: fit-content;
+  background: nth($rpsBrand, 1);
+  h2{
+    color: nth($rpsBrand, 4);
+    padding: 5px 0;
+    font-size: 1.5rem;
   }
 }
 #brandContent{
@@ -1809,5 +1840,8 @@ input:checked + .slider:before {
   }
   img{
     margin-bottom: 0;
+  }
+  .row{
+    margin-top: 5%;
   }
 }

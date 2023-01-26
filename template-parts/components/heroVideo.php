@@ -23,19 +23,23 @@ if (is_home() || is_front_page()) {
 </div>';
 } else {
     $slug               =           $post->post_name;
-    $hero_video         =           $slug.'-hero.webm';
+
+    $hero_slug          =           $slug.'-hero';
+    $hero_id            =           get_page_by_title($hero_slug, OBJECT, 'attachment');
+    $hero_video         =           $hero_id->guid;
 
     $image_slug         =           $slug.'-logo';
     $logo_id            =           get_page_by_title($image_slug, OBJECT, 'attachment');
     $logo_image         =           $logo_id->guid;
     echo '<div class="heroVideo">
             <video autoplay loop muted>
-                <source src="/wp-content/uploads/' . $hero_video . '">
+                <source src="' . $hero_video . '">
             </video>
-            <div class="container brandLogo">
+            <div class="container featuredBrandLogo">
                 <div class="row">
-                    <img class="logoBanner col-sm-3" alt="' . $slug . ' logo" src="' . $logo_image . '">
+                    <img class="col-sm-3 featured-logo" alt="' . $slug . ' logo" src="' . $logo_image . '">
                 </div>
             </div>
         </div>';
 }
+

@@ -40,8 +40,7 @@ function brand_loop($args){
 
     $unique = array();
     $name = array();
-//    add test for radinn post approval
-    $test = ['avalon', 'mirrocraft', 'mercury', 'shorestation', 'argo',];
+    $test = ['avalon', 'mirrocraft', 'mercury', 'shorestation', 'argo', 'radinn'];
 
     foreach (wc_get_products($query_args) as $product) {
         foreach ($product->get_attributes() as $tax => $attribute) {
@@ -86,11 +85,10 @@ function brand_loop($args){
             $url = 'https://www.argo.com/en/ca/';
             brand_cards($term, $url);
         }
-//        Uncomment post approval
-//        if ($term->slug === $test[5] ) {
-//            $url = 'https://www.https://www.radinn.com/';
-//            brand_cards($term, $url);
-//        }
+        if ($term->slug === $test[5] ) {
+            $url = 'https://www.https://www.radinn.com/';
+            brand_cards($term, $url);
+        }
     }
     echo '</section>';
 }
@@ -99,10 +97,11 @@ function brand_cards($term, $url){
     $image_slug = $term->slug.'-logo';
     $image_id = get_page_by_title($image_slug, OBJECT, 'attachment');
     $image = $image_id->guid;
-    $content = $term->description;
-    $trimmed_content = wp_trim_words( $content, 25, '...');
 
-    echo '<section itemscope itemtype="https://schema.org/Brand" class="col-2">
+    if (isMobile() == false){
+        $content = $term->description;
+        $trimmed_content = wp_trim_words( $content, 25, '...');
+        echo '<section itemscope itemtype="https://schema.org/Brand" class="col-2">
             <a href="' . $term->slug . '">
                 <div class="brandCard brands">
                     <div class="brandImage">
@@ -116,6 +115,19 @@ function brand_cards($term, $url){
                     <p class="appended">Read More</p> 
                 </div>    
             </a>
-    </section>';
+        </section>';
+    } else {
+        echo '<section itemscope itemtype="https://schema.org/Brand" class="col-2">
+            <a href="' . $term->slug . '">
+                <div class="brandCard">
+                    <div class="brandImage">
+                        <img itemprop="logo" src="'. $image . '">
+                        <span hidden itemprop="url"> ' . $url . '</span>
+                    </div>   
+                    <h3 itemprop="name" class="hidden">' . $term->name . '</h3>
+                </div>    
+            </a>
+        </section>';
+    }
 }
 brand_loop($args);

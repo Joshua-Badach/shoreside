@@ -18,24 +18,10 @@ jQuery(document).ready(function($) {
   //Mobile check
   var mobile = (/iphone|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));
 
-    $(window).on('resize', function(){
-    if (win.width() <= 769 ){
-      $('.brands h3').hide();
-      $('.brands p').hide();
-      $((".brandCard")).removeClass("brands");
-    }
 
-    if (win.width() >= 769 ){
-      $('.brands h3').show();
-      $('.brands p').show();
-      $((".brandCard")).addClass("brands");
-    };
-  });
 
   function brandShuffle(){
-    if ( win.width() < 769) {
-      $('.brands h3').hide();
-      $('.brands p').hide();
+    if ( mobile ) {
       $((".brandCard")).removeClass("brands");
     }
   }
