@@ -127,10 +127,10 @@ jQuery(document).ready(function($) {
 if(!mobile) {
   $('#brandContent .product').on({
     mouseenter: function () {
-      $('#brandContent .shoreside-product-title').css('visibility', 'visible');
+      $(this).find('.shoreside-product-title').css('visibility', 'visible');
     },
     mouseleave: function () {
-      $('#brandContent .shoreside-product-title').css('visibility', 'hidden');
+      $(this).find('.shoreside-product-title').css('visibility', 'hidden');
     },
   });
 }
