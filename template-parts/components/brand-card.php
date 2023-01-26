@@ -61,9 +61,13 @@ function brand_loop($args){
 
     $terms = get_categories($args);
 
-    echo '<section class="container"> 
-                <div class="row brandSpan justify-content-center">
-                <h2>Our Brands</h2>';
+    echo '<section class="container">
+    <h2 class="hidden">Our Brands</h2>';
+        if (isMobile == true){
+            echo '<div class="row brandSpan brand-carousel">';
+        } else {
+            echo '<div class="row brandSpan justify-content-center">';
+        }
     foreach ($terms as $term) {
         if ($term->slug === $test[0] ) {
             $url = 'https://www.avalonpontoons.com/';
@@ -117,7 +121,7 @@ function brand_cards($term, $url){
             </a>
         </section>';
     } else {
-        echo '<section itemscope itemtype="https://schema.org/Brand" class="col-2">
+        echo '<section itemscope itemtype="https://schema.org/Brand" class="col-4">
             <a href="' . $term->slug . '">
                 <div class="brandCard">
                     <div class="brandImage">

@@ -67,6 +67,17 @@ jQuery(document).ready(function($) {
     arrows: false,
     lazyLoad: 'ondemand',
   });
+  $('.brand-carousel').slick({
+    slidesToShow: 3,
+    slidesToScroll: 3,
+    autoplay: true,
+    speed: 300,
+    autoplaySpeed: 10000,
+    arrows: false,
+    dots: false,
+    mobileFirst: false,
+    lazyLoad: false,
+  });
 
   //Portrait carousel code
     $('.carousel-product').slick({

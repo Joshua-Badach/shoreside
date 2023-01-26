@@ -352,17 +352,15 @@ img{
 }
 
 .brandSpan{
-  margin-top: -20vw;
+  //margin-top: -20vw;
   margin-bottom: 50px;
-
-  .col-2 {
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-  }
-
-  h2{
-    display: none;
-  }
+  background: nth($rpsBrand, 1);
+}
+.brand-carousel{
+  margin-top: -8vw;
+  min-height: 50px;
+  max-height: 125px;
+  overflow: hidden;
 }
 .brands{
   height: 100%;
@@ -907,10 +905,6 @@ img{
     display: flex;
     align-self: center;
   }
-  .brandSpan{
-    background: nth($rpsBrand, 1);
-    margin-top: -6.2vw;
-  }
 
   .row{
     padding: 10px;
@@ -980,10 +974,10 @@ img{
     display: flex;
     align-self: center;
   }
-  .brandSpan{
-    background: nth($rpsBrand, 1);
-    margin-top: -5vw;
-  }
+  //.brandSpan{
+  //  background: nth($rpsBrand, 1);
+  //  margin-top: -5vw;
+  //}
   .woocommerce-product-gallery{
     height: 100%!important;
   }
