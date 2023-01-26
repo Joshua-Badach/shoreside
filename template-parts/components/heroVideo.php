@@ -23,7 +23,7 @@ if (is_home() || is_front_page()) {
 </div>';
 } else {
     $slug               =           $post->post_name;
-    $hero_video         =           $slug.'-hero.mp4';
+    $hero_video         =           $slug.'-hero.webm';
 
     $image_slug         =           $slug.'-logo';
     $logo_id            =           get_page_by_title($image_slug, OBJECT, 'attachment');

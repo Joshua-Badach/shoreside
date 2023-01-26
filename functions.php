@@ -148,6 +148,11 @@ function promotion_content_shortcode(){
 }
 add_shortcode('promotion-content', 'promotion_content_shortcode');
 
+function financing_shortcode(){
+    include('template-parts/components/financing-content.php');
+}
+add_shortcode('financing-content', 'financing_shortcode');
+
 function promotional_shortcode(){
     include('template-parts/components/promotion-carousel.php');
 }

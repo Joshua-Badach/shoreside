@@ -22,7 +22,7 @@ $tagline = get_post_meta($post->ID, 'tagline', true);
 
 echo '<div class="tagLine">
         <div class="container">
-            <div class="row justify-content-end">        
+            <div class="row justify-content-start">        
                 <h2 class="col-sm-3">' . $tagline . '</h2>
             </div>
         </div>
