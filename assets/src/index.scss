@@ -354,7 +354,6 @@ img{
 .brandSpan{
   //margin-top: -20vw;
   margin-bottom: 50px;
-  background: nth($rpsBrand, 1);
 }
 .brand-carousel{
   margin-top: -8vw;
@@ -517,9 +516,9 @@ img{
   width: 100%;
   height: auto;
 }
-.slick-list{
-  height: inherit;
-}
+//.slick-list{
+//  height: inherit;
+//}
 .mainCarousel {
   .sliderText {
     z-index: 1;
@@ -537,24 +536,23 @@ img{
   a {
     color: nth($rpsBrand, 1);
   }
+
+  .slick-list{
+    max-height: inherit;
+
+    .slick-track{
+      max-height: inherit;
+
+      .slick-slide{
+        max-height: inherit;
+
+        img{
+          max-height: inherit;
+        }
+      }
+    }
+  }
 }
-//.carousel {
-//  height: auto !important;
-//  max-height: 375px;
-//  overflow: no-display;
-//
-//  .slick-list{
-//    max-height: inherit;
-//
-//    .slick-track{
-//      max-height: inherit;
-//
-//      .sliderContent{
-//        max-height: inherit;
-//      }
-//    }
-//  }
-//}
 .carouselWrapper{
   margin-bottom: 5%;
   margin-top: 5%;
@@ -767,13 +765,20 @@ img{
   visibility: visible;
   border: 2px solid white;
 }
-.categoryItems{
+.categoryItems {
   text-align: center;
-}
-.categoryItems img{
-  width: 100%;
-  height: 100%;
-  aspect-ratio: 1/1;
+  margin-bottom: 20px;
+
+  a {
+    display: block;
+    height: 100%;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1/1;
+  }
 }
 #categoryTitle{
   display: flex;
@@ -855,6 +860,9 @@ img{
   .home-block img{
     width: 20%;
   }
+  .brandSpan{
+    background: nth($rpsBrand, 1);
+  }
   #brandContent{
     margin-top: 5%;
   }
@@ -888,12 +896,21 @@ img{
       left: 10vw;
     }
   }
-  .sliderContent img{
-    width: 100%;
-    height: auto;
-    -o-object-fit: cover;
-    object-fit: cover;
-    aspect-ratio: 2/1.25;
+  .mainCarousel {
+    .sliderContent img {
+      width: 100%;
+      height: auto;
+      -o-object-fit: cover;
+      object-fit: cover;
+      aspect-ratio: 2/1.25;
+    }
+    .sliderText{
+      -webkit-transform: translate(20%, -110%);
+      -moz-transform: translate(20%, -110%);
+      -ms-transform: translate(20%, -110%);
+      -o-transform: translate(20%, -110%);
+      transform: translate(20%, -110%);
+    }
   }
   .woocommerce-product-gallery{
     height: 100%;
@@ -949,6 +966,9 @@ img{
   .home-block img{
     width: 20%;
   }
+  .brandSpan{
+    background: nth($rpsBrand, 1);
+  }
   #brandContent{
     margin-top: 5%;
   }
@@ -974,10 +994,6 @@ img{
     display: flex;
     align-self: center;
   }
-  //.brandSpan{
-  //  background: nth($rpsBrand, 1);
-  //  margin-top: -5vw;
-  //}
   .woocommerce-product-gallery{
     height: 100%!important;
   }
@@ -1053,6 +1069,9 @@ img{
   .featured-logo{
     max-width: 50%;
   }
+  .brandSpan{
+    margin-top: -5vw;
+  }
   .carousel{
     max-height: 769px;
     height: 100%;
@@ -1117,6 +1136,9 @@ img{
     height: auto;
     margin-left: 16%;
   }
+  .brandSpan{
+    margin-top: -5vw;
+  }
   .disclaimer{
     top: 4%
   }
@@ -1154,6 +1176,9 @@ img{
   //}
   .disclaimer{
     top: 90px;
+  }
+  .brandSpan{
+    margin-top: -12vw;
   }
   .ourCatalogs{
     margin-bottom: 10%;

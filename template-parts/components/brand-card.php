@@ -63,10 +63,10 @@ function brand_loop($args){
 
     echo '<section class="container">
     <h2 class="hidden">Our Brands</h2>';
-        if (isMobile == true){
-            echo '<div class="row brandSpan brand-carousel">';
-        } else {
+        if (isMobile() == false){
             echo '<div class="row brandSpan justify-content-center">';
+        } else {
+            echo '<div class="row brandSpan brand-carousel">';
         }
     foreach ($terms as $term) {
         if ($term->slug === $test[0] ) {
