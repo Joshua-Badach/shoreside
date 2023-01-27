@@ -72,13 +72,11 @@ h5{
 //==========text==========
 p, span, label, a, button{
   //Syd wants defaults for some reason...
-  //font-family: nth($font, 1);
   font-size: nth($fontSizing, 1);
 }
 //==========menu==========
 nav{
   position: relative;
-  //top: 25px;
   width: 100%;
   padding: 0;
   z-index: 1000;
@@ -92,7 +90,6 @@ nav{
 #menu-main li a{
   color: nth($rpsBrand, 4);
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-//  neat little trick for text outline
 }
 .mega-menu-wrap{
   padding: 0;
@@ -111,7 +108,6 @@ nav{
 
 //==========animations/buttons==========
 button{
-  //height: 30px;
   min-width: 100px;
   height: 30px;
   padding: 0 10px;
@@ -122,7 +118,6 @@ button{
   vertical-align: middle;
   background: nth($rpsBrand, 1);
   color: nth($rpsBrand, 4);
-  //text-shadow: 3px 3px 4px #000;
 }
 button span{
   font-size: 1rem;
@@ -352,7 +347,6 @@ img{
 }
 
 .brandSpan{
-  //margin-top: -20vw;
   margin-bottom: 50px;
 }
 .brand-carousel{
@@ -475,6 +469,10 @@ img{
 .vision{
   margin-top: 10vh;
   margin-bottom: 10vh;
+
+  h2{
+    text-align: center;
+  }
 }
 .searchButton{
   margin-left: 10px;
@@ -516,9 +514,6 @@ img{
   width: 100%;
   height: auto;
 }
-//.slick-list{
-//  height: inherit;
-//}
 .mainCarousel {
   .sliderText {
     z-index: 1;
@@ -675,50 +670,6 @@ img{
   -moz-osx-font-smoothing: grayscale;
   content: "×";
 }
-
-////!important hackery because of slick... need a better way to handle this in the future
-//.slick-next{
-//  z-index: 1 !important;
-//  right: 1.5% !important;
-//}
-//.slick-prev{
-//  z-index: 1 !important;
-//  left: 1% !important;
-//}
-//.slick-arrow{
-//  width: 75px !important;
-//  height: 75px !important;
-//}
-//.slick-arrow:hover{
-//  opacity: 1;
-//}
-//.slick-dots{
-//  bottom: 50px !important;
-//}
-//.slick-dots li{
-//  width: 35px !important;
-//  height: 35px !important;
-//}
-//.slick-dots li button::before{
-//  padding: 3% !important;
-//  color: nth($rpsBrand, 1) !important;
-//  font-size: 50px !important;
-//  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
-//}
-//.slick-arrow::before{
-//  font-size: 75px !important;
-//  color: nth($rpsBrand, 1) !important;
-//  //border: 2px solid nth($rpsBrand,4) !important;
-//  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
-//  border-radius: 45px !important;
-//}
-//.carousel .slick-slide{
-//  max-height: 480px;
-//}
-//.slick-slider{
-//  -ms-touch-action: auto!important;
-//  touch-action: auto!important;
-//}
 .carousel-product{
   -webkit-touch-callout: default;
   -webkit-user-select: default;
@@ -779,6 +730,14 @@ img{
     height: 100%;
     aspect-ratio: 1/1;
   }
+  h3{
+    padding: 20px 0;
+    color: nth($rpsBrand, 4);
+    background: nth($rpsBrand, 1);
+    position: relative;
+    top: -60px;
+    padding: 10px 0;
+  }
 }
 #categoryTitle{
   display: flex;
@@ -804,15 +763,11 @@ img{
 .content > .container{
   margin-top: 15px;
 }
-//.slick-track{
-//  height: inherit;
-//}
 .disclaimer{
   display: none;
   position: absolute;
   bottom: 4px;
   background: nth($rpsBrand, 4);
-  //top: 4%;
   padding: 10px;
   z-index: 10;
   height: fit-content;
@@ -1341,8 +1296,6 @@ div .form-footer{
   color: nth($rpsBrand,4);
   background: nth($rpsBrand, 1);
   border: 2px solid nth($rpsBrand, 1);
-  //padding: 5px;
-
 }
 .tableItem{
   border-left: 2px solid nth($rpsBrand, 1);
@@ -1490,36 +1443,6 @@ div .form-footer{
   margin-right: 10px;
   clear: both;
 }
-//#lightbox {
-//  position: fixed;
-//  z-index: 9999999999;
-//  top: 0;
-//  left: 0;
-//  width: 100vw; height: 100vh;
-//  background: rgba(0, 105, 173, .8);
-//  display: flex;
-//  align-items: center;
-//  justify-content: center;
-//  visibility: hidden;
-//  opacity: 0;
-//  transition: opacity ease 0.4s;
-//}
-//#lightbox.show {
-//  visibility: visible;
-//  opacity: 1;
-//}
-//#lightbox img {
-//  top: 0!important;
-//  left: 0!important;
-//  display: flex!important;
-//  align-self: center!important;
-//  justify-self: center!important;
-//  transform-origin: 0!important;
-//  width: 100%;
-//  height: auto;
-//  object-fit: cover;
-//}
-//Switch styling
 
 /* The switch - the box around the slider */
 .switch {
@@ -1632,6 +1555,16 @@ input:checked + .slider:before {
 }
 .financingText:hover{
   cursor: pointer;
+}
+.financing{
+  margin-top: 5%;
+
+  h2{
+    margin-top: 5%;
+  }
+  img{
+    width: 100%;
+  }
 }
 .modal{
   position: fixed;

@@ -4,7 +4,11 @@ $image_slug = 'rps-logo';
 $image_id = get_page_by_title($image_slug, OBJECT, 'attachment');
 $image = $image_id->guid;
 
-echo'<div class="container">
+$financing_ad_slug = 'financing-ad';
+$financing_ad_id = get_page_by_title($financing_ad_slug, OBJECT, 'attachment');
+$financing_ad = $financing_ad_id->guid;
+
+echo'<div class="container financing">
     <div class="row">
         <img class="col-sm-2" src="' . $image . '">
     </div>
@@ -12,24 +16,27 @@ echo'<div class="container">
         <h2 class="col-sm-12">Financing Application</h2>
         <div class="col-sm-6">
     
-        <p>Complete this form in 2-3 minutes online, or call us (780) 732-1004 to apply over the phone! Once completed our team will reach out to you within one business day to go over the best possible options based on credit.
+        <p>Complete this form in <strong>2-3 minutes</strong> online, or call us <a href="tel:7807321004">(780) 732-1004</a> to apply over the phone! Once completed our team will reach out to you within one business day to go over the best possible options based on credit.</p>
 
-If you have any questions please do not hesitate to email us at finance@recreationalpowersports.com and we will be happy to help you out!</p>
+        <p>If you have any questions please do not hesitate to email us at <a href="mailto:finance@recreationalpowersports.com">finance@recreationalpowersports.com</a> and we will be happy to help you out!</p>
         
-            <img src="https://placekitten.com/g/500/500">
+            <img alt="Get approved today!" src="' . $financing_ad . '">
 
-            <p>Boats and PWCs, ATVS, snowmobiles, motorcycles, RVs, travel trailers, and more! We work with multiple lenders to achieve the best rates and terms specific to your individual credit. We work with all income levels and credit histories to help you build up your credit while still having fun! 
+        <p>Boats and PWCs, ATVS, snowmobiles, motorcycles, RVs, travel trailers, and more!</p>
+        <p>We work with multiple lenders to achieve the best rates and terms specific to your individual credit. We work with all income levels and credit histories to help you build up your credit while still having fun! </p>
  
-        We can finance:
-        
-        Units available in our inventory
-        Private sale units you find through Kijiji, Marketplace, etc
-        Repair bills for work completed through our Service Department
-        Parts and accessories in our showroom
-        Most makes and models! Older years accepted!
-
-        Approvals, rates, and terms are On Approved Credit (OAC). Some restrictions apply. Contact our team for more information.</p>
-
+    <section>
+        <h3>We can finance:</h3>
+        <ul>
+            <li>Units available in our <a href="' . $get_home_url . '/showroom/">inventory</a></li>
+            <li>Private sale units you find through Kijiji, Marketplace, etc</li>
+            <li>Repair bills for work completed through our <a href="' . $get_home_url . '/service/">Service Department</a></li>
+            <li>Parts and accessories in our showroom</li>
+            <li>Most makes and models! Older years accepted!</li>
+        </ul>
+        <p><strong>Most makes and models! Older years accepted!</strong></p>
+        <sub>Approvals, rates, and terms are On Approved Credit (OAC). Some restrictions apply. Contact our team for more information.</sub>
+    </section>
 </div>
         <div class="col-sm-6">
         <iframe
