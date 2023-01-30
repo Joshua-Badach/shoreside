@@ -168,12 +168,12 @@ if(!mobile) {
 
   if (mobile) {
     var home = $(location).attr("origin");
-    var logo = $('<img>', {id:'theLogo', src:'/wp-content/themes/shoreside/assets/src/library/images/logo-small.png'})
+    var logo = $('<img>', {src:'/wp-content/themes/shoreside/assets/src/library/images/rps-logo-small.png', alt:'Recreational Power Sports Logo'})
 
     $('.slick-arrow').delay(10000).fadeOut('slow');
     $('.mega-toggle-blocks-left').append(logo);
 
-    $(document).on('click', '#theLogo', function(){
+    $(document).on('click', '.mega-toggle-blocks-left', function(){
       window.history.replaceState({}, document.title, home);
       location.reload(true);
     });

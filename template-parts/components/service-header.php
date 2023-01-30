@@ -9,6 +9,7 @@ $categoryDescription = category_description($idObj);
 
 $image_slug = $term->slug.'-info';
 $image_id = get_page_by_title($image_slug, OBJECT, 'attachment');
+$image_alt = get_post_meta($image_id->ID, '_wp_attachment_image_alt', TRUE);
 $infoImage = $image_id->guid;
 
 $video = get_post_custom_values('video', $slug);
@@ -18,7 +19,7 @@ echo '<section class="container serviceLayout">
         <div class="row">
             <div class="col-lg-6">';
                 echo $categoryDescription . '
-                <img class="serviceInfo" src="'. $infoImage .'" alt="Services We Offer">';
+                <img class="serviceInfo" src="'. $infoImage .'" alt="' . $image_alt . '">';
                     if ($video[0] != '') {
                         echo '<iframe class="serviceVideo" name="productVideo" scrolling="no" frameborder="1" src="https://www.youtube.com/embed/' . $video[0] . '" marginwidth="0px" allowfullscreen=""></iframe>';
                     }
