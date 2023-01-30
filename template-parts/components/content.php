@@ -32,6 +32,7 @@ $test = get_term_by('id', $parent, 'product_cat');
 
 $image_slug = $term->slug.'-logo';
 $image_id = get_page_by_title($image_slug, OBJECT, 'attachment');
+$image_alt = get_post_meta($image_id->ID, '_wp_attachment_image_alt', TRUE);
 $image = $image_id->guid;
 
 $logo_id = get_page_by_title('logo', OBJECT, 'attachment');
@@ -41,7 +42,7 @@ echo '<section id="contentTrigger" data-page="' . $idObjConst . '" data-slug="' 
     <div data-parent="' . $test->slug . '" class="container display">
         <div class="row">';
             if ($image != ''){
-            echo '<img class="logoBanner col-sm-3" alt="' . $slug . ' logo" src="' . $image . '">
+            echo '<img class="logoBanner col-sm-3" alt="' . $image_alt . '" src="' . $image . '">
             <h2 class="hide"  data-cat="' . $term->slug . '">' . $term->name . '</h2>';
             } else {
             echo '<h2 id="categoryTitle" class="col-3"  data-cat="' . $term->slug . '">' . $term->name . '</h2>';

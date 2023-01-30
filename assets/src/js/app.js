@@ -168,7 +168,7 @@ if(!mobile) {
 
   if (mobile) {
     var home = $(location).attr("origin");
-    var logo = $('<img>', {id:'theLogo', src:'/wp-content/themes/shoreside/assets/src/library/images/logo.png'})
+    var logo = $('<img>', {id:'theLogo', src:'/wp-content/themes/shoreside/assets/src/library/images/logo-small.png'})
 
     $('.slick-arrow').delay(10000).fadeOut('slow');
     $('.mega-toggle-blocks-left').append(logo);
@@ -177,10 +177,6 @@ if(!mobile) {
       window.history.replaceState({}, document.title, home);
       location.reload(true);
     });
-
-    // $('.facebook').attr('href', 'fb://profile/358159908692');
-    // $('.youtube').attr('href', 'youtube://channel/UCl8h_s4q3vnYPLc6tWwppgA');
-    // $('.instagram').attr('href', 'instagram://profile/358159908692');
 
   }
   setTimeout(function(){

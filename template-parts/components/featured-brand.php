@@ -8,13 +8,15 @@ $terms = get_terms([
 ]);
 $name = wp_list_pluck($terms, 'name');
 $description = wp_list_pluck($terms, 'description');
-
-$image_slug = $slug.'-logo';
-$image_id = get_page_by_title($image_slug, OBJECT, 'attachment');
-$image = $image_id->guid;
+//
+//$image_slug = $slug.'-logo';
+//$image_id = get_page_by_title($image_slug, OBJECT, 'attachment');
+//$image_alt = get_post_meta($image_id->ID, '_wp_attachment_image_alt', TRUE);
+//$image = $image_id->guid;
 
 $image_slug_featured = $slug.'-featured';
 $featured_id = get_page_by_title($image_slug_featured, OBJECT, 'attachment');
+$featured_alt = get_post_meta($featured_id->ID, '_wp_attachment_image_alt', TRUE);
 $featured = $featured_id->guid;
 
 $video = get_post_meta($post->ID, 'video', true);
@@ -34,7 +36,7 @@ echo do_shortcode('[products attribute="manufacturer"  terms="' . $slug . '" per
         echo '<div class="row">
             <p class="col-sm-9 description">' . $description[0] . '</p>';
         if ($featured != '') {
-            echo '<img class="col-sm-3" src = "' . $featured . '" alt = "' . $post->post_title . ' featured image" >';
+            echo '<img class="col-sm-3" src = "' . $featured . '" alt = "' . $featured_alt . '" >';
         }
         echo '</div>';
         if ($video != '') {

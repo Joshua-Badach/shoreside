@@ -30,6 +30,7 @@ if (is_home() || is_front_page()) {
 
     $image_slug         =           $slug.'-logo';
     $logo_id            =           get_page_by_title($image_slug, OBJECT, 'attachment');
+    $logo_alt           =           get_post_meta($logo_id->ID, '_wp_attachment_image_alt', TRUE);
     $logo_image         =           $logo_id->guid;
     echo '<div class="heroVideo">
             <video autoplay loop muted>
@@ -37,7 +38,7 @@ if (is_home() || is_front_page()) {
             </video>
             <div class="container featuredBrandLogo">
                 <div class="row">
-                    <img class="col-sm-3 featured-logo" alt="' . $slug . ' logo" src="' . $logo_image . '">
+                    <img class="col-sm-3 featured-logo" alt="' . $logo_alt . '" src="' . $logo_image . '">
                 </div>
             </div>
         </div>';

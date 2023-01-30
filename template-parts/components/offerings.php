@@ -31,9 +31,10 @@ function product_gallery($idObj, $args){
     foreach ($all_categories as $cat) {
         if ($cat->name != 'Uncategorized' && $cat->name != 'Preowned') {
             $thumbnail_id = get_term_meta( $cat->term_id, 'thumbnail_id', true );
+            $thumbnail_alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', TRUE);
             $image = wp_get_attachment_url( $thumbnail_id );
             echo '<section class="col-sm-4 categoryItems" ><a href="' . '/' . $cat->slug . '/' . '">
-                <img src="'. $image . '" width="150px" height="150px">
+                <img src="'. $image . '" alt="' . $thumbnail_alt . '">
                 <h3>' . $cat->name . '</h3>
             </a></section>';
         }

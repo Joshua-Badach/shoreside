@@ -1,5 +1,9 @@
 <?php wp_footer();
 
+$image_id = get_page_by_title('rps-logo', OBJECT, 'attachment');
+$image_alt = get_post_meta($image_id->ID, '_wp_attachment_image_alt', TRUE);
+$image = $image_id->guid;
+
 $hoursQuery = new WP_Query(array(
     'category_name'     => 'hours',
     'order'             => 'DESC',
@@ -18,7 +22,7 @@ $newsletterQuery = new WP_Query(array(
             <div class="row">
                 <span class="col-lg-3">
                     <a href="<?php echo site_url() ?>">
-                        <img itemprop="logo" class="logo" src="<?php echo get_template_directory_uri() . '/assets/src/library/images/logo.png' ?>" alt="Recreational Power Sports Logo">
+                        <img itemprop="logo" class="logo" src="<?php echo $image ?>" alt="<?php echo $image_alt ?>">
                         <span hidden itemprop="url">https://recreationalpowersports.com</span>
                     </a>
                 </span>
@@ -70,17 +74,17 @@ $newsletterQuery = new WP_Query(array(
             <div class="row">
                 <div class="col-lg-4 offset-lg-4 socmedContainer">
                     <div id="facebookIcon" class="socmed">
-                        <a class="facebook" href="https://www.facebook.com/recpowersports/" target="_blank">
+                        <a class="facebook" itemprop="sameAs" href="https://www.facebook.com/recpowersports/" target="_blank">
                             <object data="<?php echo get_template_directory_uri() . '/assets/src/library/images/facebook.svg' ?>" ></object>
                         </a>
                     </div>
                     <div id="youtubeIcon" class="socmed">
-                        <a class="youtube" href="https://www.youtube.com/@recreationalpowersports" target="_blank">
+                        <a class="youtube" itemprop="sameAs" href="https://www.youtube.com/@recreationalpowersports" target="_blank">
                             <object data="<?php echo get_template_directory_uri() . '/assets/src/library/images/youtube.svg' ?>"></object>
                         </a>
                     </div>
                     <div id="instaIcon" class="socmed">
-                        <a class="instagram" href="https://www.instagram.com/recreationalpowersports/?hl=en" target="_blank">
+                        <a class="instagram" itemprop="sameAs" href="https://www.instagram.com/recreationalpowersports/?hl=en" target="_blank">
                             <object data="<?php echo get_template_directory_uri() . '/assets/src/library/images/instagram.svg' ?>"></object>
                         </a>
                     </div>
