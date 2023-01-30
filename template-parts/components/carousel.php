@@ -1,13 +1,13 @@
 <?php
 
 if ( is_home() || is_front_page() ){
-    echo '<section class="carouselWrapper">';
-    echo '<h2 class="col-sm-8">How Recreational Power Sports Does It Better</h2>';
-    echo '<div class="mainCarousel">';
+    echo '<section class="carouselWrapper">
+        <h2 class="col-sm-8">How Recreational Power Sports Does It Better</h2>
+        <div class="mainCarousel">';
 } else {
-    echo '<section>';
-    echo '<h2 class="hidden">' . get_the_title() . ' Offerings</h2>';
-    echo '<div class="carousel">';
+    echo '<section>
+        <h2 class="hidden">' . get_the_title() . ' Offerings</h2>
+        <div class="mainCarousel">';
 }
 
 $the_page = sanitize_posT($GLOBALS['wp_the_query']->get_queried_object() );

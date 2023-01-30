@@ -852,12 +852,14 @@ img{
     }
   }
   .mainCarousel {
-    .sliderContent img {
-      width: 100%;
-      height: auto;
-      -o-object-fit: cover;
-      object-fit: cover;
-      aspect-ratio: 2/1.25;
+    .sliderContent{
+      img {
+        width: 100%;
+        height: auto;
+        -o-object-fit: cover;
+        object-fit: cover;
+        aspect-ratio: 2/1.25;
+      }
     }
     .sliderText{
       -webkit-transform: translate(20%, -110%);
@@ -1558,12 +1560,22 @@ input:checked + .slider:before {
 }
 .financing{
   margin-top: 5%;
+  margin-bottom: 5%;
 
   h2{
     margin-top: 5%;
   }
   img{
     width: 100%;
+  }
+}
+.products{
+  .product{
+    a{
+      .attachment-thumbnail{
+        aspect-ratio: 1/1;
+      }
+    }
   }
 }
 .modal{

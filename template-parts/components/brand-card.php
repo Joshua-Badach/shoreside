@@ -61,7 +61,7 @@ function brand_loop($args){
 
     $terms = get_categories($args);
 
-    echo '<section class="container">
+    echo '<section id="brandSection" class="container">
     <h2 class="hidden">Our Brands</h2>';
         if (isMobile() == false){
             echo '<div class="row brandSpan justify-content-center">';
@@ -100,6 +100,7 @@ function brand_loop($args){
 function brand_cards($term, $url){
     $image_slug = $term->slug.'-logo';
     $image_id = get_page_by_title($image_slug, OBJECT, 'attachment');
+    $image_alt = get_post_meta($image_id->ID, '_wp_attachment_image_alt', TRUE);
     $image = $image_id->guid;
 
     if (isMobile() == false){
@@ -109,7 +110,7 @@ function brand_cards($term, $url){
             <a href="' . $term->slug . '">
                 <div class="brandCard brands">
                     <div class="brandImage">
-                        <img itemprop="logo" src="'. $image . '">
+                        <img itemprop="logo" src="'. $image . '" alt="' . $image_alt . '">
                         <span hidden itemprop="url"> ' . $url . '</span>
                     </div>   
                     <div class="brandsContent">    
