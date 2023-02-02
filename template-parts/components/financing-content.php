@@ -10,15 +10,18 @@ $financing_ad = $financing_ad_id->guid;
 
 echo'<div class="container financing">
     <div class="row">
-        <img class="col-sm-2" src="' . $image . '">
+        <img itemprop="logo" class="col-sm-2" src="' . $image . '">
     </div>
-    <section class="row">
-        <h2 class="col-sm-12">Financing Application</h2>
-        <div class="col-sm-6">
+    <section itemscope itemtype="https://schema.org/FinancialProduct" class="row">
+        <h2 itemprop="brand" class="col-sm-12 hidden">Recreational Power Sports</h2>
+        <h3 class="col-sm-12"><span itemprop="name">Financing</span> Application</h3>
+        <div itemprop="description" class="col-sm-6">
     
-        <p>Complete this form in <strong>2-3 minutes</strong> online, or call us <a href="tel:7807321004">(780) 732-1004</a> to apply over the phone! Once completed our team will reach out to you within one business day to go over the best possible options based on credit.</p>
+        <p>Complete this form in <strong>2-3 minutes</strong> online, call us at<a itemprop="availableChannel" href="tel:7807321004"> (780) 732-1004</a>, or visit us in store at <a href="https://maps.google.com/?q=Recreational+Power+Sports" target="_blank" rel="noopener">11204 154 St, <span itemprop="areaServed">Edmonton, AB</span></a> T5M 1X7.</p> 
+        
+        <p>Once completed our team will reach out to you within one business day to go over the best possible options based on credit.</p>
 
-        <p>If you have any questions please do not hesitate to email us at <a href="mailto:finance@recreationalpowersports.com">finance@recreationalpowersports.com</a> and we will be happy to help you out!</p>
+        <p>If you have any questions please do not hesitate to email us at <a itemprop="availableChannel" href="mailto:finance@recreationalpowersports.com">finance@recreationalpowersports.com</a> and we will be happy to help you out!</p>
         
             <img alt="Get approved today!" src="' . $financing_ad . '">
 

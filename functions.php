@@ -488,19 +488,6 @@ function contact_blurb(){
 }
 add_action('woocommerce_single_product_summary', 'contact_blurb', 45);
 
-function manufacturer_logo(){
-    global $product;
-    $manufacturer = array_shift( wc_get_product_terms( $product->id, 'pa_manufacturer', array( 'fields' => 'names' ) ) );
-    $image_slug = $manufacturer.'-logo';
-    $image_id = get_page_by_title($image_slug, OBJECT, 'attachment');
-    $image = $image_id->guid;
-
-    if ($image != ''){
-        echo '<img class="logoBanner" src="' . $image . '">';
-    }
-}
-add_action('woocommerce_single_product_summary', 'manufacturer_logo', 20);
-
 function woo_related_products_limit() {
     global $product;
 

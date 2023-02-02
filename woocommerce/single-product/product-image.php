@@ -37,8 +37,6 @@ $wrapper_classes   = apply_filters(
 ?>
 
 <div class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', $wrapper_classes ) ) ); ?>" data-columns="<?php echo esc_attr( $columns ); ?>" style="opacity: 0; transition: opacity .25s ease-in-out;">
-    <!--Lightbox trigger, work on this later-->
-    <!--    <div id="lightbox"></div>-->
     <figure class="carousel-product portrait woocommerce-product-gallery__wrapper" data-scale="2">
         <?php
         if ( $post_thumbnail_id ) {
@@ -55,8 +53,9 @@ $wrapper_classes   = apply_filters(
                 $image_urls[] = wp_get_attachment_url( $attachment_id );
             }
 
-            foreach ( $image_urls as $image_src_url ) {
-                echo '<a href="' . $image_src_url . '"> <img class="portrait-item" src="' . $image_src_url . '"></a>';
+
+            foreach ( $image_urls as $image_src_url) {
+                echo '<a href="' . $image_src_url . '"> <img class="portrait-item" src="' . $image_src_url . '" alt="' . $image_url . '"></a>';
             }
 
         } else {

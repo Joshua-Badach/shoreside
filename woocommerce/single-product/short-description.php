@@ -24,6 +24,12 @@ $product = wc_get_product($post);
 $video = $product->get_attribute( 'Video' );
 $ad = $product->get_attribute( 'Ad' );
 
+$manufacturer = array_shift( wc_get_product_terms( $product->id, 'pa_manufacturer', array( 'fields' => 'names' ) ) );
+$image_slug = $manufacturer.'-logo';
+$image_id = get_page_by_title($image_slug, OBJECT, 'attachment');
+$image = $image_id->guid;
+
+
 function get_attachment_url_by_slug( $slug )
 {
     $args = array(
@@ -47,12 +53,15 @@ if ( ! $short_description ) {
 <div class="woocommerce-product-details__short-description">
 	<?php echo $short_description;
 
-    if ( $ad != '' ){
-        echo '<img class="productBanner" src="' . $header_url . '">';
-    }
     if ($video != '') {
         echo '<iframe class="productVideo" name="productVideo" scrolling="no" frameborder="1" src="https://www.youtube.com/embed/' . $video . '" marginwidth="0px" allowfullscreen></iframe>
 ';
+    }
+    if ( $ad != '' ){
+        echo '<img class="productBanner" src="' . $header_url . '">';
+    }
+    if ($image != ''){
+        echo '<img class="logoBanner" src="' . $image . '">';
     }
 ?>
 </div>
