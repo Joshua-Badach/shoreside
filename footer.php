@@ -21,6 +21,8 @@ $newsletterQuery = new WP_Query(array(
             <meta itemprop="url" content="https://recreationalpowersports.com" />
             <meta itemprop="email" content="admin@recreationalpowersports.com" />
             <meta itemprop="logo" content="'. $image . '" />
+            <meta itemprop="currenciesAccepted" content="CAD"/>
+            <meta itemprop="paymentAccepted" content="Cash, Debit, VISA, MasterCard"/>
             <div class="row">
                 <span class="col-lg-3">
                     <a href="' . site_url() . '">
