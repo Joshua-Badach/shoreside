@@ -17,18 +17,19 @@ $newsletterQuery = new WP_Query(array(
     'posts_per_page'    => 1
 ));
 
-?>
-        <footer>
+        echo'<footer>
+            <meta itemprop="url" content="https://recreationalpowersports.com" />
+            <meta itemprop="email" content="admin@recreationalpowersports.com" />
+            <meta itemprop="logo" content="'. $image . '" />
             <div class="row">
                 <span class="col-lg-3">
-                    <a href="<?php echo site_url() ?>">
-                        <img itemprop="logo" class="logo" src="<?php echo $image ?>" alt="<?php echo $image_alt ?>">
-                        <span hidden itemprop="url">https://recreationalpowersports.com</span>
+                    <a href="' . site_url() . '">
+                        <img class="logo" src="' . $image . '" alt="' . $image_alt . '">
                     </a>
                 </span>
                 <div class="col-lg-2 contactLinks">
                     <ul>
-                        <li class="mobileShow"><a href="<?php echo site_url() ?>">Home</a></li>
+                        <li class="mobileShow"><a href="' . site_url() . '">Home</a></li>
                         <li><a href="/showroom/">Showroom</a></li>
                         <li><a href="/parts/">Parts & Accessories</a></li>
                         <li><a href="/service/">Service</a></li>
@@ -39,34 +40,19 @@ $newsletterQuery = new WP_Query(array(
                     <p itemscope itemtype="https://schema.org/PostalAddress" itemprop="address">
                         <a class="location" href="https://maps.google.com/?q=Recreational+Power+Sports" target="_blank" rel="noopener">
                             <span itemprop="streetAddress">11204 154 Street NW</span>
-                            <span itemprop="addressLocality">Edmonton,</span>
+                            <span itemprop="addressLocality">Edmonton</span>
                             <span itemprop="addressRegion">AB</span>
                             <span itemprop="postalCode">T5M 1X7</span>
                         </a>
                     </p>
                 </div>
                 <div class="col-lg-3">
-                    <?php
-                    while ($hoursQuery->have_posts()){
-                        $hoursQuery->the_post();
-                        $title = get_the_title();
-                        $content = get_the_content();
-                    }
-                    wp_reset_postdata();
-                    echo '<p><strong>' . $title . '</strong></p>';
-                    echo '<p>' . $content . '</p>';
-                    ?>
+                    <p>Monday to Friday: <span itemprop="openingHours" content="Mo-Fr 08:00-17:00">8:00am to 5:00pm</span></p>
+                    <p>Saturday: <span itemprop="openingHours" content="Sa 10:00-14:00">10:00am to 2:00pm</span></p>
+                    <p>Sundays and Holidays: <span>Closed</span></p>
                 </div>
                 <div class="col-lg-4">
-                    <?php
-                    while ($newsletterQuery->have_posts()){
-                        $newsletterQuery->the_post();
-                        $title = get_the_title();
-                        $content = get_the_content();
-                    }
-                    wp_reset_postdata();
-                    echo '<p><strong>' . $title . '</strong></p>';
-                    echo '<p>' . $content . '</p>';
+                    <p>Subscribe to our newsletter to see exciting new offers, products promotions, and keep up with the Rec Power team</p>';
                     ?>
                     <button class="button-3d register" onclick="location.href='http://eepurl.com/duHsr5'">I'd Like to Register</button>
                 </div>

@@ -46,7 +46,8 @@ $sku = $product->get_sku();
     }
     echo '<meta itemprop="url" content="'. get_the_permalink() . '" />
     <meta itemprop="brand" content="'. $manufacturer . '" />
-    <meta itemprop="sku" content="'. $sku . '" />';
+    <meta itemprop="sku" content="'. $sku . '" />
+    <meta itemprop="manufacturer" content="' . $manufacturer . '">';
 
 	/**
 	 * Hook: woocommerce_before_shop_loop_item.
@@ -63,8 +64,8 @@ $sku = $product->get_sku();
 	 */
 //	do_action( 'woocommerce_before_shop_loop_item_title' );
 
-    echo the_post_thumbnail('thumbnail', array( 'itemscope' => null , 'itemprop' => 'image', 'itemtype' => 'http://schema.org/ImageObject'));
-//    echo '<img itemprop="image" class="thumbnail" src="' . get_the_post_thumbnail_url() . '">';
+//    echo the_post_thumbnail('thumbnail', array( 'itemscope' => null , 'itemprop' => 'image', 'itemtype' => 'http://schema.org/ImageObject'));
+    echo '<div itemscope itemprop="image" itemtype="http://schema.org/ImageObject"><img class="attachment-thumbnail size-thumbnail wp-post-image" src="' . get_the_post_thumbnail_url() . '"><meta itemprop="url" content="' . get_the_post_thumbnail_url() . '"/></div>';
 
 	/**
 	 * Hook: woocommerce_shop_loop_item_title.
@@ -72,7 +73,7 @@ $sku = $product->get_sku();
 	 * @hooked woocommerce_template_loop_product_title - 10
 	 */
 //	do_action( 'woocommerce_shop_loop_item_title' );
-    echo '<p itemprop="name" class="shoreside-product-title ' . esc_attr( apply_filters( 'woocommerce_product_loop_title_classes', 'woocommerce-loop-product__title' ) ) . '">' . get_the_title() . '</p>';
+    echo '<h4 itemprop="name" class="shoreside-product-title ' . esc_attr( apply_filters( 'woocommerce_product_loop_title_classes', 'woocommerce-loop-product__title' ) ) . '">' . get_the_title() . '</h4>';
 
 	/**
 	 * Hook: woocommerce_after_shop_loop_item_title.
