@@ -27,6 +27,7 @@ get_header( 'shop' );
 		 * @hooked woocommerce_breadcrumb - 20
 		 */
 		do_action( 'woocommerce_before_main_content' );
+//		echo '<h1>Test here</h1>';
 		while ( have_posts() ) :
             the_post();
 		    wc_get_template_part( 'content', 'single-product' );

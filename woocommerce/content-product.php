@@ -21,8 +21,6 @@ $tags = wc_get_product_tag_list($product->get_id);
 $sale_price = get_post_meta( $product->id, '_price', true);
 $regular_price = get_post_meta( $product->id, '_regular_price', true);
 
-//var_dump($tags);
-
 // Ensure visibility.
 if ( empty( $product ) || ! $product->is_visible() ) {
 	return;
@@ -44,10 +42,6 @@ $sku = $product->get_sku();
     if ( !empty( $regular_price ) && !empty( $sale_price ) && $regular_price > $sale_price ) {
         echo '<span class="onsale">On Sale</span>';
     }
-    echo '<meta itemprop="url" content="'. get_the_permalink() . '" />
-    <meta itemprop="brand" content="'. $manufacturer . '" />
-    <meta itemprop="sku" content="'. $sku . '" />
-    <meta itemprop="manufacturer" content="' . $manufacturer . '">';
 
 	/**
 	 * Hook: woocommerce_before_shop_loop_item.

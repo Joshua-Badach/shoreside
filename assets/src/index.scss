@@ -379,7 +379,7 @@ img{
   color: nth($rpsBrand, 4);
   padding-left: 5px;
   padding-right: 5px;
-  font-size: 1.1vw !important;
+  font-size: 12px;
 }
 .brands h3{
   text-align: center;
@@ -407,7 +407,16 @@ img{
 .bannerImage img{
   height: auto;
   width: 100%;
+  position: relative;
   aspect-ratio: 4/1;
+  min-height: 240px;
+  width: fit-content;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-5%);
+  -moz-transform: translateX(-50%) translateY(-5%);
+  -ms-transform: translateX(-50%) translateY(-5%);
+  -o-transform: translateX(-50%) translateY(-5%);
+  transform: translateX(-50%) translateY(-5%);
 }
 .bannerImageTall img{
   width: 100%;
@@ -834,9 +843,6 @@ img{
     height: inherit;
     background: white;
   }
-  .bannerImage img{
-    aspect-ratio: unset;
-  }
   .carousel{
     max-height: 320px;
     height: 100%;
@@ -937,9 +943,6 @@ img{
   }
   .home-heading{
     font-size: 18px;
-  }
-  .bannerImage img{
-    aspect-ratio: unset;
   }
   #sidebarContainer{
     height: inherit;
@@ -1042,9 +1045,6 @@ img{
       bottom: 34vw;
       left: 10vw;
     }
-  }
-  .bannerImage img{
-    aspect-ratio: unset;
   }
   .sliderContent img{
     width: 100%;
