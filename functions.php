@@ -219,6 +219,7 @@ function information_shortcode( $atts = array(), $content = null ){
     echo '<div class="divider1"></div>
         <div class="container">
             <section class="row">
+                <h2 class="col-sm-12">Who we are…</h2>
                 <div class="col-sm-12 information">';
                     echo $content;
                 echo '</div>

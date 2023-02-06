@@ -36,11 +36,13 @@ $image = $image_id->guid;
                     </p>
                 </div>
                 <div class="col-lg-3">
+                    <p><strong>Hours</strong></p>
                     <p>Monday to Friday: <span itemprop="openingHours" content="Mo-Fr 08:00-17:00">8:00am to 5:00pm</span></p>
                     <p>Saturday: <span itemprop="openingHours" content="Sa 10:00-14:00">10:00am to 2:00pm</span></p>
                     <p>Sundays and Holidays: <span>Closed</span></p>
                 </div>
                 <div class="col-lg-4">
+                    <p><strong>Subscribe To Our Newsletter</strong></p>
                     <p>Subscribe to our newsletter to see exciting new offers, products promotions, and keep up with the Rec Power team</p>';
                     ?>
                     <button class="button-3d register" onclick="location.href='http://eepurl.com/duHsr5'">I'd Like to Register</button>
