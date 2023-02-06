@@ -4,19 +4,6 @@ $image_id = get_page_by_title('rps-logo', OBJECT, 'attachment');
 $image_alt = get_post_meta($image_id->ID, '_wp_attachment_image_alt', TRUE);
 $image = $image_id->guid;
 
-$hoursQuery = new WP_Query(array(
-    'category_name'     => 'hours',
-    'order'             => 'DESC',
-    'post_status'       => ' publish',
-    'posts_per_page'    => 1
-));
-$newsletterQuery = new WP_Query(array(
-    'category_name'     => 'newsletter',
-    'order'             => 'DESC',
-    'post_status'       => ' publish',
-    'posts_per_page'    => 1
-));
-
         echo'<footer>
             <meta itemprop="url" content="https://recreationalpowersports.com" />
             <meta itemprop="email" content="admin@recreationalpowersports.com" />

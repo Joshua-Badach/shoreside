@@ -215,7 +215,16 @@ function banner_tall_shortcode(){
 }
 add_shortcode('banner-tall', 'banner_tall_shortcode');
 
-function information_shortcode(){
+function information_shortcode( $atts = array(), $content = null ){
+    echo '<div class="divider1"></div>
+        <div class="container">
+            <section class="row">
+                <div class="col-sm-12 information">';
+                    echo $content;
+                echo '</div>
+            </section>
+        </div>
+    <div class="divider2"></div>';
     include('template-parts/components/information.php');
 }
 add_shortcode('information', 'information_shortcode');
