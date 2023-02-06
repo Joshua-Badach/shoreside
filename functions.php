@@ -167,8 +167,16 @@ function hero_shortcode(){
 }
 add_shortcode('hero', 'hero_shortcode', 1);
 
-function mission_shortcode(){
-    include('template-parts/components/mission.php');
+function mission_shortcode( $atts = array(), $content = null ){
+//    include('template-parts/components/mission.php');
+    echo '<div class="container mission">
+        <div class="row">
+            <section class="col-lg-12">
+                <h2>Our Mission</h2>';
+                echo '<p itemprop="description">' . $content . '</p>';
+            echo '</section>
+        </div>
+    </div>';
 }
 add_shortcode('mission', 'mission_shortcode');
 
@@ -217,8 +225,12 @@ function map_shortcode(){
 }
 add_shortcode('map', 'map_shortcode');
 
-function vision_shortcode(){
-    include('template-parts/components/vision.php');
+function vision_shortcode( $atts = array(), $content = null ){
+    echo '<div class="container">
+        <section class="row justify-content-sm-center vision">';
+            echo $content;
+    echo '</section>
+</div>';
 }
 add_shortcode('vision', 'vision_shortcode');
 
