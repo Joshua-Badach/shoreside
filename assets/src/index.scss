@@ -155,13 +155,6 @@ button span{
 
 //====================Header Styling====================
 //switch from hard coding when content is populated dynamically
-.home-block{
-  margin-bottom: -200px;
-  top: -30vw;
-}
-.home-block img{
-  width: 150px;
-}
 .home-heading{
   font-size: 32px;
   font-family: nth($font, 1);
@@ -330,15 +323,17 @@ footer .logo{
 }
 .heroVideo{
   width: 100%;
-  aspect-ratio: 16/ 9;
+  //aspect-ratio: 16/ 9;
+  max-height: 720px;
+  overflow-y: hidden;
+
 
 video{
   width: 100%;
-  height: 100%;
+  //height: 100%;
   position: relative;
-  //margin-top: -85px;
-  //going to see if Syd notices, the negative margin makes the 1080 looks odd
   z-index: -10;
+  margin-top: -10%;
   }
 img{
   width: 100%;
@@ -836,9 +831,6 @@ img{
 }
 //extra small mobile
 @media (min-width: 320px) and (max-width: 480px) {
-  .home-block img{
-    width: 20%;
-  }
   .brandSpan{
     background: nth($rpsBrand, 1);
   }
@@ -941,9 +933,6 @@ img{
 }
 //mobile and tablet
 @media (min-width: 481px) and (max-width: 768px) {
-  .home-block img{
-    width: 20%;
-  }
   .brandSpan{
     background: nth($rpsBrand, 1);
   }
@@ -1154,9 +1143,6 @@ img{
   }
   .ourCatalogs{
     margin-bottom: 10%;
-  }
-  .home-block{
-    top: -30vw;
   }
   .disclaimer:before{
     content: "";

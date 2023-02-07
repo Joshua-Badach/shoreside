@@ -3,24 +3,19 @@ global $post;
 
 if (is_home() || is_front_page()) {
     if (isMobile()) {
-        echo '<div class="heroVideo">';
+        echo '<div class="heroVideo">
+            <h2 class="home-heading">' . get_option('blogdescription') . '</h2>';
         $featured = get_the_post_thumbnail($post_id);
         echo $featured;
         echo '</div>';
     } else {
         echo '<div class="heroVideo">
+            <h2 class="home-heading">' . get_option('blogdescription') . '</h2>
             <video autoplay loop muted>
                 <source src="/wp-content/uploads/hero.mp4">
             </video>
         </div>';
     };
-    echo '<div class="container">
-    <div class="row">
-        <section class="col-12 home-block">
-            <h2 class="home-heading">' . get_option('blogdescription') . '</h2>
-        </section>
-    </div>
-</div>';
 } else {
     $slug               =           $post->post_name;
 

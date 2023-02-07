@@ -61,7 +61,7 @@ function brand_loop($args){
 
     $terms = get_categories($args);
 
-    echo '<section id="brandSection" class="container">
+    echo '<section class="container">
     <h2 class="hidden">Our Brands</h2>';
         if (isMobile() == false){
             echo '<div class="row brandSpan justify-content-center">';
