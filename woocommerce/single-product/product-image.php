@@ -55,7 +55,10 @@ $wrapper_classes   = apply_filters(
 
 
             foreach ( $image_urls as $image_src_url) {
-                echo '<a href="' . $image_src_url . '"> <img class="portrait-item" src="' . $image_src_url . '" alt="' . $image_url . '"></a>';
+                echo '<a href="' . $image_src_url . '"> 
+                <img class="portrait-item" src="' . $image_src_url . '" alt="' . $image_url . '">
+                
+                </a>';
             }
 
         } else {

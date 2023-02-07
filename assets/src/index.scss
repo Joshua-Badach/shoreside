@@ -836,6 +836,88 @@ footer .logo{
     width: 100%;
   }
 }
+.pending{
+  min-height: 4em;
+  max-height: 68px;
+  top: 0 !important;
+  bottom: auto !important;
+  left: auto !important;
+  right: auto !important;
+  margin: 0 !important;
+  padding: 0.202em;
+  font-weight: 700;
+  position: absolute;
+  text-align: center;
+  line-height: 3.8;
+  margin: 0;
+  border-radius: 100%;
+  background-color: nth($rpsBrand, 1);
+  color: white;
+  font-size: 0.7em;
+  z-index: 1;
+  aspect-ratio: 1/1;
+  -webkit-transform: translate(140px, 0) rotate(35deg);
+  -moz-transform: translate(140px, 0) rotate(35deg);
+  -ms-transform: translate(140px, 0) rotate(35deg);
+  -o-transform: translate(140px, 0) rotate(35deg);
+  transform: translate(140px, 0) rotate(35deg);
+}
+.pendingBanner img{
+  width: 100%;
+}
+.onOrder{
+  min-height: 4em;
+  max-height: 68px;
+  top: 50%;
+  bottom: auto;
+  left: auto;
+  right: auto;
+  margin: 0;
+  padding: 0.202em;
+  font-weight: 700;
+  position: absolute;
+  text-align: center;
+  line-height: 4.2;
+  margin: 0;
+  border-radius: 100%;
+  background-color: #f2700d;
+  color: white;
+  font-size: 0.65em;
+  z-index: 1;
+  aspect-ratio: 1/1;
+  -webkit-transform: rotate(35deg);
+  -moz-transform: rotate(35deg);
+  -ms-transform: rotate(35deg);
+  -o-transform: rotate(35deg);
+  transform: rotate(35deg);
+}
+.orderBanner img{
+  width: 100%;
+}
+.onsale{
+  min-height: 4em;
+  max-height: 68px;
+  top: 0 !important;
+  bottom: auto !important;
+  left: 0 !important;
+  right: auto !important;
+  margin: 0 !important;
+  padding: 0.202em;
+  font-weight: 700;
+  position: absolute;
+  text-align: center;
+  line-height: 4.2;
+  border-radius: 100%;
+  color: white;
+  font-size: 0.65em !important;
+  z-index: 1;
+  aspect-ratio: 1/1;
+  -webkit-transform: rotate(-35deg);
+  -moz-transform: rotate(-35deg);
+  -ms-transform: rotate(-35deg);
+  -o-transform: rotate(-35deg);
+  transform: rotate(-35deg);
+}
 //extra small mobile
 @media (min-width: 320px) and (max-width: 480px) {
   .brandSpan{
@@ -943,6 +1025,9 @@ footer .logo{
   #brandContent{
     margin-top: 5%;
   }
+  .onOrder{
+    top: 40%;
+  }
   .disclaimer{
     top: 21.5%
   }
@@ -1025,6 +1110,9 @@ footer .logo{
       bottom: 55px;
     }
   }
+  .onOrder{
+    top: 30%;
+  }
   //Woo breakpoint oddity
   @media (max-width: 997px){
     #brandContent{
@@ -1087,6 +1175,9 @@ footer .logo{
       visibility: hidden;
       bottom: 55px;
     }
+  }
+  .onOrder{
+    top: 30%;
   }
   .content > .container{
     height: auto;
@@ -1605,88 +1696,6 @@ input:checked + .slider:before {
 }
 .woocommerce-loop-product__title{
   color: nth($rpsBrand, 1);
-}
-.pending{
-  min-height: 4em;
-  max-height: 68px;
-  top: 0 !important;
-  bottom: auto !important;
-  left: auto !important;
-  right: auto !important;
-  margin: 0 !important;
-  padding: 0.202em;
-  font-weight: 700;
-  position: absolute;
-  text-align: center;
-  line-height: 3.8;
-  margin: 0;
-  border-radius: 100%;
-  background-color: nth($rpsBrand, 1);
-  color: white;
-  font-size: 0.7em;
-  z-index: 1;
-  aspect-ratio: 1/1;
-  -webkit-transform: translate(140px, 0) rotate(35deg);
-  -moz-transform: translate(140px, 0) rotate(35deg);
-  -ms-transform: translate(140px, 0) rotate(35deg);
-  -o-transform: translate(140px, 0) rotate(35deg);
-  transform: translate(140px, 0) rotate(35deg);
-}
-.pendingBanner img{
-  width: 100%;
-}
-.onOrder{
-  min-height: 4em;
-  max-height: 68px;
-  top: auto !important;
-  bottom: 80px !important;
-  left: 0 !important;
-  right: auto !important;
-  margin: 0 !important;
-  padding: 0.202em;
-  font-weight: 700;
-  position: absolute;
-  text-align: center;
-  line-height: 4.2;
-  margin: 0;
-  border-radius: 100%;
-  background-color: #f2700d;
-  color: white;
-  font-size: 0.65em;
-  z-index: 1;
-  aspect-ratio: 1/1;
-  -webkit-transform: rotate(35deg);
-  -moz-transform: rotate(35deg);
-  -ms-transform: rotate(35deg);
-  -o-transform: rotate(35deg);
-  transform: rotate(35deg);
-}
-.orderBanner img{
-  width: 100%;
-}
-.onsale{
-  min-height: 4em;
-  max-height: 68px;
-  top: 0 !important;
-  bottom: auto !important;
-  left: 0 !important;
-  right: auto !important;
-  margin: 0 !important;
-  padding: 0.202em;
-  font-weight: 700;
-  position: absolute;
-  text-align: center;
-  line-height: 4.2;
-  border-radius: 100%;
-  color: white;
-  font-size: 0.65em !important;
-  z-index: 1;
-  aspect-ratio: 1/1;
-  -webkit-transform: rotate(-35deg);
-  -moz-transform: rotate(-35deg);
-  -ms-transform: rotate(-35deg);
-  -o-transform: rotate(-35deg);
-  transform: rotate(-35deg);
 }
 .biweekly{
   text-decoration: underline;

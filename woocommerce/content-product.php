@@ -34,17 +34,7 @@ $description = $product->get_short_description();
 ?>
 <li itemprop="itemListElement" itemscope itemtype="https://schema.org/Product" <?php wc_product_class( 'modal-link ', $product ); ?> >
 	<?php
-    if ( str_contains($tags, 'Pending') == true ){
-        echo '<span class="pending">Pending</span>';
-    }
-    if ( str_contains($tags, 'Order') == true ){
-        echo '<span class="onOrder">On Order</span>';
-    }
-    if ( !empty( $regular_price ) && !empty( $sale_price ) && $regular_price > $sale_price ) {
-        echo '<span class="onsale">On Sale</span>';
-    }
-    echo '<meta itemprop="description" content="' . esc_html($description) . '"/>
-';
+
 	/**
 	 * Hook: woocommerce_before_shop_loop_item.
 	 *
@@ -59,10 +49,21 @@ $description = $product->get_short_description();
 	 * @hooked woocommerce_template_loop_product_thumbnail - 10
 	 */
 //	do_action( 'woocommerce_before_shop_loop_item_title' );
+    the_post_thumbnail('thumbnail');
 
-    echo '<div itemscope itemprop="image" itemtype="http://schema.org/ImageObject">'
-        . the_post_thumbnail('thumbnail') .
-        '<meta itemprop="url" content="' . get_the_post_thumbnail_url() . '"/>
+    if ( str_contains($tags, 'Pending') == true ){
+        echo '<span class="pending">Pending</span>';
+    }
+    if ( str_contains($tags, 'Order') == true ){
+        echo '<span class="onOrder">On Order</span>';
+    }
+    if ( !empty( $regular_price ) && !empty( $sale_price ) && $regular_price > $sale_price ) {
+        echo '<span class="onsale">On Sale</span>';
+    }
+
+    echo '<div itemscope itemprop="image" itemtype="http://schema.org/ImageObject">';
+        echo '<meta itemprop="url" content="' . get_the_post_thumbnail_url() . '"/>
+        <meta itemprop="description" content="' . esc_html($description) . '"/>
     </div>';
 //    echo '<div itemscope itemprop="image" itemtype="http://schema.org/ImageObject"><img class="attachment-thumbnail size-thumbnail wp-post-image" src="' . get_the_post_thumbnail_url() . '"><meta itemprop="url" content="' . get_the_post_thumbnail_url() . '"/></div>';
 
