@@ -28,12 +28,12 @@ if (is_home() || is_front_page()) {
     $logo_alt           =           get_post_meta($logo_id->ID, '_wp_attachment_image_alt', TRUE);
     $logo_image         =           $logo_id->guid;
     echo '<div class="heroVideo">
+            <img alt="' . $logo_alt . '" src="' . $logo_image . '">
             <video autoplay loop muted>
                 <source src="' . $hero_video . '">
             </video>
-            <div class="container featuredBrandLogo">
+            <div class="container">
                 <div class="row">
-                    <img class="col-sm-3 featured-logo" alt="' . $logo_alt . '" src="' . $logo_image . '">
                 </div>
             </div>
         </div>';
