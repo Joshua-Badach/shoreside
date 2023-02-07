@@ -29,6 +29,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 //do a check later
 $manufacturer = array_shift( wc_get_product_terms( $product->id, 'pa_manufacturer', array( 'fields' => 'names' ) ) );
 $sku = $product->get_sku();
+$description = $product->get_short_description();
 
 ?>
 <li itemprop="itemListElement" itemscope itemtype="https://schema.org/Product" <?php wc_product_class( 'modal-link ', $product ); ?> >
@@ -42,7 +43,8 @@ $sku = $product->get_sku();
     if ( !empty( $regular_price ) && !empty( $sale_price ) && $regular_price > $sale_price ) {
         echo '<span class="onsale">On Sale</span>';
     }
-
+    echo '<meta itemprop="description" content="' . esc_html($description) . '"/>
+';
 	/**
 	 * Hook: woocommerce_before_shop_loop_item.
 	 *
@@ -58,8 +60,11 @@ $sku = $product->get_sku();
 	 */
 //	do_action( 'woocommerce_before_shop_loop_item_title' );
 
-//    echo the_post_thumbnail('thumbnail', array( 'itemscope' => null , 'itemprop' => 'image', 'itemtype' => 'http://schema.org/ImageObject'));
-    echo '<div itemscope itemprop="image" itemtype="http://schema.org/ImageObject"><img class="attachment-thumbnail size-thumbnail wp-post-image" src="' . get_the_post_thumbnail_url() . '"><meta itemprop="url" content="' . get_the_post_thumbnail_url() . '"/></div>';
+    echo '<div itemscope itemprop="image" itemtype="http://schema.org/ImageObject">'
+        . the_post_thumbnail('thumbnail') .
+        '<meta itemprop="url" content="' . get_the_post_thumbnail_url() . '"/>
+    </div>';
+//    echo '<div itemscope itemprop="image" itemtype="http://schema.org/ImageObject"><img class="attachment-thumbnail size-thumbnail wp-post-image" src="' . get_the_post_thumbnail_url() . '"><meta itemprop="url" content="' . get_the_post_thumbnail_url() . '"/></div>';
 
 	/**
 	 * Hook: woocommerce_shop_loop_item_title.

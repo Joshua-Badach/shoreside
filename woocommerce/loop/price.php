@@ -20,11 +20,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 global $product;
-?>
+$price = $product->get_price();
+$id = $product->get_id();
+$url = get_permalink( $id );
 
-<?php if ( $price_html = $product->get_price_html() ) : ?>
-	<div itemscope itemprop="offers" itemtype="https://schema.org/Offer">
+if ( $price_html = $product->get_price_html() ) {
+    echo '<div itemscope itemprop="offers" itemtype="https://schema.org/Offer">
         <meta itemprop="priceCurrency" content="CAD" />
-        <span itemprop="price" class="price"><?php echo $price_html; ?></span>
-    </div>
-<?php endif; ?>
+        <meta itemprop="price" content="' . $price . '" />
+        <meta itemprop="url" content="' . $url . '" />
+        <span class="price">' . $price_html . '</span>
+    </div>';
+} else {
+    echo '<div itemscope itemprop="offers" itemtype="https://schema.org/Offer">
+        <meta itemprop="priceCurrency" content="CAD" />
+        <meta itemprop="url" content="' . $url . '" />
+    </div>';
+}
