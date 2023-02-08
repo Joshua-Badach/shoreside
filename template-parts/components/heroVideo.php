@@ -3,7 +3,7 @@ global $post;
 
 if (is_home() || is_front_page()) {
     if (isMobile()) {
-        echo '<div class="heroVideo">
+        echo '<div class="heroBanner">
             <h2 class="home-heading">' . get_option('blogdescription') . '</h2>';
         $featured = get_the_post_thumbnail($post_id);
         echo $featured;
