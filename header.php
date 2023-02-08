@@ -19,10 +19,8 @@ $id = get_term_by($field, $value, $taxonomy);
     <meta name="viewport" content="width=device-width, initial-scale=1.0" >
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <meta property="fb:app_id" content="568883651374703" />
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="en_CA" />
     <?php
+
     if ( get_post_custom_values('description', $id) != '') {
         $image_id = get_page_by_title('rps-logo-share', OBJECT, 'attachment');
         $image = $image_id->guid;
@@ -63,10 +61,17 @@ $id = get_term_by($field, $value, $taxonomy);
         }
         $site_suffix = get_the_title();
     }
+    echo '<meta name="description" content="' . filter_var($description[0], FILTER_SANITIZE_STRING) . '"/>';
+
+
+    echo '<meta property="fb:app_id" content="568883651374703" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_CA" />';
     echo '<meta property="og:url" content="' . $current_url . '" />';
     echo '<meta property="og:title" content="' . $site_name . ' - ' . $site_suffix . '" />';
     echo '<meta property="og:description" content="' . filter_var($description[0], FILTER_SANITIZE_STRING) . '"/>';
     echo '<meta property="og:image" content="'. $image . '" />';
+
     wp_head();
     ?>
 </head>
