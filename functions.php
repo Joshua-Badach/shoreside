@@ -51,6 +51,16 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
 
         add_theme_support('post-thumbnails');
 
+
+//Defer all of wordpress scripts
+        function defer_wp_scripts( $url ) {
+            if ( is_user_logged_in() ) return $url; // WP Admin exception
+            if ( FALSE === strpos( $url, '.js' ) ) return $url;
+            if ( strpos( $url, 'jquery.js' ) ) return $url;
+            return str_replace( ' src', ' defer src', $url );
+        }
+        add_filter( 'script_loader_tag', 'defer_wp_scripts', 10 );
+
         function add_theme_scripts(){
             wp_enqueue_style( 'bundle', get_template_directory_uri() . '/assets/dist/bundle.css', null, null, false );
             wp_enqueue_script( 'main', get_template_directory_uri() . '/assets/dist/main.bundle.js', array('jquery'), null, true );
