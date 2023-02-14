@@ -355,6 +355,15 @@ footer .logo{
 .brandSpan{
   margin-bottom: 50px;
   position: relative;
+
+  .col-1{
+    -webkit-box-flex: 0;
+    flex: 0 0 12.3333333333%;
+    max-width: 12.3333333333%;
+  }
+  a{
+    text-decoration: none;
+  }
 }
 .brand-carousel{
   margin-top: -8vw;
@@ -418,12 +427,6 @@ footer .logo{
   aspect-ratio: 4/1;
   min-height: 240px;
   width: fit-content;
-  left: 50%;
-  -webkit-transform: translateX(-50%) translateY(-5%);
-  -moz-transform: translateX(-50%) translateY(-5%);
-  -ms-transform: translateX(-50%) translateY(-5%);
-  -o-transform: translateX(-50%) translateY(-5%);
-  transform: translateX(-50%) translateY(-5%);
 }
 .bannerImageTall img{
   width: 100%;
@@ -1647,7 +1650,7 @@ input:checked + .slider:before {
 .financingText:hover{
   cursor: pointer;
 }
-.financing{
+.split{
   margin-top: 5%;
   margin-bottom: 5%;
 

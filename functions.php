@@ -147,10 +147,24 @@ function promotion_content_shortcode(){
 }
 add_shortcode('promotion-content', 'promotion_content_shortcode');
 
-function financing_shortcode(){
-    include('template-parts/components/financing-content.php');
+function split_shortcode( $atts = array(), $content = null ){
+    global $post;
+    $slug = $post->post_name;
+    $form = get_post_custom_values('form', $slug);
+
+    echo'<div class="container split">
+        <section class="row">
+            <h2 class="col-sm-12">' . get_the_title() . '</h2>
+                <div class="col-sm-6">';
+                echo $content;
+            echo '</div>
+            <div class="col-sm-6">
+                ' . $form[0] . '
+            </div>
+        </section>
+    </div>';
 }
-add_shortcode('financing-content', 'financing_shortcode');
+add_shortcode('split-content', 'split_shortcode');
 
 function promotional_shortcode(){
     include('template-parts/components/promotion-carousel.php');

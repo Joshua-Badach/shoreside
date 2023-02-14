@@ -40,7 +40,7 @@ function brand_loop($args){
 
     $unique = array();
     $name = array();
-    $test = ['avalon', 'mirrocraft', 'mercury', 'shorestation', 'argo', 'radinn'];
+    $test = ['avalon', 'mirrocraft', 'mercury', 'shorestation', 'argo', 'radinn', 'sanger'];
 
     foreach (wc_get_products($query_args) as $product) {
         foreach ($product->get_attributes() as $tax => $attribute) {
@@ -61,7 +61,7 @@ function brand_loop($args){
 
     $terms = get_categories($args);
 
-    echo '<section class="container brandSpan">
+    echo '<section class="brandSpan">
     <h2 class="hidden">Our Brands</h2>';
         if (isMobile() == false){
             echo '<div class="row justify-content-center">';
@@ -90,7 +90,11 @@ function brand_loop($args){
             brand_cards($term, $url);
         }
         if ($term->slug === $test[5] ) {
-            $url = 'https://www.https://www.radinn.com/';
+            $url = 'https://www.radinn.com/';
+            brand_cards($term, $url);
+        }
+        if ($term->slug === $test[6] ) {
+            $url = 'https://sangerboats.com//';
             brand_cards($term, $url);
         }
     }
@@ -106,7 +110,7 @@ function brand_cards($term, $url){
     if (isMobile() == false){
         $content = $term->description;
         $trimmed_content = wp_trim_words( $content, 25, '...');
-        echo '<section itemscope itemtype="https://schema.org/Brand" class="col-2">
+        echo '<section itemscope itemtype="https://schema.org/Brand" class="col-1">
             <a href="' . $term->slug . '">
                 <div class="brandCard brands">
                     <div class="brandImage">
