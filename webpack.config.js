@@ -1,11 +1,9 @@
 const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const svgToMiniDataURI = require('mini-svg-data-uri');
-
+// const svgToMiniDataURI = require('mini-svg-data-uri');
 
 module.exports = {
-  //Change to production at delivery
   mode: "production",
   context: path.resolve(__dirname, "assets"),
   watch: true,

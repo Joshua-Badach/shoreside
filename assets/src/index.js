@@ -9,3 +9,4 @@ import 'slick-lightbox/';
 
 import './index.scss';
 import './js/app.js';
+import './js/sidebar.js';
