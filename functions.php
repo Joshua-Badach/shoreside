@@ -62,16 +62,55 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
         add_filter( 'script_loader_tag', 'defer_wp_scripts', 10 );
 
         function add_theme_scripts(){
-            wp_enqueue_style( 'bundle', get_template_directory_uri() . '/assets/dist/bundle.css', null, null, false );
-            wp_enqueue_script( 'main', get_template_directory_uri() . '/assets/dist/main.bundle.js', array('jquery'), null, true );
+            wp_register_style( 'bundle', get_template_directory_uri() . '/assets/dist/bundle.css', null, null, false );
+            wp_register_script( 'main', get_template_directory_uri() . '/assets/dist/main.bundle.js', array('jquery'), null, true );
+            wp_enqueue_script('main');
+            wp_enqueue_style('bundle');
         }
         add_action( 'wp_enqueue_scripts', 'add_theme_scripts' ,0);
 
-        function gutenburg_editor_assets() {
-            wp_enqueue_style( 'bundle', get_template_directory_uri() . '/assets/dist/bundle.css', null, null, false );
-            wp_enqueue_script( 'main', get_template_directory_uri() . '/assets/dist/main.bundle.js', array('jquery'), null, true );
+        add_filter( 'script_loader_tag', function ( $tag, $handle ) {
+            if ( 'main' !== $handle ) {
+                return $tag;
+            }
+//            return str_replace( ' src', ' defer src', $tag );
+//            return str_replace( ' src', ' async src', $tag );
+            return str_replace( ' src', ' async defer src', $tag );
+
+        }, 10, 2 );
+
+        add_filter( 'style_loader_tag', function ( $tag, $handle ) {
+            if ( 'bundle' !== $handle ) {
+                return $tag;
+            }
+            return str_replace( ' href', ' defer href', $tag );
+//            return str_replace( ' href', ' async href', $tag );
+//            return str_replace( ' href', ' async defer href', $tag );
+
+        }, 10, 2 );
+
+//        add_filter( 'style_loader_tag', function ( $tag, $handle ) {
+//            if ( 'dashicons' !== $handle ) {
+//                return $tag;
+//            }
+//            return str_replace( ' src', ' defer href', $tag );
+////            return str_replace( ' href', ' async href', $tag );
+////            return str_replace( ' src', ' async defer href', $tag );
+//
+//        }, 10, 2 );
+
+
+        remove_action( 'wp_enqueue_scripts', 'wp_enqueue_classic_theme_styles' );
+
+//        removing excess scripts
+
+        add_action( 'wp_enqueue_scripts', 'remove_block_css', 10 );
+        function remove_block_css() {
+            wp_dequeue_style( 'wp-block-library' ); // WordPress core
+            wp_dequeue_style( 'wp-block-library-theme' ); // WordPress core
+            wp_dequeue_style( 'wc-block-style' ); // WooCommerce
+            wp_dequeue_style( 'storefront-gutenberg-blocks' ); // Storefront theme
         }
-        add_editor_style( 'enqueue_block_editor_assets', 'gutenburg_editor_assets' );
 
         function isMobile() {
             return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
@@ -82,8 +121,6 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
         }
         add_action('init', 'shoreside_custom_menu');
 
-
-
         add_theme_support( 'editor-styles' );
 
         add_theme_support( 'title-tag' );
@@ -92,7 +129,7 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
 
         add_theme_support('wp-block-styles');
 
-        add_theme_support( 'align-wide' );
+//        add_theme_support( 'align-wide' );
 
 
 //    custom menu setup
