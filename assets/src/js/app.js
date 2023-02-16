@@ -13,6 +13,8 @@ jQuery(document).ready(function($) {
   var navbar = document.getElementById("navbar");
   var sticky = navbar.offsetTop;
   var win = $(this);
+  var pageUrl = document.location.href;
+
 
   //Mobile check
   var mobile = (/iphone|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));
@@ -91,8 +93,10 @@ jQuery(document).ready(function($) {
     $('#prompt-CWnFXGNPWNYNiMFgwS5X-iframe').fadeOut('slow');
   }, 10000 );
 
-  $(sidebar);
-
+  if(pageUrl.indexOf("showroom") > -1 || pageUrl.indexOf("parts-and-accessories") > -1){
+    $(sidebar);
+    $(sidebarAjax);
+  }
   //Loading screen
   $(document).ajaxStart(function(){
     $('#loading').show();
@@ -101,7 +105,6 @@ jQuery(document).ready(function($) {
     $('#loading').hide();
   });
 
-  $(sidebarAjax)
   // $(document).on('click', '.modal-link a', function(e){
   //   var ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";
   //   var productUrl = $(this).attr('href');
