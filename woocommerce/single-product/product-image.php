@@ -75,6 +75,6 @@ $wrapper_classes   = apply_filters(
             echo '<img src="' . $image_url . '">';
         }
     }
-    echo '</div>';
-    ?>
-</div>
+    echo '</div>
+</div>';
+

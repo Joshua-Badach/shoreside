@@ -507,13 +507,13 @@ footer .logo{
     position: relative;
     aspect-ratio: 4/1;
     min-height: 240px;
-    width: fit-content;
-    left: 50%;
-    -webkit-transform: translateX(-50%) translateY(-5%);
-    -moz-transform: translateX(-50%) translateY(-5%);
-    -ms-transform: translateX(-50%) translateY(-5%);
-    -o-transform: translateX(-50%) translateY(-5%);
-    transform: translateX(-50%) translateY(-5%);
+    object-fit: cover;
+    //left: 50%;
+    //-webkit-transform: translateX(-50%) translateY(-5%);
+    //-moz-transform: translateX(-50%) translateY(-5%);
+    //-ms-transform: translateX(-50%) translateY(-5%);
+    //-o-transform: translateX(-50%) translateY(-5%);
+    //transform: translateX(-50%) translateY(-5%);
   }
 }
 .quote{
@@ -986,7 +986,9 @@ footer .logo{
     display: flex;
     align-self: center;
   }
-
+  .brandImage{
+    margin-bottom: 25px;
+  }
   .row{
     padding: 10px;
   }
@@ -1032,6 +1034,9 @@ footer .logo{
   }
   #brandContent{
     margin-top: 5%;
+  }
+  .brandImage{
+    margin-bottom: 25px;
   }
   .onOrder{
     top: 40%;
@@ -1118,8 +1123,20 @@ footer .logo{
       bottom: 55px;
     }
   }
+  .brandSpan{
+    background: nth($rpsBrand, 1);
+  }
+  #brandContent{
+    margin-top: 5%;
+  }
+  .brandImage{
+    margin-bottom: 25px;
+  }
   .onOrder{
     top: 30%;
+  }
+  .brandImage{
+    margin-bottom: 25px;
   }
   //Woo breakpoint oddity
   @media (max-width: 997px){
@@ -1818,4 +1835,11 @@ input:checked + .slider:before {
   .row{
     margin-top: 5%;
   }
+}
+.form-subHeader{
+  color: #ffffff;
+}
+.contactLinks li{
+  padding-top: 2px;
+  padding-bottom: 2px;
 }

@@ -130,6 +130,8 @@ function remove_img_attr ($html)
 
 add_filter( 'post_thumbnail_html', 'remove_img_attr' );
 
+add_action('wp_head', 'product_carousel');
+
 global $wp;
 $current_url = home_url( add_query_arg( array(), $wp->request ) );
 $site_name = get_bloginfo( 'name' );

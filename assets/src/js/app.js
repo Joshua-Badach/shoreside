@@ -18,47 +18,6 @@ jQuery(document).ready(function($) {
   //Mobile check
   var mobile = (/iphone|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));
 
-  $(window).on('resize', function(){
-    if (win.width() <= 769 ){
-      $('.brands h3').hide();
-      $('.brands p').hide();
-      $('.brandCard').removeClass('brands');
-      $('#brandSection').removeClass('container');
-
-      // $('.brandSpan').removeClass('brand-carousel');
-
-    };
-    if (win.width() >= 769 ){
-      $('.brands h3').show();
-      $('.brands p').show();
-      $('.brandCard').addClass('brands');
-      $('#brandSection').addClass('container');
-
-      // $('.brandSpan').addClass('brand-carousel');
-      //
-      // $(window).resize(brandCarousel());
-    };
-  });
-  function brandShuffle(){
-    if ( win.width() < 769) {
-      $('.brands h3').hide();
-      $('.brands p').hide();
-      $('.brandCard').removeClass('brands');
-      $('#brandSection').removeClass('container');
-
-    }
-  }
-  $(window).resize(brandShuffle());
-
-  //
-  // function brandShuffle(){
-  //   if ( mobile ) {
-  //     $((".brandCard")).removeClass("brands");
-  //   }
-  // }
-  //
-  // $(window).resize(brandShuffle());
-
   function navStick() {
     if (window.pageYOffset >= sticky) {
       navbar.classList.add("sticky")
@@ -67,53 +26,9 @@ jQuery(document).ready(function($) {
     }
   }
 
-  $(document).on('click', '.search', function(event){
-    input = jQuery('<form role="search" method="GET" id="searchform" class="searchform"><input name="s" value="" name="s" id="s" type="text"><button type="submit" class="searchFormButton">ok</button></form>');
-
-    $('.search a').replaceWith(input);
- });
-
   // Slider carousel code
-  $('.carousel').slick({
-    infinite: false,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    speed: 1000,
-    autoplay: true,
-    autoplaySpeed: 10000,
-    mobileFirst: true,
-    dots: false,
-    arrows: false,
-    lazyLoad: 'ondemand',
-  });
-  $('.mainCarousel').slick({
-    infinite: false,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    speed: 1000,
-    autoplay: true,
-    autoplaySpeed: 10000,
-    mobileFirst: true,
-    dots: false,
-    arrows: false,
-    lazyLoad: 'ondemand',
-  });
 
-  // function brandCarousel(){
-  $('.brand-carousel').slick({
-    slidesToShow: 3,
-    slidesToScroll: 3,
-    autoplay: true,
-    speed: 300,
-    autoplaySpeed: 10000,
-    arrows: false,
-    dots: false,
-    mobileFirst: false,
-    lazyLoad: false,
-  });
-  // }
-
-  //Portrait carousel code
+    //Portrait carousel code
     $('.carousel-product').slick({
       slidesToShow: 1,
       autoplay: true,
@@ -142,7 +57,35 @@ jQuery(document).ready(function($) {
       itemSelector: 'a',
       navigateByKeyboard: true
     });
-  $('#sidebarContainer').hide();
+
+  $('.mainCarousel').slick({
+    infinite: false,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    speed: 1000,
+    autoplay: true,
+    autoplaySpeed: 10000,
+    mobileFirst: true,
+    dots: false,
+    arrows: false,
+    lazyLoad: false,
+  });
+
+  // function brandCarousel(){
+  $('.brand-carousel').slick({
+    slidesToShow: 3,
+    slidesToScroll: 3,
+    autoplay: true,
+    speed: 300,
+    autoplaySpeed: 10000,
+    arrows: false,
+    dots: false,
+    mobileFirst: false,
+    lazyLoad: 'ondemand',
+  });
+  // }
+
+  // $('#sidebarContainer').hide();
 
   $('.financingText').on( 'click', function(){
     $('.disclaimer').show();
@@ -164,6 +107,31 @@ if(!mobile) {
       $(this).find('.shoreside-product-title').css('visibility', 'hidden');
     },
   });
+
+  $(window).on('resize', function(){
+    if (win.width() <= 1024 ){
+      $('.brands h3').hide();
+      $('.brands p').hide();
+      $('.brandCard').removeClass('brands');
+      $('#brandSection').removeClass('container');
+    };
+    if (win.width() >= 1024 ){
+      $('.brands h3').show();
+      $('.brands p').show();
+      $('.brandCard').addClass('brands');
+      $('#brandSection').addClass('container');
+    };
+  });
+  function brandShuffle(){
+    if ( win.width() < 1024) {
+      $('.brands h3').hide();
+      $('.brands p').hide();
+      $('.brandCard').removeClass('brands');
+      $('#brandSection').removeClass('container');
+
+    }
+  }
+  $(window).resize(brandShuffle());
 }
 
   if (mobile) {
@@ -177,8 +145,8 @@ if(!mobile) {
       window.history.replaceState({}, document.title, home);
       location.reload(true);
     });
-
   }
+
   setTimeout(function(){
     $('#prompt-CWnFXGNPWNYNiMFgwS5X-iframe').fadeOut('slow');
   }, 10000 );

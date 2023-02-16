@@ -9,10 +9,12 @@ if (is_home() || is_front_page()) {
         echo $featured;
         echo '</div>';
     } else {
+        $hero_id            =           get_page_by_title('main-hero', OBJECT, 'attachment');
+        $hero_video         =           $hero_id->guid;
         echo '<div class="heroVideo">
             <h2 class="home-heading">' . get_option('blogdescription') . '</h2>
-            <video autoplay loop muted>
-                <source src="/wp-content/uploads/hero.mp4">
+            <video preload="auto" autoplay loop muted>
+                <source src="'. $hero_video .'">
             </video>
         </div>';
     };
