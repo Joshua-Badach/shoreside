@@ -20,7 +20,6 @@ defined( 'ABSPATH' ) || exit;
 global $product;
 $manufacturer = $product->get_attribute( 'pa_manufacturer' );
 $type = $product->get_attribute( 'vehicle-type' );
-$uri = $_SERVER['REQUEST_URI'];
 
 //Get all terms associated with post in woocommerce's taxonomy 'product_cat'
 $terms = get_the_terms( $post->ID, 'product_cat' );
@@ -40,7 +39,9 @@ $terms_not_parents = array_intersect_key($terms,  $term_ids_not_parents);
 //Extract the name of the category from the array and post it.
 foreach($terms_not_parents as $term_not_parent)
 $heading = apply_filters( 'woocommerce_product_additional_information_heading', __( 'Additional information', 'woocommerce' ) );
-//var_dump($product);
+
+$partsObj = get_term_by('slug', 'parts-and-accessories', 'product_cat');
+
 ?>
 
 <?php if ( $heading ) : ?>
@@ -54,16 +55,19 @@ echo '<table class="woocommerce-product-attributes shop_attributes">
         <tr class="woocommerce-product-attributes-item">
             <th>Manufacturer</th>
             <td><p>' . $manufacturer . '</p></td>
-        </tr>
-        <tr class="woocommerce-product-attributes-item">
+        </tr>';
+
+        if(in_array($partsObj->term_id, $parents) == false) {
+            echo '<tr class="woocommerce-product-attributes-item">
             <th>Vehicle Category</th>
             <td><p>' . $term_not_parent->name . '</p></td>           
         </tr>';
-        if ($type != ''){
-        echo '<tr class="woocommerce-product-attributes-item">
+            if ($type != '') {
+                echo '<tr class="woocommerce-product-attributes-item">
             <th>Vehicle Type</th>
             <td><p>' . $type . '</p></td>           
         </tr>';
+            }
         }
     echo'</tbody>
 </table>'
