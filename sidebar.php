@@ -18,6 +18,7 @@
         $tagObj = $_REQUEST['tagObj'];
         $slugObj = get_term($idObj, 'product_cat');
     }
+//    if ($idObj = ''){$idObj = $_REQUEST['page'];}
 
     $taxonomy           =           'product_cat';
     $hierarchical       =           1;      // 1 for yes, 0 for no
@@ -86,7 +87,7 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
     </div>
     <div id="categories">';
     foreach ($categories as $cat) {
-        if ( $cat->category_count == 0 || $cat->name == 'Pre-Owned' || $cat->name == 'Avalon' || $cat->name == 'Mercury' || $cat->name == 'MirroCraft' || $cat->name == 'ShoreStation') {
+        if ( $cat->category_count == 0) {
             continue;
         } else {
             echo '<a data-category="' . $cat->term_id . '" data-attribute="' . $_REQUEST['attribute'] . '" data-term="' . $_REQUEST['tagObj'] . '" data-orderby="' . $_REQUEST['orderByObj'] . '" data-order="' . $_REQUEST['orderObj'] . '" data-sale="' . $_REQUEST['onSaleObj'] . '" data-slug="' . $cat->slug . '">' . $cat->cat_name . '</a>';

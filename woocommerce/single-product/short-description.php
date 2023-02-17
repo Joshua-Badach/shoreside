@@ -61,7 +61,7 @@ if ( ! $short_description ) {
         echo '<img class="productBanner" src="' . $header_url . '">';
     }
     if ($image != ''){
-        echo '<img class="logoBanner" src="' . $image . '">';
+        echo '<img width="200" height="50" class="logoBanner" src="' . $image . '">';
     }
 ?>
 </div>

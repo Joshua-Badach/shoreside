@@ -395,6 +395,7 @@ function load_results() {
             </div>
             <div class="content">';
     get_sidebar();
+    if($idObj == ''){ $idObj = $pageObj; }
     echo '<div class="container">';
     echo do_shortcode('[products category="' . $idObj . '" attribute="' . $attribute . '"  terms="' . $tagObj . '" per_page="-1" columns="5" on_sale="' . $onSaleObj . '" meta_key="event_date" orderby="meta_value_num" on_sale="" order="DESC" operator="IN"]');
     echo '</div>
@@ -444,12 +445,12 @@ function pending_banner(){
 
     if ( str_contains($tags, 'Pending') == true ) {
         echo '<div class="pendingBanner">
-                <img src="' . get_template_directory_uri() . '/assets/src/library/images/pendingBanner.jpg' . '">
+                <img width="500" height="50" src="' . get_template_directory_uri() . '/assets/src/library/images/pendingBanner.jpg' . '">
               </div>';
     }
     if ( str_contains($tags, 'Order') == true ) {
         echo '<div class="orderBanner">
-                <img src="' . get_template_directory_uri() . '/assets/src/library/images/onOrderBanner.jpg' . '">
+                <img width="500" height="50" src="' . get_template_directory_uri() . '/assets/src/library/images/onOrderBanner.jpg' . '">
               </div>';
     }
 }

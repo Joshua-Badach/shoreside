@@ -93,10 +93,10 @@ function brand_loop($args){
             $url = 'https://www.radinn.com/';
             brand_cards($term, $url);
         }
-//        if ($term->slug === $test[6] ) {
-//            $url = 'https://sangerboats.com//';
-//            brand_cards($term, $url);
-//        }
+        if ($term->slug === $test[6] ) {
+            $url = 'https://sangerboats.com/';
+            brand_cards($term, $url);
+        }
     }
     echo '</section>';
 }
