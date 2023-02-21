@@ -114,7 +114,7 @@ function brand_cards($term, $url){
             <a href="' . $term->slug . '">
                 <div class="brandCard brands">
                     <div class="brandImage">
-                        <img itemprop="logo" src="'. $image . '" alt="' . $image_alt . '">
+                        <img loading="lazy" itemprop="logo" src="'. $image . '" alt="' . $image_alt . '">
                         <span hidden itemprop="url"> ' . $url . '</span>
                     </div>   
                     <div class="brandsContent">    
@@ -130,7 +130,7 @@ function brand_cards($term, $url){
             <a href="' . $term->slug . '">
                 <div class="brandCard">
                     <div class="brandImage">
-                        <img itemprop="logo" src="'. $image . '">
+                        <img loading="lazy" itemprop="logo" src="'. $image . '">
                         <span hidden itemprop="url"> ' . $url . '</span>
                     </div>   
                     <h3 itemprop="name" class="hidden">' . $term->name . '</h3>

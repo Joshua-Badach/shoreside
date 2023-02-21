@@ -57,7 +57,7 @@ echo '<section id="contentTrigger" data-page="' . $idObjConst . '" data-slug="' 
     </div>
     <div class="content">';
         get_sidebar();
-    if($idObj == ''){ $idObj = $pageObj; }
+        if($idObj == ''){ $idObj = $pageObj; }
     echo '<div itemscope itemtype="https://schema.org/ItemList" class="container">';
             echo do_shortcode('[products category="' . $idObj . '" attribute="' . $attribute . '"  terms="' . $tagObj . '" per_page="-1" columns="5" meta_key="event_date" orderby="meta_value_num" on_sale="" order="DESC" operator="IN"]');
             echo '</div>

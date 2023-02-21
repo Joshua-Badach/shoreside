@@ -95,15 +95,25 @@ nav{
   padding: 0;
   width: 100%;
 }
-.mega-menu-link{
+.mega-menu-link:first-child{
   height: fit-content!important;
   padding: 5px 10px!important;
+}
+.mega-menu-item{
+  a {
+    line-height: 75px!important;
+  }
+}
+.mega-sub-menu{
+  a{
+    line-height: 35px!important;
+  }
 }
 .nav-logo .mega-menu-link{
   display: flex!important;
 }
 .nav-logo img{
-  max-height: 50px;
+  max-height: 75px;
 }
 
 //==========animations/buttons==========
@@ -157,7 +167,7 @@ button span{
 //switch from hard coding when content is populated dynamically
 .home-heading{
   position: relative;
-  top: 20vw;
+  top: 30vw;
   padding-left: 15vw;
   margin-top: -4vw;
   margin-bottom: 0;
@@ -1676,6 +1686,7 @@ input:checked + .slider:before {
   }
   img{
     width: 100%;
+    height: auto;
   }
 }
 .products{

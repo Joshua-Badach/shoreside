@@ -9,17 +9,17 @@ $slug = $post->post_name;
                 <span>Follow Us</span>
                    <div id="facebookButton" class="socmed">
                        <a class="facebook" href="https://www.facebook.com/recpowersports/" target="_blank">
-                           <object data="<?php echo get_template_directory_uri() . '/assets/src/library/images/facebook.svg' ?>" ></object>
+                           <object alt="Facebook Icon" data="<?php echo get_template_directory_uri() . '/assets/src/library/images/facebook.svg' ?>" ></object>
                        </a>
                    </div>
             <div id="youtubeButton" class="socmed">
                 <a class="youtube" href="https://www.youtube.com/@recreationalpowersports" target="_blank">
-                    <object data="<?php echo get_template_directory_uri() . '/assets/src/library/images/youtube.svg' ?>"></object>
+                    <object alt="Youtube Icon" data="<?php echo get_template_directory_uri() . '/assets/src/library/images/youtube.svg' ?>"></object>
                 </a>
             </div>
             <div id="instaButton" class="socmed">
                 <a class="instagram" href="https://www.instagram.com/recreationalpowersports/?hl=en" target="_blank">
-                    <object data="<?php echo get_template_directory_uri() . '/assets/src/library/images/instagram.svg' ?>"></object>
+                    <object alt="Instagram Icon" data="<?php echo get_template_directory_uri() . '/assets/src/library/images/instagram.svg' ?>"></object>
                 </a>
             </div>
                 <span>@recreationalpowersports</span>
