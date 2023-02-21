@@ -13,6 +13,7 @@ $image_alt = get_post_meta($image_id->ID, '_wp_attachment_image_alt', TRUE);
 $infoImage = $image_id->guid;
 
 $video = get_post_custom_values('video', $slug);
+$form = get_post_custom_values('form', $slug);
 
 echo '<section class="container serviceLayout">
     <h2>' . $term->name . '</h2>
@@ -26,7 +27,7 @@ echo '<section class="container serviceLayout">
             echo '</div>
     <section class="col-lg-6">
         <h2>Contact Us To Book</h2>
-        <script type="text/javascript" src="https://form.jotform.com/jsform/223384426868063"></script>
+        ' . $form[0] . '
     </section>
 </div>';
 

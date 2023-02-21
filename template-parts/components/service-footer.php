@@ -34,7 +34,7 @@ foreach ($categories as $cat) {
     $catImageId = get_term_meta($cat->term_id, 'thumbnail_id', true);
     $catImage = wp_get_attachment_url($catImageId);
     echo '<div class="col-sm-3">
-        <img width="300px" height="300px" src="' . $catImage . '" alt="' . $cat->name . ' Services">
+        <img width="300" height="300" src="' . $catImage . '" alt="' . $cat->name . ' Services">
     </div>';
 }
 echo '</div>
