@@ -2,7 +2,7 @@
 global $post;
 $slug = $post->post_name;
 ?>
-<div class="container">
+<div class="container socials">
     <div class="row">
            <div class="col-12">
                <div class="followUs">

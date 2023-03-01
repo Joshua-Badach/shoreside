@@ -340,9 +340,12 @@ add_shortcode('map', 'map_shortcode');
 
 function vision_shortcode( $atts = array(), $content = null ){
     echo '<div class="container">
-        <section class="row justify-content-sm-center vision">';
+        <section class="row justify-content-sm-center vision">
+        <h2 class="col-12">Test for shortcode closing</h2>
+        <p class="col-sm-8">';
             echo $content;
-    echo '</section>
+        echo '</p>
+    </section>
 </div>';
 }
 add_shortcode('vision', 'vision_shortcode');

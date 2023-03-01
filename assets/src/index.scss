@@ -323,6 +323,13 @@ footer .mobileShow{
   margin-top: 50px;
   margin-bottom: 15px;
 }
+.offerings{
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+.socials{
+  margin-top: 5%;
+}
 footer .logo{
   width: 50%;
   max-width: 200px;
@@ -452,8 +459,6 @@ footer .logo{
   margin-bottom: 10vh;
 }
 .vision{
-  margin-top: 10vh;
-  margin-bottom: 10vh;
 
   h2{
     text-align: center;
@@ -482,9 +487,14 @@ footer .logo{
     //transform: translateX(-50%) translateY(-5%);
   }
 }
-.mission a:hover{
-  background: nth($rpsBrand, 1);
-  color: nth($rpsBrand, 4);
+.mission{
+
+  margin-top: 10%;
+  margin-bottom: 10%;
+  a:hover {
+    background: nth($rpsBrand, 1);
+    color: nth($rpsBrand, 4);
+  }
 }
 .gallery{
   margin-bottom: 10%;
@@ -539,8 +549,7 @@ footer .logo{
   }
 }
 .carouselWrapper{
-  margin-bottom: 5%;
-  margin-top: 5%;
+  margin-bottom: 10%;
 }
 .slick-lightbox {
   position: fixed;

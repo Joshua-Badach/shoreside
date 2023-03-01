@@ -25,7 +25,7 @@ $args = array(
 function product_gallery($idObj, $args){
     $all_categories = get_categories( $args );
 
-    echo '<section class="container"> 
+    echo '<section class="container offerings"> 
         <h2 class="col-lg-12">What we offer</h2>
         <div class="row justify-content-center">';
     foreach ($all_categories as $cat) {

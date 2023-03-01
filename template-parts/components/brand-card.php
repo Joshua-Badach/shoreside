@@ -61,6 +61,8 @@ function brand_loop($args){
 
     $terms = get_categories($args);
 
+//    Hash out a better way of doing this... Good enough for now
+
     echo '<section class="brandSpan">
     <h2 class="hidden">Our Brands</h2>';
         if (isMobile() == false){
