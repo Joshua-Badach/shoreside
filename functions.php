@@ -214,6 +214,46 @@ function featured_brand_shortcode(){
     include('template-parts/components/featured-brand.php');
 }
 add_shortcode('featured-brand', 'featured_brand_shortcode');
+function tester(){
+// -==========- Declare vars -==========- //
+//Set up db and input
+$suppliers = [
+    ['supplier'         =>          'kimpex',
+    'server'            =>          'ftp.kimpex.com',
+    'username'          =>          '7321004',
+    'password'          =>          '$Tvf&V6Cey',
+    'remote_file_path'  =>          'ftp://7321004@ftp.kimpex.com/'],
+
+//    ['supplier'         =>          'test',
+//    'server'            =>          'ftp.test.com',
+//    'username'          =>          'user',
+//    'password'          =>          'password',
+//    'remote_file_path'  =>          ''],
+];
+
+//File Details
+$local_file_path = '';
+
+    foreach ($suppliers as $supplier) {
+        echo $supplier['supplier'] . '<br>';
+        echo $supplier['server'] . '<br>';
+        echo $supplier['username'] . '<br>';
+        echo $supplier['password'] . '<br><br>';
+        $remote_file_path = "ftp://" . $supplier['username'] . "@" . $supplier["server"] . "/<br><br>";
+
+        echo $remote_file_path;
+
+//        $connection_id = ftp_connect($supplier['server']);
+//
+//        $connection_result = ftp_login($connection_id, $supplier['username'], $supplier['password']);
+//
+//        ftp_chdir($connection_id, dirname($remote_file_path));
+
+//        Continue here
+}
+
+}
+add_shortcode('tester', 'tester');
 
 function brands_shortcode(){
     include('template-parts/components/brand-card.php');
@@ -263,10 +303,10 @@ function product_gallery_shortcode(){
 }
 add_shortcode('product-gallery', 'product_gallery_shortcode');
 
-function quote_shortcode(){
-    include('template-parts/components/quote.php');
+function news_banner_shortcode(){
+    include('template-parts/components/news-banner.php');
 }
-add_shortcode('quote', 'quote_shortcode');
+add_shortcode('news-banner', 'news_banner_shortcode');
 
 function banner_shortcode(){
     include('template-parts/components/banner.php');
