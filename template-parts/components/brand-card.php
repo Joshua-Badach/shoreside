@@ -64,9 +64,9 @@ function brand_loop($args){
     echo '<section class="brandSpan">
     <h2 class="hidden">Our Brands</h2>';
         if (isMobile() == false){
-            echo '<div class="row justify-content-center">';
-        } else {
             echo '<div class="row brand-carousel">';
+        } else {
+            echo '<div class="row brand-carousel-mobile">';
         }
     foreach ($terms as $term) {
         if ($term->slug === $test[0] ) {
@@ -107,36 +107,21 @@ function brand_cards($term, $url){
     $image_alt = get_post_meta($image_id->ID, '_wp_attachment_image_alt', TRUE);
     $image = $image_id->guid;
 
-    if (isMobile() == false){
-        $content = $term->description;
-        $trimmed_content = wp_trim_words( $content, 25, '...');
-        echo '<section itemscope itemtype="https://schema.org/Brand" class="col-1">
-            <a href="' . $term->slug . '">
-                <div class="brandCard brands">
-                    <div class="brandImage">
-                        <img loading="lazy" itemprop="logo" src="'. $image . '" alt="' . $image_alt . '">
-                        <span hidden itemprop="url"> ' . $url . '</span>
-                    </div>   
-                    <div class="brandsContent">    
-                        <h3 itemprop="name" class="hidden">' . $term->name . '</h3>
-                        <p itemprop="description">'; echo $trimmed_content . '</p>
-                    </div>
-                    <p class="appended">Read More</p> 
-                </div>    
-            </a>
-        </section>';
-    } else {
-        echo '<section itemscope itemtype="https://schema.org/Brand" class="col-4">
-            <a href="' . $term->slug . '">
-                <div class="brandCard">
-                    <div class="brandImage">
-                        <img loading="lazy" itemprop="logo" src="'. $image . '">
-                        <span hidden itemprop="url"> ' . $url . '</span>
-                    </div>   
-                    <h3 itemprop="name" class="hidden">' . $term->name . '</h3>
-                </div>    
-            </a>
+    $content = $term->description;
+    $trimmed_content = wp_trim_words( $content, 25, '...');
+
+
+    echo '<section itemscope itemtype="https://schema.org/Brand" class="col-2">
+        <h3 class="hidden" itemprop="name">' . $term->name . '</h3> 
+        <a href="' . $term->slug . '">
+            <div class="brands">
+                <div class="brandImage">
+                    <img loading="lazy" itemprop="logo" src="'. $image . '" alt="' . $image_alt . '">
+                    <meta itemprop="url" content="' . $url . '">
+                    <meta itemprop="description" content="' . $trimmed_content . '">
+                </div>
+            </div>    
+        </a>
         </section>';
     }
-}
 brand_loop($args);

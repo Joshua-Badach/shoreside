@@ -45,6 +45,19 @@ export function carousel() {
   });
 
   $('.brand-carousel').slick({
+    slidesToShow: 8,
+    slidesToScroll: 4,
+    autoplay: true,
+    speed: 300,
+    autoplaySpeed: 8000,
+    arrows: false,
+    dots: false,
+    mobileFirst: true,
+    infinite: true,
+    lazyLoad: 'ondemand',
+  });
+
+  $('.brand-carousel-mobile').slick({
     slidesToShow: 3,
     slidesToScroll: 3,
     autoplay: true,
@@ -52,7 +65,7 @@ export function carousel() {
     autoplaySpeed: 10000,
     arrows: false,
     dots: false,
-    mobileFirst: false,
+    mobileFirst: true,
     lazyLoad: 'ondemand',
   });
 }

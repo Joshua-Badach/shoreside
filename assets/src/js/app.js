@@ -55,13 +55,11 @@ jQuery(document).ready(function($) {
         $('.brands h3').hide();
         $('.brands p').hide();
         $('.brandCard').removeClass('brands');
-        $('#brandSection').removeClass('container');
       };
       if (win.width() >= 1024 ){
         $('.brands h3').show();
         $('.brands p').show();
         $('.brandCard').addClass('brands');
-        $('#brandSection').addClass('container');
       };
     });
     function brandShuffle(){
@@ -69,8 +67,6 @@ jQuery(document).ready(function($) {
         $('.brands h3').hide();
         $('.brands p').hide();
         $('.brandCard').removeClass('brands');
-        $('#brandSection').removeClass('container');
-
       }
     }
     $(window).resize(brandShuffle());
