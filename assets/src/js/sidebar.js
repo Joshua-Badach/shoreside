@@ -37,6 +37,7 @@ export function sidebar() {
     $('#categories a').show();
   } else {
     $('#categories a').hide();
+
   }
   //Hide filters on load if more than 5 children
   if ($('#attributes').children().length >= 5) {
@@ -67,14 +68,16 @@ export function sidebar() {
 
   //Hidenslide for mobile filter
   if (mobile) {
+    $('#sidebarContainer').hide();
     $('#sidebarIcon').on('click', function (e) {
       e.preventDefault();
       e.stopImmediatePropagation();
       $('#sidebarContainer').toggle(500);
       $('#sidebarIcon img').toggleClass('sidebarIconAnimate');
-      if (mobile) {
+
+      // if (mobile) {
         $('#sidebarContainer').css('position', 'absolute');
-      }
+      // }
     });
   } else {
     $('#sidebarIcon img, #mobileFilter a').hide();
