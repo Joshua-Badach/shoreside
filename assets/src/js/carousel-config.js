@@ -46,7 +46,7 @@ export function carousel() {
 
   $('.brand-carousel').slick({
     slidesToShow: 8,
-    slidesToScroll: 1,
+    slidesToScroll: 2,
     autoplay: true,
     speed: 300,
     autoplaySpeed: 8000,
