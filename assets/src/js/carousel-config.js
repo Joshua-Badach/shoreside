@@ -46,15 +46,14 @@ export function carousel() {
 
   $('.brand-carousel').slick({
     slidesToShow: 8,
-    slidesToScroll: 4,
+    slidesToScroll: 1,
     autoplay: true,
     speed: 300,
     autoplaySpeed: 8000,
     arrows: false,
     dots: false,
-    mobileFirst: true,
-    infinite: true,
-    lazyLoad: 'ondemand',
+    mobileFirst: false,
+    infinite: false,
   });
 
   $('.brand-carousel-mobile').slick({

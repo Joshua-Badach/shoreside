@@ -351,9 +351,9 @@ footer .logo{
 }
 .heroVideo{
   width: 100%;
-  //aspect-ratio: 16/ 9;
-  max-height: 720px;
-  overflow-y: hidden;
+  max-height: 695px;
+  overflow-y: clip;
+  height: auto;
 
   video{
     width: 100%;
@@ -370,28 +370,35 @@ footer .logo{
     margin-bottom: 0;
   }
 }
-.brandImage{
-  width: 100%;
+.brands{
   aspect-ratio: 1/1;
+  max-height: 150px;
   display: flex;
-  text-align: center;
-  background-color: nth($rpsBrand, 4);
+  background: nth($rpsBrand, 4);
+  border-radius: 5px;
+  -webkit-box-shadow: 1px 1px 5px 2px rgba(0,0,0,0.9);
+  box-shadow: 1px 1px 5px 2px rgba(0,0,0,0.9);
+
+  img {
+    display: flex;
+    align-self: center;
+    padding-left: 6%;
+    padding-right: 6%;
+    max-width: 159px;
+    width: 100%;
+    height: auto;
+  }
 }
-.brandImage img{
-  height: 150px;
-}
-.brands img{
-  display: flex;
-  align-self: center;
-  padding-left: 6%;
-  padding-right: 6%;
-  width: 100%;
-  height: auto;
-}
-.brand-carousel{
-  padding: 10px 0;
-  max-height: 230px;
-  overflow: hidden;
+.brandSpan{
+  max-height: 185px;
+  overflow-y: hidden;
+  background: nth($rpsBrand, 1);
+
+  section{
+    max-width: 150px;
+    aspect-ratio: 1/1;
+    margin: 1% 3%;
+  }
 }
 .bannerImage img{
   height: auto;
@@ -479,12 +486,6 @@ footer .logo{
     aspect-ratio: 4/1;
     min-height: 240px;
     object-fit: cover;
-    //left: 50%;
-    //-webkit-transform: translateX(-50%) translateY(-5%);
-    //-moz-transform: translateX(-50%) translateY(-5%);
-    //-ms-transform: translateX(-50%) translateY(-5%);
-    //-o-transform: translateX(-50%) translateY(-5%);
-    //transform: translateX(-50%) translateY(-5%);
   }
 }
 .mission{
@@ -791,11 +792,6 @@ footer .logo{
       box-shadow: 2px 2px 5px 1px #000000;
     }
 }
-//.brandsContent{
-//  display: flex;
-//  flex-direction: column;
-//  height: 45%;
-//}
 .appended{
   text-align: center;
   padding-bottom: 5vw;
@@ -890,9 +886,6 @@ footer .logo{
   -ms-transform: rotate(-35deg);
   -o-transform: rotate(-35deg);
   transform: rotate(-35deg);
-}
-.brandSpan{
-  background: nth($rpsBrand, 1);
 }
 //extra small mobile
 @media (min-width: 320px) and (max-width: 480px) {

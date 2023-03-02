@@ -40,7 +40,7 @@ function brand_loop($args){
 
     $unique = array();
     $name = array();
-    $test = ['avalon', 'mirrocraft', 'mercury', 'shorestation', 'argo', 'radinn', 'sanger'];
+    $test = ['avalon', 'mirrocraft', 'mercury', 'shorestation', 'argo', 'radinn', 'sanger', 'montego-bay'];
 
     foreach (wc_get_products($query_args) as $product) {
         foreach ($product->get_attributes() as $tax => $attribute) {
@@ -66,37 +66,41 @@ function brand_loop($args){
     echo '<section class="brandSpan">
     <h2 class="hidden">Our Brands</h2>';
         if (isMobile() == false){
-            echo '<div class="row brand-carousel">';
+            echo '<div class="brand-carousel">';
         } else {
-            echo '<div class="row brand-carousel-mobile">';
+            echo '<div class="brand-carousel-mobile">';
         }
     foreach ($terms as $term) {
         if ($term->slug === $test[0] ) {
-            $url = 'https://www.avalonpontoons.com/';
+            $url = 'avalonpontoons.com/';
             brand_cards($term, $url);
         }
         if ($term->slug === $test[1] ) {
-            $url = 'https://www.mirrocraft.com/';
+            $url = 'mirrocraft.com/';
             brand_cards($term, $url);
         }
         if ($term->slug === $test[2] ) {
-            $url = 'https://www.mercurymarine.com/en/ca/';
+            $url = 'mercurymarine.com/en/ca/';
             brand_cards($term, $url);
         }
         if ($term->slug === $test[3] ) {
-            $url = 'https://www.mercurymarine.com/en/ca/';
+            $url = 'shorestation.com/';
             brand_cards($term, $url);
         }
         if ($term->slug === $test[4] ) {
-            $url = 'https://www.argo.com/en/ca/';
+            $url = 'argoxtv.com/ca/';
             brand_cards($term, $url);
         }
         if ($term->slug === $test[5] ) {
-            $url = 'https://www.radinn.com/';
+            $url = 'radinn.com/';
             brand_cards($term, $url);
         }
         if ($term->slug === $test[6] ) {
-            $url = 'https://sangerboats.com/';
+            $url = 'sangerboats.com/';
+            brand_cards($term, $url);
+        }
+        if($term->slug == $test[7]) {
+            $url = 'montegobaypontoons.com/';
             brand_cards($term, $url);
         }
     }
@@ -113,15 +117,13 @@ function brand_cards($term, $url){
     $trimmed_content = wp_trim_words( $content, 25, '...');
 
 
-    echo '<section itemscope itemtype="https://schema.org/Brand" class="col-2">
+    echo '<section itemscope itemtype="https://schema.org/Brand">
         <h3 class="hidden" itemprop="name">' . $term->name . '</h3> 
         <a href="' . $term->slug . '">
             <div class="brands">
-                <div class="brandImage">
-                    <img loading="lazy" itemprop="logo" src="'. $image . '" alt="' . $image_alt . '">
-                    <meta itemprop="url" content="' . $url . '">
-                    <meta itemprop="description" content="' . $trimmed_content . '">
-                </div>
+                <img loading="lazy" itemprop="logo" src="'. $image . '" alt="' . $image_alt . '">
+                <meta itemprop="url" content="' . $url . '">
+                <meta itemprop="description" content="' . $trimmed_content . '">
             </div>    
         </a>
         </section>';
