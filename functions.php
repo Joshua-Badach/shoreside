@@ -725,8 +725,10 @@ add_filter( 'login_headertitle', 'my_login_logo_url_title' );
 function add_wc_attribute_manufacturer() {
     echo '<div class="form-field">
         <label for="featured_manufacturer">Featured Brand</label>
-        <input type="text" name="term_meta[featured]" id="term_meta[featured]" value="">
-
+            <select name="term_meta[featured]" id="featured_manufacturer">
+                <option value=false>No</option>
+                <option value=true>Yes</option>
+            </select>
         <p class="description">Is this manufacturer going to be featured on the home page</p>
     </div>';
 }
@@ -735,14 +737,16 @@ add_action( 'pa_manufacturer_add_form_fields', 'add_wc_attribute_manufacturer' )
 function edit_wc_attribute_manufacturer($term) {
     $id = $term->term_id;
     $term_meta = get_option( "featured_manufacturer=$id" );
-    var_dump($term_meta);?>
+    $select = array_values($term_meta);?>
     <tr class="form-field">
         <th scope="row" valign="top">
             <label for="featured_manufacturer">Featured Brand</label>
         </th>
         <td>
-            <input type="text" name="term_meta[featured]" id="term_meta[featured]" value="<?php echo esc_attr( $term_meta['featured'] ) ? esc_attr( $term_meta['featured'] ) : ''; ?>">
-
+            <select name="term_meta[featured]" id="featured_manufacturer">
+                <option value=false <?php if($select[0] == "false") echo "selected" ?> >No</option>
+                <option value=true <?php if($select[0] == "true") echo "selected" ?> >Yes</option>
+            </select>
 
             <p class="description">Is this manufacturer going to be featured on the home page</p>
         </td>
