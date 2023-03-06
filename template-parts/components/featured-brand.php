@@ -34,9 +34,9 @@ echo '<div class="tagLine">
 echo do_shortcode('[products attribute="manufacturer"  terms="' . $slug . '" per_page="4" columns="4" meta_key="event_date" orderby="meta_value_num" on_sale="" order="DESC" operator="IN"]');
 
         echo '<div class="row">
-            <p class="col-sm-9 description">' . $description[0] . '</p>';
+            <p class="col-sm-8 description">' . $description[0] . '</p>';
         if ($featured != '') {
-            echo '<img class="col-sm-3" src = "' . $featured . '" alt = "' . $featured_alt . '" >';
+            echo '<img class="col-sm-4" src = "' . $featured . '" alt = "' . $featured_alt . '" >';
         }
         echo '</div>';
         if ($video != '') {

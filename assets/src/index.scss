@@ -364,6 +364,29 @@ footer .logo{
     position: relative;
     max-width: 200px;
     top: 10vw;
+    min-height: 237px;
+    margin-left: 15vw;
+    margin-top: -4vw;
+    margin-bottom: 0;
+  }
+}
+.brandHero{
+  width: 100%;
+  max-height: 695px;
+  height: auto;
+  overflow-y: hidden;
+
+  video{
+    margin-top: -15%;
+    width: 100%;
+    position: relative;
+    z-index: -10;
+  }
+  img{
+    position: relative;
+    max-width: 200px;
+    top: 10vw;
+    min-height: 237px;
     margin-left: 15vw;
     margin-top: -4vw;
     margin-bottom: 0;
@@ -474,6 +497,7 @@ footer .logo{
   margin-bottom: 10vh;
 }
 .vision{
+  margin-bottom: 5%;
 
   h2{
     text-align: center;

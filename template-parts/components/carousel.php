@@ -2,7 +2,7 @@
 
 if ( is_home() || is_front_page() ){
     echo '<section class="carouselWrapper">
-        <h2 class="col-sm-8">How Recreational Power Sports Does It Better</h2>
+        <h2 class="hidden">Recreational Power Sports Special Offerings</h2>
         <div class="mainCarousel">';
 } else {
     echo '<section>

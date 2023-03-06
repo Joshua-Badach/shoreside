@@ -29,7 +29,6 @@ $image_slug = $manufacturer.'-logo';
 $image_id = get_page_by_title($image_slug, OBJECT, 'attachment');
 $image = $image_id->guid;
 
-
 function get_attachment_url_by_slug( $slug )
 {
     $args = array(

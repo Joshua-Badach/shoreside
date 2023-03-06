@@ -29,7 +29,7 @@ if (is_home() || is_front_page()) {
     $logo_id            =           get_page_by_title($image_slug, OBJECT, 'attachment');
     $logo_alt           =           get_post_meta($logo_id->ID, '_wp_attachment_image_alt', TRUE);
     $logo_image         =           $logo_id->guid;
-    echo '<div class="heroVideo">
+    echo '<div class="brandHero">
             <img alt="' . $logo_alt . '" src="' . $logo_image . '">
             <video autoplay loop muted>
                 <source src="' . $hero_video . '">

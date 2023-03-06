@@ -304,7 +304,11 @@ function product_gallery_shortcode(){
 add_shortcode('product-gallery', 'product_gallery_shortcode');
 
 function news_banner_shortcode(){
-    include('template-parts/components/news-banner.php');
+    $image_id = get_page_by_title('news-banner', OBJECT, 'attachment');
+    $image_alt = get_post_meta($image_id->ID, '_wp_attachment_image_alt', TRUE);
+    $image = wp_get_attachment_image_src($image_id->ID, [1400, 300]);
+
+    echo '<img loading="lazy" class="newsBanner"  src="' . $image[0] . '" width="' . $image[1] . '" height="' . $image[2] . '" loading="lazy" alt="' . $image_alt . '">';
 }
 add_shortcode('news-banner', 'news_banner_shortcode');
 
@@ -714,3 +718,52 @@ function my_login_logo_url_title() {
     return 'Your Site Name and Info';
 }
 add_filter( 'login_headertitle', 'my_login_logo_url_title' );
+
+//Add functionality to woocommerce edit manufacturer page to allow for featured brands
+
+// Add select to add manufacturer
+function add_wc_attribute_manufacturer() {
+    echo '<div class="form-field">
+        <label for="featured_manufacturer">Featured Brand</label>
+        <input type="text" name="term_meta[featured]" id="term_meta[featured]" value="">
+
+        <p class="description">Is this manufacturer going to be featured on the home page</p>
+    </div>';
+}
+add_action( 'pa_manufacturer_add_form_fields', 'add_wc_attribute_manufacturer' );
+
+function edit_wc_attribute_manufacturer($term) {
+    $id = $term->term_id;
+    $term_meta = get_option( "featured_manufacturer=$id" );
+    var_dump($term_meta);?>
+    <tr class="form-field">
+        <th scope="row" valign="top">
+            <label for="featured_manufacturer">Featured Brand</label>
+        </th>
+        <td>
+            <input type="text" name="term_meta[featured]" id="term_meta[featured]" value="<?php echo esc_attr( $term_meta['featured'] ) ? esc_attr( $term_meta['featured'] ) : ''; ?>">
+
+
+            <p class="description">Is this manufacturer going to be featured on the home page</p>
+        </td>
+    </tr>
+    <?php
+}
+add_action( 'pa_manufacturer_edit_form_fields', 'edit_wc_attribute_manufacturer' );
+
+function save_taxonomy_custom_meta( $term_id ) {
+    if ( isset( $_POST['term_meta'] ) ) {
+        $id = $term_id;
+        $term_meta = get_option( "featured_manufacturer=$id" );
+        $cat_keys = array_keys( $_POST['term_meta'] );
+        foreach ( $cat_keys as $key ) {
+            if ( isset ( $_POST['term_meta'][$key] ) ) {
+                $term_meta[$key] = $_POST['term_meta'][$key];
+            }
+        }
+        // Save the option array.
+        update_option( "featured_manufacturer=$id", $term_meta );
+    }
+}
+add_action( 'edited_pa_manufacturer', 'save_taxonomy_custom_meta');
+add_action( 'create_pa_manufacturer', 'save_taxonomy_custom_meta');
