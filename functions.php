@@ -723,42 +723,43 @@ add_filter( 'login_headertitle', 'my_login_logo_url_title' );
 //Add functionality to woocommerce edit manufacturer page to allow for featured brands
 
 // Add select to add manufacturer
-
-function edit_wc_attribute_manufacturer($term) {
-    $id = $term->term_id;
-    $term_meta = get_option( "manufacturer=$id" );
-    $select = array_values($term_meta);
-    ?>
-    <tr class="form-field">
-        <th scope="row" valign="top">
-            <label for="manufacturer">Featured Brand</label>
-        </th>
-        <td>
-            <select name="term_meta[featured]" id="manufacturer">
-                <option value="" >No</option>
-                <option value=<?php echo $term->term_id . ' '; if($select[0] != "0") echo "selected" ?> >Yes</option>
-            </select>
-
-            <p class="description">Is this manufacturer going to be featured on the home page</p>
-        </td>
-    </tr>
-    <?php
-}
-add_action( 'pa_manufacturer_edit_form_fields', 'edit_wc_attribute_manufacturer' );
-
-function save_taxonomy_custom_meta( $term_id ) {
-    if ( isset( $_POST['term_meta']  ) ) {
-        $id = $term_id;
-        $term_meta = get_option( "manufacturer=$id" );
-        $cat_keys = array_keys( $_POST['term_meta'] );
-        foreach ( $cat_keys as $key ) {
-            if ( isset ( $_POST['term_meta'][$key] ) ) {
-                $term_meta[$key] = $_POST['term_meta'][$key];
-            }
-        }
-        // Save the option array.
-        update_option("manufacturer=$id", $term_meta);
-
-    }
-}
-add_action( 'edited_pa_manufacturer', 'save_taxonomy_custom_meta');
+//
+//function edit_wc_attribute_manufacturer($term) {
+//    $id = $term->term_id;
+//    $term_meta = get_option( "manufacturer=$id" );
+//    $select = array_values($term_meta);
+//
+//    ($select[0]) ? $id = 0 : $id = $select[0];
+//
+//
+//    echo 'Term Meta '; var_dump($term_meta);
+//    ?>
+<!--    <tr class="form-field">-->
+<!--        <th scope="row" valign="top">-->
+<!--            <label for="term_meta[featured]">Featured Brand</label>-->
+<!--        </th>-->
+<!--        <td>-->
+<!--            <input name="term_meta[featured]" id="term_meta[featured]" value="--><?php //echo $id ?><!--" --><?php //if($select[0] != '0') echo "checked" ?><!-- type="checkbox">-->
+<!--            <p class="description">Is this manufacturer going to be featured on the home page</p>-->
+<!--        </td>-->
+<!--    </tr>-->
+<!--    --><?php
+//}
+//add_action( 'pa_manufacturer_edit_form_fields', 'edit_wc_attribute_manufacturer' );
+//
+//function save_taxonomy_custom_meta( $term_id, $id ) {
+//    if ( isset( $_POST['term_meta']  ) ) {
+//        $id = $term_id;
+//        $term_meta = get_option( "manufacturer=$id" );
+//        $cat_keys = array_keys( $_POST['term_meta'] );
+//        foreach ( $cat_keys as $key ) {
+//            if ( isset ( $_POST['term_meta'][$key] ) ) {
+//                $term_meta[$key] = $_POST['term_meta'][$key];
+//            }
+//        }
+//        // Save the option array.
+//        update_option("manufacturer=$id", $term_meta, false);
+//
+//    }
+//}
+//add_action( 'edited_pa_manufacturer', 'save_taxonomy_custom_meta');
