@@ -1,10 +1,10 @@
 <?php
-global $post;
-$slug = $post->post_name;
+echo '<section class="our-socials">';
 ?>
 <div class="container socials">
     <div class="row">
            <div class="col-12">
+               <h2>Our Socials</h2>
                <div class="followUs">
                 <span>Follow Us</span>
                    <div id="facebookButton" class="socmed">
@@ -27,4 +27,7 @@ $slug = $post->post_name;
         </div>
     </div>
 </div>
-<?php echo do_shortcode('[instagram-feed feed=1]'); ?>
+<?php echo do_shortcode('[instagram-feed feed=1]');
+
+echo '</section>';
+?>

@@ -309,6 +309,7 @@ function news_banner_shortcode(){
     $image = wp_get_attachment_image_src($image_id->ID, [1400, 300]);
 
     echo '<img loading="lazy" class="newsBanner"  src="' . $image[0] . '" width="' . $image[1] . '" height="' . $image[2] . '" loading="lazy" alt="' . $image_alt . '">';
+
 }
 add_shortcode('news-banner', 'news_banner_shortcode');
 
@@ -722,30 +723,20 @@ add_filter( 'login_headertitle', 'my_login_logo_url_title' );
 //Add functionality to woocommerce edit manufacturer page to allow for featured brands
 
 // Add select to add manufacturer
-function add_wc_attribute_manufacturer() {
-    echo '<div class="form-field">
-        <label for="featured_manufacturer">Featured Brand</label>
-            <select name="term_meta[featured]" id="featured_manufacturer">
-                <option value=false>No</option>
-                <option value=true>Yes</option>
-            </select>
-        <p class="description">Is this manufacturer going to be featured on the home page</p>
-    </div>';
-}
-add_action( 'pa_manufacturer_add_form_fields', 'add_wc_attribute_manufacturer' );
 
 function edit_wc_attribute_manufacturer($term) {
     $id = $term->term_id;
-    $term_meta = get_option( "featured_manufacturer=$id" );
-    $select = array_values($term_meta);?>
+    $term_meta = get_option( "manufacturer=$id" );
+    $select = array_values($term_meta);
+    ?>
     <tr class="form-field">
         <th scope="row" valign="top">
-            <label for="featured_manufacturer">Featured Brand</label>
+            <label for="manufacturer">Featured Brand</label>
         </th>
         <td>
-            <select name="term_meta[featured]" id="featured_manufacturer">
-                <option value=false <?php if($select[0] == "false") echo "selected" ?> >No</option>
-                <option value=true <?php if($select[0] == "true") echo "selected" ?> >Yes</option>
+            <select name="term_meta[featured]" id="manufacturer">
+                <option value="" >No</option>
+                <option value=<?php echo $term->term_id . ' '; if($select[0] != "0") echo "selected" ?> >Yes</option>
             </select>
 
             <p class="description">Is this manufacturer going to be featured on the home page</p>
@@ -756,9 +747,9 @@ function edit_wc_attribute_manufacturer($term) {
 add_action( 'pa_manufacturer_edit_form_fields', 'edit_wc_attribute_manufacturer' );
 
 function save_taxonomy_custom_meta( $term_id ) {
-    if ( isset( $_POST['term_meta'] ) ) {
+    if ( isset( $_POST['term_meta']  ) ) {
         $id = $term_id;
-        $term_meta = get_option( "featured_manufacturer=$id" );
+        $term_meta = get_option( "manufacturer=$id" );
         $cat_keys = array_keys( $_POST['term_meta'] );
         foreach ( $cat_keys as $key ) {
             if ( isset ( $_POST['term_meta'][$key] ) ) {
@@ -766,8 +757,8 @@ function save_taxonomy_custom_meta( $term_id ) {
             }
         }
         // Save the option array.
-        update_option( "featured_manufacturer=$id", $term_meta );
+        update_option("manufacturer=$id", $term_meta);
+
     }
 }
 add_action( 'edited_pa_manufacturer', 'save_taxonomy_custom_meta');
-add_action( 'create_pa_manufacturer', 'save_taxonomy_custom_meta');

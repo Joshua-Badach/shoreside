@@ -38,7 +38,6 @@ function brand_loop($args){
         'taxonomy'                      => $taxonomy,
     );
 
-    $unique = array();
     $name = array();
     $test = ['avalon', 'mirrocraft', 'mercury', 'shorestation', 'argo', 'radinn', 'sanger', 'montego-bay'];
 
@@ -47,10 +46,7 @@ function brand_loop($args){
             foreach ($attribute->get_terms() as $i => $term) {
                 if ($term->taxonomy == 'pa_manufacturer') {
                     if ( in_array($term->slug, $test[$i] ) ) {
-                        $unique[] = $term->term_id;
                         $name[] = $term->name;
-                        $termSlug[] = $term->slug;
-                        $termCheck = array_unique($unique);
                         $termName = array_unique($name, SORT_LOCALE_STRING);
                         asort($termName);
                     }
@@ -71,6 +67,7 @@ function brand_loop($args){
             echo '<div class="brand-carousel-mobile">';
         }
     foreach ($terms as $term) {
+
         if ($term->slug === $test[0] ) {
             $url = 'avalonpontoons.com/';
             brand_cards($term, $url);

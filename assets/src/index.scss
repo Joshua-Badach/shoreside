@@ -329,6 +329,12 @@ footer .mobileShow{
 }
 .socials{
   margin-top: 5%;
+
+  h2{
+    color: nth($rpsBrand, 4);
+    text-align: center;
+    transform: translateY(50px);
+  }
 }
 footer .logo{
   width: 50%;
@@ -444,6 +450,10 @@ footer .logo{
   height: auto;
   aspect-ratio: 2/1;
 }
+.carouselWrapper{
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
 .mobileBrand{
   height: 200px;
   background: nth($rpsBrand, 1);
@@ -457,6 +467,15 @@ footer .logo{
   -webkit-border-radius: 0px 0px 0px 0px;
   border: 2px solid #0069ad;
   padding: 10px;
+}
+.our-socials{
+  background: nth($rpsBrand, 1);
+  width: 100%;
+  height: fit-content;
+
+  span{
+    color: nth($rpsBrand, 4);
+  }
 }
 .searchform{
   margin-left: 10px;
@@ -497,7 +516,9 @@ footer .logo{
   margin-bottom: 10vh;
 }
 .vision{
-  margin-bottom: 5%;
+  display: flex;
+  align-content: center;
+  height: 400px;
 
   h2{
     text-align: center;
@@ -580,9 +601,6 @@ footer .logo{
       }
     }
   }
-}
-.carouselWrapper{
-  margin-bottom: 10%;
 }
 .slick-lightbox {
   position: fixed;
@@ -1279,8 +1297,7 @@ footer .logo{
   margin-bottom: 10%;
 }
 .followUs{
-  margin-top: 10%;
-  margin-bottom: 10%;
+  min-height: 200px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
