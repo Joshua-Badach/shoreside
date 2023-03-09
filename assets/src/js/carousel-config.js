@@ -54,6 +54,7 @@ export function carousel() {
     autoplaySpeed: 5000,
     arrows: false,
     dots: false,
+    infinite: false,
     responsive: [
       {
         breakpoint: 1024,

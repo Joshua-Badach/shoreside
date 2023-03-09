@@ -72,7 +72,6 @@ function brand_cards($term){
         <a href="' . $term->slug . '">
             <div class="brands">
                 <img loading="lazy" itemprop="logo" src="'. $image . '" alt="' . $image_alt . '">
-                <meta itemprop="url" content="google.com">
                 <meta itemprop="description" content="' . $trimmed_content . '">
             </div>    
         </a>
