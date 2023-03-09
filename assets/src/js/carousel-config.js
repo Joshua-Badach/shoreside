@@ -28,7 +28,8 @@ export function carousel() {
   });
   $('.carousel-product').slickLightbox({
     itemSelector: 'a',
-    navigateByKeyboard: true
+    navigateByKeyboard: true,
+    arrows: true
   });
 
   $('.mainCarousel').slick({
@@ -45,15 +46,37 @@ export function carousel() {
   });
 
   $('.brand-carousel').slick({
-    slidesToShow: 8,
-    slidesToScroll: 2,
+    slidesToShow: 6,
+    slidesToScroll: 1,
     autoplay: true,
+    centerPadding: '40px',
     speed: 300,
-    autoplaySpeed: 8000,
+    autoplaySpeed: 5000,
     arrows: false,
     dots: false,
-    mobileFirst: false,
-    infinite: false,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 1,
+        }
+      },
+      {
+        breakpoint: 920,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 2
+        }
+      },
+      {
+        breakpoint: 690,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+        }
+      }
+    ]
   });
 
   $('.brand-carousel-mobile').slick({
@@ -61,7 +84,7 @@ export function carousel() {
     slidesToScroll: 3,
     autoplay: true,
     speed: 300,
-    autoplaySpeed: 10000,
+    autoplaySpeed: 5000,
     arrows: false,
     dots: false,
     mobileFirst: true,

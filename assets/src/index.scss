@@ -417,21 +417,22 @@ footer .logo{
     height: auto;
   }
 }
-.brandSpan{
+.brandSpan {
   max-height: 185px;
   overflow-y: hidden;
   background: nth($rpsBrand, 1);
-
-  section{
-    max-width: 150px;
-    aspect-ratio: 1/1;
-  }
 }
-.brand-carousel{
-  section{
-    margin: 1% 3%;
-  }
-}
+//  section{
+//    max-width: 150px;
+//    aspect-ratio: 1/1;
+//  }
+//}
+//
+//.brand-carousel{
+//  section{
+//    margin: 10px 4%;
+//  }
+//}
 .brand-carousel-mobile{
   section{
     margin: .5% .5%;
@@ -1123,6 +1124,14 @@ footer .logo{
   .onOrder{
     top: 30%;
   }
+  .brandSpan {
+    max-height: 185px;
+    overflow-y: hidden;
+    background: nth($rpsBrand, 1);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 6%;
+  }
   .carousel{
     max-height: 769px;
     height: 100%;
@@ -1177,6 +1186,15 @@ footer .logo{
       bottom: 55px;
     }
   }
+
+  .brandSpan {
+    max-height: 185px;
+    overflow-y: hidden;
+    background: nth($rpsBrand, 1);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 6%;
+  }
   .onOrder{
     top: 30%;
   }
@@ -1216,6 +1234,16 @@ footer .logo{
       bottom: 55px;
     }
   }
+
+  .brandSpan {
+    max-height: 185px;
+    overflow-y: hidden;
+    background: nth($rpsBrand, 1);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 6%;
+  }
+
   .disclaimer{
     top: 90px;
   }

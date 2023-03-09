@@ -67,7 +67,7 @@ function brand_cards($term){
     $trimmed_content = wp_trim_words( $content, 25, '...');
 
 
-    echo '<section itemscope itemtype="https://schema.org/Brand">
+    echo '<section itemscope class="tile" itemtype="https://schema.org/Brand">
         <h3 class="hidden" itemprop="name">' . $term->name . '</h3> 
         <a href="' . $term->slug . '">
             <div class="brands">
