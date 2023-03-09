@@ -38,26 +38,7 @@ function brand_loop($args){
         'taxonomy'                      => $taxonomy,
     );
 
-    $name = array();
-    $test = ['avalon', 'mirrocraft', 'mercury', 'shorestation', 'argo', 'radinn', 'sanger', 'montego-bay'];
-
-    foreach (wc_get_products($query_args) as $product) {
-        foreach ($product->get_attributes() as $tax => $attribute) {
-            foreach ($attribute->get_terms() as $i => $term) {
-                if ($term->taxonomy == 'pa_manufacturer') {
-                    if ( in_array($term->slug, $test[$i] ) ) {
-                        $name[] = $term->name;
-                        $termName = array_unique($name, SORT_LOCALE_STRING);
-                        asort($termName);
-                    }
-                }
-            }
-        }
-    }
-
     $terms = get_categories($args);
-
-//    Hash out a better way of doing this... Good enough for now
 
     echo '<section class="brandSpan">
     <h2 class="hidden">Our Brands</h2>';
@@ -67,44 +48,16 @@ function brand_loop($args){
             echo '<div class="brand-carousel-mobile">';
         }
     foreach ($terms as $term) {
+        $tester = get_option( "featured_manufacturer=$term->term_id");
 
-        if ($term->slug === $test[0] ) {
-            $url = 'avalonpontoons.com/';
-            brand_cards($term, $url);
-        }
-        if ($term->slug === $test[1] ) {
-            $url = 'mirrocraft.com/';
-            brand_cards($term, $url);
-        }
-        if ($term->slug === $test[2] ) {
-            $url = 'mercurymarine.com/en/ca/';
-            brand_cards($term, $url);
-        }
-        if ($term->slug === $test[3] ) {
-            $url = 'shorestation.com/';
-            brand_cards($term, $url);
-        }
-        if ($term->slug === $test[4] ) {
-            $url = 'argoxtv.com/ca/';
-            brand_cards($term, $url);
-        }
-        if ($term->slug === $test[5] ) {
-            $url = 'radinn.com/';
-            brand_cards($term, $url);
-        }
-        if ($term->slug === $test[6] ) {
-            $url = 'sangerboats.com/';
-            brand_cards($term, $url);
-        }
-        if($term->slug == $test[7]) {
-            $url = 'montegobaypontoons.com/';
-            brand_cards($term, $url);
+        if(in_array("true", $tester) ) {
+            brand_cards($term);
         }
     }
     echo '</section>';
 }
 
-function brand_cards($term, $url){
+function brand_cards($term){
     $image_slug = $term->slug.'-logo';
     $image_id = get_page_by_title($image_slug, OBJECT, 'attachment');
     $image_alt = get_post_meta($image_id->ID, '_wp_attachment_image_alt', TRUE);
@@ -119,7 +72,7 @@ function brand_cards($term, $url){
         <a href="' . $term->slug . '">
             <div class="brands">
                 <img loading="lazy" itemprop="logo" src="'. $image . '" alt="' . $image_alt . '">
-                <meta itemprop="url" content="' . $url . '">
+                <meta itemprop="url" content="google.com">
                 <meta itemprop="description" content="' . $trimmed_content . '">
             </div>    
         </a>
