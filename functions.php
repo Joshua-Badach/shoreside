@@ -261,6 +261,38 @@ $suppliers = [
 }
 add_shortcode('tester', 'tester');
 
+function careers_shortcode( $atts = array(), $content = null ){
+    $careerQuery = new WP_Query(array(
+        'category_name'     => 'careers',
+        'order'             => 'ASC',
+        'post_status'       => ' publish',
+        'posts_per_page'    => 20
+    ));
+    global $post;
+
+    echo'<div class="container careers">
+        <section class="row">
+            <h2 class="col-12">Talent Acquisition for Rec Power</h2>
+            <div class="col-12">' . $content . '</div>
+        </section>
+        <section class="row justify-content-between">
+            <h2 class="col-12">Careers</h2>';
+            while ($careerQuery->have_posts()){
+                $careerQuery->the_post();
+                $salary = get_post_meta($post->ID, 'salary', true);
+                $short_description = get_post_meta($post->ID, 'short_description', true);
+
+                echo '<section class="col-sm-3 jobPost">
+                    <h3>' . get_the_title() . '</h3>
+                    <sub>' . $salary . '</sub>
+                    <p>' . $short_description . '</p>
+                </section>';
+            }
+    wp_reset_postdata();
+        echo'</section>
+    </div>';
+}
+add_shortcode('careers', 'careers_shortcode');
 function brands_shortcode(){
     include('template-parts/components/brand-card.php');
 }

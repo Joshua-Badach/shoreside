@@ -1859,3 +1859,12 @@ input:checked + .slider:before {
   padding-top: 2px;
   padding-bottom: 2px;
 }
+.careers{
+  margin-bottom: 10%;
+}
+.jobPost{
+  border: 1px nth($rpsBrand, 1) solid;
+  border-radius: 15px;
+  -webkit-box-shadow: 5px 5px 10px 0px #000000;
+  box-shadow: 5px 5px 10px 0px #000000;
+}
