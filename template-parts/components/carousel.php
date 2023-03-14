@@ -16,10 +16,15 @@ $slug = $the_page->post_name;
 
 function wp_loop_slider($query){
     while ($query->have_posts()){
+        global $post;
         $query->the_post();
         $title = get_the_title();
         $raw_content = get_the_content();
-        $content = substr($raw_content, 0, 250);
+        $content = substr($raw_content, 0, 200);
+
+        $link = get_post_meta($post->ID, 'link', true);
+        $get_link_text = get_post_meta($post->ID, 'link-text', true);
+        $link_text = ($get_link_text != '') ? ($get_link_text) : ('Read More');
 
         if ($content != '') {
             echo '<section class="sliderContent">';
@@ -27,6 +32,7 @@ function wp_loop_slider($query){
                 echo '<div class="sliderText">
                     <h2>' . $title . '</h2>
                     <p>' . $content . '</p>';
+                    echo ($link != '') ? ('<a href="' . $link . '">' . $link_text . '</a>') : ('');
                 echo '</div>
             </section>';
         } else {
