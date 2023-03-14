@@ -17,33 +17,40 @@ $slug = $the_page->post_name;
 function wp_loop_slider($query){
     while ($query->have_posts()){
         $query->the_post();
+        $title = get_the_title();
+        $raw_content = get_the_content();
+        $content = substr($raw_content, 0, 250);
 
-        echo ('<section class="sliderContent">');
-        the_post_thumbnail('', array( 'loading' => 'lazy' ));
-        ?><div class="sliderText">
-        <h2><?php the_title(); ?></h2>
-        <?php the_content(); ?>
-        </div><?php
-        echo ('</section>');
+        if ($content != '') {
+            echo '<section class="sliderContent">';
+            the_post_thumbnail('', array('loading' => 'lazy'));
+                echo '<div class="sliderText">
+                    <h2>' . $title . '</h2>
+                    <p>' . $content . '</p>';
+                echo '</div>
+            </section>';
+        } else {
+            echo '<section class="sliderContent">
+                <h2 class="hidden">' . $title . '</h2>';
+                the_post_thumbnail('', array('loading' => 'lazy'));
+            echo '</section>';
+        }
     }
     wp_reset_postdata();
 }
 
-if (is_home() || is_front_page() == true ):
+if (is_home() || is_front_page()) {
     $query = new WP_Query(array(
-        'category_name'         => 'home-slider',
-        'posts_per_page'        => 5
+        'category_name' => 'home-slider',
+        'posts_per_page' => 5
     ));
     wp_loop_slider($query);
-
-elseif (is_home() == false):
+} elseif (!is_home()) {
     $query = new WP_Query(array(
-        'category_name'         => $slug.'-slider',
-        'posts_per_page'        => 5
+        'category_name' => $slug . '-slider',
+        'posts_per_page' => 5
     ));
     wp_loop_slider($query);
-
-endif;
-
+}
 echo '</div>
 </section>';
