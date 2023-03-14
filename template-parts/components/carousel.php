@@ -1,4 +1,5 @@
 <?php
+global $post;
 
 if ( is_home() || is_front_page() ){
     echo '<section class="carouselWrapper">
@@ -10,12 +11,13 @@ if ( is_home() || is_front_page() ){
         <div class="mainCarousel">';
 }
 
-$the_page = sanitize_posT($GLOBALS['wp_the_query']->get_queried_object() );
+$the_page = sanitize_post($GLOBALS['wp_the_query']->get_queried_object() );
 $slug = $the_page->post_name;
 
 function wp_loop_slider($query){
     while ($query->have_posts()){
         $query->the_post();
+
         echo ('<section class="sliderContent">');
         the_post_thumbnail('', array( 'loading' => 'lazy' ));
         ?><div class="sliderText">

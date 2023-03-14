@@ -41,12 +41,8 @@ function brand_loop($args){
     $terms = get_categories($args);
 
     echo '<section class="brandSpan">
-    <h2 class="hidden">Our Brands</h2>';
-        if (isMobile() == false){
-            echo '<div class="brand-carousel">';
-        } else {
-            echo '<div class="brand-carousel-mobile">';
-        }
+    <h2 class="hidden">Our Brands</h2>
+    <div class="brand-carousel">';
     foreach ($terms as $term) {
         $tester = get_option( "featured_manufacturer=$term->term_id");
 

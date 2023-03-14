@@ -168,7 +168,7 @@ button span{
 //switch from hard coding when content is populated dynamically
 .home-heading{
   position: relative;
-  top: 30vw;
+  top: 40vw;
   padding-left: 15vw;
   margin-top: -4vw;
   margin-bottom: 0;
@@ -422,20 +422,10 @@ footer .logo{
   overflow-y: hidden;
   background: nth($rpsBrand, 1);
 }
-//  section{
-//    max-width: 150px;
-//    aspect-ratio: 1/1;
-//  }
-//}
-//
-//.brand-carousel{
-//  section{
-//    margin: 10px 4%;
-//  }
-//}
-.brand-carousel-mobile{
-  section{
-    margin: .5% .5%;
+.brand-carousel{
+  a{
+    display: block;
+    max-width: 150px;
   }
 }
 .bannerImage img{
@@ -543,7 +533,6 @@ footer .logo{
   }
 }
 .mission{
-
   margin-top: 10%;
   margin-bottom: 10%;
   a:hover {
@@ -721,7 +710,20 @@ footer .logo{
   -moz-osx-font-smoothing: grayscale;
   content: "×";
 }
+.slick-prev:before {
+  font-family: "slick";
+  content: "<";
+  color: nth($rpsBrand, 4);
+  font-size: 60px;
+}
+.slick-next:before {
+  font-family: "slick";
+  content: ">";
+  color: nth($rpsBrand, 4);
+  font-size: 60px;
+}
 .carousel-product{
+  min-height: 250px;
   -webkit-touch-callout: default;
   -webkit-user-select: default;
   -khtml-user-select: default;
@@ -940,6 +942,14 @@ footer .logo{
 }
 //extra small mobile
 @media (min-width: 320px) and (max-width: 480px) {
+  .brand-carousel{
+    section{
+      margin: .5% .5%;
+    }
+  }
+  .brandSpan{
+    margin-top: -1%;
+  }
   .home-heading{
     font-size: 12px;
   }
@@ -1036,6 +1046,14 @@ footer .logo{
 }
 //mobile and tablet
 @media (min-width: 481px) and (max-width: 768px) {
+  .brand-carousel{
+    section{
+      margin: .5% .5%;
+    }
+  }
+  .brandSpan{
+    margin-top: -1%;
+  }
   .onOrder{
     top: 40%;
   }
@@ -1125,6 +1143,7 @@ footer .logo{
     top: 30%;
   }
   .brandSpan {
+    margin-top: -1%;
     max-height: 185px;
     overflow-y: hidden;
     background: nth($rpsBrand, 1);
@@ -1188,6 +1207,7 @@ footer .logo{
   }
 
   .brandSpan {
+    margin-top: -1%;
     max-height: 185px;
     overflow-y: hidden;
     background: nth($rpsBrand, 1);
@@ -1236,6 +1256,7 @@ footer .logo{
   }
 
   .brandSpan {
+    margin-top: -.5%;
     max-height: 185px;
     overflow-y: hidden;
     background: nth($rpsBrand, 1);

@@ -9,6 +9,7 @@ export function carousel() {
     autoplaySpeed: 10000,
     arrows: false,
     fade: false,
+    swipeToSlide: true,
     asNavFor: '.carousel-product-nav',
     adaptiveHeight: true,
     mobileFirst: true,
@@ -25,17 +26,20 @@ export function carousel() {
     mobileFirst: true,
     focusOnSelect: true,
     lazyLoad: 'ondemand',
+    swipeToSlide: true,
   });
   $('.carousel-product').slickLightbox({
     itemSelector: 'a',
     navigateByKeyboard: true,
-    arrows: true
+    arrows: true,
+    swipeToSlide: true
   });
 
   $('.mainCarousel').slick({
     infinite: false,
     slidesToShow: 1,
     slidesToScroll: 1,
+    swipeToSlide: true,
     speed: 1000,
     autoplay: true,
     autoplaySpeed: 10000,
@@ -52,6 +56,7 @@ export function carousel() {
     centerPadding: '40px',
     speed: 300,
     autoplaySpeed: 5000,
+    swipeToSlide: true,
     arrows: false,
     dots: false,
     infinite: false,
@@ -67,7 +72,7 @@ export function carousel() {
         breakpoint: 920,
         settings: {
           slidesToShow: 4,
-          slidesToScroll: 2
+          slidesToScroll: 4,
         }
       },
       {
@@ -78,17 +83,5 @@ export function carousel() {
         }
       }
     ]
-  });
-
-  $('.brand-carousel-mobile').slick({
-    slidesToShow: 3,
-    slidesToScroll: 3,
-    autoplay: true,
-    speed: 300,
-    autoplaySpeed: 5000,
-    arrows: false,
-    dots: false,
-    mobileFirst: true,
-    lazyLoad: 'ondemand',
   });
 }

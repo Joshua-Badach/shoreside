@@ -101,6 +101,21 @@ jQuery(document).ready(function($) {
     $('#loading').hide();
   });
 
+  (function($) {
+    const slider = $('.brand-carousel');
+    const slider_length = $('.brand-carousel > section').length -1;
+    function jumpBack() {
+      setTimeout(function() {
+        slider.slick("slickGoTo", 0);
+      }, 10000);
+    }
+    slider.on("afterChange", function(event, slick, currentSlide) {
+      if ( Math.round(slider_length / currentSlide) <= 2) {
+          jumpBack();
+      }
+    });
+  })($);
+
   // $(document).on('click', '.modal-link a', function(e){
   //   var ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";
   //   var productUrl = $(this).attr('href');

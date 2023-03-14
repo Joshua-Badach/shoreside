@@ -224,34 +224,40 @@ $suppliers = [
     'password'          =>          '$Tvf&V6Cey',
     'remote_file_path'  =>          'ftp://7321004@ftp.kimpex.com/'],
 
-//    ['supplier'         =>          'test',
-//    'server'            =>          'ftp.test.com',
-//    'username'          =>          'user',
-//    'password'          =>          'password',
-//    'remote_file_path'  =>          ''],
+    ['supplier'         =>          'test',
+    'server'            =>          'ftp.test.com',
+    'username'          =>          'user',
+    'password'          =>          'password',
+    'remote_file_path'  =>          'ftp://user@ftp.test.com'],
 ];
 
+
 //File Details
-$local_file_path = '';
+    $local_file_path = 'C:/Users/Joshu/Downloads/';
 
     foreach ($suppliers as $supplier) {
         echo $supplier['supplier'] . '<br>';
         echo $supplier['server'] . '<br>';
         echo $supplier['username'] . '<br>';
         echo $supplier['password'] . '<br><br>';
-        $remote_file_path = "ftp://" . $supplier['username'] . "@" . $supplier["server"] . "/<br><br>";
 
-        echo $remote_file_path;
+        $remote_file_path = 'ftp://' . $supplier['username'] . '@' . $supplier['server'] . '/';
+
+        echo $remote_file_path . '<br>';
+        echo $local_file_path . '<br><br>';
+
 
 //        $connection_id = ftp_connect($supplier['server']);
 //
 //        $connection_result = ftp_login($connection_id, $supplier['username'], $supplier['password']);
 //
 //        ftp_chdir($connection_id, dirname($remote_file_path));
+//
+//        if (ftp_get($connection_id, $local_file_path, basename($remote_file_path))){}
+
 
 //        Continue here
-}
-
+    }
 }
 add_shortcode('tester', 'tester');
 
@@ -491,12 +497,12 @@ function pending_banner(){
     global $product;
     $tags = wc_get_product_tag_list($product->get_id);
 
-    if ( str_contains($tags, 'Pending') == true ) {
+    if (str_contains($tags, 'Pending')) {
         echo '<div class="pendingBanner">
                 <img width="500" height="50" src="' . get_template_directory_uri() . '/assets/src/library/images/pendingBanner.jpg' . '">
               </div>';
     }
-    if ( str_contains($tags, 'Order') == true ) {
+    if (str_contains($tags, 'Order')) {
         echo '<div class="orderBanner">
                 <img width="500" height="50" src="' . get_template_directory_uri() . '/assets/src/library/images/onOrderBanner.jpg' . '">
               </div>';
@@ -535,22 +541,9 @@ function payments(){
         }
     }
 
-    if ($price != '' && str_contains($categories, 'Showroom') == true) {
+    if ($price != '' && str_contains($categories, 'Showroom')) {
         if (str_contains($categories, 'Boats') || str_contains($categories, 'Outboard Motors') || str_contains($categories, 'Electric Surfboards')){
-            if ($principle > 3000) {
-                if ($principle > 3000 && $principle < 4999) {
-                    $months = 36;
-                } elseif ($principle > 5000 && $principle < 9999) {
-                    $months = 84;
-                } elseif ($principle > 10000 && $principle < 19999) {
-                    $months = 180;
-                } elseif ($principle > 20000) {
-                    $months = 240;
-                }
-                $interest = 0.1099;
-                $apr = '10.99';
-                financeCalc($months, $principle, $interest, $apr);
-            }
+            extracted($principle);
         } elseif (str_contains($categories, 'Snowmobile') || str_contains($categories, 'ATV')) {
             if ($principle > 3000) {
                 if ($principle > 3000 && $principle < 7499) {
@@ -577,21 +570,30 @@ function payments(){
             }
         }
 
-    } elseif ($price != '' && str_contains($categories, 'Preowned') == true) {
-        if ($principle > 3000) {
-            if ($principle > 3000 && $principle < 4999) {
-                $months = 36;
-            } elseif ($principle > 5000 && $principle < 9999) {
-                $months = 84;
-            } elseif ($principle > 10000 && $principle < 19999) {
-                $months = 180;
-            } elseif ($principle > 20000) {
-                $months = 240;
-            }
-            $interest = 0.1099;
-            $apr = '10.99';
-            financeCalc($months, $principle, $interest, $apr);
+    } elseif ($price != '' && str_contains($categories, 'Preowned')) {
+        extracted($principle);
+    }
+}
+
+/**
+ * @param string $principle
+ * @return void
+ */
+function extracted(string $principle): void
+{
+    if ($principle > 3000) {
+        if ($principle < 4999) {
+            $months = 36;
+        } elseif ($principle > 5000 && $principle < 9999) {
+            $months = 84;
+        } elseif ($principle > 10000 && $principle < 19999) {
+            $months = 180;
+        } elseif ($principle > 20000) {
+            $months = 240;
         }
+        $interest = 0.1099;
+        $apr = '10.99';
+        financeCalc($months, $principle, $interest, $apr);
     }
 }
 
