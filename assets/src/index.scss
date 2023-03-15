@@ -1867,6 +1867,7 @@ input:checked + .slider:before {
   border-radius: 15px;
   -webkit-box-shadow: 5px 5px 10px 0px #000000;
   box-shadow: 5px 5px 10px 0px #000000;
+  margin-bottom: 20px;
 }
 .jobContent{
   p{
@@ -1875,4 +1876,8 @@ input:checked + .slider:before {
   sub{
     color: black;
   }
+}
+.postContainer{
+  margin-top: 10%;
+  margin-bottom: 10%;
 }
