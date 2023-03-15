@@ -355,6 +355,9 @@ footer .logo{
   color: nth($rpsBrand, 4);
   margin-bottom: 40%;
 }
+.heroBanner{
+  min-height: 237px;
+}
 .heroVideo{
   width: 100%;
   max-height: 695px;
@@ -1885,4 +1888,10 @@ input:checked + .slider:before {
 .postContainer{
   margin-top: 10%;
   margin-bottom: 10%;
+}
+
+.specialNote{
+  a {
+    text-decoration: underline;
+  }
 }
