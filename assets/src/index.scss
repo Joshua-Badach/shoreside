@@ -1861,6 +1861,11 @@ input:checked + .slider:before {
 }
 .careers{
   margin-bottom: 10%;
+  margin-top: 10%;
+
+  .careerListing{
+    margin-top: 10%;
+  }
 }
 .jobPost{
   border: 1px nth($rpsBrand, 1) solid;

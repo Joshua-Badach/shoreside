@@ -275,7 +275,7 @@ function careers_shortcode( $atts = array(), $content = null ){
             <h2 class="col-12">Talent Acquisition for Rec Power</h2>
             <div class="col-12">' . $content . '</div>
         </section>
-        <section class="row justify-content-between">
+        <section class="row justify-content-between careerListing">
             <h2 class="col-12">Careers</h2>';
             while ($careerQuery->have_posts()){
                 $careerQuery->the_post();

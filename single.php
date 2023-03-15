@@ -25,8 +25,10 @@ get_header();
                     echo'<div class="col-sm-6">
                         <script type="text/javascript" src="https://form.jotform.com/jsform/230734498938067?jobName=' . $jobName . '&jobUrl=' . $jobUrl .'"></script>
                     </div>';
+                } elseif ( in_category('Service')){
+                  echo 'Service detected';
                 } else {
-                    echo '<div class="container">';
+                    echo '<div class="container postContainer">';
                     the_post();
                     the_content();
                     echo '</div>';
