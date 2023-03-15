@@ -282,10 +282,12 @@ function careers_shortcode( $atts = array(), $content = null ){
                 $salary = get_post_meta($post->ID, 'salary', true);
                 $short_description = get_post_meta($post->ID, 'short_description', true);
                 $link = get_permalink($post->ID);
+                $thumbnail = get_the_post_thumbnail($post->ID);
 
                 echo '<a class="col-sm-3 jobPost" href="' . $link . '">
-                    <section class="jobContent">
-                        <h3>' . get_the_title() . '</h3>
+                    <section class="jobContent">'
+                        . $thumbnail .
+                        '<h3>' . get_the_title() . '</h3>
                         <sub>' . $salary . '</sub>
                         <p>' . $short_description . '</p>
                     </section>

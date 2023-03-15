@@ -1876,6 +1876,8 @@ input:checked + .slider:before {
   -webkit-box-shadow: 5px 5px 10px 0px #000000;
   box-shadow: 5px 5px 10px 0px #000000;
   margin-bottom: 20px;
+  padding: 0;
+  aspect-ratio: 1/1;
 }
 .jobContent{
   p{
@@ -1884,6 +1886,23 @@ input:checked + .slider:before {
   sub{
     color: black;
   }
+  img{
+    width: 100%;
+    position: absolute;
+    min-height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    border-radius: 12px;
+  }
+  h3{
+    text-align: center;
+    padding-top: 15px;
+    color: nth($rpsBrand, 4);
+    -webkit-text-stroke: .5px black;
+    text-shadow: .5px 0px .5px black, 0px 3px .5px black;
+    margin: 0;
+  }
+
 }
 .postContainer{
   margin-top: 10%;
