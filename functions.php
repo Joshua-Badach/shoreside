@@ -214,37 +214,37 @@ function featured_brand_shortcode(){
     include('template-parts/components/featured-brand.php');
 }
 add_shortcode('featured-brand', 'featured_brand_shortcode');
-function tester(){
+//function tester(){
 // -==========- Declare vars -==========- //
 //Set up db and input
-$suppliers = [
-    ['supplier'         =>          'kimpex',
-    'server'            =>          'ftp.kimpex.com',
-    'username'          =>          '7321004',
-    'password'          =>          '$Tvf&V6Cey',
-    'remote_file_path'  =>          'ftp://7321004@ftp.kimpex.com/'],
-
-    ['supplier'         =>          'test',
-    'server'            =>          'ftp.test.com',
-    'username'          =>          'user',
-    'password'          =>          'password',
-    'remote_file_path'  =>          'ftp://user@ftp.test.com'],
-];
+//$suppliers = [
+//    ['supplier'         =>          'kimpex',
+//    'server'            =>          'ftp.kimpex.com',
+//    'username'          =>          '7321004',
+//    'password'          =>          '$Tvf&V6Cey',
+//    'remote_file_path'  =>          'ftp://7321004@ftp.kimpex.com/'],
+//
+//    ['supplier'         =>          'test',
+//    'server'            =>          'ftp.test.com',
+//    'username'          =>          'user',
+//    'password'          =>          'password',
+//    'remote_file_path'  =>          'ftp://user@ftp.test.com'],
+//];
 
 
 //File Details
-    $local_file_path = 'C:/Users/Joshu/Downloads/';
-
-    foreach ($suppliers as $supplier) {
-        echo $supplier['supplier'] . '<br>';
-        echo $supplier['server'] . '<br>';
-        echo $supplier['username'] . '<br>';
-        echo $supplier['password'] . '<br><br>';
-
-        $remote_file_path = 'ftp://' . $supplier['username'] . '@' . $supplier['server'] . '/';
-
-        echo $remote_file_path . '<br>';
-        echo $local_file_path . '<br><br>';
+//    $local_file_path = 'C:/Users/Joshu/Downloads/';
+//
+//    foreach ($suppliers as $supplier) {
+//        echo $supplier['supplier'] . '<br>';
+//        echo $supplier['server'] . '<br>';
+//        echo $supplier['username'] . '<br>';
+//        echo $supplier['password'] . '<br><br>';
+//
+//        $remote_file_path = 'ftp://' . $supplier['username'] . '@' . $supplier['server'] . '/';
+//
+//        echo $remote_file_path . '<br>';
+//        echo $local_file_path . '<br><br>';
 
 
 //        $connection_id = ftp_connect($supplier['server']);
@@ -257,9 +257,9 @@ $suppliers = [
 
 
 //        Continue here
-    }
-}
-add_shortcode('tester', 'tester');
+//    }
+//}
+//add_shortcode('tester', 'tester');
 
 function careers_shortcode( $atts = array(), $content = null ){
     $careerQuery = new WP_Query(array(
@@ -294,7 +294,6 @@ function careers_shortcode( $atts = array(), $content = null ){
     wp_reset_postdata();
         echo'</section>
     </div>';
-//        modal for the list and form
 }
 add_shortcode('careers', 'careers_shortcode');
 function brands_shortcode(){
