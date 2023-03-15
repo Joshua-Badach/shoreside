@@ -4,10 +4,10 @@ window.LoadResultsPayload = {
   type: 'POST',
   action: 'load_results',
 };
-window.modalPayload = {
-  type: 'POST',
-  action: 'load_product',
-};
+// window.modalPayload = {
+//   type: 'POST',
+//   action: 'load_product',
+// };
 
 var mobile = (/iphone|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));
 

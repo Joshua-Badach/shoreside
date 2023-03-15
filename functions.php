@@ -281,16 +281,20 @@ function careers_shortcode( $atts = array(), $content = null ){
                 $careerQuery->the_post();
                 $salary = get_post_meta($post->ID, 'salary', true);
                 $short_description = get_post_meta($post->ID, 'short_description', true);
+                $link = get_permalink($post->ID);
 
-                echo '<section class="col-sm-3 jobPost">
-                    <h3>' . get_the_title() . '</h3>
-                    <sub>' . $salary . '</sub>
-                    <p>' . $short_description . '</p>
-                </section>';
+                echo '<a class="col-sm-3 jobPost" href="' . $link . '">
+                    <section class="jobContent">
+                        <h3>' . get_the_title() . '</h3>
+                        <sub>' . $salary . '</sub>
+                        <p>' . $short_description . '</p>
+                    </section>
+                </a>';
             }
     wp_reset_postdata();
         echo'</section>
     </div>';
+//        modal for the list and form
 }
 add_shortcode('careers', 'careers_shortcode');
 function brands_shortcode(){
@@ -414,16 +418,16 @@ function service_footer_shortcode(){
 add_shortcode('service-footer', 'service_footer_shortcode');
 
 //Ajax call
-function load_product(){
-    $productUrl       =           $_REQUEST['product'];
-    $productId        =           url_to_postid($productUrl);
-
-    echo do_shortcode('[product_page id="' . $productId . '"]');
-
-    exit();
-}
-add_action('wp_ajax_load_product', 'load_product');
-add_action('wp_ajax_nopriv_load_product', 'load_product');
+//function load_job(){
+//    $productUrl       =           $_REQUEST['product'];
+//    $productId        =           url_to_postid($productUrl);
+//
+////    echo do_shortcode('[product_page id="' . $productId . '"]');
+//
+//    exit();
+//}
+//add_action('wp_ajax_load_job', 'load_job');
+//add_action('wp_ajax_nopriv_load_job', 'load_job');
 
 function load_results() {
 
@@ -491,6 +495,8 @@ function load_results() {
 }
 add_action('wp_ajax_load_results', 'load_results');
 add_action('wp_ajax_nopriv_load_results', 'load_results');
+
+
 
 function content_shortcode(){
     include('template-parts/components/content.php');

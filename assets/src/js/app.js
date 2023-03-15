@@ -5,7 +5,6 @@ import {sidebar} from "./sidebar";
 import './sidebar-ajax';
 import {sidebarAjax} from "./sidebar-ajax";
 
-
 jQuery(document).ready(function($) {
 
   window.onscroll = function() {navStick()};

@@ -1,28 +1,29 @@
-<?php get_header();
+<?php
+global $post;
 
-//global $wp;
-//$url = home_url( $wp->request );
-//$checkFor = 'product-category';
+get_header();
 
-//if (strpos($url, $checkFor) == true){
-////    get_sidebar();
-//    echo '<div class="container content">';
-//} else {
-//    echo '<div class="container">';
-//  }
-// Temp for gallery push
-//May remove this entirely because of how I'm handling index
-    echo '<div class="container">';
+    echo '<div class="container">
+        <div class="row">';
+        if ( have_posts() ) {
+            while ( have_posts() ) {
+                if( in_category('Careers')){
+                    $jobUrl = get_permalink( $post->ID );
+                    $jobName = get_the_title( $post->ID );
 
-    if ( have_posts() ) {
-        while ( have_posts() ) {
-            if ( strpos($url, $checkFor) == true) {
-                echo '<h2 class="col-6 mx-auto singleheading">' . get_the_title() . '</h2>';
+                    echo '<div class="col-sm-6">';
+                        the_post();
+                        the_content();
+                    echo '</div>';
+                    echo'<div class="col-sm-6">
+                        <script type="text/javascript" src="https://form.jotform.com/jsform/230734498938067?jobName=' . $jobName . '&jobUrl=' . $jobUrl .'"></script>
+                    </div>';
+                } else {
+                    the_post();
+                    the_content();
+                }
             }
-            the_post();
-            the_content();
         }
-    }
-    echo '</div>';
-//echo 'Single page';
+        echo '</div>
+    </div>';
 get_footer();
