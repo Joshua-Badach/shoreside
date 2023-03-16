@@ -25,6 +25,11 @@ jQuery(document).ready(function($) {
       navbar.classList.remove("sticky");
     }
   }
+  $('.jobPost').hover(function () {
+    $(this).find('.jobDescription').fadeIn();
+  }, function(){
+    $(this).find('.jobDescription').fadeOut();
+  });
 
   $(carousel);
 

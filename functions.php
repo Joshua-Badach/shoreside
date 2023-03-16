@@ -284,12 +284,14 @@ function careers_shortcode( $atts = array(), $content = null ){
                 $link = get_permalink($post->ID);
                 $thumbnail = get_the_post_thumbnail($post->ID);
 
-                echo '<a class="col-sm-3 jobPost" href="' . $link . '">
+                echo '<a class="col-md-3 jobPost" href="' . $link . '">
                     <section class="jobContent">'
                         . $thumbnail .
                         '<h3>' . get_the_title() . '</h3>
-                        <sub>' . $salary . '</sub>
-                        <p>' . $short_description . '</p>
+                        <p>' . $salary . '</p>
+                        <div class="jobDescription">    
+                            <span>' . $short_description . '</span>
+                        </div>
                     </section>
                 </a>';
             }

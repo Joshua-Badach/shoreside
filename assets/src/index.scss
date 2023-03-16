@@ -1879,11 +1879,14 @@ input:checked + .slider:before {
   aspect-ratio: 1/1;
 }
 .jobContent{
+
   p{
-    color: black;
-  }
-  sub{
-    color: black;
+    background: nth($rpsBrand, 1);
+    display: block;
+    text-align: center;
+    color: nth($rpsBrand, 4);
+    text-shadow: .5px 0px .5px black, 0px .5px .5px black;
+    padding: 5px 10px;
   }
   img{
     width: 100%;
@@ -1894,12 +1897,36 @@ input:checked + .slider:before {
     border-radius: 12px;
   }
   h3{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    padding-top: 15px;
+    padding: 5px;
+    min-height: 60px;
     color: nth($rpsBrand, 4);
     -webkit-text-stroke: .5px black;
-    text-shadow: .5px 0px .5px black, 0px 3px .5px black;
+    text-shadow: .5px 0px .5px black, 0px .5px .5px black;
     margin: 0;
+  }
+  .jobDescription{
+    min-height: 150px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 105, 173, .5);
+    display: none;
+
+    span{
+      display: block;
+      text-align: center;
+      max-height: 150px;
+      overflow: hidden;
+      color: nth($rpsBrand, 4);
+      text-shadow: .5px 0px .5px black, 0px .5px .5px black;
+      padding: 5px 10px;
+    }
   }
 
 }
