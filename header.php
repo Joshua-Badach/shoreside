@@ -37,7 +37,7 @@ $id = get_term_by($field, $value, $taxonomy);
             $descId = get_term_by('slug', $slug, 'product_cat');
         }
         $site_suffix = $descId->name;
-        $description[0] = $descId->description;
+        $description = $descId->description;
         if (get_the_post_thumbnail() != ''){
             $image = get_the_post_thumbnail_url();
         } else {
@@ -53,7 +53,7 @@ $id = get_term_by($field, $value, $taxonomy);
             $image_id = get_page_by_title('rps-logo-share', 'OBJECT', 'attachment');
         }
         $site_suffix = $product->get_name();
-        $description[] = $product->get_short_description();
+        $description = $product->get_short_description();
     } else {
         if (get_the_post_thumbnail() != ''){
             $image = get_the_post_thumbnail_url();
@@ -62,17 +62,18 @@ $id = get_term_by($field, $value, $taxonomy);
             $image = $image_id->guid;
         }
         $site_suffix = get_the_title();
-    }
-    echo '<meta name="description" content="' . filter_var($description[0]) . '"/>';
+    } ?>
+    <meta name="description" content="<?php echo (is_array($description)) ? (implode($description)) : (strip_tags($description)) ?>"/>
 
-
+    <?php
     echo '<meta property="fb:app_id" content="568883651374703" />
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content="en_CA" />';
-    echo '<meta property="og:url" content="' . $current_url . '" />';
-    echo '<meta property="og:title" content="' . $site_name . ' - ' . $site_suffix . '" />';
-    echo '<meta property="og:description" content="' . filter_var($description[0]) . '"/>';
-    echo '<meta property="og:image" content="'. $image . '" />';
+    <meta property="og:locale" content="en_CA" />
+    <meta property="og:url" content="' . $current_url . '" />
+    <meta property="og:title" content="' . $site_name . ' - ' . $site_suffix . '" />
+    <meta property="og:image" content="'. $image . '" />'; ?>
+    <meta property="og:description" content="<?php echo (is_array($description)) ? (implode($description)) : (strip_tags($description)) ?>"/>
+    <?php
 
     wp_head();
     ?>
