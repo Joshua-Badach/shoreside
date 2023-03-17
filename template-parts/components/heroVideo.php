@@ -2,13 +2,13 @@
 global $post;
 
 if (is_home() || is_front_page()) {
-    if (isMobile()) {
-        echo '<div class="heroBanner">
-            <h2 class="home-heading">' . get_option('blogdescription') . '</h2>';
-        $featured = get_the_post_thumbnail($post_id);
-        echo $featured;
-        echo '</div>';
-    } else {
+//    if (isMobile()) {
+//        echo '<div class="heroBanner">
+//            <h2 class="home-heading">' . get_option('blogdescription') . '</h2>';
+//        $featured = get_the_post_thumbnail($post_id);
+//        echo $featured;
+//        echo '</div>';
+//    } else {
         $hero_id            =           get_page_by_title('main-hero', OBJECT, 'attachment');
         $hero_video         =           $hero_id->guid;
         echo '<div class="heroVideo">
@@ -17,7 +17,7 @@ if (is_home() || is_front_page()) {
                 <source src="'. $hero_video .'">
             </video>
         </div>';
-    };
+//    };
 } else {
     $slug               =           $post->post_name;
 

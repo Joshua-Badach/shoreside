@@ -2,11 +2,13 @@
 <html <?php language_attributes(); ?> >
 <?php
 global $wp;
+global $post;
 
 $current_url = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $site_name = get_bloginfo( 'name' );
 $slug = $post->post_name;
 $featured = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' );
+$description = '';
 
 $field = 'slug';
 $value = $slug;
@@ -22,7 +24,7 @@ $id = get_term_by($field, $value, $taxonomy);
     <?php
 
     if ( get_post_custom_values('description', $id) != '') {
-        $image_id = get_page_by_title('rps-logo-share', OBJECT, 'attachment');
+        $image_id = get_page_by_title('rps-logo-share', 'OBJECT', 'attachment');
         $image = $image_id->guid;
         $description = get_post_custom_values('description', $id);
         $site_suffix = $post->post_title;
@@ -39,7 +41,7 @@ $id = get_term_by($field, $value, $taxonomy);
         if (get_the_post_thumbnail() != ''){
             $image = get_the_post_thumbnail_url();
         } else {
-            $image_id = get_page_by_title('rps-logo-share', OBJECT, 'attachment');
+            $image_id = get_page_by_title('rps-logo-share', 'OBJECT', 'attachment');
         }
     } elseif ( is_product() ) {
         $product = wc_get_product( get_the_id() );
@@ -48,7 +50,7 @@ $id = get_term_by($field, $value, $taxonomy);
             $imageSrc = wp_get_attachment_image_src(get_post_thumbnail_id($image_id), 'small');
             $image = $imageSrc[0];
         } else {
-            $image_id = get_page_by_title('rps-logo-share', OBJECT, 'attachment');
+            $image_id = get_page_by_title('rps-logo-share', 'OBJECT', 'attachment');
         }
         $site_suffix = $product->get_name();
         $description[] = $product->get_short_description();
@@ -56,12 +58,12 @@ $id = get_term_by($field, $value, $taxonomy);
         if (get_the_post_thumbnail() != ''){
             $image = get_the_post_thumbnail_url();
         } else {
-            $image_id = get_page_by_title('rps-logo-share', OBJECT, 'attachment');
+            $image_id = get_page_by_title('rps-logo-share', 'OBJECT', 'attachment');
             $image = $image_id->guid;
         }
         $site_suffix = get_the_title();
     }
-    echo '<meta name="description" content="' . filter_var($description[0], FILTER_SANITIZE_STRING) . '"/>';
+    echo '<meta name="description" content="' . filter_var($description[0]) . '"/>';
 
 
     echo '<meta property="fb:app_id" content="568883651374703" />
@@ -69,7 +71,7 @@ $id = get_term_by($field, $value, $taxonomy);
     <meta property="og:locale" content="en_CA" />';
     echo '<meta property="og:url" content="' . $current_url . '" />';
     echo '<meta property="og:title" content="' . $site_name . ' - ' . $site_suffix . '" />';
-    echo '<meta property="og:description" content="' . filter_var($description[0], FILTER_SANITIZE_STRING) . '"/>';
+    echo '<meta property="og:description" content="' . filter_var($description[0]) . '"/>';
     echo '<meta property="og:image" content="'. $image . '" />';
 
     wp_head();

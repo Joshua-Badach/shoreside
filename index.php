@@ -1,7 +1,6 @@
 <?php
-global $post;
-$slug = $post->post_name;
 get_header();
+$slug = $post->post_name;
 
 echo '<div id="loading" style="display: none"></div>';
 

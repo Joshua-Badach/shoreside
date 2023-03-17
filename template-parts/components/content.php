@@ -3,6 +3,7 @@ global $post;
 $slug               =           $post->post_name;
 $id                 =           get_term_by('slug', $slug, 'product_cat');
 $idObjConst         =           $id->term_id;
+$attribute          =           '';
 $tagObj             =           $_REQUEST['term'];
 $parent             =           $_REQUEST['product_cat'];
 
@@ -31,11 +32,11 @@ $term = get_term_by($field, $value, $taxonomy);
 $test = get_term_by('id', $parent, 'product_cat');
 
 $image_slug = $term->slug.'-logo';
-$image_id = get_page_by_title($image_slug, OBJECT, 'attachment');
+$image_id = get_page_by_title($image_slug, 'OBJECT', 'attachment');
 $image_alt = get_post_meta($image_id->ID, '_wp_attachment_image_alt', TRUE);
 $image = $image_id->guid;
 
-$logo_id = get_page_by_title('logo', OBJECT, 'attachment');
+$logo_id = get_page_by_title('logo', 'OBJECT', 'attachment');
 $logo_image = $logo_id->guid;
 
 echo '<section id="contentTrigger" data-page="' . $idObjConst . '" data-slug="' . $slug .'">
@@ -56,8 +57,10 @@ echo '<section id="contentTrigger" data-page="' . $idObjConst . '" data-slug="' 
         </a>
     </div>
     <div class="content">';
-        get_sidebar();
-        if($idObj == ''){ $idObj = $pageObj; }
+//        get_sidebar();
+        if($idObj == ''){
+            $pageObj = '';
+            $idObj = $pageObj; }
     echo '<div itemscope itemtype="https://schema.org/ItemList" class="container">';
             echo do_shortcode('[products category="' . $idObj . '" attribute="' . $attribute . '"  terms="' . $tagObj . '" per_page="-1" columns="5" meta_key="event_date" orderby="meta_value_num" on_sale="" order="DESC" operator="IN"]');
             echo '</div>

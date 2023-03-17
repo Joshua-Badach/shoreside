@@ -1,11 +1,18 @@
 <?php
+
+use JetBrains\PhpStorm\NoReturn;
+
 if ( ! function_exists( 'rpsShoreside_setup') ):
 
-    function rpsShoreside_setup(){
+    /**
+     * @return void
+     */
+    function rpsShoreside_setup(): void
+    {
         load_theme_textdomain( 'rpsShoreside', get_template_directory() . '/languages');
 //        require get_template_directory() . '/template-parts/components/ajax.php';
 //        continue here
-        include get_admin_url().'admin-ajax.php';
+//        include get_admin_url().'admin-ajax.php';
 
         add_theme_support(
             'html5',
@@ -19,7 +26,8 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
             )
         );
 
-        function shoreside_logo_setup() {
+        function shoreside_logo_setup(): void
+        {
             $defaults = array(
                 'height'                    =>400,
                 'width'                     =>300,
@@ -31,7 +39,8 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
         }
         add_action( 'after_setup_theme', 'shoreside_logo_setup' );
 
-        function shoreside_header_setup(){
+        function shoreside_header_setup(): void
+        {
             $args = array(
                 'default-image'             =>get_template_directory_uri() . 'assets/src/library/images/404background.jpg',
                 'default-text-color'        =>'0069ad',
@@ -44,24 +53,16 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
         }
         add_action('after_setup_theme', 'shoreside_header_setup');
 
-        function featured_image_support() {
+        function featured_image_support(): void
+        {
             add_theme_support( 'post-thumbnails' );
         }
         add_action( 'after_setup_theme', 'featured_image_support' );
 
         add_theme_support('post-thumbnails');
 
-
-//Defer all of wordpress scripts
-        function defer_wp_scripts( $url ) {
-            if ( is_user_logged_in() ) return $url; // WP Admin exception
-            if ( FALSE === strpos( $url, '.js' ) ) return $url;
-            if ( strpos( $url, 'jquery.js' ) ) return $url;
-            return str_replace( ' src', ' defer src', $url );
-        }
-        add_filter( 'script_loader_tag', 'defer_wp_scripts', 10 );
-
-        function add_theme_scripts(){
+        function add_theme_scripts(): void
+        {
             wp_register_style( 'bundle', get_template_directory_uri() . '/assets/dist/bundle.css', null, null, false );
             wp_register_script( 'main', get_template_directory_uri() . '/assets/dist/main.bundle.js', array('jquery'), null, true );
             wp_enqueue_script('main');
@@ -73,8 +74,6 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
             if ( 'main' !== $handle ) {
                 return $tag;
             }
-//            return str_replace( ' src', ' defer src', $tag );
-//            return str_replace( ' src', ' async src', $tag );
             return str_replace( ' src', ' async defer src', $tag );
 
         }, 10, 2 );
@@ -84,39 +83,16 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
                 return $tag;
             }
             return str_replace( ' href', ' defer href', $tag );
-//            return str_replace( ' href', ' async href', $tag );
-//            return str_replace( ' href', ' async defer href', $tag );
-
         }, 10, 2 );
-
-//        add_filter( 'style_loader_tag', function ( $tag, $handle ) {
-//            if ( 'dashicons' !== $handle ) {
-//                return $tag;
-//            }
-//            return str_replace( ' src', ' defer href', $tag );
-////            return str_replace( ' href', ' async href', $tag );
-////            return str_replace( ' src', ' async defer href', $tag );
-//
-//        }, 10, 2 );
-
 
         remove_action( 'wp_enqueue_scripts', 'wp_enqueue_classic_theme_styles' );
 
 //        removing excess scripts
 
-        add_action( 'wp_enqueue_scripts', 'remove_block_css', 10 );
-        function remove_block_css() {
-            wp_dequeue_style( 'wp-block-library' ); // WordPress core
-            wp_dequeue_style( 'wp-block-library-theme' ); // WordPress core
-            wp_dequeue_style( 'wc-block-style' ); // WooCommerce
-            wp_dequeue_style( 'storefront-gutenberg-blocks' ); // Storefront theme
-        }
+//        add_action( 'wp_enqueue_scripts', 'remove_block_css', 10 );
 
-        function isMobile() {
-            return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
-        }
-
-        function shoreside_custom_menu(){
+        function shoreside_custom_menu(): void
+        {
             register_nav_menu( 'shoreside_menu', __('Shoreside Menu'));
         }
         add_action('init', 'shoreside_custom_menu');
@@ -133,7 +109,8 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
 
 
 //    custom menu setup
-        function register_menu( $locations = array() ){
+        function register_menu( $locations = array() ): void
+        {
             global $_wp_registered_nav_menus;
 
             add_theme_support( 'menus' );
@@ -153,40 +130,29 @@ add_action( 'after_setup_theme', 'rpsShoreside_setup');
 
 add_filter( 'woocommerce_is_purchasable', '__return_false');
 
-function add_opengraph_doctype( $output ) {
-    return $output . ' xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"';
-}
-add_action( 'wp_enqueue_scripts', 'wpdocs_dequeue_dashicon' );
 
-// remove width & height attributes from images
-
-function remove_img_attr ($html)
-{
-    return preg_replace('/(width|height)="\d+"\s/', "", $html);
-}
-
-add_filter( 'post_thumbnail_html', 'remove_img_attr' );
-
-add_action('wp_head', 'product_carousel');
 
 global $wp;
+global $post;
 $current_url = home_url( add_query_arg( array(), $wp->request ) );
 $site_name = get_bloginfo( 'name' );
-$site_slug = $post->post_name;
 
 //Shortcodes
 
-function carousel_shortcode(){
-    include('template-parts/components/carousel.php');
+function carousel_shortcode(): void
+{
+    require('template-parts/components/carousel.php');
 }
 add_shortcode('carousel', 'carousel_shortcode');
 
-function promotion_content_shortcode(){
-    include('template-parts/components/promotion-content.php');
+function promotion_content_shortcode(): void
+{
+    require('template-parts/components/promotion-content.php');
 }
 add_shortcode('promotion-content', 'promotion_content_shortcode');
 
-function split_shortcode( $atts = array(), $content = null ){
+function split_shortcode( $atts = array(), $content = null ): void
+{
     global $post;
     $slug = $post->post_name;
     $form = get_post_custom_values('form', $slug);
@@ -205,13 +171,15 @@ function split_shortcode( $atts = array(), $content = null ){
 }
 add_shortcode('split-content', 'split_shortcode');
 
-function promotional_shortcode(){
-    include('template-parts/components/promotion-carousel.php');
+function promotional_shortcode(): void
+{
+    require('template-parts/components/promotion-carousel.php');
 }
 add_shortcode('promotion-carousel', 'promotional_shortcode');
 
-function featured_brand_shortcode(){
-    include('template-parts/components/featured-brand.php');
+function featured_brand_shortcode(): void
+{
+    require('template-parts/components/featured-brand.php');
 }
 add_shortcode('featured-brand', 'featured_brand_shortcode');
 //function tester(){
@@ -261,7 +229,8 @@ add_shortcode('featured-brand', 'featured_brand_shortcode');
 //}
 //add_shortcode('tester', 'tester');
 
-function careers_shortcode( $atts = array(), $content = null ){
+function careers_shortcode( $atts = array(), $content = null ): void
+{
     $careerQuery = new WP_Query(array(
         'category_name'     => 'careers',
         'order'             => 'ASC',
@@ -300,22 +269,26 @@ function careers_shortcode( $atts = array(), $content = null ){
     </div>';
 }
 add_shortcode('careers', 'careers_shortcode');
-function brands_shortcode(){
-    include('template-parts/components/brand-card.php');
+function brands_shortcode(): void
+{
+    require('template-parts/components/brand-card.php');
 }
 add_shortcode('brands', 'brands_shortcode');
 
-function brand_description_shortcode(){
-    include('template-parts/components/brand-description.php');
+function brand_description_shortcode(): void
+{
+    require('template-parts/components/brand-description.php');
 }
 add_shortcode('brand-description', 'brand_description_shortcode');
 
-function hero_shortcode(){
-    include('template-parts/components/heroVideo.php');
+function hero_shortcode(): void
+{
+    require('template-parts/components/heroVideo.php');
 }
 add_shortcode('hero', 'hero_shortcode', 1);
 
-function mission_shortcode( $atts = array(), $content = null ){
+function mission_shortcode( $atts = array(), $content = null ): void
+{
 //    include('template-parts/components/mission.php');
     echo '<div class="container mission">
         <div class="row">
@@ -328,28 +301,33 @@ function mission_shortcode( $atts = array(), $content = null ){
 }
 add_shortcode('mission', 'mission_shortcode');
 
-function offering_shortcode(){
-    include('template-parts/components/offerings.php');
+function offering_shortcode(): void
+{
+    require('template-parts/components/offerings.php');
 }
 add_shortcode('offerings', 'offering_shortcode');
 
-function socmed_shortcode(){
-    include('template-parts/components/socmed.php');
+function socmed_shortcode(): void
+{
+    require('template-parts/components/socmed.php');
 }
 add_shortcode('socmed', 'socmed_shortcode');
 
-function promotions_shortcode(){
+function promotions_shortcode(): void
+{
     echo do_shortcode('[instagram-feed feed=2]');
 }
 add_shortcode('socmed-promotions', 'promotions_shortcode');
 
-function product_gallery_shortcode(){
-    include('template-parts/components/productGallery.php');
+function product_gallery_shortcode(): void
+{
+    require('template-parts/components/productGallery.php');
 }
 add_shortcode('product-gallery', 'product_gallery_shortcode');
 
-function news_banner_shortcode(){
-    $image_id = get_page_by_title('news-banner', OBJECT, 'attachment');
+function news_banner_shortcode(): void
+{
+    $image_id = get_page_by_title('news-banner', 'OBJECT', 'attachment');
     $image_alt = get_post_meta($image_id->ID, '_wp_attachment_image_alt', TRUE);
     $image = wp_get_attachment_image_src($image_id->ID, [1400, 300]);
 
@@ -358,17 +336,20 @@ function news_banner_shortcode(){
 }
 add_shortcode('news-banner', 'news_banner_shortcode');
 
-function banner_shortcode(){
-    include('template-parts/components/banner.php');
+function banner_shortcode(): void
+{
+    require('template-parts/components/banner.php');
 }
 add_shortcode('banner', 'banner_shortcode');
 
-function banner_tall_shortcode(){
-    include('template-parts/components/banner-tall.php');
+function banner_tall_shortcode(): void
+{
+    require('template-parts/components/banner-tall.php');
 }
 add_shortcode('banner-tall', 'banner_tall_shortcode');
 
-function information_shortcode( $atts = array(), $content = null ){
+function information_shortcode( $atts = array(), $content = null ): void
+{
     echo '<div class="divider1"></div>
         <div class="container">
             <section class="row">
@@ -379,16 +360,18 @@ function information_shortcode( $atts = array(), $content = null ){
             </section>
         </div>
     <div class="divider2"></div>';
-    include('template-parts/components/information.php');
+    require('template-parts/components/information.php');
 }
 add_shortcode('information', 'information_shortcode');
 
-function map_shortcode(){
-    include('template-parts/components/map.php');
+function map_shortcode(): void
+{
+    require('template-parts/components/map.php');
 }
 add_shortcode('map', 'map_shortcode');
 
-function vision_shortcode( $atts = array(), $content = null ){
+function vision_shortcode( $atts = array(), $content = null ): void
+{
     echo '<div class="container">
         <section class="row justify-content-sm-center vision">
         <h2 class="col-12">Our Vision</h2>
@@ -400,39 +383,32 @@ function vision_shortcode( $atts = array(), $content = null ){
 }
 add_shortcode('vision', 'vision_shortcode');
 
-function service_header_shortcode(){
-    include('template-parts/components/service-header.php');
+function service_header_shortcode(): void
+{
+    require('template-parts/components/service-header.php');
 }
 add_shortcode('service-header', 'service_header_shortcode');
 
-function service_body_summer_shortcode(){
-    include('template-parts/components/service-body-summer.php');
+function service_body_summer_shortcode(): void
+{
+    require('template-parts/components/service-body-summer.php');
 }
 add_shortcode('service-body-summer', 'service_body_summer_shortcode');
 
-function service_body_winter_shortcode(){
-    include('template-parts/components/service-body-winter.php');
+function service_body_winter_shortcode(): void
+{
+    require('template-parts/components/service-body-winter.php');
 }
 add_shortcode('service-body-winter', 'service_body_winter_shortcode');
 
-function service_footer_shortcode(){
-    include('template-parts/components/service-footer.php');
+function service_footer_shortcode(): void
+{
+    require('template-parts/components/service-footer.php');
 }
 add_shortcode('service-footer', 'service_footer_shortcode');
 
-//Ajax call
-//function load_job(){
-//    $productUrl       =           $_REQUEST['product'];
-//    $productId        =           url_to_postid($productUrl);
-//
-////    echo do_shortcode('[product_page id="' . $productId . '"]');
-//
-//    exit();
-//}
-//add_action('wp_ajax_load_job', 'load_job');
-//add_action('wp_ajax_nopriv_load_job', 'load_job');
-
-function load_results() {
+function load_results(): void
+{
 
     if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
     {
@@ -464,7 +440,7 @@ function load_results() {
         $term = get_term_by($field, $value, $taxonomy);
 
         $image_slug = $term->slug.'-logo';
-        $image_id = get_page_by_title($image_slug, OBJECT, 'attachment');
+        $image_id = get_page_by_title($image_slug, 'OBJECT', 'attachment');
         $image = $image_id->guid;
     }
 
@@ -501,24 +477,28 @@ add_action('wp_ajax_nopriv_load_results', 'load_results');
 
 
 
-function content_shortcode(){
-    include('template-parts/components/content.php');
+function content_shortcode(): void
+{
+    require('template-parts/components/content.php');
 }
 add_shortcode('content', 'content_shortcode');
 
-function brand_content_shortcode(){
-    include('template-parts/components/brand-content.php');
+function brand_content_shortcode(): void
+{
+    require('template-parts/components/brand-content.php');
 }
 add_shortcode('brand-content', 'brand_content_shortcode');
 
 //No results found for above code
-function woocommerce_shortcode_products_loop_no_results( $attributes ) {
+function woocommerce_shortcode_products_loop_no_results( $attributes ): void
+{
     echo __( 'No products matching your query', 'woocommerce' );
 }
 add_action( 'woocommerce_shortcode_products_loop_no_results', 'woocommerce_shortcode_products_loop_no_results', 20, 1 );
 
-function catalog_shortcode(){
-    include('template-parts/components/catalogs.php');
+function catalog_shortcode(): void
+{
+    require('template-parts/components/catalogs.php');
 }
 add_shortcode('catalog', 'catalog_shortcode');
 
@@ -526,7 +506,8 @@ add_shortcode('catalog', 'catalog_shortcode');
 
 //Display sku
 add_action( 'woocommerce_single_product_summary', 'show_sku', 21 );
-function show_sku(){
+function show_sku(): void
+{
     global $product;
     if ($product->get_sku() != '' ) {
         echo '<div class="skuContainer"><span>SKU: ' . '<span class="sku"><strong>' . $product->get_sku() . '</strong></span></span></div>';
@@ -534,7 +515,8 @@ function show_sku(){
 }
 
 add_action('woocommerce_single_product_summary', 'pending_banner' , 14);
-function pending_banner(){
+function pending_banner(): void
+{
     global $product;
     $tags = wc_get_product_tag_list($product->get_id);
 
@@ -551,7 +533,8 @@ function pending_banner(){
 }
 
 add_action( 'woocommerce_single_product_summary', 'payments', 10);
-function payments(){
+function payments(): void
+{
     global $product;
     $price = $product->get_price();
     $categories = $product->get_categories();
@@ -564,7 +547,8 @@ function payments(){
     }
     $principle =  number_format((float)(($price * $gst) + $fees), 2, '.', '');
 
-    function financeCalc($months, $principle, $interest, $apr){
+    function financeCalc($months, $principle, $interest, $apr): void
+    {
         if ($months != '') {
 
             $monthlyInterest = round($interest / 12 , 5);
@@ -616,10 +600,6 @@ function payments(){
     }
 }
 
-/**
- * @param string $principle
- * @return void
- */
 function extracted(string $principle): void
 {
     if ($principle > 3000) {
@@ -638,7 +618,8 @@ function extracted(string $principle): void
     }
 }
 
-function contact_blurb(){
+function contact_blurb(): void
+{
     $contactQuery = new WP_Query(array(
         'category_name'     => 'contact',
         'order'             => 'DESC',
@@ -654,7 +635,8 @@ function contact_blurb(){
 }
 add_action('woocommerce_single_product_summary', 'contact_blurb', 45);
 
-function woo_related_products_limit() {
+function woo_related_products_limit(): array
+{
     global $product;
 
     $args['posts_per_page'] = 5;
@@ -699,14 +681,17 @@ function woo_new_product_tab($tabs) {
     return $tabs;
 }
 
-function woo_new_product_tab_one_content() {
-    include('template-parts/components/returns.php');
+function woo_new_product_tab_one_content(): void
+{
+    require('template-parts/components/returns.php');
 }
-function woo_new_product_tab_two_content() {
-    include('template-parts/components/warranty.php');
+function woo_new_product_tab_two_content(): void
+{
+    require('template-parts/components/warranty.php');
 }
 
-function product_contact_row(){
+function product_contact_row(): void
+{
     global $post;
     $product = wc_get_product($post);
     $shop = $product->get_attribute( 'Shop' );
@@ -727,7 +712,8 @@ remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
 remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
 
 // First, this will disable support for comments and trackbacks in post types
-function df_disable_comments_post_types_support() {
+function df_disable_comments_post_types_support(): void
+{
     $post_types = get_post_types();
     foreach ($post_types as $post_type) {
         if(post_type_supports($post_type, 'comments')) {
@@ -747,46 +733,39 @@ add_filter('comments_open', 'df_disable_comments_status', 20, 2);
 add_filter('pings_open', 'df_disable_comments_status', 20, 2);
 
 // Finally, hide any existing comments that are on the site.
-function df_disable_comments_hide_existing_comments($comments) {
+function df_disable_comments_hide_existing_comments($comments): array
+{
     $comments = array();
     return $comments;
 }
 add_filter('comments_array', 'df_disable_comments_hide_existing_comments', 10, 2);
 
-function my_login_logo_url() {
-    return home_url();
-}
-add_filter( 'login_headerurl', 'my_login_logo_url' );
-
-function my_login_logo_url_title() {
-    return 'Your Site Name and Info';
-}
-add_filter( 'login_headertitle', 'my_login_logo_url_title' );
 
 //Add functionality to woocommerce edit manufacturer page to allow for featured brands
 
 // Add select to add manufacturer
-    function edit_wc_attribute_manufacturer($term) {
+    function edit_wc_attribute_manufacturer($term): void
+    {
         $id = $term->term_id;
         $term_meta = get_option( "featured_manufacturer=$id" );
-         $select = array_values($term_meta);?>
-<tr class="form-field">
+         $select = array_values($term_meta);
+ echo '<tr class="form-field">
     <th scope="row" valign="top">
         <label for="featured_manufacturer">Featured Brand</label>
     </th>
     <td>
-        <select name="term_meta[<?php echo $id ?>]" id="featured_manufacturer">
+        <select name="term_meta[' . $id . ']" id="featured_manufacturer">'; ?>
             <option value=false <?php if($select[0] == "false") echo "selected" ?> >No</option>
             <option value=true <?php if($select[0] == "true") echo "selected" ?> >Yes</option>
-        </select>
+       <?php echo '</select>
 
         <p class="description">Is this manufacturer going to be featured on the home page</p>
     </td>
-</tr>
-        <?php
+</tr>';
     }
     add_action( 'pa_manufacturer_edit_form_fields', 'edit_wc_attribute_manufacturer' );
-    function save_taxonomy_custom_meta( $term_id ) {
+    function save_taxonomy_custom_meta( $term_id ): void
+    {
         if ( isset( $_POST['term_meta'] ) ) {
             $id = $term_id;
             $term_meta = get_option( "featured_manufacturer=$id" );

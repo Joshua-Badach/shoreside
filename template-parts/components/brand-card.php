@@ -21,7 +21,8 @@ $args = array(
 );
 
 
-function brand_loop($args){
+function brand_loop($args): void
+{
     $taxonomy           =           'product_cat';
     $hierarchical       =           1;
     $empty              =           0;
@@ -44,18 +45,20 @@ function brand_loop($args){
     <h2 class="hidden">Our Brands</h2>
     <div class="brand-carousel">';
     foreach ($terms as $term) {
-        $tester = get_option( "featured_manufacturer=$term->term_id");
+        $idObj = $term->term_id;
+        $tester = get_option( "featured_manufacturer=$idObj");
 
-        if(in_array("true", $tester) ) {
+        if ( is_array($tester) && in_array('true', $tester)){
             brand_cards($term);
         }
     }
     echo '</section>';
 }
 
-function brand_cards($term){
+function brand_cards($term): void
+{
     $image_slug = $term->slug.'-logo';
-    $image_id = get_page_by_title($image_slug, OBJECT, 'attachment');
+    $image_id = get_page_by_title($image_slug, 'OBJECT', 'attachment');
     $image_alt = get_post_meta($image_id->ID, '_wp_attachment_image_alt', TRUE);
     $image = $image_id->guid;
 
