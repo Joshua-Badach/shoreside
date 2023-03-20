@@ -748,15 +748,15 @@ add_filter('comments_array', 'df_disable_comments_hide_existing_comments', 10, 2
     {
         $id = $term->term_id;
         $term_meta = get_option( "featured_manufacturer=$id" );
-         $select = array_values($term_meta);
+        $select = is_array($term_meta)?array_values($term_meta): array();
  echo '<tr class="form-field">
     <th scope="row" valign="top">
         <label for="featured_manufacturer">Featured Brand</label>
     </th>
     <td>
         <select name="term_meta[' . $id . ']" id="featured_manufacturer">'; ?>
-            <option value=false <?php if($select[0] == "false") echo "selected" ?> >No</option>
-            <option value=true <?php if($select[0] == "true") echo "selected" ?> >Yes</option>
+            <option value=false <?php echo (!$select || $select[0] == "false") ? "selected" : "" ?> >No</option>
+            <?php echo ($select[0] == "true") ? "<option value=true selected>Yes</option>" : "<option value=true>Yes</option>"; ?>
        <?php echo '</select>
 
         <p class="description">Is this manufacturer going to be featured on the home page</p>

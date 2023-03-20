@@ -7,12 +7,6 @@ $current_url = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $site_name = get_bloginfo( 'name' );
 $slug = $post->post_name;
 
-//$field = 'slug';
-//$value = $slug;
-//$taxonomy = 'product';
-//
-//$id = get_term_by($field, $value, $taxonomy);
-
 //Get image for share meta
     if (get_post_thumbnail_id($post->ID)) {
         $featured = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'single-post-thumbnail');
@@ -40,10 +34,10 @@ $slug = $post->post_name;
         }
         $site_suffix = $descId->name;
         $description = $descId->description;
-//        print('Category detected');
-    }
+    } else {
+        $site_suffix = $post->post_title;
+    }?>
 
-?>
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" >
