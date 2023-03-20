@@ -7,7 +7,7 @@ $current_url = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $site_name = get_bloginfo( 'name' );
 $slug = $post->post_name;
 
-//Get image for share meta
+    //Get image for share meta
     if (get_post_thumbnail_id($post->ID)) {
         $featured = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'single-post-thumbnail');
         $image = $featured[0];
@@ -16,15 +16,18 @@ $slug = $post->post_name;
         $image = $featured->guid;
     }
 //Get description for share meta
+    //Wordpress custom value
     if ( get_post_custom_values('description', $post->ID) != '') {
         $desc = get_post_custom_values('description', $post->ID);
         $description = $desc[0];
         $site_suffix = $post->post_title;
-    } elseif ( is_product() ) {
+    } //Woocommerce products
+    elseif ( is_product() ) {
         $product = wc_get_product( get_the_id() );
         $description = $product->get_short_description();
         $site_suffix = $product->get_name();
-    } elseif ( get_term_by('slug', $slug, 'product_cat') != '' ) {
+    } //Woocommerce categories and attributes
+    elseif ( get_term_by('slug', $slug, 'product_cat') != '' ) {
         if (isset($_REQUEST['product_cat'])){
             $descId = get_term_by('id', $_REQUEST['product_cat'], 'product_cat');
         } elseif ( isset($_REQUEST['term'])) {
@@ -34,8 +37,10 @@ $slug = $post->post_name;
         }
         $site_suffix = $descId->name;
         $description = $descId->description;
-    } else {
+    } //Fallback
+    else {
         $site_suffix = $post->post_title;
+        $description = "Let our team of experts help meet all of your power sports needs.";
     }?>
 
 <head>
