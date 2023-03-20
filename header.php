@@ -1,83 +1,67 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?> >
 <?php
-global $wp;
 global $post;
 
 $current_url = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $site_name = get_bloginfo( 'name' );
 $slug = $post->post_name;
-$featured = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' );
-$description = '';
 
-$field = 'slug';
-$value = $slug;
-$taxonomy = 'product';
+//$field = 'slug';
+//$value = $slug;
+//$taxonomy = 'product';
+//
+//$id = get_term_by($field, $value, $taxonomy);
 
-$id = get_term_by($field, $value, $taxonomy);
-?>
-<head>
-    <meta charset="<?php bloginfo('charset'); ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <?php
-
-    if ( get_post_custom_values('description', $id) != '') {
-        $image_id = get_page_by_title('rps-logo-share', 'OBJECT', 'attachment');
-        $image = $image_id->guid;
-        $description = get_post_custom_values('description', $id);
+//Get image for share meta
+    if (get_post_thumbnail_id($post->ID)) {
+        $featured = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'single-post-thumbnail');
+        $image = $featured[0];
+    } else {
+        $featured = get_page_by_title('rps-logo-share', 'OBJECT', 'attachment');
+        $image = $featured->guid;
+    }
+//Get description for share meta
+    if ( get_post_custom_values('description', $post->ID) != '') {
+        $desc = get_post_custom_values('description', $post->ID);
+        $description = $desc[0];
         $site_suffix = $post->post_title;
+    } elseif ( is_product() ) {
+        $product = wc_get_product( get_the_id() );
+        $description = $product->get_short_description();
+        $site_suffix = $product->get_name();
     } elseif ( get_term_by('slug', $slug, 'product_cat') != '' ) {
-        if ($_REQUEST['product_cat'] != '' && $_REQUEST['term'] == '' ){
+        if (isset($_REQUEST['product_cat'])){
             $descId = get_term_by('id', $_REQUEST['product_cat'], 'product_cat');
-        } elseif ( $_REQUEST['term'] != '' ) {
+        } elseif ( isset($_REQUEST['term'])) {
             $descId = get_term_by('term_id', $_REQUEST['term'], 'pa_manufacturer');
         } else {
             $descId = get_term_by('slug', $slug, 'product_cat');
         }
         $site_suffix = $descId->name;
         $description = $descId->description;
-        if (get_the_post_thumbnail() != ''){
-            $image = get_the_post_thumbnail_url();
-        } else {
-            $image_id = get_page_by_title('rps-logo-share', 'OBJECT', 'attachment');
-        }
-    } elseif ( is_product() ) {
-        $product = wc_get_product( get_the_id() );
-        if ($product->get_image_id() != '') {
-            $imageId = $product->get_image_id();
-            $imageSrc = wp_get_attachment_image_src(get_post_thumbnail_id($image_id), 'small');
-            $image = $imageSrc[0];
-        } else {
-            $image_id = get_page_by_title('rps-logo-share', 'OBJECT', 'attachment');
-        }
-        $site_suffix = $product->get_name();
-        $description = $product->get_short_description();
-    } else {
-        if (get_the_post_thumbnail() != ''){
-            $image = get_the_post_thumbnail_url();
-        } else {
-            $image_id = get_page_by_title('rps-logo-share', 'OBJECT', 'attachment');
-            $image = $image_id->guid;
-        }
-        $site_suffix = get_the_title();
-    } ?>
-    <meta name="description" content="<?php echo (is_array($description)) ? (implode($description)) : (strip_tags($description)) ?>"/>
+//        print('Category detected');
+    }
 
-    <?php
+?>
+<head>
+    <meta charset="<?php bloginfo('charset'); ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="<?php echo (is_array($description)) ? (implode($description)) : (strip_tags($description)) ?>"/>
+<?php
     echo '<meta property="fb:app_id" content="568883651374703" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_CA" />
     <meta property="og:url" content="' . $current_url . '" />
-    <meta property="og:title" content="' . $site_name . ' - ' . $site_suffix . '" />
+    <meta property="og:title" content="' . $site_name . ' - ' . str_replace('"', "", $site_suffix) . '" />
     <meta property="og:image" content="'. $image . '" />'; ?>
     <meta property="og:description" content="<?php echo (is_array($description)) ? (implode($description)) : (strip_tags($description)) ?>"/>
-    <?php
 
-    wp_head();
-    ?>
+<?php wp_head(); ?>
+
 </head>
+
 <body itemscope itemtype="https://schema.org/Store">
 <?php get_template_part('template-parts/components/news') ?>
 <h1 class="bodyOutline"><?php
