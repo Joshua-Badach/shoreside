@@ -4,21 +4,18 @@ $slug               =           $post->post_name;
 $id                 =           get_term_by('slug', $slug, 'product_cat');
 $idObjConst         =           $id->term_id;
 $attribute          =           '';
-$tagObj             =           $_REQUEST['term'];
-$parent             =           $_REQUEST['product_cat'];
+$tagObj             =           isset($_REQUEST['term']);
+$parent             =           isset($_REQUEST['product_cat']);
 
-if ($_GET['attribute'] == '') {
-    if ($_GET['product_cat'] != '') {
-        $idObj = $_REQUEST['product_cat'];
-        $value = $idObj;
-        $field = 'id';
-        $taxonomy = 'product_cat';
+if (isset($_REQUEST['attribute']) == '') {
+    if (isset($_REQUEST['product_cat']) != '') {
+        $idObj = isset($_REQUEST['product_cat']);
     } else {
         $idObj = $id->term_id;
-        $value = $idObj;
-        $field = 'id';
-        $taxonomy = 'product_cat';
     }
+    $value = $idObj;
+    $field = 'id';
+    $taxonomy = 'product_cat';
 }
 
 if ($tagObj != '') {
@@ -32,9 +29,17 @@ $term = get_term_by($field, $value, $taxonomy);
 $test = get_term_by('id', $parent, 'product_cat');
 
 $image_slug = $term->slug.'-logo';
-$image_id = get_page_by_title($image_slug, 'OBJECT', 'attachment');
-$image_alt = get_post_meta($image_id->ID, '_wp_attachment_image_alt', TRUE);
-$image = $image_id->guid;
+//(!$image_slug) ? ('rps-logo') :
+$image = '';
+$image_alt ='';
+function getLogo($image_slug): void{
+    $image_id = get_page_by_title($image_slug, 'OBJECT', 'attachment');
+    $image_alt = get_post_meta($image_id->ID, '_wp_attachment_image_alt', TRUE);
+    $image = $image_id->guid;
+}
+if ($image_slug != 'showroom-logo' && $image_slug != 'parts-and-accessories-logo') {
+    getLogo($image_slug);
+}
 
 $logo_id = get_page_by_title('logo', 'OBJECT', 'attachment');
 $logo_image = $logo_id->guid;
