@@ -3,7 +3,6 @@
     $slug = $post->post_name;
     $id = get_term_by('slug', $slug, 'product_cat');
     $preOwnedObj = get_term_by('slug', 'preowned', 'product_cat');
-    $orderObj = '';
 
     (isset($_REQUEST['product_cat'])) ? $parent = $_REQUEST['product_cat'] : $parent = $id->term_id;
     (isset($_REQUEST['term'])) ? $tagObj = $_REQUEST['term'] : $tagObj = '';
@@ -23,17 +22,17 @@
     $empty              =           0;
     $limit              =           -1;
     $status             =           'publish';
-
+    $orderObj           =           '';
     $orderByObj         =           '';
     $onSaleObj          =           '';
 
 if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
     {
-        $idObj              =           $_REQUEST['idObj'] ?? $id->term_id;
-        $tagObj             =           $_REQUEST['tagObj'] ?? '';
-        $orderByObj         =           $_REQUEST['orderByObj'] ?? '';
-        $orderObj           =           $_REQUEST['orderObj'] ?? '';
-        $onSaleObj          =           $_REQUEST['onSaleObj'] ?? '';
+        $idObj              =           $_REQUEST['idObj'];
+        $tagObj             =           $_REQUEST['tagObj'];
+        $orderByObj         =           $_REQUEST['orderByObj'];
+        $orderObj           =           $_REQUEST['orderObj'];
+        $onSaleObj          =           $_REQUEST['onSaleObj'];
         $slug               =           $_REQUEST['slug'];
         $slugObj            =           $_REQUEST['slug'];
     }
@@ -55,7 +54,6 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
         'hierarchical'                  => $hierarchical,
         'show_option_none'              => '',
         'hide_empty'                    => $empty,
-//        'parent'                        => $slug,
         'taxonomy'                      => $taxonomy,
         'category'                      => $slugObj,
         'orderby'                       => $orderByObj,
@@ -94,17 +92,26 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
 
     $unique = array();
     $name = array();
+    $attribute ='pa_manufacturer';
 
-    foreach (wc_get_products($query_args) as $product){
-        foreach ($product->get_attributes() as $tax => $attr) {
-            foreach ($attr->get_terms() as $i => $term) {
-                if ($term->taxonomy == 'pa_manufacturer') {
-                    $unique[] = $term->term_id;
-                    $name[] = $term->name;
-                    $termSlug[] = $term->slug;
-                    $termCheck = array_unique($unique);
-                    $termName = array_unique($name, SORT_LOCALE_STRING);
-                    asort($termName);
+    $productQuery = wc_get_products($query_args);
+
+    foreach ($productQuery as $product){
+        $productAttribute = $product->get_attributes();
+        if (isset($productAttribute)) {
+            foreach ($productAttribute as $tax => $attr) {
+                $productTerms = $attr->get_terms();
+                if (isset($productTerms)) {
+                    foreach ($productTerms as $i => $term) {
+                        if ($term->taxonomy == $attribute) {
+                            $unique[] = $term->term_id;
+                            $name[] = $term->name;
+                            $termSlug[] = $term->slug;
+                            $termCheck = array_unique($unique);
+                            $termName = array_unique($name, SORT_LOCALE_STRING);
+                            asort($termName);
+                        }
+                    }
                 }
             }
         }
@@ -113,7 +120,6 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
     foreach ($termName as $i => $aTerm) {
         echo '<a data-category="'. $idObj . '" data-term="' . $termCheck[$i] . '" data-orderby="' . $orderByObj . '" data-order="' . $orderObj . '" data-sale="' . $onSaleObj . '" data-slug="' . $termSlug[$i] . '" > ' . $termName[$i] . '</a>';
     }
-//    Maybe request check for product_cat then swap out if needed?
     echo '</div>
 </div>      
 
