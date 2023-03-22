@@ -62,7 +62,7 @@ echo '<section id="contentTrigger" data-page="' . $idObjConst . '" data-slug="' 
         </a>
     </div>
     <div class="content">';
-//        get_sidebar();
+        get_sidebar();
 
     echo '<div itemscope itemtype="https://schema.org/ItemList" class="container">';
             echo do_shortcode('[products category="' . $idObj . '" attribute="' . $attribute . '"  terms="' . $tagObj . '" per_page="-1" columns="5" meta_key="event_date" orderby="meta_value_num" on_sale="" order="DESC" operator="IN"]');

@@ -3,22 +3,18 @@
     $slug = $post->post_name;
     $id = get_term_by('slug', $slug, 'product_cat');
     $preOwnedObj = get_term_by('slug', 'preowned', 'product_cat');
-    $parent = $_REQUEST['product_cat'];
+
+    (isset($_REQUEST['product_cat'])) ? $parent = $_REQUEST['product_cat'] : $parent = $id->term_id;
+    (isset($_REQUEST['term'])) ? $tagObj = $_REQUEST['term'] : $tagObj = '';
+
     $test = get_term_by('id', $parent, 'product_cat');
 
-    if ($_REQUEST['product_cat'] != ''){
-        $idObj = $_REQUEST['product_cat'];
-    } else {
-        $idObj = $id->term_id;
-    }
-    if ($_REQUEST['term'] != ''){
-        $tagObj = $_REQUEST['term'];
-        $slugObj = $tagObj;
-    } else {
-        $tagObj = $_REQUEST['tagObj'];
+    $idObj = $_REQUEST['product_cat'] ?? $id->term_id;
+    if (!isset($_REQUEST['term'])) {
         $slugObj = get_term($idObj, 'product_cat');
+    } else {
+        $slugObj = $tagObj;
     }
-//    if ($idObj = ''){$idObj = $_REQUEST['page'];}
 
     $taxonomy           =           'product_cat';
     $hierarchical       =           1;      // 1 for yes, 0 for no
@@ -88,7 +84,7 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
         if ( $cat->category_count == 0) {
             continue;
         } else {
-            echo '<a data-category="' . $cat->term_id . '" data-attribute="' . $_REQUEST['attribute'] . '" data-term="' . $_REQUEST['tagObj'] . '" data-orderby="' . $_REQUEST['orderByObj'] . '" data-order="' . $_REQUEST['orderObj'] . '" data-sale="' . $_REQUEST['onSaleObj'] . '" data-slug="' . $cat->slug . '">' . $cat->cat_name . '</a>';
+            echo '<a data-category="' . $cat->term_id . '" data-attribute="' . $attribute . '" data-term="' . $_REQUEST['tagObj'] . '" data-orderby="' . $_REQUEST['orderByObj'] . '" data-order="' . $_REQUEST['orderObj'] . '" data-sale="' . $_REQUEST['onSaleObj'] . '" data-slug="' . $cat->slug . '">' . $cat->cat_name . '</a>';
         }
     }
     echo '</div>
