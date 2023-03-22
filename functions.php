@@ -338,13 +338,19 @@ add_shortcode('news-banner', 'news_banner_shortcode');
 
 function banner_shortcode(): void
 {
-    require('template-parts/components/banner.php');
+    echo '<div class="bannerImage">';
+    $featured = get_the_post_thumbnail();
+    echo $featured;
+    echo'</div>';
 }
 add_shortcode('banner', 'banner_shortcode');
 
 function banner_tall_shortcode(): void
 {
-    require('template-parts/components/banner-tall.php');
+    echo '<div class="bannerImageTall">';
+    $featured = get_the_post_thumbnail();
+    echo $featured;
+    echo'</div>';
 }
 add_shortcode('banner-tall', 'banner_tall_shortcode');
 
