@@ -4,21 +4,19 @@ $slug               =           $post->post_name;
 $id                 =           get_term_by('slug', $slug, 'product_cat');
 $idObjConst         =           $id->term_id;
 $attribute          =           '';
-$tagObj             =           isset($_REQUEST['term']);
-$parent             =           isset($_REQUEST['product_cat']);
 
-if (isset($_REQUEST['attribute']) == '') {
-    if (isset($_REQUEST['product_cat']) != '') {
-        $idObj = isset($_REQUEST['product_cat']);
-    } else {
-        $idObj = $id->term_id;
-    }
+(isset($_REQUEST['product_cat'])) ? $parent = $_REQUEST['product_cat'] : $parent = $id->term_id;
+(isset($_REQUEST['term'])) ? $tagObj = $_REQUEST['term'] : $tagObj = '';
+
+if ($parent != '') {
+    $idObj = $_REQUEST['product_cat'] ?? $id->term_id;
     $value = $idObj;
     $field = 'id';
     $taxonomy = 'product_cat';
 }
-
+var_dump($parent);
 if ($tagObj != '') {
+    $idObj = '';
     $attribute = 'manufacturer';
     $value = $tagObj;
     $field = 'term_id';
@@ -28,18 +26,16 @@ if ($tagObj != '') {
 $term = get_term_by($field, $value, $taxonomy);
 $test = get_term_by('id', $parent, 'product_cat');
 
-$image_slug = $term->slug.'-logo';
-//(!$image_slug) ? ('rps-logo') :
 $image = '';
 $image_alt ='';
+$image_slug = $term->slug.'-logo';
+
 function getLogo($image_slug): void{
     $image_id = get_page_by_title($image_slug, 'OBJECT', 'attachment');
     $image_alt = get_post_meta($image_id->ID, '_wp_attachment_image_alt', TRUE);
     $image = $image_id->guid;
 }
-if ($image_slug != 'showroom-logo' && $image_slug != 'parts-and-accessories-logo') {
-    getLogo($image_slug);
-}
+($image_slug != 'showroom-logo' && $image_slug != 'parts-and-accessories-logo') ? getLogo($image_slug) :
 
 $logo_id = get_page_by_title('logo', 'OBJECT', 'attachment');
 $logo_image = $logo_id->guid;
@@ -63,9 +59,7 @@ echo '<section id="contentTrigger" data-page="' . $idObjConst . '" data-slug="' 
     </div>
     <div class="content">';
 //        get_sidebar();
-        if($idObj == ''){
-            $pageObj = '';
-            $idObj = $pageObj; }
+
     echo '<div itemscope itemtype="https://schema.org/ItemList" class="container">';
             echo do_shortcode('[products category="' . $idObj . '" attribute="' . $attribute . '"  terms="' . $tagObj . '" per_page="-1" columns="5" meta_key="event_date" orderby="meta_value_num" on_sale="" order="DESC" operator="IN"]');
             echo '</div>
