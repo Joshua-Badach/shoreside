@@ -3,6 +3,8 @@
     $slug = $post->post_name;
     $id = get_term_by('slug', $slug, 'product_cat');
     $preOwnedObj = get_term_by('slug', 'preowned', 'product_cat');
+    $termName = '';
+
 
     (isset($_REQUEST['product_cat'])) ? $parent = $_REQUEST['product_cat'] : $parent = $id->term_id;
     (isset($_REQUEST['term'])) ? $tagObj = $_REQUEST['term'] : $tagObj = '';
@@ -96,6 +98,8 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
 
     $productQuery = wc_get_products($query_args);
 
+//    Wow this got even more complicated than before...
+
     foreach ($productQuery as $product){
         $productAttribute = $product->get_attributes();
         if (isset($productAttribute)) {
@@ -117,8 +121,10 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
         }
     }
 
-    foreach ($termName as $i => $aTerm) {
-        echo '<a data-category="'. $idObj . '" data-term="' . $termCheck[$i] . '" data-orderby="' . $orderByObj . '" data-order="' . $orderObj . '" data-sale="' . $onSaleObj . '" data-slug="' . $termSlug[$i] . '" > ' . $termName[$i] . '</a>';
+    if (!empty($termName)) {
+        foreach (is_array($termName) as $i => $aTerm) {
+            echo '<a data-category="'. $idObj . '" data-term="' . $termCheck[$i] . '" data-orderby="' . $orderByObj . '" data-order="' . $orderObj . '" data-sale="' . $onSaleObj . '" data-slug="' . $termSlug[$i] . '" > ' . $termName[$i] . '</a>';
+        }
     }
     echo '</div>
 </div>      
