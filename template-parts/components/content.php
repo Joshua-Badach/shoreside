@@ -14,7 +14,6 @@ if ($parent != '') {
     $field = 'id';
     $taxonomy = 'product_cat';
 }
-var_dump($parent);
 if ($tagObj != '') {
     $idObj = '';
     $attribute = 'manufacturer';
@@ -26,30 +25,35 @@ if ($tagObj != '') {
 $term = get_term_by($field, $value, $taxonomy);
 $test = get_term_by('id', $parent, 'product_cat');
 
+
 $image = '';
 $image_alt ='';
 $image_slug = $term->slug.'-logo';
 
-function getLogo($image_slug): void{
+function getLogo($image_slug, $term)
+{
     $image_id = get_page_by_title($image_slug, 'OBJECT', 'attachment');
     $image_alt = get_post_meta($image_id->ID, '_wp_attachment_image_alt', TRUE);
     $image = $image_id->guid;
-}
-($image_slug != 'showroom-logo' && $image_slug != 'parts-and-accessories-logo') ? getLogo($image_slug) :
 
-$logo_id = get_page_by_title('logo', 'OBJECT', 'attachment');
-$logo_image = $logo_id->guid;
+    echo '<img class="logoBanner col-sm-3" alt="' . $image_alt . '" src="' . $image . '">
+            <h2 class="hide"  data-cat="' . $term->slug . '">' . $term->name . '</h2>';
+
+}
+
+
+//$logo_id = get_page_by_title('logo', 'OBJECT', 'attachment');
+//$logo_image = $logo_id->guid;
 
 echo '<section id="contentTrigger" data-page="' . $idObjConst . '" data-slug="' . $slug .'">
     <div data-parent="' . $test->slug . '" class="container display">
         <div class="row">';
-            if ($image != ''){
-            echo '<img class="logoBanner col-sm-3" alt="' . $image_alt . '" src="' . $image . '">
-            <h2 class="hide"  data-cat="' . $term->slug . '">' . $term->name . '</h2>';
-            } else {
-            echo '<h2 id="categoryTitle" class="col-3"  data-cat="' . $term->slug . '">' . $term->name . '</h2>';
-            }
-            echo '<p class="col-sm-9 description">' . $term->description . '</p>
+    if ($image_slug != 'showroom-logo' && $image_slug != 'parts-and-accessories-logo' && $image_slug != 'preowned-logo') {
+        getLogo($image_slug, $term);
+    } else {
+        echo '<h2 id="categoryTitle" class="col-3"  data-cat="' . $term->slug . '">' . $term->name . '</h2>';
+    }
+        echo '<p class="col-sm-9 description">' . $term->description . '</p>
         </div>
     </div>
     <div id="mobileFilter">
