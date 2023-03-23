@@ -9,12 +9,14 @@ nav h6{
 }
 
 //==========fonts==========
+
 //tired of fighting about the font, it's default now...
 $font: inherit, inherit, inherit;
 $fontSizing: 17px, 20px, 21px, 22px;
 $errorFont: 'D-DIN Condensed Bold', #ffffff, 15rem;
 
 //==========colors==========
+
 $rpsBrand: #0069ad, #ad0034, #959595, #ffffff, #000000;
 ::selection {
   background: nth($rpsBrand, 1);
@@ -36,11 +38,12 @@ footer ::-moz-selection{
   margin-right: 20px;
 }
 footer li a:hover{
-  background: nth($rpsBrand, 2);
-  color: nth($rpsBrand, 4);
+  background: nth($rpsBrand, 4);
+  color: nth($rpsBrand, 1);
 }
 
 //==========headings==========
+
 h1{
   font-family: nth($font, 3);
   color: nth($rpsBrand, 4);
@@ -70,26 +73,32 @@ h5{
 }
 
 //==========text==========
+
 p, span, label, a, button{
   //Syd wants defaults for some reason...
   font-size: nth($fontSizing, 1);
 }
+
 //==========menu==========
+
 nav{
   position: relative;
   width: 100%;
   padding: 0;
   z-index: 1000;
 }
-#menu-main li{
-  list-style: none;
-  text-decoration-line: none;
-  background-color: rgba(149, 149, 149, .5);
-  text-align: center;
-}
-#menu-main li a{
-  color: nth($rpsBrand, 4);
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+#menu-main {
+  li {
+    list-style: none;
+    text-decoration-line: none;
+    background-color: rgba(149, 149, 149, .5);
+    text-align: center;
+
+    a {
+      color: nth($rpsBrand, 4);
+      text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    }
+  }
 }
 .mega-menu-wrap{
   padding: 0;
@@ -118,6 +127,7 @@ nav{
 }
 
 //==========animations/buttons==========
+
 button{
   min-width: 100px;
   height: 30px;
@@ -129,10 +139,12 @@ button{
   vertical-align: middle;
   background: nth($rpsBrand, 1);
   color: nth($rpsBrand, 4);
+
+  span{
+    font-size: 1rem;
+  }
 }
-button span{
-  font-size: 1rem;
-}
+
 @keyframes wiggle {
   0%   { transform: scale(1,1)      translateY(0); }
   10%  { transform: scale(1.1,.9)   translateY(0); }
@@ -165,7 +177,7 @@ button span{
 }
 
 //====================Header Styling====================
-//switch from hard coding when content is populated dynamically
+
 .home-heading{
   position: relative;
   top: 40vw;
@@ -183,64 +195,84 @@ button span{
 }
 
 //====================Body Styling====================
+
 .news{
   background-color: nth($rpsBrand, 1);
   color: nth($rpsBrand, 4);
   min-height: 25px;
   padding-top: 2px;
   padding-bottom: 2px;
-}
-.news p{
-  font-size: 12px;
-  text-align: center;
-  margin: 0;
-  padding-top: 5px;
-}
-.news p a, .news p a span{
-  font-size: 12px;
-  text-decoration: underline;
-  color: nth($rpsBrand, 4);
+
+  p{
+    font-size: 12px;
+    text-align: center;
+    margin: 0;
+    padding-top: 5px;
+    a{
+      font-size: 12px;
+      text-decoration: underline;
+      color: nth($rpsBrand, 4);
+    }
+    span{
+      font-size: 12px;
+      text-decoration: underline;
+      color: nth($rpsBrand, 4);
+    }
+  }
 }
 .container a{
   color: nth($rpsBrand, 1);
   text-decoration: none;
 }
+
 //====================Footer Styling====================
+
 footer{
   background-color: nth($rpsBrand, 1);
   padding: 10px;
-}
-footer span{
-  text-align: center;
-  color: nth($rpsBrand, 4);
-}
-footer a{
-  text-decoration: none;
-  color: nth($rpsBrand, 4);
-}
-.location{
-  text-decoration: underline;
-}
-footer p{
-  color: nth($rpsBrand, 4);
-}
-footer li{
-  list-style: none;
-}
-footer ul{
-  padding: 0;
-}
-footer .logo{
-  margin-top: 21.3%;
-}
-footer .socmed{
-  margin: 1%;
-}
-.contactLinks{
+
+  span{
+    text-align: center;
+    color: nth($rpsBrand, 4);
+  }
+  a{
+    text-decoration: none;
+    color: nth($rpsBrand, 4);
+  }
+  p{
+    color: nth($rpsBrand, 4);
+  }
   li{
-    padding: 4px 0;
+    list-style: none;
+  }
+  ul{
+    padding: 0;
+  }
+  .logo{
+    margin-top: 21.3%;
+  }
+  .socmed{
+    margin: 1%;
+  }
+  .location{
+    text-decoration: underline;
+  }
+  .contactLinks{
+    li{
+      padding: 4px 0;
+    }
+  }
+  .mobileShow{
+    display: none;
+  }
+  .logo{
+    width: 50%;
+    max-width: 200px;
   }
 }
+
+//====================Social Media Styling====================
+
 .socmed{
   height: 40px;
   width: 40px;
@@ -260,33 +292,50 @@ footer .socmed{
   box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.75);
   -webkit-box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.75);
+
+  object{
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+  }
+  a{
+    width: 100%;
+    height: 100%;
+  }
+  a:hover{
+    background: none;
+  }
+  img{
+    width: 60%;
+    height: 60%;
+  }
 }
-.socmedContainer{
-  text-align: center;
-  padding: 20px;
+.our-socials{
+  background: nth($rpsBrand, 1);
+  width: 100%;
+  height: fit-content;
+
+  span{
+    color: nth($rpsBrand, 4);
+  }
 }
-.socmed object{
-  pointer-events: none;
+.socials{
+  margin-top: 5%;
+
+  h2{
+    color: nth($rpsBrand, 4);
+    text-align: center;
+    transform: translateY(50px);
+  }
 }
 .socmed:hover{
   -webkit-animation: wiggle .5s;
   -o-animation: wiggle .5s;
   animation: wiggle .5s;
 }
-.socmed a:hover{
-  background: none;
-}
-.socmed img{
-  width: 60%;
-  height: 60%;
-}
-.socmed object{
-  width: 100%;
-  height: 100%;
-}
-.socmed a{
-  width: 100%;
-  height: 100%;
+.socmedContainer{
+  text-align: center;
+  padding: 20px;
 }
 #facebookIcon, #facebookButton{
   justify-content: center;
@@ -309,52 +358,33 @@ footer .socmed{
   width: 100%;
   height: 100%;
 }
-#tiktokIcon{
-  justify-content: center;
-  align-items: center;
-}
-footer .mobileShow{
-  display: none;
-}
-.errorHeading{
-  font-family: nth($errorFont, 1);
-  color: nth($errorFont, 2);
-  font-size: nth($errorFont, 3);
-  margin-top: 50px;
-  margin-bottom: 15px;
-}
-.offerings{
-  margin-top: 5%;
-  margin-bottom: 5%;
-}
-.socials{
-  margin-top: 5%;
 
-  h2{
+//====================Error Page Styling====================
+
+.errorPage{
+  .errorHeading{
+    font-family: nth($errorFont, 1);
+    color: nth($errorFont, 2);
+    font-size: nth($errorFont, 3);
+    margin-top: 50px;
+    margin-bottom: 15px;
+  }
+  img{
+    position: absolute;
+    width: 100%;
+    height: auto;
+    z-index: -1;
+    -o-object-fit: cover;
+    object-fit: cover;
+  }
+  p{
     color: nth($rpsBrand, 4);
-    text-align: center;
-    transform: translateY(50px);
+    margin-bottom: 40%;
   }
 }
-footer .logo{
-  width: 50%;
-  max-width: 200px;
-}
-.mobileSearch{
-  display: none!important;
-}
-.errorPage img{
-  position: absolute;
-  width: 100%;
-  height: auto;
-  z-index: -1;
-  -o-object-fit: cover;
-  object-fit: cover;
-}
-.errorPage p{
-  color: nth($rpsBrand, 4);
-  margin-bottom: 40%;
-}
+
+//====================Hero Styling====================
+
 .heroBanner{
   min-height: 237px;
 }
@@ -401,6 +431,9 @@ footer .logo{
     margin-bottom: 0;
   }
 }
+
+//====================Featured Brands Styling====================
+
 .brands{
   aspect-ratio: 1/1;
   max-height: 150px;
@@ -448,11 +481,7 @@ footer .logo{
   margin-top: 10%;
   margin-bottom: 10%;
 }
-.mobileBrand{
-  height: 200px;
-  background: nth($rpsBrand, 1);
-  display: none;
-}
+
 .information{
   -webkit-box-shadow: 5px 5px 15px 5px #000000;
   box-shadow: 5px 5px 15px 5px #000000;
@@ -462,15 +491,7 @@ footer .logo{
   border: 2px solid #0069ad;
   padding: 10px;
 }
-.our-socials{
-  background: nth($rpsBrand, 1);
-  width: 100%;
-  height: fit-content;
 
-  span{
-    color: nth($rpsBrand, 4);
-  }
-}
 .searchform{
   margin-left: 10px;
   margin-right: 10px;
@@ -1886,7 +1907,8 @@ input:checked + .slider:before {
     text-align: center;
     color: nth($rpsBrand, 4);
     text-shadow: .5px 0px .5px black, 0px .5px .5px black;
-    padding: 5px 10px;
+    padding: 5px 5px;
+    margin: 0;
   }
   img{
     width: 100%;
@@ -1916,6 +1938,7 @@ input:checked + .slider:before {
     justify-content: center;
     align-items: center;
     background: rgba(0, 105, 173, .5);
+    margin-top: 10%;
 
     span{
       display: block;
@@ -1938,4 +1961,9 @@ input:checked + .slider:before {
   a {
     text-decoration: underline;
   }
+}
+
+.offerings{
+  margin-top: 5%;
+  margin-bottom: 5%;
 }

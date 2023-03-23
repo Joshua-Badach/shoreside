@@ -41,7 +41,6 @@ echo'<footer>
                     <p>Monday to Friday: <span itemprop="openingHours" content="Mo-Fr 08:00-17:00">8:00am to 5:00pm</span></p>
                     <p>Saturday: <span itemprop="openingHours" content="Sa 10:00-14:00">10:00am to 2:00pm</span></p>
                     <p>Sundays and Holidays: <span>Closed</span></p>
-                    <p class="specialNote"><strong>*Please note that we will be CLOSED on Saturday, March 18. Come check us out at the <a href="http://www.edmontonboatandsportshow.ca/" target="_blank">Edmonton Boat & Sportsmens Show</a> at the <a href="https://maps.google.com/?q=Edmonton+EXPO+Centre" target="_blank">Edmonton EXPO Centre</a> March 16th-19th!</strong></p>
                 </div>
                 <div class="col-lg-4">
                     <p><strong>Subscribe To Our Newsletter</strong></p>

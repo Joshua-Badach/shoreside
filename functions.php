@@ -235,7 +235,7 @@ function careers_shortcode( $atts = array(), $content = null ): void
         'category_name'     => 'careers',
         'order'             => 'ASC',
         'post_status'       => ' publish',
-        'posts_per_page'    => 20
+        'posts_per_page'    => 12,
     ));
     global $post;
 
