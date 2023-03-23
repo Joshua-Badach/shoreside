@@ -1,7 +1,7 @@
 <?php
 global $post;
 $banner = get_the_post_thumbnail($post->ID);
-$fallback = get_page_by_title('rps-logo-share', OBJECT, 'attachment');
+$fallback = get_page_by_title('rps-logo-share', 'OBJECT', 'attachment');
 $image_alt = get_post_meta($fallback->ID, '_wp_attachment_image_alt', TRUE);
 $image = $fallback->guid;
 
@@ -23,10 +23,9 @@ get_header();
                         the_content();
                     echo '</section>';
                     echo'<div class="col-sm-6">
+                        <h3>Apply for ' . $jobName . ' with Rec Power</h3>
                         <script type="text/javascript" src="https://form.jotform.com/jsform/230734498938067?jobName=' . $jobName . '&jobUrl=' . $jobUrl .'"></script>
                     </div>';
-                } elseif ( in_category('Service')){
-                  echo 'Service detected';
                 } else {
                     echo '<div class="container postContainer">';
                     the_post();

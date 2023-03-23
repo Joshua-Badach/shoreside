@@ -241,15 +241,16 @@ function careers_shortcode( $atts = array(), $content = null ): void
 
     echo'<div class="container careers">
         <section class="row">
-            <h2 class="col-12">Talent Acquisition for Rec Power</h2>
+            <h2 class="col-12">Recreational Power Sports Careers - Join Our Team!</h2>
             <div class="col-12">' . $content . '</div>
         </section>
-        <section class="row justify-content-between careerListing">
+        <section class="row justify-content-around careerListing">
             <h2 class="col-12">Careers</h2>';
             while ($careerQuery->have_posts()){
                 $careerQuery->the_post();
-                $salary = get_post_meta($post->ID, 'salary', true);
-                $short_description = get_post_meta($post->ID, 'short_description', true);
+                $hours = get_post_meta($post->ID, 'hours', true);
+                $get_description = get_the_excerpt();
+                $short_description = wp_trim_words($get_description, 35);
                 $link = get_permalink($post->ID);
                 $thumbnail = get_the_post_thumbnail($post->ID);
 
@@ -257,7 +258,7 @@ function careers_shortcode( $atts = array(), $content = null ): void
                     <section class="jobContent">'
                         . $thumbnail .
                         '<h3>' . get_the_title() . '</h3>
-                        <p>' . $salary . '</p>
+                        <p>' . $hours . '</p>
                         <div class="jobDescription">    
                             <span>' . $short_description . '</span>
                         </div>

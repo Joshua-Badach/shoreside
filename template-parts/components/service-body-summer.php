@@ -10,9 +10,9 @@ $idObj = $id->term_id;
 
 $taxonomy       = 'product_cat';
 $orderby        = 'name';
-$show_count     = 0;      // 1 for yes, 0 for no
-$pad_counts     = 0;      // 1 for yes, 0 for no
-$hierarchical   = 1;      // 1 for yes, 0 for no
+$show_count     = 0;
+$pad_counts     = 0;
+$hierarchical   = 1;
 $title          = '';
 $empty          = 0;
 $parent         = '';
@@ -72,7 +72,7 @@ foreach ($marineProducts as $product){
                             if ($product->price == 0){
                                 echo '<span class="col-4"> - </span>';
                             } else {
-                                echo '<span class="col-4">$ ' . round($product->price) . '</span>';
+                                echo '<span class="col-4">$ ' . round(intval($product->price, 0)) . '</span>';
                             }
                         echo' </a>';
 }
@@ -88,7 +88,7 @@ foreach ($powerProducts as $product){
                             if ($product->price == 0){
                                 echo '<span class="col-4"> - </span>';
                             } else {
-                                echo '<span class="col-4">$ ' . round($product->price) . '</span>';
+                                echo '<span class="col-4">$ ' . round(intval($product->price, 0)) . '</span>';
                             }
                         echo'</a>';
 }

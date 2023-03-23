@@ -50,7 +50,7 @@ echo '<div class="row justify-content-around">
                             if ($product->price == 0){
                                 echo '<span class="col-4"> - </span>';
                             } else {
-                                echo '<span class="col-4">$' . round($product->price) . '</span>';
+                                echo '<span class="col-4">$' . round(intval($product->price, 0)) . '</span>';
                             }
                         echo'</a>';
                     }
