@@ -25,11 +25,13 @@ jQuery(document).ready(function($) {
       navbar.classList.remove("sticky");
     }
   }
-  // $('.jobPost').hover(function () {
-  //   $(this).find('.jobDescription').fadeIn();
-  // }, function(){
-  //   $(this).find('.jobDescription').fadeOut();
-  // });
+  $('.jobPost').hover(function () {
+    $(this).find('.jobDescription').fadeIn();
+    $(this).find('img').addClass('zoom');
+  }, function(){
+    $(this).find('.jobDescription').fadeOut();
+    $(this).find('img').removeClass('zoom');
+  });
 
   $(carousel);
 

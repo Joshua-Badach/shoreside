@@ -249,8 +249,6 @@ function careers_shortcode( $atts = array(), $content = null ): void
             while ($careerQuery->have_posts()){
                 $careerQuery->the_post();
                 $hours = get_post_meta($post->ID, 'hours', true);
-                $get_description = get_the_excerpt();
-                $short_description = wp_trim_words($get_description, 35);
                 $link = get_permalink($post->ID);
                 $thumbnail = get_the_post_thumbnail($post->ID);
 
@@ -258,10 +256,8 @@ function careers_shortcode( $atts = array(), $content = null ): void
                     <section class="jobContent">'
                         . $thumbnail .
                         '<h3>' . get_the_title() . '</h3>
+                        <span class="jobDescription">More Information</span>
                         <p>' . $hours . '</p>
-                        <div class="jobDescription">    
-                            <span>' . $short_description . '</span>
-                        </div>
                     </section>
                 </a>';
             }
@@ -543,30 +539,41 @@ add_action( 'woocommerce_single_product_summary', 'payments', 10);
 function payments(): void
 {
     global $product;
-    $price = $product->get_price();
+    $price = floatval($product->get_price());
     $categories = $product->get_categories();
 
     $gst = 1.05;
+
     if (str_contains($categories, 'Trailers')) {
         $fees = 400.00;
     } else {
         $fees = 750.00;
     }
-    $principle =  number_format((float)(($price * $gst) + $fees), 2, '.', '');
+
+    $principle =  ($price + $fees) * $gst;
+
 
     function financeCalc($months, $principle, $interest, $apr): void
     {
         if ($months != '') {
 
-            $monthlyInterest = round($interest / 12 , 5);
+            $monthlyInterest = ($interest / 12);
+            $num = (1 + $monthlyInterest);
+//            var_dump($monthlyInterest);
 
-            $result = ($principle * ($monthlyInterest * (1+$monthlyInterest)**$months)) / ((1+$monthlyInterest)**$months-1);
+            $numerator =  $monthlyInterest*($num**$months);
+            $denominator = ($num**$months)-1;
 
-            //            /1.09, result is off by 9% I don't understand the discrepancy between their financial calculator and the formula given to me. Either I'm missing something in the code or financit is doing something slightly different than the given formula.
+            $result = $principle * ($numerator / $denominator);
 
-            $correction = $result / 1.09;
+//            var_dump($monthlyInterest);
+            var_dump($numerator);
+            var_dump($denominator);
+//            var_dump($num);
+            var_dump($result);
+//            var_dump(floatval($principle));
 
-            $biweekly = round($correction / 2);
+            $biweekly = round($result / 2);
 
             echo '<p class="financingText">Financing available for <span class="biweekly"><strong>$' . $biweekly . '</strong> biweekly</span>*</p>
              <div class="disclaimer"><sub><em>*On approved credit. Estimated payment is calculated using the maximum term of ' . $months . ' Months at a rate of ' . $apr . '% APR. Alternative lenders and better rates may be available. $0.00 down payment assumed. Some fees, freight, and additional charges may not be factored into this estimate.</em></sub></div>';
@@ -578,7 +585,7 @@ function payments(): void
             extracted($principle);
         } elseif (str_contains($categories, 'Snowmobile') || str_contains($categories, 'ATV')) {
             if ($principle > 3000) {
-                if ($principle > 3000 && $principle < 7499) {
+                if ($principle < 7499) {
                     $months = 84;
                 } elseif ($principle > 7500 && $principle < 19999) {
                     $months = 120;
@@ -591,7 +598,7 @@ function payments(): void
             }
         } elseif (str_contains($categories, 'Trailers') || str_contains($categories, 'Tents')) {
             if ($principle > 500) {
-                if ($principle > 500 && $principle < 2999) {
+                if ($principle < 2999) {
                     $months = 36;
                 } elseif ($principle > 3000) {
                     $months = 60;
@@ -610,9 +617,7 @@ function payments(): void
 function extracted(string $principle): void
 {
     if ($principle > 3000) {
-        if ($principle < 4999) {
-            $months = 36;
-        } elseif ($principle > 5000 && $principle < 9999) {
+if ($principle > 5000 && $principle < 9999) {
             $months = 84;
         } elseif ($principle > 10000 && $principle < 19999) {
             $months = 180;
