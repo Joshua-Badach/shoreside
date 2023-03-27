@@ -26,8 +26,7 @@ $ad = $product->get_attribute( 'Ad' );
 
 $manufacturer = array_shift( wc_get_product_terms( $product->id, 'pa_manufacturer', array( 'fields' => 'names' ) ) );
 $image_slug = $manufacturer.'-logo';
-$image_id = get_page_by_title($image_slug, OBJECT, 'attachment');
-$image = $image_id->guid;
+$image_id = get_page_by_title($image_slug, 'OBJECT', 'attachment');
 
 function get_attachment_url_by_slug( $slug )
 {
@@ -59,7 +58,8 @@ if ( ! $short_description ) {
     if ( $ad != '' ){
         echo '<img class="productBanner" src="' . $header_url . '">';
     }
-    if ($image != ''){
+    if (isset($image_id)){
+        $image = $image_id->guid;
         echo '<img width="200" height="50" class="logoBanner" src="' . $image . '">';
     }
 ?>

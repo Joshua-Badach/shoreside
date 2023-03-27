@@ -17,6 +17,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
+global $post;
 global $product;
 $manufacturer = $product->get_attribute( 'pa_manufacturer' );
 $type = $product->get_attribute( 'vehicle-type' );

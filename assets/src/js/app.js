@@ -9,14 +9,14 @@ jQuery(document).ready(function($) {
 
   window.onscroll = function() {navStick()};
 
-  var navbar = document.getElementById("navbar");
-  var sticky = navbar.offsetTop;
-  var win = $(this);
-  var pageUrl = document.location.href;
+  const navbar = document.getElementById("navbar");
+  const sticky = navbar.offsetTop;
+  const win = $(this);
+  const pageUrl = document.location.href;
 
 
   //Mobile check
-  var mobile = (/iphone|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));
+  const mobile = (/iphone|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));
 
   function navStick() {
     if (window.pageYOffset >= sticky) {
@@ -40,8 +40,8 @@ jQuery(document).ready(function($) {
   });
 
   $(document).mouseup(function(e){
-    var disclaimer = $('.disclaimer');
-    var financing = $('.financingText');
+    const disclaimer = $('.disclaimer');
+    const financing = $('.financingText');
     if (!financing.is(e.target) && financing.has(e.target).length === 0){
       disclaimer.hide();
     };
@@ -79,8 +79,8 @@ jQuery(document).ready(function($) {
   }
 
   if (mobile) {
-    var home = $(location).attr("origin");
-    var logo = $('<img>', {src:'/wp-content/themes/shoreside/assets/src/library/images/rps-logo-small.png', alt:'Recreational Power Sports Logo'})
+    const home = $(location).attr("origin");
+    const logo = $('<img>', {src:'/wp-content/themes/shoreside/assets/src/library/images/rps-logo-small.png', alt:'Recreational Power Sports Logo'})
 
     $('.slick-arrow').delay(10000).fadeOut('slow');
     $('.mega-toggle-blocks-left').append(logo);
@@ -121,6 +121,7 @@ jQuery(document).ready(function($) {
       }
     });
   })($);
+
 
   // $(document).on('click', '.modal-link a', function(e){
   //   var ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";

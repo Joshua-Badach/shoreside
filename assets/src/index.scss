@@ -125,6 +125,17 @@ nav{
   max-height: 75px;
   padding: 3px 0;
 }
+.newsBanner{
+  width: 100%;
+  height: auto;
+  width: -moz-available;
+  width: -webkit-fill-available;
+  width: fill-available;
+}
+.sticky{
+  position: fixed;
+  top: 0;
+}
 
 //==========animations/buttons==========
 
@@ -266,8 +277,9 @@ footer{
     display: none;
   }
   .logo{
-    width: 50%;
     max-width: 200px;
+    max-height: 150px;
+    aspect-ratio: 4/3;
   }
 }
 
@@ -457,116 +469,20 @@ footer{
   max-height: 185px;
   overflow-y: hidden;
   background: nth($rpsBrand, 1);
-}
-.brand-carousel{
-  a{
-    display: block;
-    max-width: 150px;
+
+  .brand-carousel{
+    a{
+      display: block;
+      max-width: 150px;
+    }
   }
 }
-.bannerImage img{
-  height: auto;
-  width: 100%;
-  position: relative;
-  aspect-ratio: 4/1;
-  min-height: 240px;
-  width: fit-content;
-}
-.bannerImageTall img{
-  width: 100%;
-  height: auto;
-  aspect-ratio: 2/1;
-}
+
+//====================Carousel Styling====================
+
 .carouselWrapper{
   margin-top: 10%;
   margin-bottom: 10%;
-}
-
-.information{
-  -webkit-box-shadow: 5px 5px 15px 5px #000000;
-  box-shadow: 5px 5px 15px 5px #000000;
-  border-radius: 0px 0px 0px 0px;
-  -moz-border-radius: 0px 0px 0px 0px;
-  -webkit-border-radius: 0px 0px 0px 0px;
-  border: 2px solid #0069ad;
-  padding: 10px;
-}
-
-.searchform{
-  margin-left: 10px;
-  margin-right: 10px;
-}
-.searchFormButton{
-  margin-left: 5px;
-}
-.divider1{
-  display: block;
-  width: 100%;
-  height: 40px;
-  transform: skew(20deg);
-  background: nth($rpsBrand, 1);
-  transform: rotate(1.5deg);
-  margin-top: -25px;
-}
-.divider2{
-  display: block;
-  width: 100%;
-  height: 40px;
-  transform: skew(-20deg);
-  background: nth($rpsBrand, 1);
-  transform: rotate(-1.5deg);
-  margin-top: 40px;
-}
-.crewSpan{
-  text-align: center;
-  margin-bottom: 5%;
-}
-.staff img{
-  width: 100%;
-  height: auto;
-}
-.map{
-  aspect-ratio: 1/1;
-  height: auto;
-  margin-bottom: 10vh;
-}
-.vision{
-  display: flex;
-  align-content: center;
-  height: 400px;
-
-  h2{
-    text-align: center;
-  }
-}
-.searchButton{
-  margin-left: 10px;
-}
-.mission{
-  margin-top: 5%;
-  margin-bottom: 5%;
-  a:hover {
-    background: nth($rpsBrand, 1);
-    color: nth($rpsBrand, 4);
-  }
-}
-.gallery{
-  margin-bottom: 10%;
-}
-.newsBanner{
-  width: 100%;
-  height: auto;
-  width: -moz-available;
-  width: -webkit-fill-available;
-  width: fill-available;
-}
-.sticky{
-  position: fixed;
-  top: 0;
-}
-.sliderContent img{
-  width: 100%;
-  height: auto;
 }
 .mainCarousel {
   width: 100%;
@@ -635,7 +551,6 @@ footer{
 .slick-lightbox .slick-next {
   right: 15px;
 }
-
 .slick-lightbox-hide {
   opacity: 0;
 }
@@ -643,7 +558,6 @@ footer{
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
 }
-
 .slick-lightbox-hide-init {
   position: absolute;
   top: -9999px;
@@ -653,7 +567,6 @@ footer{
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
 }
-
 .slick-lightbox-inner {
   position: fixed;
   top: 0;
@@ -661,7 +574,6 @@ footer{
   width: 100%;
   height: 100%;
 }
-
 .slick-lightbox-slick-item {
   text-align: center;
   overflow: hidden;
@@ -692,19 +604,16 @@ footer{
   max-width: 90%;
   max-height: 90%;
 }
-
 .slick-lightbox-slick-img {
   margin: 0 auto;
   display: block;
   max-width: 90%;
   max-height: 90%;
 }
-
 .slick-lightbox-slick-caption {
   margin: 10px 0 0;
   color: white;
 }
-
 .slick-lightbox-close {
   position: absolute;
   top: 15px;
@@ -753,6 +662,87 @@ footer{
   -moz-user-select: default;
   -ms-user-select: default;
   user-select: default;
+}
+.sliderContent img{
+  width: 100%;
+  height: auto;
+}
+
+//====================Page Styling====================
+
+.bannerImage img{
+  height: auto;
+  width: 100%;
+  position: relative;
+  aspect-ratio: 4/1;
+  min-height: 240px;
+  width: fit-content;
+}
+.bannerImageTall img{
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2/1;
+}
+
+.information{
+  -webkit-box-shadow: 5px 5px 15px 5px #000000;
+  box-shadow: 5px 5px 15px 5px #000000;
+  border-radius: 0px 0px 0px 0px;
+  -moz-border-radius: 0px 0px 0px 0px;
+  -webkit-border-radius: 0px 0px 0px 0px;
+  border: 2px solid #0069ad;
+  padding: 10px;
+}
+.divider1{
+  display: block;
+  width: 100%;
+  height: 50px;
+  transform: skew(20deg);
+  background: nth($rpsBrand, 1);
+  transform: rotate(1.5deg);
+  margin-top: -30px;
+}
+.divider2{
+  display: block;
+  width: 100%;
+  height: 50px;
+  transform: skew(-20deg);
+  background: nth($rpsBrand, 1);
+  transform: rotate(-1.5deg);
+  margin-top: 40px;
+}
+.crewSpan{
+  text-align: center;
+  margin-bottom: 5%;
+}
+.staff img{
+  width: 100%;
+  height: auto;
+}
+.map{
+  aspect-ratio: 1/1;
+  height: auto;
+  margin-bottom: 10vh;
+}
+.vision{
+  display: flex;
+  align-content: center;
+  height: 400px;
+
+  h2{
+    text-align: center;
+  }
+}
+.mission{
+  margin-top: 5%;
+  margin-bottom: 5%;
+  a:hover {
+    background: nth($rpsBrand, 1);
+    color: nth($rpsBrand, 4);
+  }
+}
+.gallery{
+  margin-bottom: 10%;
 }
 .detailsForm{
   background: nth($rpsBrand, 1);
@@ -852,22 +842,6 @@ footer{
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-.carousel{
-  overflow: hidden;
-
-  .sliderText {
-      position: relative;
-      z-index: 1;
-      width: 45%;
-      padding: 10px;
-      max-height: 200px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      background-color: rgba(255, 255, 255, 0.75);
-      -webkit-box-shadow: 2px 2px 5px 1px #000000;
-      box-shadow: 2px 2px 5px 1px #000000;
-    }
-}
 .appended{
   text-align: center;
   padding-bottom: 5vw;
@@ -963,6 +937,9 @@ footer{
   -o-transform: rotate(-35deg);
   transform: rotate(-35deg);
 }
+
+
+
 //extra small mobile
 @media (min-width: 320px) and (max-width: 480px) {
   .brand-carousel{
@@ -972,6 +949,12 @@ footer{
   }
   .brandSpan{
     margin-top: -1%;
+  }
+  .bannerImage{
+    img{
+      transform-origin: center;
+      transform: translateX(-25%);
+    }
   }
   .home-heading{
     font-size: 12px;
@@ -1982,4 +1965,7 @@ input:checked + .slider:before {
 }
 .slick-prev, .slick-next {
   z-index: 10000;
+}
+.woocommerce-product-gallery{
+  overflow: hidden;
 }

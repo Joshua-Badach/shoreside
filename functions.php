@@ -10,9 +10,6 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
     function rpsShoreside_setup(): void
     {
         load_theme_textdomain( 'rpsShoreside', get_template_directory() . '/languages');
-//        require get_template_directory() . '/template-parts/components/ajax.php';
-//        continue here
-//        include get_admin_url().'admin-ajax.php';
 
         add_theme_support(
             'html5',
@@ -550,30 +547,23 @@ function payments(): void
         $fees = 750.00;
     }
 
-    $principle =  ($price + $fees) * $gst;
-
+    $principle =  ($price + $fees) / $gst;
 
     function financeCalc($months, $principle, $interest, $apr): void
     {
+
         if ($months != '') {
 
             $monthlyInterest = ($interest / 12);
             $num = (1 + $monthlyInterest);
-//            var_dump($monthlyInterest);
 
-            $numerator =  $monthlyInterest*($num**$months);
-            $denominator = ($num**$months)-1;
+            $numerator =  $monthlyInterest*($num ** $months);
+            $denominator = ($num ** $months) -1;
 
             $result = $principle * ($numerator / $denominator);
 
-//            var_dump($monthlyInterest);
-            var_dump($numerator);
-            var_dump($denominator);
-//            var_dump($num);
-            var_dump($result);
-//            var_dump(floatval($principle));
-
             $biweekly = round($result / 2);
+
 
             echo '<p class="financingText">Financing available for <span class="biweekly"><strong>$' . $biweekly . '</strong> biweekly</span>*</p>
              <div class="disclaimer"><sub><em>*On approved credit. Estimated payment is calculated using the maximum term of ' . $months . ' Months at a rate of ' . $apr . '% APR. Alternative lenders and better rates may be available. $0.00 down payment assumed. Some fees, freight, and additional charges may not be factored into this estimate.</em></sub></div>';
@@ -590,7 +580,7 @@ function payments(): void
                 } elseif ($principle > 7500 && $principle < 19999) {
                     $months = 120;
                 } elseif ($principle > 20000) {
-                    $months = 120;
+                    $months = 180;
                 }
                 $interest = 0.1099;
                 $apr = '10.99';
@@ -617,7 +607,7 @@ function payments(): void
 function extracted(string $principle): void
 {
     if ($principle > 3000) {
-if ($principle > 5000 && $principle < 9999) {
+        if ($principle > 5000 && $principle < 9999) {
             $months = 84;
         } elseif ($principle > 10000 && $principle < 19999) {
             $months = 180;

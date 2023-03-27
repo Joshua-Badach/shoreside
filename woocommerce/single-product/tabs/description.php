@@ -18,7 +18,7 @@
 defined( 'ABSPATH' ) || exit;
 
 global $post;
-$product = get_page_by_title( 'Product Title', OBJECT, 'product' );
+global $product;
 $productUrl = get_permalink( $product->ID );
 $productName = get_the_title( $product->ID );
 
