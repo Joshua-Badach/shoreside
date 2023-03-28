@@ -61,32 +61,43 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
         function add_theme_scripts(): void
         {
             wp_register_style( 'bundle', get_template_directory_uri() . '/assets/dist/bundle.css', null, null, false );
+            wp_enqueue_style('bundle');
             wp_register_script( 'main', get_template_directory_uri() . '/assets/dist/main.bundle.js', array('jquery'), null, true );
             wp_enqueue_script('main');
-            wp_enqueue_style('bundle');
         }
         add_action( 'wp_enqueue_scripts', 'add_theme_scripts' ,0);
 
-        add_filter( 'script_loader_tag', function ( $tag, $handle ) {
-            if ( 'main' !== $handle ) {
-                return $tag;
+        function preloadAssets(): void{
+            $dir = get_template_directory_uri();
+            $footer_logo_id = get_page_by_title('rps-logo', 'OBJECT', 'attachment');
+            $footer_logo_src = $footer_logo_id->guid;
+            $banner_src = get_the_post_thumbnail_url();
+
+//            Improve this to handle different featured brand videos in the future
+            if ( is_home() || is_front_page()) {
+                $hero_id = get_page_by_title('main-hero', 'OBJECT', 'attachment');
+                $hero_video = $hero_id->guid;
+            } elseif (is_page('radinn')){
+                $hero_id = get_page_by_title('radinn-hero', 'OBJECT', 'attachment');
+                $hero_video = $hero_id->guid;
             }
-            return str_replace( ' src', ' async defer src', $tag );
 
-        }, 10, 2 );
-
-        add_filter( 'style_loader_tag', function ( $tag, $handle ) {
-            if ( 'bundle' !== $handle ) {
-                return $tag;
+//            Hero Video
+            if ($hero_video != '') {
+                echo '<link rel="preload" href="' . $hero_video . '" as="media" >';
             }
-            return str_replace( ' href', ' defer href', $tag );
-        }, 10, 2 );
+//            Nav logo
+            echo '<link rel="preload" href="' . $dir . '/assets/src/library/images/rps-logo-small.png" as="image" >';
+//            Footer logo
+            echo '<link rel="preload" href="' . $footer_logo_src . '" as="image" >';
+//            Banner Image
+            if ($banner_src != '') {
+                echo '<link rel="preload" href="' . $banner_src . '" as="image" >';
+            }
+//            Product inquiry form
 
-        remove_action( 'wp_enqueue_scripts', 'wp_enqueue_classic_theme_styles' );
-
-//        removing excess scripts
-
-//        add_action( 'wp_enqueue_scripts', 'remove_block_css', 10 );
+        }
+        add_action( 'wp_head', 'preloadAssets', -1);
 
         function shoreside_custom_menu(): void
         {
@@ -325,7 +336,7 @@ function news_banner_shortcode(): void
     $image_alt = get_post_meta($image_id->ID, '_wp_attachment_image_alt', TRUE);
     $image = wp_get_attachment_image_src($image_id->ID, [1400, 300]);
 
-    echo '<img loading="lazy" class="newsBanner"  src="' . $image[0] . '" width="' . $image[1] . '" height="' . $image[2] . '" loading="lazy" alt="' . $image_alt . '">';
+    echo '<img class="newsBanner" src="' . $image[0] . '" width="' . $image[1] . '" height="' . $image[2] . '" alt="' . $image_alt . '">';
 
 }
 add_shortcode('news-banner', 'news_banner_shortcode');

@@ -15,7 +15,7 @@ $description = wp_list_pluck($terms, 'description');
 //$image = $image_id->guid;
 
 $image_slug_featured = $slug.'-featured';
-$featured_id = get_page_by_title($image_slug_featured, OBJECT, 'attachment');
+$featured_id = get_page_by_title($image_slug_featured, 'OBJECT', 'attachment');
 $featured_alt = get_post_meta($featured_id->ID, '_wp_attachment_image_alt', TRUE);
 $featured = $featured_id->guid;
 

