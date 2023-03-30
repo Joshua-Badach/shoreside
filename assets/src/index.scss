@@ -450,6 +450,7 @@ footer{
   aspect-ratio: 1/1;
   max-height: 150px;
   display: flex;
+  flex-direction: row;
   background: nth($rpsBrand, 4);
   border-radius: 5px;
   -webkit-box-shadow: 1px 1px 5px 2px rgba(0,0,0,0.9);
@@ -457,6 +458,7 @@ footer{
 
   img {
     display: flex;
+    flex-direction: row;
     align-self: center;
     padding-left: 6%;
     padding-right: 6%;
@@ -474,6 +476,10 @@ footer{
     a{
       display: block;
       max-width: 150px;
+    }
+    .slick-slide{
+      display: inline-block;
+      float: none;
     }
   }
 }
@@ -734,8 +740,8 @@ footer{
   }
 }
 .mission{
-  margin-top: 5%;
-  margin-bottom: 5%;
+  margin-top: clamp(19px, 5%, 95px);
+  margin-bottom: clamp(19px, 5%, 95px);
   a:hover {
     background: nth($rpsBrand, 1);
     color: nth($rpsBrand, 4);

@@ -71,29 +71,28 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
             $dir = get_template_directory_uri();
             $footer_logo_id = get_page_by_title('rps-logo', 'OBJECT', 'attachment');
             $footer_logo_src = $footer_logo_id->guid;
-            $banner_src = get_the_post_thumbnail_url();
 
 //            Improve this to handle different featured brand videos in the future
+//            Hero Video or banner
             if ( is_home() || is_front_page()) {
                 $hero_id = get_page_by_title('main-hero', 'OBJECT', 'attachment');
                 $hero_video = $hero_id->guid;
+                echo '<link rel="preload" href="' . $hero_video . '" as="media" >';
             } elseif (is_page('radinn')){
                 $hero_id = get_page_by_title('radinn-hero', 'OBJECT', 'attachment');
                 $hero_video = $hero_id->guid;
-            }
-
-//            Hero Video
-            if ($hero_video != '') {
                 echo '<link rel="preload" href="' . $hero_video . '" as="media" >';
+            } else {
+                if (get_the_post_thumbnail_url() != '') {
+                    $banner_src = get_the_post_thumbnail_url();
+                    echo '<link rel="preload" href="' . $banner_src . '" as="image" >';
+                }
             }
 //            Nav logo
-            echo '<link rel="preload" href="' . $dir . '/assets/src/library/images/rps-logo-small.png" as="image" >';
+            echo '<link rel="preload" href="' . $dir . '/assets/src/library/images/rps-logo-small.png" as="media" >';
 //            Footer logo
-            echo '<link rel="preload" href="' . $footer_logo_src . '" as="image" >';
-//            Banner Image
-            if ($banner_src != '') {
-                echo '<link rel="preload" href="' . $banner_src . '" as="image" >';
-            }
+            echo '<link rel="preload" href="' . $footer_logo_src . '" as="media" >';
+
 //            Product inquiry form
 
         }
