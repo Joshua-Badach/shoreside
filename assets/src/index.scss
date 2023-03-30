@@ -477,9 +477,8 @@ footer{
       display: block;
       max-width: 150px;
     }
-    .slick-slide{
-      display: inline-block;
-      float: none;
+    & > .tile:not(:first-child) {
+      display: none;
     }
   }
 }
