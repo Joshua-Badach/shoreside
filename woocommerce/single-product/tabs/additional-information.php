@@ -21,6 +21,7 @@ global $post;
 global $product;
 $manufacturer = $product->get_attribute( 'pa_manufacturer' );
 $type = $product->get_attribute( 'vehicle-type' );
+$horse = $product->get_attribute('horsepower');
 
 //Get all terms associated with post in woocommerce's taxonomy 'product_cat'
 $terms = get_the_terms( $post->ID, 'product_cat' );
@@ -67,6 +68,12 @@ echo '<table class="woocommerce-product-attributes shop_attributes">
                 echo '<tr class="woocommerce-product-attributes-item">
             <th>Vehicle Type</th>
             <td><p>' . $type . '</p></td>           
+        </tr>';
+            }
+            if ($horse != '') {
+                echo '<tr class="woocommerce-product-attributes-item">
+            <th>Horsepower</th>
+            <td><p>' . $horse . '</p></td>           
         </tr>';
             }
         }
