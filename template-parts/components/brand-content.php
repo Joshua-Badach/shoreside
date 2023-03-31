@@ -6,7 +6,7 @@ $terms = get_terms([
     'taxonomy'  => 'pa_manufacturer',
     'hide_empty'=> false
 ]);
-
+($slug == 'mercury') ? ($orderby = 'menu_order') : ($orderby = 'name');
 $name = wp_list_pluck($terms, 'name');
 $description = wp_list_pluck($terms, 'description');
 
@@ -14,7 +14,6 @@ $image_slug = $slug.'-logo';
 $image_id = get_page_by_title($image_slug, 'OBJECT', 'attachment');
 $image = $image_id->guid;
 //    odd way of going about it but I'll take it.can't seem to get a consistent way of handling the manufacturers..
-//var_dump($testTerms);
 
     echo '<section id="contentTrigger">
             <div class="container display">
@@ -31,7 +30,7 @@ $image = $image_id->guid;
             <div id="mobileFilter"></div>
             <div class="content">';
     echo '<div itemscope itemtype="https://schema.org/ItemList"  class="container">';
-    echo do_shortcode('[products attribute="manufacturer"  terms="' . $name[0] . '" per_page="-1" columns="5"  orderby="menu_order" on_sale="" order="ASC" operator="IN"]');
+    echo do_shortcode('[products attribute="manufacturer"  terms="' . $name[0] . '" per_page="-1" columns="5"  orderby="' . $orderby . '" on_sale="" order="DESC" operator="IN"]');
     echo '</div>
             </div>
     </section>';
