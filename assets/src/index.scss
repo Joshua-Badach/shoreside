@@ -1,8 +1,10 @@
 //====================Constants====================
 
 html, body{
+  width: auto;
+  height: auto;
   max-width: 100%;
-  overflow-x: hidden;
+  max-height: 100%;
 }
 nav h6{
   display: none;
@@ -137,7 +139,7 @@ nav{
   top: 0;
 }
 
-//==========animations/buttons==========
+//==========shoresideAnimations/buttons==========
 
 button{
   min-width: 100px;
@@ -211,14 +213,12 @@ button{
   background-color: nth($rpsBrand, 1);
   color: nth($rpsBrand, 4);
   min-height: 25px;
-  padding-top: 2px;
-  padding-bottom: 2px;
 
   p{
     font-size: 12px;
     text-align: center;
     margin: 0;
-    padding-top: 5px;
+    padding: 5px 0;
     a{
       font-size: 12px;
       text-decoration: underline;
@@ -510,7 +510,7 @@ footer{
     color: nth($rpsBrand, 1);
   }
   .sliderContent{
-    aspect-ratio: 4/1;
+    max-height: 400px;
   }
   img{
     height: auto;
@@ -519,21 +519,6 @@ footer{
     aspect-ratio: 4/1;
     min-height: 240px;
     object-fit: cover;
-  }
-  .slick-list{
-    max-height: inherit;
-
-    .slick-track{
-      max-height: inherit;
-
-      .slick-slide{
-        max-height: inherit;
-
-        img{
-          max-height: inherit;
-        }
-      }
-    }
   }
 }
 .slick-lightbox {
@@ -794,13 +779,17 @@ footer{
   a {
     display: block;
     height: 100%;
+    overflow: hidden;
   }
 
   img {
     width: 100%;
     height: 100%;
-    aspect-ratio: 1/1;
+    z-index: -1;
+    transform-origin: 50% 65%;
+    transition: transform 3s, filter 3s ease-out;
   }
+
   h3{
     padding: 20px 0;
     color: nth($rpsBrand, 4);
@@ -987,6 +976,7 @@ footer{
   }
   .mainCarousel {
     overflow: hidden;
+    min-height: 240px;
     .sliderContent{
       aspect-ratio: 2/1.25;
       img {
@@ -1062,6 +1052,9 @@ footer{
     section{
       margin: .5% .5%;
     }
+  }
+  .mainCarousel{
+    min-height: 240px;
   }
   .brandSpan{
     margin-top: -1%;
@@ -1151,6 +1144,9 @@ footer{
       bottom: 55px;
     }
   }
+  .mainCarousel{
+    min-height: 300px;
+  }
   .onOrder{
     top: 30%;
   }
@@ -1217,7 +1213,9 @@ footer{
       bottom: 55px;
     }
   }
-
+  .mainCarousel{
+    min-height: 400px;
+  }
   .brandSpan {
     margin-top: -1%;
     max-height: 185px;
@@ -1258,15 +1256,10 @@ footer{
   }
 }
 @media (min-width: 1201px){
-  #brandContent{
-    margin-top: -40vh;
 
-    .shoreside-product-title{
-      visibility: hidden;
-      bottom: 55px;
-    }
+  .mainCarousel{
+    min-height: 400px;
   }
-
   .brandSpan {
     margin-top: -.5%;
     max-height: 185px;
@@ -1774,7 +1767,7 @@ input:checked + .slider:before {
   box-shadow: 5px 5px 10px 0px #000000;
 }
 #contentTrigger{
-  margin-top: 2.5%;
+  max-height: 100%;
 }
 .service-main{
   margin-top: 2.5%;
@@ -1890,8 +1883,6 @@ input:checked + .slider:before {
   flex-direction: column;
   overflow: hidden;
 
-
-
   .jobContent{
     display: flex;
     flex-direction: column;
@@ -1965,8 +1956,8 @@ input:checked + .slider:before {
 }
 
 .offerings{
-  margin-top: 5%;
-  margin-bottom: 5%;
+  margin-top: 2.5%;
+  margin-bottom: 2.5%;
 }
 .slick-prev, .slick-next {
   z-index: 10000;

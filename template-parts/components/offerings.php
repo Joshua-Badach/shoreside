@@ -34,7 +34,7 @@ function product_gallery($idObj, $args){
             $thumbnail_alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', TRUE);
             $image = wp_get_attachment_url( $thumbnail_id );
             echo '<section class="col-sm-4 categoryItems" ><a href="' . '/' . $cat->slug . '/' . '">
-                <img loading="lazy" src="'. $image . '" alt="' . $thumbnail_alt . '">
+                <img loading="lazy" width="400" height="400" src="'. $image . '" alt="' . $thumbnail_alt . '">
                 <h3>' . $cat->name . '</h3>
             </a></section>';
         }

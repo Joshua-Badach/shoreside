@@ -4,6 +4,8 @@ import './sidebar';
 import {sidebar} from "./sidebar";
 import './sidebar-ajax';
 import {sidebarAjax} from "./sidebar-ajax";
+import {shoresideAnimations} from "./shoreside-animations";
+import './shoreside-animations';
 
 jQuery(document).ready(function($) {
 
@@ -11,7 +13,6 @@ jQuery(document).ready(function($) {
 
   const navbar = document.getElementById("navbar");
   const sticky = navbar.offsetTop;
-  const win = $(this);
   const pageUrl = document.location.href;
 
 
@@ -25,15 +26,9 @@ jQuery(document).ready(function($) {
       navbar.classList.remove("sticky");
     }
   }
-  $('.jobPost').hover(function () {
-    $(this).find('.jobDescription').fadeIn();
-    $(this).find('img').addClass('zoom');
-  }, function(){
-    $(this).find('.jobDescription').fadeOut();
-    $(this).find('img').removeClass('zoom');
-  });
 
   $(carousel);
+  $(shoresideAnimations);
 
   $('.financingText').on( 'click', function(){
     $('.disclaimer').show();
@@ -46,6 +41,7 @@ jQuery(document).ready(function($) {
       disclaimer.hide();
     };
   });
+
   if(!mobile) {
     $('#brandContent .product').on({
       mouseenter: function () {
@@ -55,27 +51,6 @@ jQuery(document).ready(function($) {
         $(this).find('.shoreside-product-title').css('visibility', 'hidden');
       },
     });
-
-    $(window).on('resize', function(){
-      if (win.width() <= 1024 ){
-        $('.brands h3').hide();
-        $('.brands p').hide();
-        $('.brandCard').removeClass('brands');
-      };
-      if (win.width() >= 1024 ){
-        $('.brands h3').show();
-        $('.brands p').show();
-        $('.brandCard').addClass('brands');
-      };
-    });
-    function brandShuffle(){
-      if ( win.width() < 1024) {
-        $('.brands h3').hide();
-        $('.brands p').hide();
-        $('.brandCard').removeClass('brands');
-      }
-    }
-    $(window).resize(brandShuffle());
   }
 
   if (mobile) {
@@ -121,35 +96,5 @@ jQuery(document).ready(function($) {
       }
     });
   })($);
-
-
-  // $(document).on('click', '.modal-link a', function(e){
-  //   var ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";
-  //   var productUrl = $(this).attr('href');
-  //
-  //   window.modalPayload.product = productUrl;
-  //
-  //   e.preventDefault();
-  //   e.stopImmediatePropagation();
-  //   $('.modal').show();
-  //   $(document.body.parentNode).css('overflow', 'hidden')
-  //   $(document).on('click', '.modal', function(){
-  //     $('.modal').hide();
-  //     $(document.body.parentNode).css('overflow', '')
-  //   });
-  //   $.ajax({
-  //
-  //     url: ajaxUrl,
-  //     dataType: 'html',
-  //     data: window.modalPayload,
-  //
-  //     success: function (response) {
-  //       $('#modalContent').html(response);
-  //     },
-  //     error: function (response) {
-  //       console.log(response);
-  //     }
-  //   });
-  // });
 
 });

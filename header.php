@@ -56,7 +56,7 @@ $slug = $post->post_name;
     <meta property="og:title" content="' . $site_name . ' - ' . str_replace('"', "", $site_suffix) . '" />
     <meta property="og:image" content="'. $image . '" />'; ?>
     <meta property="og:description" content="<?php echo (is_array($description)) ? (implode($description)) : (strip_tags($description)) ?>"/>
-
+    <style>.sliderContent{display: none}</style>
 <?php wp_head(); ?>
 
 </head>

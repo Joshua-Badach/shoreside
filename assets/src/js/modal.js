@@ -31,3 +31,33 @@
 //         });
 //     });
 // }
+
+
+// $(document).on('click', '.modal-link a', function(e){
+//   var ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";
+//   var productUrl = $(this).attr('href');
+//
+//   window.modalPayload.product = productUrl;
+//
+//   e.preventDefault();
+//   e.stopImmediatePropagation();
+//   $('.modal').show();
+//   $(document.body.parentNode).css('overflow', 'hidden')
+//   $(document).on('click', '.modal', function(){
+//     $('.modal').hide();
+//     $(document.body.parentNode).css('overflow', '')
+//   });
+//   $.ajax({
+//
+//     url: ajaxUrl,
+//     dataType: 'html',
+//     data: window.modalPayload,
+//
+//     success: function (response) {
+//       $('#modalContent').html(response);
+//     },
+//     error: function (response) {
+//       console.log(response);
+//     }
+//   });
+// });

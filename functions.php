@@ -162,7 +162,8 @@ function split_shortcode( $atts = array(), $content = null ): void
 {
     global $post;
     $slug = $post->post_name;
-    $form = get_post_custom_values('form', $slug);
+    $getForm = get_post_custom_values('form', $slug);
+    $form = $getForm[0];
 
     echo'<div class="container split">
         <section class="row">
@@ -171,7 +172,7 @@ function split_shortcode( $atts = array(), $content = null ): void
                 echo $content;
             echo '</div>
             <div class="col-sm-6">
-                ' . $form[0] . '
+                ' . $form . '
             </div>
         </section>
     </div>';
