@@ -410,6 +410,7 @@ footer{
     width: 100%;
     position: relative;
     z-index: -10;
+    aspect-ratio: 16/9;
   }
   img{
     position: relative;
@@ -487,7 +488,6 @@ footer{
 
 .carouselWrapper{
   margin-top: 10%;
-  margin-bottom: 10%;
 }
 .mainCarousel {
   width: 100%;
