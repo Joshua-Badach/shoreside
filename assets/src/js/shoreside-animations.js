@@ -13,4 +13,14 @@ export function shoresideAnimations(){
     }, function(){
         $(this).find('img').removeClass('zoom');
     });
+
+    //Loading screen
+    $('#loading').fadeOut();
+    
+    $(document).ajaxStart(function(){
+        $('#loading').fadeIn();
+    });
+    $(document).ajaxStop(function(){
+        $('#loading').fadeOut();
+    });
 }

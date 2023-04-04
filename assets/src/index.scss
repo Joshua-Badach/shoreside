@@ -461,6 +461,8 @@ footer{
     display: flex;
     flex-direction: row;
     align-self: center;
+    min-width: 100px;
+    min-height: 25px;
     padding-left: 6%;
     padding-right: 6%;
     max-width: 159px;
@@ -656,6 +658,10 @@ footer{
 .sliderContent img{
   width: 100%;
   height: auto;
+}
+.woocommerce-product-gallery{
+  overflow: hidden;
+  min-height: 500px;
 }
 
 //====================Page Styling====================
@@ -995,9 +1001,6 @@ footer{
       transform: translate(20%, -110%);
     }
   }
-  .woocommerce-product-gallery{
-    height: 100%;
-  }
   .brandCard img{
     width: 100%;
     padding: 2%;
@@ -1077,9 +1080,6 @@ footer{
     height: 50%;
     display: flex;
     align-self: center;
-  }
-  .woocommerce-product-gallery{
-    height: 100%!important;
   }
   .row{
     padding: 10px;
@@ -1805,7 +1805,9 @@ input:checked + .slider:before {
 .logoBanner{
   display: flex;
   align-self: center;
-  max-height: 150px!important;
+  min-height: 75px;
+  min-width: 150px;
+  max-height: 100px!important;
   max-width: 200px!important;
   padding: 5px;
 }
@@ -1961,7 +1963,4 @@ input:checked + .slider:before {
 }
 .slick-prev, .slick-next {
   z-index: 10000;
-}
-.woocommerce-product-gallery{
-  overflow: hidden;
 }

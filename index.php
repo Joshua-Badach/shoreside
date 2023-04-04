@@ -3,8 +3,6 @@ global $post;
 get_header();
 $slug = $post->post_name;
 
-echo '<div id="loading" style="display: none"></div>';
-
 if ($slug != 'search') {
     echo '<div class="modal" style="display: none">
         <div id="modalBackground" class="container">

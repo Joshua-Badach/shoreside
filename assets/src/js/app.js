@@ -7,6 +7,7 @@ import {sidebarAjax} from "./sidebar-ajax";
 import {shoresideAnimations} from "./shoreside-animations";
 import './shoreside-animations';
 
+
 jQuery(document).ready(function($) {
 
   window.onscroll = function() {navStick()};
@@ -14,10 +15,6 @@ jQuery(document).ready(function($) {
   const navbar = document.getElementById("navbar");
   const sticky = navbar.offsetTop;
   const pageUrl = document.location.href;
-
-
-  //Mobile check
-  const mobile = (/iphone|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));
 
   function navStick() {
     if (window.pageYOffset >= sticky) {
@@ -42,6 +39,8 @@ jQuery(document).ready(function($) {
     };
   });
 
+//Mobile check
+  const mobile = (/iphone|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));
   if(!mobile) {
     $('#brandContent .product').on({
       mouseenter: function () {
@@ -74,13 +73,6 @@ jQuery(document).ready(function($) {
     $(sidebar);
     $(sidebarAjax);
   }
-  //Loading screen
-  $(document).ajaxStart(function(){
-    $('#loading').show();
-  });
-  $(document).ajaxStop(function(){
-    $('#loading').hide();
-  });
 
   (function($) {
     const slider = $('.brand-carousel');
