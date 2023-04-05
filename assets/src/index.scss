@@ -951,12 +951,7 @@ footer{
   .brandSpan{
     margin-top: -1%;
   }
-  .bannerImage{
-    img{
-      transform-origin: center;
-      transform: translateX(-25%);
-    }
-  }
+
   .home-heading{
     font-size: 12px;
   }
@@ -1730,23 +1725,6 @@ input:checked + .slider:before {
   overflow-y: scroll;
   z-index: 1100;
   background-color: nth($rpsBrand, 4);
-}
-#loading{
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  background-color: rgba(50, 50, 50, .5);
-  position: fixed;
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  justify-content: center;
-  overflow: hidden;
-  backdrop-filter: blur(5px);
-  //Absurd z-index because that text us button has an absurd one
-  z-index: 10000000000;
-
 }
 .woocommerce-loop-product__title{
   color: nth($rpsBrand, 1);

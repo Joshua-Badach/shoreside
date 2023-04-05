@@ -74,6 +74,6 @@ $slug = $post->post_name;
 </header>
 <?php
 $loading = get_template_directory_uri() . '\assets\src\library\images\loading.svg';
-echo '<div id="loading">
+echo '<div id="loading" style="height: 100%; width: 100%; top: 0; left: 0; background-color: rgba(50, 50, 50, .5); position: fixed; display: flex; align-items: center; flex-direction: row; justify-content: center; overflow: hidden; backdrop-filter: blur(5px); z-index: 10000000000;">
     <img class="loadingImage" width="100" height="100" src="' . $loading . '" alt="Loading SVG">
 </div>';
