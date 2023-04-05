@@ -73,4 +73,7 @@ $slug = $post->post_name;
     <?php get_template_part( 'template-parts/components/nav' ); ?>
 </header>
 <?php
-echo '<div id="loading"></div>';
+$loading = get_template_directory_uri() . '\assets\src\library\images\loading.svg';
+echo '<div id="loading">
+    <img class="loadingImage" width="100" height="100" src="' . $loading . '" alt="Loading SVG">
+</div>';

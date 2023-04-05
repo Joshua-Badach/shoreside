@@ -92,6 +92,9 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
             echo '<link rel="preload" href="' . $dir . '/assets/src/library/images/rps-logo-small.png" as="media" >';
 //            Footer logo
             echo '<link rel="preload" href="' . $footer_logo_src . '" as="media" >';
+//            Loading gif
+            echo '<link rel="preload" href="' . $dir . '\assets\src\library\images\loading.svg' . '" as="media" >';
+
 
 //            Product inquiry form
 
