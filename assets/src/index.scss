@@ -1737,6 +1737,7 @@ input:checked + .slider:before {
   background-color: rgba(50, 50, 50, .5);
   position: fixed;
   overflow: hidden;
+  backdrop-filter: blur(5px);
   //Absurd z-index because that text us button has an absurd one
   z-index: 10000000000;
 }

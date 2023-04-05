@@ -430,6 +430,9 @@ function load_results(): void
         $pageObj            =           $_REQUEST['pageObj'];
         $slug               =           $_REQUEST['slug'];
 
+        ($slug == 'mercury') ? ($orderby = 'menu_order') : ($orderby = 'name');
+        ($slug == 'mercury') ? ($order = 'DESC') : ($order = 'ASC');
+
 
         if ($_REQUEST['attribute'] == '') {
             if ($_REQUEST['idObj'] != '') {
@@ -477,7 +480,7 @@ function load_results(): void
     get_sidebar();
     if($idObj == ''){ $idObj = $pageObj; }
     echo '<div class="container">';
-    echo do_shortcode('[products category="' . $idObj . '" attribute="' . $attribute . '"  terms="' . $tagObj . '" per_page="-1" columns="5" on_sale="' . $onSaleObj . '" meta_key="event_date" orderby="meta_value_num" on_sale="" order="DESC" operator="IN"]');
+    echo do_shortcode('[products category="' . $idObj . '" attribute="' . $attribute . '"  terms="' . $tagObj . '" per_page="-1" columns="5" on_sale="' . $onSaleObj . '" orderby="' . $orderby . '" on_sale="" order="' . $order . '" operator="IN"]');
     echo '</div>
         </div>';
 

@@ -25,6 +25,8 @@ if ($tagObj != '') {
 $term = get_term_by($field, $value, $taxonomy);
 $test = get_term_by('id', $parent, 'product_cat');
 
+($slug == 'mercury') ? ($orderby = 'menu_order') : ($orderby = 'name');
+($slug == 'mercury') ? ($order = 'DESC') : ($order = 'ASC');
 
 $image = '';
 $image_alt ='';
@@ -39,7 +41,6 @@ function getLogo($image_slug, $term)
     echo ($image != '')  ? ('<img class="logoBanner col-sm-3" alt="' . $image_alt . '" src="' . $image . '">') : '';
     echo ($image != '')  ? ('<h2 class="hide"  data-cat="' . $term->slug . '">' . $term->name . '</h2>') : ('<h2 id="categoryTitle" class="col-3"  data-cat="' . $term->slug . '">' . $term->name . '</h2>');
 }
-
 echo '<section id="contentTrigger" data-page="' . $idObjConst . '" data-slug="' . $slug .'">
     <div data-parent="' . $test->slug . '" class="container display">
         <div class="row">';
@@ -47,6 +48,7 @@ echo '<section id="contentTrigger" data-page="' . $idObjConst . '" data-slug="' 
         echo '<p class="col-sm-9 description">' . $term->description . '</p>
         </div>
     </div>
+
     <div id="mobileFilter">
         <a id="sidebarIcon" href="">
             <img width="30px" height="30px" src="' . get_template_directory_uri(). '/assets/src/library/images/menu-icon.svg"' . 'alt="Menu Icon">
@@ -56,7 +58,7 @@ echo '<section id="contentTrigger" data-page="' . $idObjConst . '" data-slug="' 
         get_sidebar();
 
     echo '<div itemscope itemtype="https://schema.org/ItemList" class="container">';
-            echo do_shortcode('[products category="' . $idObj . '" attribute="' . $attribute . '"  terms="' . $tagObj . '" per_page="-1" columns="5" meta_key="event_date" orderby="meta_value_num" on_sale="" order="DESC" operator="IN"]');
+            echo do_shortcode('[products category="' . $idObj . '" attribute="' . $attribute . '"  terms="' . $tagObj . '" per_page="-1" columns="5" orderby="'. $orderby . '" on_sale="" order="' . $order . '" operator="IN"]');
             echo '</div>
     </div>
 </section>';

@@ -1,5 +1,6 @@
 import {sidebar} from "./sidebar";
 
+
 window.LoadResultsPayload = {
   type: 'POST',
   action: 'load_results',

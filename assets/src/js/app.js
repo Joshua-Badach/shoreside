@@ -6,9 +6,12 @@ import './sidebar-ajax';
 import {sidebarAjax} from "./sidebar-ajax";
 import {shoresideAnimations} from "./shoreside-animations";
 import './shoreside-animations';
-
+import {breadcrumbs} from "./breadcrumbs";
+import './breadcrumbs';
 
 jQuery(document).ready(function($) {
+  $(shoresideAnimations);
+  $(breadcrumbs);
 
   window.onscroll = function() {navStick()};
 
@@ -25,7 +28,6 @@ jQuery(document).ready(function($) {
   }
 
   $(carousel);
-  $(shoresideAnimations);
 
   $('.financingText').on( 'click', function(){
     $('.disclaimer').show();

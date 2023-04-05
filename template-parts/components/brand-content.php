@@ -7,6 +7,8 @@ $terms = get_terms([
     'hide_empty'=> false
 ]);
 ($slug == 'mercury') ? ($orderby = 'menu_order') : ($orderby = 'name');
+($slug == 'mercury') ? ($order = 'DESC') : ($order = 'ASC');
+
 $name = wp_list_pluck($terms, 'name');
 $description = wp_list_pluck($terms, 'description');
 
@@ -30,7 +32,7 @@ $image = $image_id->guid;
             <div id="mobileFilter"></div>
             <div class="content">';
     echo '<div itemscope itemtype="https://schema.org/ItemList"  class="container">';
-    echo do_shortcode('[products attribute="manufacturer"  terms="' . $name[0] . '" per_page="-1" columns="5"  orderby="' . $orderby . '" on_sale="" order="DESC" operator="IN"]');
+    echo do_shortcode('[products attribute="manufacturer"  terms="' . $name[0] . '" per_page="-1" columns="5"  orderby="' . $orderby . '" on_sale="" order="'. $order . '" operator="IN"]');
     echo '</div>
             </div>
     </section>';

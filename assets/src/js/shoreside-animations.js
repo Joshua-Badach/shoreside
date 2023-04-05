@@ -16,7 +16,7 @@ export function shoresideAnimations(){
 
     //Loading screen
     $('#loading').fadeOut();
-    
+
     $(document).ajaxStart(function(){
         $('#loading').fadeIn();
     });
