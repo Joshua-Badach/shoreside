@@ -552,6 +552,7 @@ function pending_banner(): void
 add_action( 'woocommerce_single_product_summary', 'payments', 10);
 function payments(): void
 {
+//    Principle calculation
     global $product;
     $price = floatval($product->get_price());
     $categories = $product->get_categories();
@@ -560,15 +561,23 @@ function payments(): void
 
     if (str_contains($categories, 'Trailers')) {
         $fees = 400.00;
+    } elseif (str_contains($categories, 'Boats') || str_contains($categories, 'Outboard Motors')) {
+        $fees = 1000.00;
+    } elseif (str_contains($categories, 'ATVs')){
+        $fees = 2100.00;
     } else {
         $fees = 750.00;
     }
 
+//    $fees = get_term_meta();
+
+print_r($categories);
+
     $principle =  ($price + $fees) / $gst;
 
+//    Amortization calculation
     function financeCalc($months, $principle, $interest, $apr): void
     {
-
         if ($months != '') {
 
             $monthlyInterest = ($interest / 12);
@@ -581,16 +590,15 @@ function payments(): void
 
             $biweekly = round($result / 2);
 
-
             echo '<p class="financingText">Financing available for <span class="biweekly"><strong>$' . $biweekly . '</strong> biweekly</span>*</p>
              <div class="disclaimer"><sub><em>*On approved credit. Estimated payment is calculated using the maximum term of ' . $months . ' Months at a rate of ' . $apr . '% APR. Alternative lenders and better rates may be available. $0.00 down payment assumed. Some fees, freight, and additional charges may not be factored into this estimate.</em></sub></div>';
         }
     }
 
     if ($price != '' && str_contains($categories, 'Showroom')) {
-        if (str_contains($categories, 'Boats') || str_contains($categories, 'Outboard Motors') || str_contains($categories, 'Electric Surfboards')){
+        if (str_contains($categories, 'Electric Surfboards')){
             extracted($principle);
-        } elseif (str_contains($categories, 'Snowmobile') || str_contains($categories, 'ATV')) {
+        } elseif (str_contains($categories, 'Snowmobile')) {
             if ($principle > 3000) {
                 if ($principle < 7499) {
                     $months = 84;
@@ -600,21 +608,29 @@ function payments(): void
                     $months = 180;
                 }
                 $interest = 0.1099;
-                $apr = '10.99';
-                financeCalc($months, $principle, $interest, $apr);
+                $apr = $interest * 100;
             }
+        } elseif(str_contains($categories, 'ATV')) {
+            if ($principle > 3000) {
+                $months = 120;
+            }
+            $interest = 0.1199;
+            $apr = $interest * 100;
+
+        } elseif(str_contains($categories, 'Outboard Motors') || str_contains($categories, 'Boats')) {
+            ($principle <= 19999) ? ($months = 180) : ($months = 240);
+            $interest = 0.0899;
+            $apr = $interest * 100;
+
         } elseif (str_contains($categories, 'Trailers') || str_contains($categories, 'Tents')) {
             if ($principle > 500) {
-                if ($principle < 2999) {
-                    $months = 36;
-                } elseif ($principle > 3000) {
-                    $months = 60;
-                }
+                ($principle < 2999) ? ($months = 36) : ($months = 60);
+
                 $interest = 0.1499;
-                $apr = '14.99';
-                financeCalc($months, $principle, $interest, $apr);
+                $apr = $interest * 100;
             }
         }
+        financeCalc($months, $principle, $interest, $apr);
 
     } elseif ($price != '' && str_contains($categories, 'Preowned')) {
         extracted($principle);
@@ -632,7 +648,7 @@ function extracted(string $principle): void
             $months = 240;
         }
         $interest = 0.1099;
-        $apr = '10.99';
+        $apr = $interest * 100;
         financeCalc($months, $principle, $interest, $apr);
     }
 }
@@ -800,3 +816,64 @@ add_filter('comments_array', 'df_disable_comments_hide_existing_comments', 10, 2
     }
     add_action( 'edited_pa_manufacturer', 'save_taxonomy_custom_meta');
     add_action( 'create_pa_manufacturer', 'save_taxonomy_custom_meta');
+
+//Add functionality to woocommerce edit category page to allow for fees and apr
+
+function shoreside_edit_category_apr($term) {
+
+    $taxonomy           =           'product_cat';
+    $hierarchical       =           1;
+    $empty              =           0;
+    $limit              =           -1;
+    $status             =           'publish';
+    $name               =           'Sales Showroom';
+
+    $args = array(
+        'taxonomy'                      => $taxonomy,
+        'hierarchical'                  => $hierarchical,
+        'hide_empty'                    => $empty,
+        'limit'                         => $limit,
+        'status'                        => $status,
+        'name'                          => $name
+    );
+
+    $categories = get_categories($args);
+    $idObj = wp_list_pluck($categories, 'term_id');
+    $term_id = $term->term_id;
+    $cat_apr = get_term_meta($term_id, 'cat_apr', true);
+    $cat_fees = get_term_meta($term_id, 'cat_fees', true);
+
+    if ($term->parent == $idObj[0]){
+    ?>
+    <tr class="form-field">
+        <th scope="row" valign="top"><label for="cat_apr"><?php _e('APR', 'apr'); ?></label></th>
+        <td>
+            <input type="text" name="cat_apr" id="cat_apr" value="<?php echo esc_attr($cat_apr) ? esc_attr($cat_apr) : ''; ?>">
+            <p class="description"><?php _e('Enter the interest in decimal value', 'apr'); ?></p>
+        </td>
+    </tr>
+        <tr class="form-field">
+            <th scope="row" valign="top"><label for="cat_fees"><?php _e('Fees', 'fees'); ?></label></th>
+            <td>
+                <input type="text" name="cat_fees" id="cat_fees" value="<?php echo esc_attr($cat_fees) ? esc_attr($cat_fees) : ''; ?>">
+                <p class="description"><?php _e('Enter the fees', 'apr'); ?></p>
+            </td>
+        </tr>
+    <?php
+    }
+}
+
+add_action('product_cat_edit_form_fields', 'shoreside_edit_category_apr', 10, 1);
+
+// Save extra taxonomy fields callback function.
+function shoreside_save_category_apr($term_id) {
+
+    $cat_apr = filter_input(INPUT_POST, 'cat_apr');
+    $cat_fees = filter_input(INPUT_POST, 'cat_fees');
+
+    update_term_meta($term_id, 'cat_apr', $cat_apr);
+    update_term_meta($term_id, 'cat_fees', $cat_fees);
+}
+
+add_action('edited_product_cat', 'shoreside_save_category_apr', 10, 1);
+add_action('create_product_cat', 'shoreside_save_category_apr', 10, 1);

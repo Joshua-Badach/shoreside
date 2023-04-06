@@ -43,16 +43,6 @@ jQuery(document).ready(function($) {
 
 //Mobile check
   const mobile = (/iphone|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));
-  if(!mobile) {
-    $('#brandContent .product').on({
-      mouseenter: function () {
-        $(this).find('.shoreside-product-title').css('visibility', 'visible');
-      },
-      mouseleave: function () {
-        $(this).find('.shoreside-product-title').css('visibility', 'hidden');
-      },
-    });
-  }
 
   if (mobile) {
     const home = $(location).attr("origin");
