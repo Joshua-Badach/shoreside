@@ -46,7 +46,7 @@ export function carousel() {
     mobileFirst: true,
     dots: false,
     arrows: false,
-    lazyLoad: false,
+    lazyLoad: 'ondemand',
   });
 
   $('.brand-carousel').slick({

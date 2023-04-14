@@ -46,7 +46,7 @@ jQuery(document).ready(function($) {
 
   if (mobile) {
     const home = $(location).attr("origin");
-    const logo = $('<img>', {src:'/wp-content/themes/shoreside/assets/src/library/images/rps-logo-small.png', alt:'Recreational Power Sports Logo'})
+    const logo = $('<img>', {src:'/wp-content/themes/shoreside/assets/src/library/images/rps-logo-small.webp', alt:'Recreational Power Sports Logo', width:'66.67', height:'50'})
 
     $('.slick-arrow').delay(10000).fadeOut('slow');
     $('.mega-toggle-blocks-left').append(logo);

@@ -556,40 +556,40 @@ function payments(): void
     $price = floatval($product->get_price());
     $categories = $product->get_categories();
 
-    $taxonomy           =           'product_cat';
-    $hierarchical       =           1;
-    $empty              =           0;
-    $limit              =           -1;
-    $status             =           'publish';
-    $name               =           '';
+    $taxonomy = 'product_cat';
+    $hierarchical = 1;
+    $empty = 0;
+    $limit = -1;
+    $status = 'publish';
+    $name = '';
 
-    if (str_contains($categories, 'Showroom')){
+    if (str_contains($categories, 'Showroom')) {
         $name = 'Sales Showroom';
-    } elseif (str_contains($categories, 'Preowned')){
+    } elseif (str_contains($categories, 'Preowned')) {
         $name = 'Preowned';
     }
 
     $args = array(
-        'taxonomy'                      => $taxonomy,
-        'hierarchical'                  => $hierarchical,
-        'hide_empty'                    => $empty,
-        'limit'                         => $limit,
-        'status'                        => $status,
-        'name'                          => $name
+        'taxonomy' => $taxonomy,
+        'hierarchical' => $hierarchical,
+        'hide_empty' => $empty,
+        'limit' => $limit,
+        'status' => $status,
+        'name' => $name
     );
 
     $showroom = get_categories($args);
-    $idObj = (int) implode(wp_list_pluck($showroom, 'term_id'));
+    $idObj = (int)implode(wp_list_pluck($showroom, 'term_id'));
 
     $subCategories = get_terms(
         'product_cat',
         array('parent' => $idObj)
     );
 
-    foreach ($subCategories as $cat){
+    foreach ($subCategories as $cat) {
         if (str_contains($categories, $cat->name)) {
-            $fees = (int) get_term_meta($cat->term_id, 'cat_fees', true);
-            $interest = (float) get_term_meta($cat->term_id, 'cat_apr', true);
+            $fees = (int)get_term_meta($cat->term_id, 'cat_fees', true);
+            $interest = (float)get_term_meta($cat->term_id, 'cat_apr', true);
         }
     }
 
@@ -597,43 +597,45 @@ function payments(): void
     $apr = $interest * 100;
     $months = null;
 
-    $principle =  ($price + $fees) * $gst;
+    $principle = ($price + $fees) * $gst;
 
-    if (str_contains($categories, 'Showroom') || str_contains($categories, 'Preowned')) {
-        if (str_contains($categories, 'ATVs') || str_contains($categories, 'Snowmobiles')) {
-            ($principle > 2999) ? ($months = 120) : ($months = null);
-        } elseif (str_contains($categories, 'Boat Lifts / Docks')) {
-            $months = 120;
-        } elseif (str_contains($categories, 'Outboard Motors') || str_contains($categories, 'Boats')) {
-            ($principle <= 19999) ? ($months = 180) : ($months = 240);
-        } elseif (str_contains($categories, 'Trailers/Sled Decks') || str_contains($categories, 'Tents')) {
-            ($principle <= 2999) ? ($months = 36) : ($months = 60);
-        } elseif (str_contains($categories, 'Electric Surfboards')) {
-            if ($principle >= 4999 && $principle < 9999) {
-                $months = 84;
-            } elseif ($principle >= 10000 && $principle <= 19999) {
-                $months = 180;
-            } elseif ($principle >= 20000) {
-                $months = 240;
+    if ($price != '') {
+        if (str_contains($categories, 'Showroom') || str_contains($categories, 'Preowned')) {
+            if (str_contains($categories, 'ATVs') || str_contains($categories, 'Snowmobiles')) {
+                ($principle > 2999) ? ($months = 120) : ($months = null);
+            } elseif (str_contains($categories, 'Boat Lifts / Docks')) {
+                $months = 120;
+            } elseif (str_contains($categories, 'Outboard Motors') || str_contains($categories, 'Boats')) {
+                ($principle <= 19999) ? ($months = 180) : ($months = 240);
+            } elseif (str_contains($categories, 'Trailers/Sled Decks') || str_contains($categories, 'Tents')) {
+                ($principle <= 2999) ? ($months = 36) : ($months = 60);
+            } elseif (str_contains($categories, 'Electric Surfboards')) {
+                if ($principle >= 4999 && $principle < 9999) {
+                    $months = 84;
+                } elseif ($principle >= 10000 && $principle <= 19999) {
+                    $months = 180;
+                } elseif ($principle >= 20000) {
+                    $months = 240;
+                }
             }
         }
-    }
 
-    //    Amortization calculation
+        //    Amortization calculation
 
-    if($interest != null && $months != null){
-        $monthlyInterest = ($interest / 12);
-        $num = (1 + $monthlyInterest);
+        if ($interest != null && $months != null) {
+            $monthlyInterest = ($interest / 12);
+            $num = (1 + $monthlyInterest);
 
-        $numerator =  $monthlyInterest*($num ** $months);
-        $denominator = ($num ** $months) -1;
+            $numerator = $monthlyInterest * ($num ** $months);
+            $denominator = ($num ** $months) - 1;
 
-        $result = $principle * ($numerator / $denominator);
+            $result = $principle * ($numerator / $denominator);
 
-        $biweekly = round($result / 2);
+            $biweekly = round($result / 2);
 
-        echo '<p class="financingText">Financing available for <span class="biweekly"><strong>$' . $biweekly . '</strong> biweekly</span>*</p>
+            echo '<p class="financingText">Financing available for <span class="biweekly"><strong>$' . $biweekly . '</strong> biweekly</span>*</p>
              <div class="disclaimer"><sub><em>*On approved credit. Estimated payment is calculated using the maximum term of ' . $months . ' Months at a rate of ' . $apr . '% APR. Alternative lenders and better rates may be available. $0.00 down payment assumed. Some fees, freight, and additional charges may not be factored into this estimate.</em></sub></div>';
+        }
     }
 }
 

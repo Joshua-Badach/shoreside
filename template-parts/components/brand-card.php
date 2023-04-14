@@ -70,7 +70,7 @@ function brand_cards($term): void
         <h3 class="hidden" itemprop="name">' . $term->name . '</h3> 
         <a href="' . $term->slug . '">
             <div class="brands">
-                <img loading="lazy" width="150" height="50" itemprop="logo" src="'. $image . '" alt="' . $image_alt . '">
+                <img width="150" height="50" itemprop="logo" src="'. $image . '" alt="' . $image_alt . '">
                 <meta itemprop="description" content="' . $trimmed_content . '">
             </div>    
         </a>

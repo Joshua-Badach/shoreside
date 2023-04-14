@@ -28,7 +28,7 @@ function wp_loop_slider($query){
 
         if ($content != '') {
             echo '<section class="sliderContent">';
-            the_post_thumbnail('', array('loading' => 'lazy', 'width' => '1900', 'height' => '400'));
+            the_post_thumbnail('', array('width' => '1900', 'height' => '400'));
                 echo '<div class="sliderText">
                     <h2>' . $title . '</h2>
                     <p>' . $content . '</p>';
@@ -38,7 +38,7 @@ function wp_loop_slider($query){
         } else {
             echo '<section class="sliderContent">
                 <h2 class="hidden">' . $title . '</h2>';
-                the_post_thumbnail('', array('loading' => 'lazy'));
+                the_post_thumbnail();
             echo '</section>';
         }
     }

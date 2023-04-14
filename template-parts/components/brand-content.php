@@ -21,7 +21,7 @@ $image = $image_id->guid;
             <div class="container display">
                 <div class="row">';
     if ($image != '') {
-        echo '<img class="logoBanner col-sm-3" alt="' . $slug . ' logo" src="' . $image . '">
+        echo '<img class="logoBanner col-sm-3" width="200" height="150" alt="' . $slug . ' logo" src="' . $image . '">
                         <h2 class="hide">' . $name[0] . '</h2>';
     } else {
         echo '<h2 id="categoryTitle" class="col-3">' . $name[0] . '</h2>';
