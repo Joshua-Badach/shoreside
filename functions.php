@@ -67,6 +67,45 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
         }
         add_action( 'wp_enqueue_scripts', 'add_theme_scripts' ,0);
 
+//        // remove dashicons in frontend to non-admin
+        function wpdocs_dequeue_dashicon() {
+            if (current_user_can( 'update_core' )) {
+                return;
+            }
+            wp_deregister_style('dashicons');
+        }
+        add_action( 'wp_enqueue_scripts', 'wpdocs_dequeue_dashicon' );
+
+        add_action( 'wp_print_styles', 'wps_deregister_styles', 100 );
+        function wps_deregister_styles() {
+            wp_dequeue_style( 'wp-block-library' );
+        }
+        function dequeue_jquery_migrate( $scripts ) {
+            if ( ! is_admin() && ! empty( $scripts->registered['jquery'] ) ) {
+                $scripts->registered['jquery']->deps = array_diff(
+                    $scripts->registered['jquery']->deps,
+                    [ 'jquery-migrate' ]
+                );
+            }
+        }
+        add_action( 'wp_default_scripts', 'dequeue_jquery_migrate' );
+
+        function themesharbor_disable_woocommerce_block_styles() {
+            wp_dequeue_style( 'wc-blocks-style' );
+        }
+        add_action( 'wp_enqueue_scripts', 'themesharbor_disable_woocommerce_block_styles' );
+
+        function themesharbor_disable_woocommerce_block_editor_styles() {
+            wp_deregister_style( 'wc-block-editor' );
+            wp_deregister_style( 'wc-blocks-style' );
+        }
+        add_action( 'enqueue_block_assets', 'themesharbor_disable_woocommerce_block_editor_styles', 1, 1 );
+
+        function disable_classic_theme_styles() {
+            wp_deregister_style('classic-theme-styles');
+            wp_dequeue_style('classic-theme-styles');
+        }
+        add_filter('wp_enqueue_scripts', 'disable_classic_theme_styles', 100);
         function preloadAssets(): void{
             $dir = get_template_directory_uri();
             $footer_logo_id = get_page_by_title('rps-logo', 'OBJECT', 'attachment');
@@ -94,9 +133,6 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
             echo '<link rel="preload" href="' . $footer_logo_src . '" as="media" >';
 //            Loading gif
             echo '<link rel="preload" href="' . $dir . '\assets\src\library\images\loading.svg' . '" as="media" >';
-
-
-//            Product inquiry form
 
         }
         add_action( 'wp_head', 'preloadAssets', -1);
@@ -193,52 +229,6 @@ function featured_brand_shortcode(): void
     require('template-parts/components/featured-brand.php');
 }
 add_shortcode('featured-brand', 'featured_brand_shortcode');
-//function tester(){
-// -==========- Declare vars -==========- //
-//Set up db and input
-//$suppliers = [
-//    ['supplier'         =>          'kimpex',
-//    'server'            =>          'ftp.kimpex.com',
-//    'username'          =>          '7321004',
-//    'password'          =>          '$Tvf&V6Cey',
-//    'remote_file_path'  =>          'ftp://7321004@ftp.kimpex.com/'],
-//
-//    ['supplier'         =>          'test',
-//    'server'            =>          'ftp.test.com',
-//    'username'          =>          'user',
-//    'password'          =>          'password',
-//    'remote_file_path'  =>          'ftp://user@ftp.test.com'],
-//];
-
-
-//File Details
-//    $local_file_path = 'C:/Users/Joshu/Downloads/';
-//
-//    foreach ($suppliers as $supplier) {
-//        echo $supplier['supplier'] . '<br>';
-//        echo $supplier['server'] . '<br>';
-//        echo $supplier['username'] . '<br>';
-//        echo $supplier['password'] . '<br><br>';
-//
-//        $remote_file_path = 'ftp://' . $supplier['username'] . '@' . $supplier['server'] . '/';
-//
-//        echo $remote_file_path . '<br>';
-//        echo $local_file_path . '<br><br>';
-
-
-//        $connection_id = ftp_connect($supplier['server']);
-//
-//        $connection_result = ftp_login($connection_id, $supplier['username'], $supplier['password']);
-//
-//        ftp_chdir($connection_id, dirname($remote_file_path));
-//
-//        if (ftp_get($connection_id, $local_file_path, basename($remote_file_path))){}
-
-
-//        Continue here
-//    }
-//}
-//add_shortcode('tester', 'tester');
 
 function careers_shortcode( $atts = array(), $content = null ): void
 {
@@ -910,3 +900,51 @@ function shoreside_save_category_apr($term_id) {
 
 add_action('edited_product_cat', 'shoreside_save_category_apr', 10, 1);
 add_action('create_product_cat', 'shoreside_save_category_apr', 10, 1);
+
+
+function edit_category_video($term) {
+
+    $taxonomy           =           'product_cat';
+    $hierarchical       =           1;
+    $empty              =           0;
+    $limit              =           -1;
+    $status             =           'publish';
+    $name               =           'Preowned';
+
+    $args = array(
+        'taxonomy'                      => $taxonomy,
+        'hierarchical'                  => $hierarchical,
+        'hide_empty'                    => $empty,
+        'limit'                         => $limit,
+        'status'                        => $status,
+        'name'                          => $name
+    );
+
+    $categories = get_categories($args);
+    $term_id = $term->term_id;
+    $cat_video = get_term_meta($term_id, 'cat_video', true);
+
+        ?>
+        <tr class="form-field">
+            <th scope="row" valign="top"><label for="cat_video"><?php _e('Video Id', 'video'); ?></label></th>
+            <td>
+                <input type="text" name="cat_video" id="cat_video" value="<?php echo esc_attr($cat_video) ? esc_attr($cat_video) : ''; ?>">
+                <p class="description"><?php _e('Enter the Youtube video ID', 'video'); ?></p>
+            </td>
+        </tr>
+        <?php
+}
+
+add_action('product_cat_edit_form_fields', 'edit_category_video', 10, 1);
+
+
+// Save extra taxonomy fields callback function.
+function shoreside_save_category_video($term_id) {
+
+    $cat_video = filter_input(INPUT_POST, 'cat_video');
+
+    update_term_meta($term_id, 'cat_video', $cat_video);
+}
+
+add_action('edited_product_cat', 'shoreside_save_category_video', 10, 1);
+add_action('create_product_cat', 'shoreside_save_category_video', 10, 1);

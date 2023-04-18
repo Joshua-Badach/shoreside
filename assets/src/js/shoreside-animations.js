@@ -36,4 +36,9 @@ export function shoresideAnimations(){
             },
         });
     }
+    $('#videoTab').click(function(){
+        $('#shelf').css('align-content', 'flex-start');
+        $('#videoSlider').show( { direction: "left" }, 1000);
+        console.log('slide clicked');
+    });
 }

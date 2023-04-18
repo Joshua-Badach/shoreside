@@ -1951,3 +1951,29 @@ input:checked + .slider:before {
 .slick-prev, .slick-next {
   z-index: 10000;
 }
+#shelf{
+  display: flex;
+  position: absolute;
+  align-content: flex-end;
+  width: 100%;
+  aspect-ratio: 2/.85;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  #videoTab{
+    display: flex;
+    width: 50px;
+    height: 50px;
+    background-color: green;
+    z-index: 11;
+  }
+  #videoSlider{
+    display: none;
+    background-color: nth($rpsBrand, 1);
+    z-index: 10;
+    width: 100%;
+    aspect-ratio: 2/.85;
+  }
+}
+
