@@ -1976,4 +1976,6 @@ input:checked + .slider:before {
     aspect-ratio: 2/.85;
   }
 }
-
+.videoButton{
+  transform: translateX(50px);
+}
