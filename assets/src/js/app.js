@@ -8,6 +8,8 @@ import {shoresideAnimations} from "./shoreside-animations";
 import './shoreside-animations';
 import {breadcrumbs} from "./breadcrumbs";
 import './breadcrumbs';
+import {videoCatAjax} from "./video-cat-ajax";
+import './video-cat-ajax';
 
 jQuery(document).ready(function($) {
   $(shoresideAnimations);
@@ -64,6 +66,7 @@ jQuery(document).ready(function($) {
   if(pageUrl.indexOf("showroom") > -1 || pageUrl.indexOf("parts-and-accessories") > -1){
     $(sidebar);
     $(sidebarAjax);
+    $(videoCatAjax)
   }
 
   (function($) {

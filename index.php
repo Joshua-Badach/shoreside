@@ -6,18 +6,22 @@ get_header();
 $slug = $post->post_name;
 
 if ($slug != 'search') {
+    echo '<div id="shelf">';
     if(isset($_REQUEST['product_cat']) != ''){
         $term = get_term_by('id', $_REQUEST['product_cat'], 'product_cat');
         $term_id = $term->term_id;
         $cat_video = implode(get_term_meta($term_id, 'cat_video', false));
 
         if ($cat_video != '') {
-            echo '<div id="shelf">
-                <div id="videoTab"></div>
-                <div id="videoSlider" style="display: none"></div>
-            </div>';
+            echo '<div id="videoTab"></div>
+                <div id="videoSlider" style="display: none">
+                    <iframe width="100%" height="100%"
+                        src="https://www.youtube.com/embed/' . $cat_video . '">
+                    </iframe>
+                </div>';
         }
     }
+    echo '</div>';
     echo '<div class="modal" style="display: none">
         <div id="modalBackground" class="container">
             <div id="modalContent"></div>

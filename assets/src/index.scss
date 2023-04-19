@@ -1953,29 +1953,28 @@ input:checked + .slider:before {
 }
 #shelf{
   display: flex;
-  position: absolute;
+  position: fixed;
   align-content: flex-end;
   width: 100%;
-  aspect-ratio: 2/.85;
+  max-height: 400px;
+  aspect-ratio: 4/1;
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
+  z-index: 100;
 
   #videoTab{
     display: flex;
     width: 50px;
     height: 50px;
     background-color: green;
-    z-index: 11;
+    z-index: 1000;
   }
   #videoSlider{
     display: none;
-    background-color: nth($rpsBrand, 1);
-    z-index: 10;
-    width: 100%;
-    aspect-ratio: 2/.85;
+    z-index: 1000;
+    width: 50%;
+    height: 100%;
+    max-height: 400px;
   }
-}
-.videoButton{
-  transform: translateX(50px);
 }

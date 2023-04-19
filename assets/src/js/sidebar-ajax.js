@@ -5,30 +5,26 @@ window.LoadResultsPayload = {
   type: 'POST',
   action: 'load_results',
 };
-// window.modalPayload = {
-//   type: 'POST',
-//   action: 'load_product',
-// };
 
-var mobile = (/iphone|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));
+const mobile = (/iphone|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));
 
 
 export function sidebarAjax(){
 
   $(document).on('click', '#sidebar a, #sidebar input, #sidebar button', function() {
 
-    var idObj = $(this).data('category');
-    var attribute = $(this).data('attribute');
-    var tagObj = $(this).data('term');
-    var orderByOjb = $(this).data('order');
-    var onSaleObj = $(this).data('sale');
-    var slug = $(this).data('slug');
-    var catSlug = $('.display').data('parent');
+    const idObj = $(this).data('category');
+    const attribute = $(this).data('attribute');
+    const tagObj = $(this).data('term');
+    const orderByOjb = $(this).data('order');
+    const onSaleObj = $(this).data('sale');
+    const slug = $(this).data('slug');
+    const catSlug = $('.display').data('parent');
 
 
-    var pageObj = $('#contentTrigger').data('page');
-    var slugObj = $('#contentTrigger').data('slug');
-    var ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";
+    const pageObj = $('#contentTrigger').data('page');
+    const slugObj = $('#contentTrigger').data('slug');
+    const ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";
     window.LoadResultsPayload.idObj = idObj;
     window.LoadResultsPayload.pageObj = pageObj;
     window.LoadResultsPayload.attribute = attribute;

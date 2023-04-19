@@ -482,6 +482,30 @@ function load_results(): void
 add_action('wp_ajax_load_results', 'load_results');
 add_action('wp_ajax_nopriv_load_results', 'load_results');
 
+function load_video_results(): void
+{
+
+    if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+
+        $idObj = $_REQUEST['idObj'];
+        $term = get_term_by('id', $idObj, 'product_cat');
+        $term_id = $term->term_id;
+        $cat_video = implode(get_term_meta($term_id, 'cat_video', false));
+
+        if ($cat_video != '') {
+            echo '<div id="videoTab"></div>
+                <div id="videoSlider" style="display: none">
+                    <iframe width="100%" height="100%"
+                        src="https://www.youtube.com/embed/' . $cat_video . '">
+                    </iframe>
+                </div>';
+        }
+
+        die();
+    }
+}
+add_action('wp_ajax_load_video_results', 'load_video_results');
+add_action('wp_ajax_nopriv_load_video_results', 'load_video_results');
 
 
 function content_shortcode(): void
