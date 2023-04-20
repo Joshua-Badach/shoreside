@@ -18,14 +18,17 @@ jQuery(document).ready(function($) {
   window.onscroll = function() {navStick()};
 
   const navbar = document.getElementById("navbar");
+  const shelf = document.getElementById("shelf");
   const sticky = navbar.offsetTop;
   const pageUrl = document.location.href;
 
   function navStick() {
     if (window.pageYOffset >= sticky) {
-      navbar.classList.add("sticky")
+      navbar.classList.add("sticky");
+      shelf.style.marginTop = "20px";
     } else {
       navbar.classList.remove("sticky");
+      shelf.style.marginTop = "0px";
     }
   }
 

@@ -939,10 +939,11 @@ footer{
   transform: rotate(-35deg);
 }
 
-
-
 //extra small mobile
 @media (min-width: 320px) and (max-width: 480px) {
+  #videoSlider {
+    width: 100%;
+  }
   .brand-carousel{
     section{
       margin: .5% .5%;
@@ -1047,6 +1048,9 @@ footer{
 }
 //mobile and tablet
 @media (min-width: 481px) and (max-width: 768px) {
+  #videoSlider {
+    width: 100%;
+  }
   .brand-carousel{
     section{
       margin: .5% .5%;
@@ -1132,6 +1136,9 @@ footer{
 
 //small screens
 @media (min-width: 769px) and (max-width: 1024px) {
+  #videoSlider {
+    width: 50%;
+  }
   #brandContent{
     margin-top: -35vh;
 
@@ -1201,6 +1208,9 @@ footer{
 
 //regular screens
 @media (min-width: 1025px) and (max-width: 1200px) {
+  #videoSlider {
+    width: 50%;
+  }
   #brandContent{
     margin-top: -35vh;
 
@@ -1252,7 +1262,9 @@ footer{
   }
 }
 @media (min-width: 1201px){
-
+  #videoSlider {
+    width: 50%;
+  }
   .mainCarousel{
     min-height: 400px;
   }
@@ -1967,14 +1979,26 @@ input:checked + .slider:before {
     display: flex;
     width: 50px;
     height: 50px;
-    background-color: green;
+    background-color: nth($rpsBrand, 1);
+    background-image: linear-gradient(nth($rpsBrand, 1), #5f9fc9);
+    border: #0261a1 3px outset;
+    border-radius: 5px;
     z-index: 1000;
+
+    img{
+      height: 40px;
+      width: 40px;
+      margin: 2px;
+    }
   }
   #videoSlider{
     display: none;
     z-index: 1000;
-    width: 50%;
-    height: 100%;
+    aspect-ratio: 16 / 9;
     max-height: 400px;
   }
+}
+.vidTabMobile{
+  transition: transform .60s;
+  transform: translate(50px, 195px);
 }

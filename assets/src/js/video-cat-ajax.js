@@ -7,6 +7,9 @@ window.LoadVideoPayload = {
     type: 'POST',
     action: 'load_video_results',
 };
+
+const mobile = (/iphone|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));
+
 export function videoCatAjax() {
     $(document).on('click', '#sidebar a, #sidebar input, #sidebar button', function() {
 
@@ -24,6 +27,9 @@ export function videoCatAjax() {
 
                 $('#videoTab').click(function(){
                     $(this).show( { direction: "left" }, 1000);
+                    if(mobile) {
+                        $(this).toggleClass('vidTabMobile');
+                    }
                     $('#videoSlider').toggle( { direction: "left" }, 1000);
                 });
             },

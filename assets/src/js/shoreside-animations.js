@@ -38,6 +38,9 @@ export function shoresideAnimations(){
     }
     $('#videoTab').click(function(){
         $(this).show( { direction: "left" }, 1000);
+        if(mobile) {
+            $(this).toggleClass('vidTabMobile');
+        }
         $('#videoSlider').toggle( { direction: "left" }, 1000);
     });
 }

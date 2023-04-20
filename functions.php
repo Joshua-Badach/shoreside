@@ -39,7 +39,7 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
         function shoreside_header_setup(): void
         {
             $args = array(
-                'default-image'             =>get_template_directory_uri() . 'assets/src/library/images/404background.jpg',
+                'default-image'             =>get_template_directory_uri() . 'assets/src/library/images/404background.webp',
                 'default-text-color'        =>'0069ad',
                 'width'                     =>'1920',
                 'height'                    =>'1440',
@@ -176,7 +176,17 @@ add_action( 'after_setup_theme', 'rpsShoreside_setup');
 
 add_filter( 'woocommerce_is_purchasable', '__return_false');
 
+//Restrict mime type to webp, svg, and pdf
+function restrict_mimes($mime_types){
+    $mime_types = array(
+        'webp' => 'image/webp',
+        'svg' => 'image/svg',
+        'pdf' => 'application/pdf'
+    );
+    return $mime_types;
+}
 
+add_filter('upload_mimes', 'restrict_mimes');
 
 global $wp;
 global $post;
@@ -493,7 +503,7 @@ function load_video_results(): void
         $cat_video = implode(get_term_meta($term_id, 'cat_video', false));
 
         if ($cat_video != '') {
-            echo '<div id="videoTab"></div>
+            echo '<div id="videoTab"><img src="' . get_template_directory_uri() . '/assets/src/library/images/play-button.webp' . '" alt="Video Icon"></div>
                 <div id="videoSlider" style="display: none">
                     <iframe width="100%" height="100%"
                         src="https://www.youtube.com/embed/' . $cat_video . '">
