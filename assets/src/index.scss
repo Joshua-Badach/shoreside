@@ -941,6 +941,9 @@ footer{
 
 //extra small mobile
 @media (min-width: 320px) and (max-width: 480px) {
+  #shelf{
+    aspect-ratio: 2/1.25;
+  }
   #videoSlider {
     width: 100%;
   }
@@ -1048,6 +1051,9 @@ footer{
 }
 //mobile and tablet
 @media (min-width: 481px) and (max-width: 768px) {
+  #shelf{
+    aspect-ratio: 2/.75;
+  }
   #videoSlider {
     width: 100%;
   }
@@ -1136,8 +1142,13 @@ footer{
 
 //small screens
 @media (min-width: 769px) and (max-width: 1024px) {
-  #videoSlider {
-    width: 50%;
+  #shelf{
+    aspect-ratio: 2/.75;
+    max-height: 29%;
+    
+    #videoSlider {
+      width: 50%;
+    }
   }
   #brandContent{
     margin-top: -35vh;
@@ -1208,9 +1219,14 @@ footer{
 
 //regular screens
 @media (min-width: 1025px) and (max-width: 1200px) {
-  #videoSlider {
+  #shelf{
+    aspect-ratio: 4/1;
+    max-height: 400px;
+    
+    #videoSlider {
     width: 50%;
   }
+}
   #brandContent{
     margin-top: -35vh;
 
@@ -1262,8 +1278,13 @@ footer{
   }
 }
 @media (min-width: 1201px){
-  #videoSlider {
-    width: 50%;
+  #shelf{
+    aspect-ratio: 4/1;
+    max-height: 400px;
+
+    #videoSlider {
+      width: 50%;
+    }
   }
   .mainCarousel{
     min-height: 400px;
@@ -1965,11 +1986,9 @@ input:checked + .slider:before {
 }
 #shelf{
   display: flex;
-  position: fixed;
+  position: absolute;
   align-content: flex-end;
   width: 100%;
-  max-height: 400px;
-  aspect-ratio: 4/1;
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
@@ -2000,5 +2019,5 @@ input:checked + .slider:before {
 }
 .vidTabMobile{
   transition: transform .60s;
-  transform: translate(50px, 195px);
+  transform: translate(50px, 20vh);
 }
