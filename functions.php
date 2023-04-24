@@ -302,7 +302,7 @@ function mission_shortcode( $atts = array(), $content = null ): void
         <div class="row">
             <section class="col-lg-12">
                 <h2>Our Mission</h2>';
-                echo '<p itemprop="description">' . $content . '</p>';
+                echo '<p>' . $content . '</p>';
             echo '</section>
         </div>
     </div>';

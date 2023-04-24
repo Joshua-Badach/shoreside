@@ -29,7 +29,7 @@ echo '<div class="tagLine">
             </div>
         </div>
     </div>
-        <section id="brandContent" class="container" itemscope itemtype="https://schema.org/ItemList" >
+        <section id="brandContent" class="container">
         <h3 class="hidden">' . $post->post_title . ' Featured Products</h3>';
 echo do_shortcode('[products attribute="manufacturer"  terms="' . $slug . '" per_page="4" columns="4" meta_key="event_date" orderby="meta_value_num" on_sale="" order="DESC" operator="IN"]');
 

@@ -62,16 +62,11 @@ function brand_cards($term): void
     $image_alt = get_post_meta($image_id->ID, '_wp_attachment_image_alt', TRUE);
     $image = $image_id->guid;
 
-    $content = $term->description;
-    $trimmed_content = wp_trim_words( $content, 25, '...');
-
-
-    echo '<section itemscope class="tile" itemtype="https://schema.org/Brand">
-        <h3 class="hidden" itemprop="name">' . $term->name . '</h3> 
+    echo '<section>
+        <h3 class="hidden">' . $term->name . '</h3> 
         <a href="' . $term->slug . '">
             <div class="brands">
                 <img width="150" height="50" itemprop="logo" src="'. $image . '" alt="' . $image_alt . '">
-                <meta itemprop="description" content="' . $trimmed_content . '">
             </div>    
         </a>
         </section>';

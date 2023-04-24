@@ -5,11 +5,6 @@ $image_alt = get_post_meta($image_id->ID, '_wp_attachment_image_alt', TRUE);
 $image = $image_id->guid;
 
 echo'<footer>
-            <meta itemprop="url" content="https://recreationalpowersports.com" />
-            <meta itemprop="email" content="admin@recreationalpowersports.com" />
-            <meta itemprop="logo" content="'. $image . '" />
-            <meta itemprop="currenciesAccepted" content="CAD"/>
-            <meta itemprop="paymentAccepted" content="Cash, Debit, VISA, MasterCard"/>
             <div class="row">
                 <span class="col-lg-3">
                     <a href="' . site_url() . '">
@@ -27,19 +22,19 @@ echo'<footer>
                         <li><a href="/careers/">Careers</a></li>
                         <li><a href="/privacy/">Privacy</a></li>
                     </ul>
-                    <p itemscope itemtype="https://schema.org/PostalAddress" itemprop="address">
+                    <p>
                         <a class="location" href="https://maps.google.com/?q=Recreational+Power+Sports" target="_blank" rel="noopener">
-                            <span itemprop="streetAddress">11204 154 Street NW</span>
-                            <span itemprop="addressLocality">Edmonton</span>
-                            <span itemprop="addressRegion">AB</span>
-                            <span itemprop="postalCode">T5M 1X7</span>
+                            <span>11204 154 Street NW</span>
+                            <span>Edmonton</span>
+                            <span>AB</span>
+                            <span>T5M 1X7</span>
                         </a>
                     </p>
                 </div>
                 <div class="col-lg-3">
                     <p><strong>Hours</strong></p>
-                    <p>Monday to Friday: <span itemprop="openingHours" content="Mo-Fr 08:00-17:00">8:00am to 5:00pm</span></p>
-                    <p>Saturday: <span itemprop="openingHours" content="Sa 10:00-14:00">10:00am to 2:00pm</span></p>
+                    <p>Monday to Friday: <span>8:00am to 5:00pm</span></p>
+                    <p>Saturday: <span>10:00am to 2:00pm</span></p>
                     <p>Sundays and Holidays: <span>Closed</span></p>
                 </div>
                 <div class="col-lg-4">
@@ -52,17 +47,17 @@ echo'<footer>
 <div class="row">
     <div class="col-lg-4 offset-lg-4 socmedContainer">
         <div id="facebookIcon" class="socmed">
-            <a class="facebook" itemprop="sameAs" href="https://www.facebook.com/recpowersports/" target="_blank">
+            <a class="facebook" target="_blank">
                 <object data="<?php echo get_template_directory_uri() . '/assets/src/library/images/facebook.svg' ?>" ></object>
             </a>
         </div>
         <div id="youtubeIcon" class="socmed">
-            <a class="youtube" itemprop="sameAs" href="https://www.youtube.com/@recreationalpowersports" target="_blank">
+            <a class="youtube" target="_blank">
                 <object data="<?php echo get_template_directory_uri() . '/assets/src/library/images/youtube.svg' ?>"></object>
             </a>
         </div>
         <div id="instaIcon" class="socmed">
-            <a class="instagram" itemprop="sameAs" href="https://www.instagram.com/recreationalpowersports/?hl=en" target="_blank">
+            <a class="instagram" target="_blank">
                 <object data="<?php echo get_template_directory_uri() . '/assets/src/library/images/instagram.svg' ?>"></object>
             </a>
         </div>

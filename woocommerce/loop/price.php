@@ -28,16 +28,7 @@ $id = $product->get_id();
 $url = get_permalink( $id );
 
 if ( $price_html = $product->get_price_html() ) {
-    echo '<div itemscope itemprop="offers" itemtype="https://schema.org/Offer">
-        <meta itemprop="priceCurrency" content="CAD" />
-        <meta itemprop="price" content="' . $price . '" />
-        <meta itemprop="url" content="' . $url . '" />
+    echo '<div>
         <span class="price">' . $price_html . '</span>
-    </div>';
-} else {
-    echo '<div itemscope itemprop="offers" itemtype="https://schema.org/Offer">
-        <meta itemprop="priceCurrency" content="CAD" />
-        <meta itemprop="price" content="' . $price . '" />
-        <meta itemprop="url" content="' . $url . '" />
     </div>';
 }

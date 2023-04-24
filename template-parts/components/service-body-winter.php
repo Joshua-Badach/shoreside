@@ -45,8 +45,8 @@ echo '<div class="row justify-content-around">
                         <span class="col-8">Name</span><span class="col-4">Starting At</span>
                     </div>';
                     foreach ($winterizeProducts as $product){
-                        echo '<a class="row tableItem" itemscope itemtype="https://schema.org/ProductCollection" href="' . get_permalink( $product->id ) . '"> 
-                            <span class="col-8" itemprop="name">' . $product->name . '</span>';
+                        echo '<a class="row tableItem" href="' . get_permalink( $product->id ) . '"> 
+                            <span class="col-8">' . $product->name . '</span>';
                             if ($product->price == 0){
                                 echo '<span class="col-4"> - </span>';
                             } else {

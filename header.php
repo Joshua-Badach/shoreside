@@ -61,13 +61,13 @@ $slug = $post->post_name;
 
 </head>
 
-<body itemscope itemtype="https://schema.org/Store">
+<body>
 <?php get_template_part('template-parts/components/news') ?>
 <h1 class="bodyOutline"><?php
     if ( is_home() || is_front_page() )
-        echo ('<span itemprop="name">' . $site_name . '</span>' . ' - Home');
+        echo ('<span>' . $site_name . '</span>' . ' - Home');
     else
-        echo ('<span itemprop="name">' . $site_name . '</span>' . ' - ' . $site_suffix);
+        echo ('<span>' . $site_name . '</span>' . ' - ' . $site_suffix);
     ?></h1>
 <header>
     <?php get_template_part( 'template-parts/components/nav' ); ?>
