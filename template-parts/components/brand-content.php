@@ -9,8 +9,9 @@ $terms = get_terms([
 ($slug == 'mercury') ? ($orderby = 'menu_order') : ($orderby = 'name');
 ($slug == 'mercury') ? ($order = 'DESC') : ($order = 'ASC');
 
-$name = wp_list_pluck($terms, 'name');
-$description = wp_list_pluck($terms, 'description');
+$name = implode(wp_list_pluck($terms, 'name'));
+$term_slug = implode(wp_list_pluck($terms, 'slug'));
+$description = implode(wp_list_pluck($terms, 'description'));
 
 $image_slug = $slug.'-logo';
 $image_id = get_page_by_title($image_slug, 'OBJECT', 'attachment');
@@ -22,17 +23,17 @@ $image = $image_id->guid;
                 <div class="row">';
     if ($image != '') {
         echo '<img class="logoBanner col-sm-3" width="200" height="150" alt="' . $slug . ' logo" src="' . $image . '">
-                        <h2 class="hide">' . $name[0] . '</h2>';
+                        <h2 class="hide">' . $name . '</h2>';
     } else {
-        echo '<h2 id="categoryTitle" class="col-3">' . $name[0] . '</h2>';
+        echo '<h2 id="categoryTitle" class="col-3">' . $name . '</h2>';
     }
-    echo '<p class="col-sm-9 description">' . $description[0] . '</p>
+    echo '<p class="col-sm-9 description">' . $description . '</p>
                 </div>
             </div>
             <div id="mobileFilter"></div>
             <div class="content">';
     echo '<div class="container">';
-    echo do_shortcode('[products attribute="manufacturer"  terms="' . $name[0] . '" per_page="-1" columns="5"  orderby="' . $orderby . '" on_sale="" order="'. $order . '" operator="IN"]');
+    echo do_shortcode('[products attribute="manufacturer"  terms="' . $term_slug . '" per_page="-1" columns="5"  orderby="' . $orderby . '" on_sale="" order="'. $order . '" operator="IN"]');
     echo '</div>
             </div>
     </section>';

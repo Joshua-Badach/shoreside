@@ -68,13 +68,14 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
         add_action( 'wp_enqueue_scripts', 'add_theme_scripts' ,0);
 
 //        // remove dashicons in frontend to non-admin
-        function wpdocs_dequeue_dashicon() {
-            if (current_user_can( 'update_core' )) {
-                return;
-            }
-            wp_deregister_style('dashicons');
-        }
-        add_action( 'wp_enqueue_scripts', 'wpdocs_dequeue_dashicon' );
+//        Need to hash this one out, dashicons is super render blocking on load, but breaks the menu dropdowns
+//         function wpdocs_dequeue_dashicon() {
+//             if (current_user_can( 'update_core' )) {
+//                 return;
+//             }
+//             wp_deregister_style('dashicons');
+//         }
+//         add_action( 'wp_enqueue_scripts', 'wpdocs_dequeue_dashicon' );
 
         add_action( 'wp_print_styles', 'wps_deregister_styles', 100 );
         function wps_deregister_styles() {
@@ -149,7 +150,7 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
 
         add_theme_support( 'post-thumbnails' );
 
-        add_theme_support('wp-block-styles');
+//        add_theme_support('wp-block-styles');
 
 //        add_theme_support( 'align-wide' );
 
@@ -218,8 +219,8 @@ function split_shortcode( $atts = array(), $content = null ): void
         <section class="row">
             <h2 class="col-sm-12">' . get_the_title() . '</h2>
                 <div class="col-sm-6">';
-                echo $content;
-            echo '</div>
+    echo $content;
+    echo '</div>
             <div class="col-sm-6">
                 ' . $form . '
             </div>
@@ -257,23 +258,23 @@ function careers_shortcode( $atts = array(), $content = null ): void
         </section>
         <section class="row justify-content-around careerListing">
             <h2 class="col-12">Careers</h2>';
-            while ($careerQuery->have_posts()){
-                $careerQuery->the_post();
-                $hours = get_post_meta($post->ID, 'hours', true);
-                $link = get_permalink($post->ID);
-                $thumbnail = get_the_post_thumbnail($post->ID);
+    while ($careerQuery->have_posts()){
+        $careerQuery->the_post();
+        $hours = get_post_meta($post->ID, 'hours', true);
+        $link = get_permalink($post->ID);
+        $thumbnail = get_the_post_thumbnail($post->ID);
 
-                echo '<a class="col-md-3 jobPost" href="' . $link . '">
+        echo '<a class="col-md-3 jobPost" href="' . $link . '">
                     <section class="jobContent">'
-                        . $thumbnail .
-                        '<h3>' . get_the_title() . '</h3>
+            . $thumbnail .
+            '<h3>' . get_the_title() . '</h3>
                         <span class="jobDescription">More Information</span>
                         <p>' . $hours . '</p>
                     </section>
                 </a>';
-            }
+    }
     wp_reset_postdata();
-        echo'</section>
+    echo'</section>
     </div>';
 }
 add_shortcode('careers', 'careers_shortcode');
@@ -302,8 +303,8 @@ function mission_shortcode( $atts = array(), $content = null ): void
         <div class="row">
             <section class="col-lg-12">
                 <h2>Our Mission</h2>';
-                echo '<p>' . $content . '</p>';
-            echo '</section>
+    echo '<p>' . $content . '</p>';
+    echo '</section>
         </div>
     </div>';
 }
@@ -369,8 +370,8 @@ function information_shortcode( $atts = array(), $content = null ): void
             <section class="row">
                 <h2 class="col-sm-12">Who we are…</h2>
                 <div class="col-sm-12 information">';
-                    echo $content;
-                echo '</div>
+    echo $content;
+    echo '</div>
             </section>
         </div>
     <div class="divider2"></div>';
@@ -390,8 +391,8 @@ function vision_shortcode( $atts = array(), $content = null ): void
         <section class="row justify-content-sm-center vision">
         <h2 class="col-12">Our Vision</h2>
         <p class="col-sm-8">';
-            echo $content;
-        echo '</p>
+    echo $content;
+    echo '</p>
     </section>
 </div>';
 }
@@ -465,13 +466,13 @@ function load_results(): void
 
     echo '<div data-parent="' . $test->slug . '" class="container display">
                 <div class="row">';
-                if ($image != ''){
-                        echo '<img class="productLogo col-sm-3" alt="' . $slug . ' logo" src="' . $image . '">
+    if ($image != ''){
+        echo '<img class="productLogo col-sm-3" alt="' . $slug . ' logo" src="' . $image . '">
                         <h2 class="hide" data-cat="' . $term->slug . '">' . $term->name . '</h2>';
-                    } else {
-                    echo '<h2 id="categoryTitle" class="col-3" data-cat="' . $term->slug . '">' . $term->name . '</h2>';
-                }
-                echo '<p class="col-sm-9 description">' . $term->description . '</p>
+    } else {
+        echo '<h2 id="categoryTitle" class="col-3" data-cat="' . $term->slug . '">' . $term->name . '</h2>';
+    }
+    echo '<p class="col-sm-9 description">' . $term->description . '</p>
                 </div>
             </div>
             <div id="mobileFilter">
@@ -789,43 +790,43 @@ add_filter('comments_array', 'df_disable_comments_hide_existing_comments', 10, 2
 //Add functionality to woocommerce edit manufacturer page to allow for featured brands
 
 // Add select to add manufacturer
-    function edit_wc_attribute_manufacturer($term): void
-    {
-        $id = $term->term_id;
-        $term_meta = get_option( "featured_manufacturer=$id" );
-        $select = is_array($term_meta)?array_values($term_meta): array();
- echo '<tr class="form-field">
+function edit_wc_attribute_manufacturer($term): void
+{
+    $id = $term->term_id;
+    $term_meta = get_option( "featured_manufacturer=$id" );
+    $select = is_array($term_meta)?array_values($term_meta): array();
+    echo '<tr class="form-field">
     <th scope="row" valign="top">
         <label for="featured_manufacturer">Featured Brand</label>
     </th>
     <td>
         <select name="term_meta[' . $id . ']" id="featured_manufacturer">'; ?>
-            <option value=false <?php echo (!$select || $select[0] == "false") ? "selected" : "" ?> >No</option>
-            <?php echo ($select[0] == "true") ? "<option value=true selected>Yes</option>" : "<option value=true>Yes</option>"; ?>
-       <?php echo '</select>
+    <option value=false <?php echo (!$select || $select[0] == "false") ? "selected" : "" ?> >No</option>
+    <?php echo ($select[0] == "true") ? "<option value=true selected>Yes</option>" : "<option value=true>Yes</option>"; ?>
+    <?php echo '</select>
 
         <p class="description">Is this manufacturer going to be featured on the home page</p>
     </td>
 </tr>';
-    }
-    add_action( 'pa_manufacturer_edit_form_fields', 'edit_wc_attribute_manufacturer' );
-    function save_taxonomy_custom_meta( $term_id ): void
-    {
-        if ( isset( $_POST['term_meta'] ) ) {
-            $id = $term_id;
-            $term_meta = get_option( "featured_manufacturer=$id" );
-            $cat_keys = array_keys( $_POST['term_meta'] );
-            foreach ( $cat_keys as $key ) {
-                if ( isset ( $_POST['term_meta'][$key] ) ) {
-                    $term_meta[$key] = $_POST['term_meta'][$key];
-                }
+}
+add_action( 'pa_manufacturer_edit_form_fields', 'edit_wc_attribute_manufacturer' );
+function save_taxonomy_custom_meta( $term_id ): void
+{
+    if ( isset( $_POST['term_meta'] ) ) {
+        $id = $term_id;
+        $term_meta = get_option( "featured_manufacturer=$id" );
+        $cat_keys = array_keys( $_POST['term_meta'] );
+        foreach ( $cat_keys as $key ) {
+            if ( isset ( $_POST['term_meta'][$key] ) ) {
+                $term_meta[$key] = $_POST['term_meta'][$key];
             }
-            // Save the option array.
-            update_option( "featured_manufacturer=$id", $term_meta, false );
         }
+        // Save the option array.
+        update_option( "featured_manufacturer=$id", $term_meta, false );
     }
-    add_action( 'edited_pa_manufacturer', 'save_taxonomy_custom_meta');
-    add_action( 'create_pa_manufacturer', 'save_taxonomy_custom_meta');
+}
+add_action( 'edited_pa_manufacturer', 'save_taxonomy_custom_meta');
+add_action( 'create_pa_manufacturer', 'save_taxonomy_custom_meta');
 
 //Add functionality to woocommerce edit category page to allow for fees and apr
 
@@ -854,14 +855,14 @@ function showroom_edit_category_apr($term) {
     $cat_fees = get_term_meta($term_id, 'cat_fees', true);
 
     if ($term->parent == $idObj){
-    ?>
-    <tr class="form-field">
-        <th scope="row" valign="top"><label for="cat_apr"><?php _e('APR', 'apr'); ?></label></th>
-        <td>
-            <input type="text" name="cat_apr" id="cat_apr" value="<?php echo esc_attr($cat_apr) ? esc_attr($cat_apr) : ''; ?>">
-            <p class="description"><?php _e('Enter the interest in decimal value', 'apr'); ?></p>
-        </td>
-    </tr>
+        ?>
+        <tr class="form-field">
+            <th scope="row" valign="top"><label for="cat_apr"><?php _e('APR', 'apr'); ?></label></th>
+            <td>
+                <input type="text" name="cat_apr" id="cat_apr" value="<?php echo esc_attr($cat_apr) ? esc_attr($cat_apr) : ''; ?>">
+                <p class="description"><?php _e('Enter the interest in decimal value', 'apr'); ?></p>
+            </td>
+        </tr>
         <tr class="form-field">
             <th scope="row" valign="top"><label for="cat_fees"><?php _e('Fees', 'fees'); ?></label></th>
             <td>
@@ -869,7 +870,7 @@ function showroom_edit_category_apr($term) {
                 <p class="description"><?php _e('Enter the fees', 'apr'); ?></p>
             </td>
         </tr>
-    <?php
+        <?php
     }
 }
 
@@ -958,15 +959,15 @@ function edit_category_video($term) {
     $term_id = $term->term_id;
     $cat_video = get_term_meta($term_id, 'cat_video', true);
 
-        ?>
-        <tr class="form-field">
-            <th scope="row" valign="top"><label for="cat_video"><?php _e('Video Id', 'video'); ?></label></th>
-            <td>
-                <input type="text" name="cat_video" id="cat_video" value="<?php echo esc_attr($cat_video) ? esc_attr($cat_video) : ''; ?>">
-                <p class="description"><?php _e('Enter the Youtube video ID', 'video'); ?></p>
-            </td>
-        </tr>
-        <?php
+    ?>
+    <tr class="form-field">
+        <th scope="row" valign="top"><label for="cat_video"><?php _e('Video Id', 'video'); ?></label></th>
+        <td>
+            <input type="text" name="cat_video" id="cat_video" value="<?php echo esc_attr($cat_video) ? esc_attr($cat_video) : ''; ?>">
+            <p class="description"><?php _e('Enter the Youtube video ID', 'video'); ?></p>
+        </td>
+    </tr>
+    <?php
 }
 
 add_action('product_cat_edit_form_fields', 'edit_category_video', 10, 1);
