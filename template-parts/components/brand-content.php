@@ -8,6 +8,8 @@ $terms = get_terms([
 ]);
 ($slug == 'mercury') ? ($orderby = 'menu_order') : ($orderby = 'name');
 ($slug == 'mercury') ? ($order = 'DESC') : ($order = 'ASC');
+($slug == 'yamaha-outboard') ? ($orderby = 'menu_order') : ($orderby = 'name');
+($slug == 'yamaha-outboard') ? ($order = 'DESC') : ($order = 'ASC');
 
 $name = implode(wp_list_pluck($terms, 'name'));
 $term_slug = implode(wp_list_pluck($terms, 'slug'));
