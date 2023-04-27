@@ -5,7 +5,7 @@
     $preOwnedObj = get_term_by('slug', 'preowned', 'product_cat');
     $termName = '';
 
-
+    (isset($_REQUEST['product_cat']) == $preOwnedObj->term_id) ? ($checked = 'checked ') : ($checked = '');
     (isset($_REQUEST['product_cat'])) ? $parent = $_REQUEST['product_cat'] : $parent = $id->term_id;
     (isset($_REQUEST['term'])) ? $tagObj = $_REQUEST['term'] : $tagObj = '';
 
@@ -126,6 +126,7 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
             echo '<a data-category="'. $idObj . '" data-term="' . $termCheck[$i] . '" data-orderby="' . $orderByObj . '" data-order="' . $orderObj . '" data-sale="' . $onSaleObj . '" data-slug="' . $termSlug[$i] . '" > ' . $termName[$i] . '</a>';
         }
     }
+
     echo '</div>
 </div>      
 
@@ -136,7 +137,7 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
         <div class="switchContainer objectPadding">
             <span>New</span>
             <label class="switch">
-                <input type="checkbox" name="condition" class="conditionInput" data-category="' . $preOwnedObj->term_id . '" data-term="' . $tagObj . '" data-orderby="' . $orderByObj . '" data-order="' . $orderObj . '" data-sale="' . $onSaleObj . '" data-slug="' . $preOwnedObj->slug .'"> 
+                <input type="checkbox"' . $checked . 'name="condition" class="conditionInput" data-category="' . $preOwnedObj->term_id . '" data-term="' . $tagObj . '" data-orderby="' . $orderByObj . '" data-order="' . $orderObj . '" data-sale="' . $onSaleObj . '" data-slug="' . $preOwnedObj->slug .'"> 
                 <span class="slider round"></span>
             </label>
             <span>Used</span>

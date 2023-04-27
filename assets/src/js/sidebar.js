@@ -13,17 +13,27 @@ export function sidebar() {
   $('#sidebar hr').hide();
   $('#clear').hide();
 
+  // switch to an on click event
   //Filter switch toggles
   if (catSlug.indexOf('preowned') != -1) {
-    $('input:checkbox[name="condition"]').prop('checked', true);
     $('.conditionInput').attr('data-category', pageObj);
     $('.conditionInput').attr('data-slug', slug);
   }
+  //
+  // if (slug.indexOf('preowned') !== -1 || catSlug.indexOf('preowned') !== -1) {
+  //   $('.conditionInput').attr('data-category', pageObj);
+  //   $('.conditionInput').attr('data-slug', slugObj);
+  // } else {
+  //   $('.conditionInput').prop('checked', false);
+  //   $('#conditionInput').attr('category', pageObj);
+  //   $('#conditionInput').attr('slug', slug);
+  //   window.history.replaceState({}, document.title, clear_uri);
+  // };
 
   //Show sale toggle if user is in showroom
-  if (pageUrl.indexOf('showroom') == -1) {
-    $('#showroomToggle').hide();
-  }
+  // if (pageUrl.indexOf('showroom') == -1) {
+  //   $('#showroomToggle').hide();
+  // }
 
   //Prevent defaults for filter heading dropdowns
   $('#contentTrigger .filterHeading').on('click', 'a', function(e) {

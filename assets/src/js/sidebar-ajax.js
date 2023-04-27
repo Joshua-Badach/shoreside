@@ -20,10 +20,9 @@ export function sidebarAjax(){
     const onSaleObj = $(this).data('sale');
     const slug = $(this).data('slug');
     const catSlug = $('.display').data('parent');
-
-
     const pageObj = $('#contentTrigger').data('page');
     const slugObj = $('#contentTrigger').data('slug');
+
     const ajaxUrl = window.location.origin + "/wp-admin/admin-ajax.php";
     window.LoadResultsPayload.idObj = idObj;
     window.LoadResultsPayload.pageObj = pageObj;
@@ -42,26 +41,28 @@ export function sidebarAjax(){
         $('#contentTrigger').html(response);
 
         $(sidebar);
-        if (slug.indexOf('preowned') != -1 || catSlug.indexOf('preowned') != -1) {
+        let newUri;
+        let pushCat = '?product_cat=';
+        let appendTerm = '&term=';
+        let pushTerm = '?term=';
+        let uri = window.location.toString();
+        let clear_uri = uri.substring(0, uri.indexOf("?"));
+      // || catSlug.indexOf('preowned') != -1
+        if (slug.indexOf('preowned') !== -1) {
           $('.conditionInput').prop('checked', true);
-          $('.conditionInput').attr('data-category', pageObj);
+          $('.conditionInput').attr('data-category', idObj);
           $('.conditionInput').attr('data-slug', slugObj);
+          window.history.pushState({}, document.title, pushCat + idObj);
         } else {
           $('.conditionInput').prop('checked', false);
-          $('#conditionInput').attr('category', idObj);
+          $('#conditionInput').attr('category', pageObj);
           $('#conditionInput').attr('slug', slug);
-          var uri = window.location.toString();
-          var clear_uri = uri.substring(0, uri.indexOf("?"));
           window.history.pushState({}, document.title, clear_uri);
         };
         if (onSaleObj == true) {
           $('.saleInput').prop('checked', true);
           $('.saleInput').attr('data-sale', false);
         };
-        var newUri;
-        var pushCat = '?product_cat=';
-        var appendTerm = '&term=';
-        var pushTerm = '?term=';
 
         if (idObj != pageObj && idObj != '') {
           if (idObj != '' && tagObj == '') {
