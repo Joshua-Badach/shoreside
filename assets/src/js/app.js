@@ -35,7 +35,7 @@ jQuery(document).ready(function($) {
   $(carousel);
 
   $('.financingText').on( 'click', function(){
-    $('.disclaimer').show();
+    $('.disclaimer').css('display', 'inline-block');
   });
 
   $(document).mouseup(function(e){
@@ -51,7 +51,7 @@ jQuery(document).ready(function($) {
 
   if (mobile) {
     const home = $(location).attr("origin");
-    const logo = $('<img>', {src:'/wp-content/themes/shoreside/assets/src/library/images/rps-logo-small.webp', alt:'Recreational Power Sports Logo', width:'66.67', height:'50'})
+    const logo = $('<img>', {src:'/wp-content/themes/shoreside/assets/src/library/images/rps-logo-small.webp', alt:'Recreational Power Sports Logo', width:'80', height:'60'})
 
     $('.slick-arrow').delay(10000).fadeOut('slow');
     $('.mega-toggle-blocks-left').append(logo);
