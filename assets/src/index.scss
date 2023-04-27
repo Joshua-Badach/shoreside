@@ -862,7 +862,7 @@ footer{
   top: 0 !important;
   bottom: auto !important;
   left: auto !important;
-  right: auto !important;
+  right: 0 !important;
   margin: 0 !important;
   padding: 0.202em;
   font-weight: 700;
@@ -876,11 +876,11 @@ footer{
   font-size: 0.7em;
   z-index: 1;
   aspect-ratio: 1/1;
-  -webkit-transform: translate(140px, 0) rotate(35deg);
-  -moz-transform: translate(140px, 0) rotate(35deg);
-  -ms-transform: translate(140px, 0) rotate(35deg);
-  -o-transform: translate(140px, 0) rotate(35deg);
-  transform: translate(140px, 0) rotate(35deg);
+  -webkit-transform: rotate(35deg);
+  -moz-transform: rotate(35deg);
+  -ms-transform: rotate(35deg);
+  -o-transform: rotate(35deg);
+  transform: rotate(35deg);
 }
 .pendingBanner img{
   width: 100%;
