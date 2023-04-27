@@ -857,8 +857,9 @@ footer{
   }
 }
 .pending{
-  min-height: 4em;
-  max-height: 68px;
+  min-height: 3.236em;
+  min-width: 3.236em;
+  max-height: 60px;
   top: 0 !important;
   bottom: auto !important;
   left: auto !important;
@@ -873,7 +874,7 @@ footer{
   border-radius: 100%;
   background-color: nth($rpsBrand, 1);
   color: white;
-  font-size: 0.7em;
+  font-size: .65em !important;
   z-index: 1;
   aspect-ratio: 1/1;
   -webkit-transform: rotate(35deg);
@@ -886,8 +887,9 @@ footer{
   width: 100%;
 }
 .onOrder{
-  min-height: 4em;
-  max-height: 68px;
+  min-height: 3.236em;
+  min-width: 3.236em;
+  max-height: 60px;
   top: 50%;
   bottom: auto;
   left: auto;
@@ -902,7 +904,7 @@ footer{
   border-radius: 100%;
   background-color: #f2700d;
   color: white;
-  font-size: 0.65em;
+  font-size: .65em !important;
   z-index: 1;
   aspect-ratio: 1/1;
   -webkit-transform: rotate(35deg);
@@ -915,7 +917,8 @@ footer{
   width: 100%;
 }
 .onsale{
-  min-height: 4em;
+  min-height: 3.236em;
+  min-width: 3.236em;
   max-height: 68px;
   top: 0 !important;
   bottom: auto !important;
@@ -964,7 +967,6 @@ footer{
     top: 20%
   }
   #sidebarContainer{
-    height: inherit;
     background: white;
   }
   .carousel{
@@ -1077,9 +1079,6 @@ footer{
   }
   .home-heading{
     font-size: 18px;
-  }
-  #sidebarContainer{
-    height: inherit;
   }
   .brandCard img{
     width: 100%;

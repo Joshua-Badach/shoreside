@@ -19,21 +19,6 @@ export function sidebar() {
     $('.conditionInput').attr('data-category', pageObj);
     $('.conditionInput').attr('data-slug', slug);
   }
-  //
-  // if (slug.indexOf('preowned') !== -1 || catSlug.indexOf('preowned') !== -1) {
-  //   $('.conditionInput').attr('data-category', pageObj);
-  //   $('.conditionInput').attr('data-slug', slugObj);
-  // } else {
-  //   $('.conditionInput').prop('checked', false);
-  //   $('#conditionInput').attr('category', pageObj);
-  //   $('#conditionInput').attr('slug', slug);
-  //   window.history.replaceState({}, document.title, clear_uri);
-  // };
-
-  //Show sale toggle if user is in showroom
-  // if (pageUrl.indexOf('showroom') == -1) {
-  //   $('#showroomToggle').hide();
-  // }
 
   //Prevent defaults for filter heading dropdowns
   $('#contentTrigger .filterHeading').on('click', 'a', function(e) {
@@ -78,16 +63,13 @@ export function sidebar() {
 
   //Hidenslide for mobile filter
   if (mobile) {
-    $('#sidebarContainer').hide();
+    $('#sidebarIcon img').toggleClass('sidebarIconAnimate');
+    $('#sidebarContainer').css('position', 'absolute');
     $('#sidebarIcon').on('click', function (e) {
       e.preventDefault();
       e.stopImmediatePropagation();
-      $('#sidebarContainer').toggle(500);
       $('#sidebarIcon img').toggleClass('sidebarIconAnimate');
-
-      // if (mobile) {
-        $('#sidebarContainer').css('position', 'absolute');
-      // }
+      $('#sidebarContainer').toggle(500);
     });
   } else {
     $('#sidebarIcon img, #mobileFilter a').hide();
