@@ -52,12 +52,12 @@ export function sidebar() {
 
   //Animate filtering arrow on click, show links
   $('.showCategories').on('click', function () {
-    $('#categories a').toggle();
+    $('#categories a').slideToggle(500);
     $('.showCategories img').toggleClass('sidebarIconAnimate90');
   });
 
   $('.showAttributes').on('click', function () {
-    $('#attributes a').toggle();
+    $('#attributes a').slideToggle(500);
     $('.showAttributes img').toggleClass('sidebarIconAnimate90');
   });
 

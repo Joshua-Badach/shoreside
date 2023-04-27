@@ -1529,6 +1529,7 @@ div .form-footer{
   width: 20px;
   stroke: nth($rpsBrand, 4);
   fill: nth($rpsBrand, 4);
+  transition: transform 1s;
 }
 .sidebarIconAnimate{
   -webkit-transform: rotate(45deg);
@@ -1554,6 +1555,10 @@ div .form-footer{
   padding: 2px 0;
   -webkit-box-shadow: inset -5px -5px 10px -2px #000000;
   box-shadow: inset -5px -5px 10px -2px #000000;
+
+  img{
+    transition: transform .5s;
+  }
 }
 .filterHeading p{
   margin: 0;
@@ -1580,19 +1585,21 @@ div .form-footer{
 .sidebarActive{
   padding: 10px;
 }
-#categories a{
-  display: block;
-  padding: 3px 0;
-  margin: 5px;
+#categories {
+  a {
+    display: block;
+    padding: 3px 0;
+    margin: 5px;
+  }
 }
 #attributes{
   max-height: 200px;
   overflow-y: scroll;
-}
-#attributes a{
-  display: block;
-  padding: 3px 0;
-  margin: 5px;
+   a {
+     display: block;
+     padding: 3px 0;
+     margin: 5px;
+   }
 }
 #prices a{
   display: block;
