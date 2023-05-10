@@ -21,12 +21,10 @@ $tags = wc_get_product_tag_list($product->get_id);
 $sale_price = get_post_meta( $product->id, '_price', true);
 $regular_price = get_post_meta( $product->id, '_regular_price', true);
 
-// Ensure visibility.
 if ( empty( $product ) || ! $product->is_visible() ) {
 	return;
 }
 
-//do a check later
 $manufacturer = array_shift( wc_get_product_terms( $product->id, 'pa_manufacturer', array( 'fields' => 'names' ) ) );
 $sku = $product->get_sku();
 $description = $product->get_short_description();
@@ -48,7 +46,6 @@ $description = $product->get_short_description();
 	 * @hooked woocommerce_show_product_loop_sale_flash - 10
 	 * @hooked woocommerce_template_loop_product_thumbnail - 10
 	 */
-//	do_action( 'woocommerce_before_shop_loop_item_title' );
     the_post_thumbnail('thumbnail');
 
     if ( str_contains($tags, 'Pending') == true ){
@@ -65,14 +62,12 @@ $description = $product->get_short_description();
         echo '<meta itemprop="url" content="' . get_the_post_thumbnail_url() . '"/>
         <meta itemprop="description" content="' . esc_html($description) . '"/>
     </div>';
-//    echo '<div itemscope itemprop="image" itemtype="http://schema.org/ImageObject"><img class="attachment-thumbnail size-thumbnail wp-post-image" src="' . get_the_post_thumbnail_url() . '"><meta itemprop="url" content="' . get_the_post_thumbnail_url() . '"/></div>';
 
 	/**
 	 * Hook: woocommerce_shop_loop_item_title.
 	 *
 	 * @hooked woocommerce_template_loop_product_title - 10
 	 */
-//	do_action( 'woocommerce_shop_loop_item_title' );
     echo '<h4 itemprop="name" class="shoreside-product-title ' . esc_attr( apply_filters( 'woocommerce_product_loop_title_classes', 'woocommerce-loop-product__title' ) ) . '">' . get_the_title() . '</h4>';
 
 	/**

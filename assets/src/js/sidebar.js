@@ -32,7 +32,6 @@ export function sidebar() {
     $('#categories a').show();
   } else {
     $('#categories a').hide();
-
   }
   //Hide filters on load if more than 5 children
   if ($('#attributes').children().length >= 5) {
@@ -49,6 +48,9 @@ export function sidebar() {
   if ($('#attributes').children().length == 0) {
     $('#attributeTab').hide();
   }
+  if (pageUrl.indexOf("parts-and-accessories") > -1){
+    $('#showroomToggle').hide();
+  }
 
   //Animate filtering arrow on click, show links
   $('.showCategories').on('click', function () {
@@ -64,6 +66,7 @@ export function sidebar() {
   //Hidenslide for mobile filter
   if (mobile) {
     $('#sidebarIcon img').toggleClass('sidebarIconAnimate');
+    $('#sidebarContainer').css('height', 'auto');
     $('#sidebarContainer').css('position', 'absolute');
     $('#sidebarIcon').on('click', function (e) {
       e.preventDefault();

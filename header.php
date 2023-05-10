@@ -62,7 +62,17 @@ $slug = $post->post_name;
 </head>
 
 <body>
-<?php get_template_part('template-parts/components/news') ?>
+<div class="news">
+    <p>
+        Call or Text Us: <a href="tel:7807321004">
+            <span itemprop="telephone" content="7807321004">(780) 732-1004</span>
+        </a>
+         // Our Location:
+        <a href="https://maps.google.com/?q=Recreational+Power+Sports" target="_blank" rel="noopener">
+            11204 154 Street NW Edmonton, AB
+        </a>
+    </p>
+</div>
 <h1 class="bodyOutline"><?php
     if ( is_home() || is_front_page() )
         echo ('<span>' . $site_name . '</span>' . ' - Home');

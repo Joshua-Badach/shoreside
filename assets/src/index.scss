@@ -822,7 +822,11 @@ footer{
 }
 #sidebarContainer {
   height: fit-content;
+  display: flex;
+  flex-direction: column;
+  min-height: 150px;
   z-index: 10;
+  background: white;
   -webkit-box-shadow: rgb(0, 0, 0) 5px 5px 7px 5px;
   box-shadow: rgb(0, 0, 0) 5px 5px 7px 5px;
   border-radius: 0 30px 30px 0;
@@ -945,9 +949,9 @@ footer{
 //extra small mobile
 @media (min-width: 320px) and (max-width: 480px) {
   $height : 20vh;
-  #shelf{
-    aspect-ratio: 2/1.25;
-  }
+  //#shelf{
+  //  aspect-ratio: 2/1.25;
+  //}
   #videoSlider {
     width: 100%;
   }
@@ -965,9 +969,6 @@ footer{
   }
   .disclaimer{
     top: 18%
-  }
-  #sidebarContainer{
-    background: white;
   }
   .carousel{
     max-height: 320px;
@@ -1054,9 +1055,9 @@ footer{
 }
 //mobile and tablet
 @media (min-width: 481px) and (max-width: 768px) {
-  #shelf{
-    aspect-ratio: 2/.75;
-  }
+  //#shelf{
+  //  aspect-ratio: 2/.75;
+  //}
   #videoSlider {
     width: 100%;
   }
@@ -1143,7 +1144,7 @@ footer{
 //small screens
 @media (min-width: 769px) and (max-width: 1024px) {
   #shelf{
-    aspect-ratio: 2/.75;
+    //aspect-ratio: 2/.75;
     max-height: 29%;
     
     #videoSlider {
@@ -1220,7 +1221,7 @@ footer{
 //regular screens
 @media (min-width: 1025px) and (max-width: 1200px) {
   #shelf{
-    aspect-ratio: 4/1;
+    //aspect-ratio: 4/1;
     max-height: 400px;
     
     #videoSlider {
@@ -1279,7 +1280,7 @@ footer{
 }
 @media (min-width: 1201px){
   #shelf{
-    aspect-ratio: 4/1;
+    //aspect-ratio: 4/1;
     max-height: 400px;
 
     #videoSlider {
@@ -1827,6 +1828,7 @@ input:checked + .slider:before {
 .serviceInfo{
   margin-top: 5%;
   width: inherit;
+  height: auto;
 }
 .logoBanner{
   display: flex;
@@ -1993,7 +1995,7 @@ input:checked + .slider:before {
 }
 #shelf{
   display: flex;
-  position: absolute;
+  position: fixed;
   //align-content: flex-end;
   width: 100%;
   flex-direction: column-reverse;

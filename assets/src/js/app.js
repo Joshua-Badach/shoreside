@@ -6,14 +6,11 @@ import './sidebar-ajax';
 import {sidebarAjax} from "./sidebar-ajax";
 import {shoresideAnimations} from "./shoreside-animations";
 import './shoreside-animations';
-import {breadcrumbs} from "./breadcrumbs";
-import './breadcrumbs';
 import {videoCatAjax} from "./video-cat-ajax";
 import './video-cat-ajax';
 
 jQuery(document).ready(function($) {
   $(shoresideAnimations);
-  $(breadcrumbs);
 
   window.onscroll = function() {navStick()};
 
@@ -25,7 +22,7 @@ jQuery(document).ready(function($) {
   function navStick() {
     if (window.pageYOffset >= sticky) {
       navbar.classList.add("sticky");
-      shelf.style.marginTop = "20px";
+      shelf.style.marginTop = "60px";
     } else {
       navbar.classList.remove("sticky");
       shelf.style.marginTop = "0px";
@@ -69,7 +66,7 @@ jQuery(document).ready(function($) {
   if(pageUrl.indexOf("showroom") > -1 || pageUrl.indexOf("parts-and-accessories") > -1){
     $(sidebar);
     $(sidebarAjax);
-    $(videoCatAjax)
+    $(videoCatAjax);
   }
 
   (function($) {

@@ -50,30 +50,28 @@ $partsObj = get_term_by('slug', 'parts-and-accessories', 'product_cat');
 	<h2><?php echo esc_html( $heading ); ?></h2>
 <?php endif;
 
-//do_action( 'woocommerce_product_additional_information', $product );
+do_action( 'woocommerce_product_additional_information', $product );
 
-echo '<table class="woocommerce-product-attributes shop_attributes">
-    <tbody>
-        <tr class="woocommerce-product-attributes-item">
-            <th>Manufacturer</th>
-            <td><p>' . $manufacturer . '</p></td>
-        </tr>';
+//Shut this off because I'm tired and will look at this tomorrow
+
+echo'<table class="woocommerce-product-attributes shop_attributes">
+    <tbody>';
 
         if(in_array($partsObj->term_id, $parents) == false) {
             echo '<tr class="woocommerce-product-attributes-item">
             <th>Vehicle Category</th>
-            <td><p>' . $term_not_parent->name . '</p></td>           
+            <td><p>' . $term_not_parent->name . '</p></td>
         </tr>';
             if ($type != '') {
                 echo '<tr class="woocommerce-product-attributes-item">
             <th>Vehicle Type</th>
-            <td><p>' . $type . '</p></td>           
+            <td><p>' . $type . '</p></td>
         </tr>';
             }
             if ($horse != '') {
                 echo '<tr class="woocommerce-product-attributes-item">
             <th>Horsepower</th>
-            <td><p>' . $horse . '</p></td>           
+            <td><p>' . $horse . '</p></td>
         </tr>';
             }
         }

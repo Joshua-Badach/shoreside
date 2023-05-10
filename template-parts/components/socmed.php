@@ -30,4 +30,3 @@ echo '<section class="our-socials">';
 <?php echo do_shortcode('[instagram-feed feed=1]');
 
 echo '</section>';
-?>

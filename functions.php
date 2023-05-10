@@ -202,9 +202,40 @@ function carousel_shortcode(): void
 }
 add_shortcode('carousel', 'carousel_shortcode');
 
-function promotion_content_shortcode(): void
+function promotion_content_shortcode( $atts = array(), $content = null ): void
 {
-    require('template-parts/components/promotion-content.php');
+$promotionAdQuery = new WP_Query(array(
+    'category_name'     =>      'promotions',
+    'order'             =>      'ASC',
+    'post_status'       =>      'publish',
+    'posts_per_page'    =>      -1
+));
+
+echo '<section>
+            <div class="container">
+                <div class="row">
+                <h2>Current Promotions</h2>';
+
+    echo $content;
+
+    echo '</div>
+</div>
+<div>
+    <div class="row promotionRow row-cols-4">';
+while ($promotionAdQuery->have_posts()){
+    $promotionAdQuery->the_post();
+    $promotions = get_the_post_thumbnail();
+    $promotionUrl = get_post_custom_values('promotion_url');
+    if ($promotionUrl != ''){
+        echo '<a href="' . get_site_url() . $promotionUrl[0] . '"><p class="col promotions">' . $promotions . '</p></a>';
+    } else {
+        echo '<p class="col promotions">' . $promotions . '</p>';
+    }
+}
+wp_reset_postdata();
+echo '</div>
+            </div>
+    </section>';
 }
 add_shortcode('promotion-content', 'promotion_content_shortcode');
 
@@ -298,7 +329,6 @@ add_shortcode('hero', 'hero_shortcode', 1);
 
 function mission_shortcode( $atts = array(), $content = null ): void
 {
-//    include('template-parts/components/mission.php');
     echo '<div class="container mission">
         <div class="row">
             <section class="col-lg-12">
@@ -322,11 +352,11 @@ function socmed_shortcode(): void
 }
 add_shortcode('socmed', 'socmed_shortcode');
 
-function promotions_shortcode(): void
+function socmed_promotions_shortcode(): void
 {
     echo do_shortcode('[instagram-feed feed=2]');
 }
-add_shortcode('socmed-promotions', 'promotions_shortcode');
+add_shortcode('socmed-promotions', 'socmed_promotions_shortcode');
 
 function product_gallery_shortcode(): void
 {
@@ -605,19 +635,22 @@ function payments(): void
 
     $showroom = get_categories($args);
     $idObj = (int)implode(wp_list_pluck($showroom, 'term_id'));
+    $year = (int)array_shift( wc_get_product_terms($product->id, 'pa_model-year', array( 'fields' => 'names' )));
 
     $subCategories = get_terms(
         'product_cat',
         array('parent' => $idObj)
     );
-
     foreach ($subCategories as $cat) {
         if (str_contains($categories, $cat->name)) {
+            if ($year > 0 && $year < 2015){
+                $interest = (float)get_term_meta($cat->term_id, 'old_apr', true);
+            } else {
+                $interest = (float)get_term_meta($cat->term_id, 'cat_apr', true);
+            }
             $fees = (int)get_term_meta($cat->term_id, 'cat_fees', true);
-            $interest = (float)get_term_meta($cat->term_id, 'cat_apr', true);
         }
     }
-
     $gst = 1.05;
     $apr = $interest * 100;
     $months = null;
@@ -666,18 +699,11 @@ function payments(): void
 
 function contact_blurb(): void
 {
-    $contactQuery = new WP_Query(array(
-        'category_name'     => 'contact',
-        'order'             => 'DESC',
-        'post_status'       => ' publish',
-        'posts_per_page'    => 1
-    ));
-    while ($contactQuery->have_posts()){
-        $contactQuery->the_post();
-        $content = get_the_content();
-    }
-    wp_reset_postdata();
-    echo '<div class="productContact">' . $content . '</div>';
+    echo '<div class="productContact">
+        <p>Contact our Sales Team or stop by our Edmonton, AB location to purchase.</p>
+        <p>Call or Text: <a href="tel:+17807321004">(780) 732-1004</a></p>
+        <p>In Person: <a href="https://goo.gl/maps/V2nMTa987fF2mZLe8" target="_blank" rel="noopener">11204 154 Street | Edmonton, AB</a></p>
+    </div>';
 }
 add_action('woocommerce_single_product_summary', 'contact_blurb', 45);
 
@@ -898,6 +924,7 @@ function preowned_edit_category_apr($term) {
     $idObj = (int) implode(wp_list_pluck($categories, 'term_id'));
     $term_id = $term->term_id;
     $cat_apr = get_term_meta($term_id, 'cat_apr', true);
+    $old_apr = get_term_meta($term_id, 'old_apr', true);
     $cat_fees = get_term_meta($term_id, 'cat_fees', true);
 
     if ($term->parent == $idObj){
@@ -909,11 +936,24 @@ function preowned_edit_category_apr($term) {
                 <p class="description"><?php _e('Enter the interest in decimal value', 'apr'); ?></p>
             </td>
         </tr>
+        <?php
+        if (str_contains($term->name, 'Preowned ')){
+        ?>
+        <tr class="form-field">
+            <th scope="row" valign="top"><label for="old_apr"><?php _e('APR (Units older than 2015)', 'old_apr'); ?></label></th>
+            <td>
+                <input type="text" name="old_apr" id="old_apr" value="<?php echo esc_attr($old_apr) ? esc_attr($old_apr) : ''; ?>">
+                <p class="description"><?php _e('Enter the interest in decimal value', 'old_apr'); ?></p>
+            </td>
+        </tr>
+        <?php
+        }
+        ?>
         <tr class="form-field">
             <th scope="row" valign="top"><label for="cat_fees"><?php _e('Fees', 'fees'); ?></label></th>
             <td>
                 <input type="text" name="cat_fees" id="cat_fees" value="<?php echo esc_attr($cat_fees) ? esc_attr($cat_fees) : ''; ?>">
-                <p class="description"><?php _e('Enter the fees', 'apr'); ?></p>
+                <p class="description"><?php _e('Enter the fees', 'fees'); ?></p>
             </td>
         </tr>
         <?php
@@ -927,9 +967,11 @@ add_action('product_cat_edit_form_fields', 'preowned_edit_category_apr', 10, 1);
 function shoreside_save_category_apr($term_id) {
 
     $cat_apr = filter_input(INPUT_POST, 'cat_apr');
+    $old_apr = filter_input(INPUT_POST, 'old_apr');
     $cat_fees = filter_input(INPUT_POST, 'cat_fees');
 
     update_term_meta($term_id, 'cat_apr', $cat_apr);
+    update_term_meta($term_id, 'old_apr', $old_apr);
     update_term_meta($term_id, 'cat_fees', $cat_fees);
 }
 

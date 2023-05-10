@@ -3,7 +3,7 @@ $crewQuery = new WP_Query(array(
     'category_name'     => 'crew',
     'order'             => 'ASC',
     'post_status'       => ' publish',
-    'posts_per_page'    => 3
+    'posts_per_page'    => -1
 ));
 ?>
 <div class="container">
