@@ -23,9 +23,9 @@ get_header();
                         the_content();
                     echo '</section>';
                     echo'<div class="col-sm-6">
-                        <h3>Apply for ' . $jobName . ' with Rec Power</h3>
+                        <h3>Apply for ' . $jobName . ' with Rec Power</h3>'; ?>
                         <script type="text/javascript" src="https://form.jotform.com/jsform/230734498938067?jobName=' . $jobName . '&jobUrl=' . $jobUrl .'"></script>
-                    </div>';
+                    <?php echo'</div>';
                 } else {
                     echo '<div class="container postContainer">';
                     the_post();

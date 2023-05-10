@@ -204,14 +204,14 @@ add_shortcode('carousel', 'carousel_shortcode');
 
 function promotion_content_shortcode( $atts = array(), $content = null ): void
 {
-$promotionAdQuery = new WP_Query(array(
-    'category_name'     =>      'promotions',
-    'order'             =>      'ASC',
-    'post_status'       =>      'publish',
-    'posts_per_page'    =>      -1
-));
+    $promotionAdQuery = new WP_Query(array(
+        'category_name'     =>      'promotions',
+        'order'             =>      'ASC',
+        'post_status'       =>      'publish',
+        'posts_per_page'    =>      -1
+    ));
 
-echo '<section>
+    echo '<section>
             <div class="container">
                 <div class="row">
                 <h2>Current Promotions</h2>';
@@ -222,18 +222,18 @@ echo '<section>
 </div>
 <div>
     <div class="row promotionRow row-cols-4">';
-while ($promotionAdQuery->have_posts()){
-    $promotionAdQuery->the_post();
-    $promotions = get_the_post_thumbnail();
-    $promotionUrl = get_post_custom_values('promotion_url');
-    if ($promotionUrl != ''){
-        echo '<a href="' . get_site_url() . $promotionUrl[0] . '"><p class="col promotions">' . $promotions . '</p></a>';
-    } else {
-        echo '<p class="col promotions">' . $promotions . '</p>';
+    while ($promotionAdQuery->have_posts()){
+        $promotionAdQuery->the_post();
+        $promotions = get_the_post_thumbnail();
+        $promotionUrl = get_post_custom_values('promotion_url');
+        if ($promotionUrl != ''){
+            echo '<a href="' . get_site_url() . $promotionUrl[0] . '"><p class="col promotions">' . $promotions . '</p></a>';
+        } else {
+            echo '<p class="col promotions">' . $promotions . '</p>';
+        }
     }
-}
-wp_reset_postdata();
-echo '</div>
+    wp_reset_postdata();
+    echo '</div>
             </div>
     </section>';
 }
@@ -938,15 +938,15 @@ function preowned_edit_category_apr($term) {
         </tr>
         <?php
         if (str_contains($term->name, 'Preowned ')){
-        ?>
-        <tr class="form-field">
-            <th scope="row" valign="top"><label for="old_apr"><?php _e('APR (Units older than 2015)', 'old_apr'); ?></label></th>
-            <td>
-                <input type="text" name="old_apr" id="old_apr" value="<?php echo esc_attr($old_apr) ? esc_attr($old_apr) : ''; ?>">
-                <p class="description"><?php _e('Enter the interest in decimal value', 'old_apr'); ?></p>
-            </td>
-        </tr>
-        <?php
+            ?>
+            <tr class="form-field">
+                <th scope="row" valign="top"><label for="old_apr"><?php _e('APR (Units older than 2015)', 'old_apr'); ?></label></th>
+                <td>
+                    <input type="text" name="old_apr" id="old_apr" value="<?php echo esc_attr($old_apr) ? esc_attr($old_apr) : ''; ?>">
+                    <p class="description"><?php _e('Enter the interest in decimal value', 'old_apr'); ?></p>
+                </td>
+            </tr>
+            <?php
         }
         ?>
         <tr class="form-field">

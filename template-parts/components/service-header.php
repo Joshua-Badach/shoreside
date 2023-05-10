@@ -12,34 +12,34 @@ $image_id = get_page_by_title($image_slug, 'OBJECT', 'attachment');
 $image_alt = get_post_meta($image_id->ID, '_wp_attachment_image_alt', TRUE);
 $infoImage = $image_id->guid;
 
-$video = implode(get_post_custom_values('video', $slug));
+$video = get_post_custom_values('video', $slug);
 
 echo '<section class="container serviceLayout">
     <h2>' . $term->name . '</h2>
         <div class="row">
             <div class="col-lg-6">';
-                echo $categoryDescription . '
+echo $categoryDescription . '
                 <img class="serviceInfo" src="'. $infoImage .'" alt="' . $image_alt . '">';
-                    if ($video != '') {
-                        echo '<iframe width="540" height="304"
-                            src="https://www.youtube.com/embed/' . $video . '">
+if (isset($video)) {
+    echo '<iframe width="540" height="304"
+                            src="https://www.youtube.com/embed/' . implode($video) . '">
                         </iframe>';
-                    }
-            echo '</div>
+}
+echo '</div>
     <section class="col-lg-6">
         <h2>Contact Us To Book</h2>'; ?>
 
 <iframe
-    id="JotFormIFrame-230514941075048"
-    title="Service page form"
-    onload="window.parent.scrollTo(0,0)"
-    allowtransparency="true"
-    allowfullscreen="true"
-    allow="geolocation; microphone; camera"
-    src="https://form.jotform.com/230514941075048"
-    frameborder="0"
-    style="min-width:100%;max-width:100%;height:539px;border:none;"
-    scrolling="no"
+        id="JotFormIFrame-230514941075048"
+        title="Service page form"
+        onload="window.parent.scrollTo(0,0)"
+        allowtransparency="true"
+        allowfullscreen="true"
+        allow="geolocation; microphone; camera"
+        src="https://form.jotform.com/230514941075048"
+        frameborder="0"
+        style="min-width:100%;max-width:100%;height:539px;border:none;"
+        scrolling="no"
 >
 </iframe>
 <script type="text/javascript">
@@ -125,6 +125,6 @@ echo '<section class="container serviceLayout">
         window.attachEvent("onmessage", handleIFrameMessage);
     }
 </script>
-    </section>
+</section>
 </div>
 

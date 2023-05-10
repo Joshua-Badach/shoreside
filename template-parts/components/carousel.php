@@ -1,16 +1,12 @@
 <?php
 global $post;
 
-//if ( is_home() || is_front_page() ){
-//    echo '<section class="carouselWrapper">
-//        <h2 class="hidden">Recreational Power Sports Special Offerings</h2>';
-//} else {
-    echo '<section>
+echo '<section>
         <h2 class="hidden">' . get_the_title() . ' Offerings</h2>';
-//}
 
 $the_page = sanitize_post($GLOBALS['wp_the_query']->get_queried_object() );
 $slug = $the_page->post_name;
+echo '<div class="mainCarousel">';
 
 function wp_loop_slider($query){
     while ($query->have_posts()){
@@ -25,8 +21,7 @@ function wp_loop_slider($query){
         $link_text = ($get_link_text != '') ? ($get_link_text) : ('Read More');
 
         if ($content != '') {
-            echo '<div class="mainCarousel">
-            <section class="sliderContent">';
+            echo'<section class="sliderContent">';
             the_post_thumbnail('', array('width' => '1900', 'height' => '400'));
                 echo '<div class="sliderText">
                     <h2>' . $title . '</h2>
