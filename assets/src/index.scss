@@ -507,10 +507,10 @@ footer{
     .sliderText {
       z-index: 1;
       position: absolute;
-      //top: auto;
-      //bottom: 200px;
-      //left: 100px;
-      //right: auto;
+      top: auto;
+      bottom: 25%;
+      left: 5%;
+      right: auto;
       width: 45%;
       max-width: 500px;
       font-size: 12px;
@@ -956,10 +956,6 @@ footer{
 
 //extra small mobile
 @media (min-width: 320px) and (max-width: 480px) {
-  $height : 20vh;
-  //#shelf{
-  //  aspect-ratio: 2/1.25;
-  //}
   #videoSlider {
     width: 100%;
   }
@@ -1004,13 +1000,6 @@ footer{
         object-fit: cover;
         aspect-ratio: 2/1.25;
       }
-    }
-    .sliderText{
-      -webkit-transform: translate(20%, -110%);
-      -moz-transform: translate(20%, -110%);
-      -ms-transform: translate(20%, -110%);
-      -o-transform: translate(20%, -110%);
-      transform: translate(20%, -110%);
     }
   }
   .brandCard img{
@@ -1063,9 +1052,6 @@ footer{
 }
 //mobile and tablet
 @media (min-width: 481px) and (max-width: 768px) {
-  //#shelf{
-  //  aspect-ratio: 2/.75;
-  //}
   #videoSlider {
     width: 100%;
   }
