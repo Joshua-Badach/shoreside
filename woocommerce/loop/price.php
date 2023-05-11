@@ -28,7 +28,9 @@ $id = $product->get_id();
 $url = get_permalink( $id );
 
 if ( $price_html = $product->get_price_html() ) {
-    echo '<div>
-        <span class="price">' . $price_html . '</span>
+    echo '<div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+        <meta itemprop="priceCurrency" content="CAD"/>
+        <span itemprop="price" content="' . $price . '" class="price">' . $price_html . '</span>
+        <link itemprop="availability" href="https://schema.org/InStock" />
     </div>';
 }

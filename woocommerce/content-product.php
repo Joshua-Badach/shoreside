@@ -20,6 +20,7 @@ global $product;
 $tags = wc_get_product_tag_list($product->get_id);
 $sale_price = get_post_meta( $product->id, '_price', true);
 $regular_price = get_post_meta( $product->id, '_regular_price', true);
+$link = $product->get_permalink();
 
 if ( empty( $product ) || ! $product->is_visible() ) {
 	return;
@@ -31,7 +32,9 @@ $description = $product->get_short_description();
 
 ?>
 <li itemprop="itemListElement" itemscope itemtype="https://schema.org/Product" <?php wc_product_class( 'modal-link ', $product ); ?> >
-	<?php
+<?php echo '<meta itemprop="url" content="' . $link . '"/>';
+    echo '<meta itemprop="description" content="' . esc_html(strip_tags($description)) . '"/>';
+    echo '<meta itemprop="sku" content="' . $sku . '"/>';
 
 	/**
 	 * Hook: woocommerce_before_shop_loop_item.
@@ -60,7 +63,6 @@ $description = $product->get_short_description();
 
     echo '<div itemscope itemprop="image" itemtype="http://schema.org/ImageObject">';
         echo '<meta itemprop="url" content="' . get_the_post_thumbnail_url() . '"/>
-        <meta itemprop="description" content="' . esc_html($description) . '"/>
     </div>';
 
 	/**

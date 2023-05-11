@@ -114,6 +114,7 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
             wp_dequeue_style('classic-theme-styles');
         }
         add_filter('wp_enqueue_scripts', 'disable_classic_theme_styles', 100);
+
         function preloadAssets(): void{
             $dir = get_template_directory_uri();
             $footer_logo_id = get_page_by_title('rps-logo', 'OBJECT', 'attachment');
@@ -1033,3 +1034,4 @@ function shoreside_save_category_video($term_id) {
 add_action('edited_product_cat', 'shoreside_save_category_video', 10, 1);
 add_action('create_product_cat', 'shoreside_save_category_video', 10, 1);
 
+remove_action('woocommerce_single_variation', 'woocommerce_single_variation_add_to_cart_button', 20 );
