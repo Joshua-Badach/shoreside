@@ -67,40 +67,47 @@ if ( ! function_exists( 'rpsShoreside_setup') ):
         }
         add_action( 'wp_enqueue_scripts', 'add_theme_scripts' ,0);
 
-//        // remove dashicons in frontend to non-admin
-//        Need to hash this one out, dashicons is super render blocking on load, but breaks the menu dropdowns
-//         function wpdocs_dequeue_dashicon() {
-//             if (current_user_can( 'update_core' )) {
-//                 return;
-//             }
-//             wp_deregister_style('dashicons');
-//         }
-//         add_action( 'wp_enqueue_scripts', 'wpdocs_dequeue_dashicon' );
+//        Pull unused Woocommerce assets
+        function dequeue_woocommerce_styles() {
 
-        add_action( 'wp_print_styles', 'wps_deregister_styles', 100 );
-        function wps_deregister_styles() {
-            wp_dequeue_style( 'wp-block-library' );
-        }
-        function dequeue_jquery_migrate( $scripts ) {
-            if ( ! is_admin() && ! empty( $scripts->registered['jquery'] ) ) {
-                $scripts->registered['jquery']->deps = array_diff(
-                    $scripts->registered['jquery']->deps,
-                    [ 'jquery-migrate' ]
-                );
-            }
-        }
-        add_action( 'wp_default_scripts', 'dequeue_jquery_migrate' );
+// styles
+            $dequeue_styles = array(
+                'photoswipe',
+                'photoswipe-default-skin',
+                'wc-block-style',
+                'wp-block-library',
+                'wc-block-editor',
+                'prettyPhoto'
+            );
 
-        function themesharbor_disable_woocommerce_block_styles() {
-            wp_dequeue_style( 'wc-blocks-style' );
-        }
-        add_action( 'wp_enqueue_scripts', 'themesharbor_disable_woocommerce_block_styles' );
+            foreach ( $dequeue_styles as $dstyles ) :
+                wp_dequeue_style( $dstyles );
+            endforeach;
 
-        function themesharbor_disable_woocommerce_block_editor_styles() {
-            wp_deregister_style( 'wc-block-editor' );
-            wp_deregister_style( 'wc-blocks-style' );
+// scripts
+
+            $dequeue_scripts = array(
+                'flexslider',
+                'photoswipe' ,
+                'photoswipe-ui-default',
+                'zoom',
+                'wc-cart-fragments',
+                'wc-cart',
+                'wc-add-payment-method',
+                'jquery-migrate',
+                'wc-geolocation',
+                'wc-lost-password',
+                'wc-password-strength-meter',
+                'prettyPhoto',
+                'prettyPhoto-init'
+            );
+
+            foreach ( $dequeue_scripts as $dscripts ) :
+                wp_dequeue_script( $dscripts );
+            endforeach;
+
         }
-        add_action( 'enqueue_block_assets', 'themesharbor_disable_woocommerce_block_editor_styles', 1, 1 );
+        add_action( 'wp_enqueue_scripts', 'dequeue_woocommerce_styles', 99 );
 
         function disable_classic_theme_styles() {
             wp_deregister_style('classic-theme-styles');

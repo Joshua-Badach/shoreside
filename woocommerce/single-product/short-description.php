@@ -51,9 +51,10 @@ if ( ! $short_description ) {
 <div class="woocommerce-product-details__short-description">
 	<?php
     echo $short_description;
-    if ($video != '') {
-        echo '<iframe class="productVideo" name="productVideo" scrolling="no" frameborder="1" src="https://www.youtube.com/embed/' . $video . '" marginwidth="0px" allowfullscreen></iframe>
-';
+    if (isset($video) && $video != '') {
+        echo '<iframe class="productVideo" name="productVideo"
+                        src="https://www.youtube.com/embed/' . $video . '">
+                    </iframe>';
     }
     if ( $ad != '' ){
         echo '<img class="productBanner" src="' . $header_url . '">';
