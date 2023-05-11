@@ -19,9 +19,7 @@ defined( 'ABSPATH' ) || exit;
 
 global $post;
 global $product;
-$manufacturer = $product->get_attribute( 'pa_manufacturer' );
-$type = $product->get_attribute( 'vehicle-type' );
-$horse = $product->get_attribute('horsepower');
+$attributes = $product->get_attributes();
 
 //Get all terms associated with post in woocommerce's taxonomy 'product_cat'
 $terms = get_the_terms( $post->ID, 'product_cat' );
@@ -44,38 +42,27 @@ $heading = apply_filters( 'woocommerce_product_additional_information_heading', 
 
 $partsObj = get_term_by('slug', 'parts-and-accessories', 'product_cat');
 
-?>
-
-<?php if ( $heading ) : ?>
+if ( $heading ) : ?>
 	<h2><?php echo esc_html( $heading ); ?></h2>
 <?php endif;
 
-do_action( 'woocommerce_product_additional_information', $product );
-
-//Shut this off because I'm tired and will look at this tomorrow
-
 echo'<table class="woocommerce-product-attributes shop_attributes">
     <tbody>';
+    echo '<tr class="woocommerce-product-attributes-item">
+        <th>Vehicle Category</th>
+        <td><p>' . $term_not_parent->name . '</p></td>
+    </tr>';
 
-        if(in_array($partsObj->term_id, $parents) == false) {
-            echo '<tr class="woocommerce-product-attributes-item">
-            <th>Vehicle Category</th>
-            <td><p>' . $term_not_parent->name . '</p></td>
-        </tr>';
-            if ($type != '') {
-                echo '<tr class="woocommerce-product-attributes-item">
-            <th>Vehicle Type</th>
-            <td><p>' . $type . '</p></td>
-        </tr>';
-            }
-            if ($horse != '') {
-                echo '<tr class="woocommerce-product-attributes-item">
-            <th>Horsepower</th>
-            <td><p>' . $horse . '</p></td>
-        </tr>';
-            }
-        }
-    echo'</tbody>
-</table>'
+foreach ($attributes as $attribute){
+    $value = $product->get_attribute( $attribute['name'] );
+    $label = wc_attribute_label( $attribute['name'] );
 
-?>
+    if ($attribute['visible'] == true) {
+        echo '<tr class="woocommerce-product-attributes-item">
+            <th>' . $label . '</th> <td>' . $value . '</td>
+        </tr>';
+    }
+}
+echo'</tbody>
+</table>';
+

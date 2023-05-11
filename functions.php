@@ -1025,3 +1025,4 @@ function shoreside_save_category_video($term_id) {
 
 add_action('edited_product_cat', 'shoreside_save_category_video', 10, 1);
 add_action('create_product_cat', 'shoreside_save_category_video', 10, 1);
+
