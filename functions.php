@@ -570,11 +570,6 @@ function brand_content_shortcode(): void
 add_shortcode('brand-content', 'brand_content_shortcode');
 
 //No results found for above code
-function woocommerce_shortcode_products_loop_no_results( $attributes ): void
-{
-    echo __( 'No products matching your query', 'woocommerce' );
-}
-add_action( 'woocommerce_shortcode_products_loop_no_results', 'woocommerce_shortcode_products_loop_no_results', 20, 1 );
 
 function catalog_shortcode(): void
 {
@@ -582,10 +577,16 @@ function catalog_shortcode(): void
 }
 add_shortcode('catalog', 'catalog_shortcode');
 
-//Woocommerce code
+// +=+=+=+=+=+=+=+=+=+=+=+=+=+= Woocommerce Code +=+=+=+=+=+=+=+=+=+=+=+=+=+=
+
+function woocommerce_shortcode_products_loop_no_results( $attributes ): void
+{
+    echo __( 'No products matching your query', 'woocommerce' );
+}
+add_action( 'woocommerce_shortcode_products_loop_no_results', 'woocommerce_shortcode_products_loop_no_results', 20, 1 );
 
 //Display sku
-add_action( 'woocommerce_single_product_summary', 'show_sku', 21 );
+add_action( 'woocommerce_single_product_summary', 'show_sku', 30 );
 function show_sku(): void
 {
     global $product;
@@ -593,6 +594,34 @@ function show_sku(): void
         echo '<div class="skuContainer"><span>SKU: ' . '<span class="sku"><strong>' . $product->get_sku() . '</strong></span></span></div>';
     }
 }
+
+function change_variable_product(){
+    if ( is_product() ) {
+        global $post;
+        $product = wc_get_product( $post->ID );
+        if ( $product->is_type( 'variable' ) ) {
+            add_filter( 'woocommerce_dropdown_variation_attribute_options_html', 'dropdown_remove_default', 12, 2 );
+            function dropdown_remove_default( $html, $args ) {
+                $show_option_none_text = $args['show_option_none'] ? $args['show_option_none'] : __( 'Choose an option', 'woocommerce' );
+                $show_option_none_html = '<option value="">'.esc_html( $show_option_none_text ).'</option>';
+                $html = str_replace($show_option_none_html, '', $html);
+                return $html;
+            }
+//            function move_variation_price() {
+//                remove_action( 'woocommerce_single_variation', 'woocommerce_single_variation', 10 );
+//                add_action( 'woocommerce_single_product_summary', 'woocommerce_single_variation', 5 );
+//            }
+//            add_action( 'woocommerce_before_add_to_cart_form', 'move_variation_price' );
+
+            remove_action('woocommerce_single_variation', 'woocommerce_single_variation_add_to_cart_button', 20 );
+            remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
+
+            remove_action('woocommerce_variable_add_to_cart', 'woocommerce_variable_add_to_cart', 30);
+            add_action('woocommerce_single_product_summary', 'woocommerce_variable_add_to_cart', 4);
+        }
+    }
+}
+add_action( 'woocommerce_before_single_product', 'change_variable_product' );
 
 add_action('woocommerce_single_product_summary', 'pending_banner' , 14);
 function pending_banner(): void
@@ -659,12 +688,13 @@ function payments(): void
             $fees = (int)get_term_meta($cat->term_id, 'cat_fees', true);
         }
     }
-    $gst = 1.05;
-    $apr = $interest * 100;
-    $months = null;
+    if (isset($interest) && isset($fees)) {
+        $gst = 1.05;
+        $apr = $interest * 100;
+        $months = null;
 
-    $principle = ($price + $fees) * $gst;
-
+        $principle = ($price + $fees) * $gst;
+    }
     if ($price != '') {
         if (str_contains($categories, 'Showroom') || str_contains($categories, 'Preowned')) {
             if (str_contains($categories, 'ATVs') || str_contains($categories, 'Snowmobiles')) {
@@ -688,7 +718,7 @@ function payments(): void
 
         //    Amortization calculation
 
-        if ($interest != null && $months != null) {
+        if (isset($interest) && $months != null) {
             $monthlyInterest = ($interest / 12);
             $num = (1 + $monthlyInterest);
 
@@ -729,7 +759,7 @@ function related_products_args( $args ) {
     return $args;
 }
 
-add_action('woocommerce_single_product_summary', 'woocommerce_template_single_title', 8);
+add_action('woocommerce_single_product_summary', 'woocommerce_template_single_title', 1);
 
 // remove product meta
 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
@@ -819,7 +849,6 @@ function df_disable_comments_hide_existing_comments($comments): array
     return $comments;
 }
 add_filter('comments_array', 'df_disable_comments_hide_existing_comments', 10, 2);
-
 
 //Add functionality to woocommerce edit manufacturer page to allow for featured brands
 
@@ -1034,4 +1063,3 @@ function shoreside_save_category_video($term_id) {
 add_action('edited_product_cat', 'shoreside_save_category_video', 10, 1);
 add_action('create_product_cat', 'shoreside_save_category_video', 10, 1);
 
-remove_action('woocommerce_single_variation', 'woocommerce_single_variation_add_to_cart_button', 20 );

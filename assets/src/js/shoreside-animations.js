@@ -40,4 +40,5 @@ export function shoresideAnimations(){
         $(this).show( { direction: "left" }, 1000);
         $('#videoSlider').toggle( { direction: "left" }, 1000);
     });
+
 }

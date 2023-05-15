@@ -2023,3 +2023,25 @@ input:checked + .slider:before {
     max-height: 400px;
   }
 }
+.variations_form {
+  position: relative;
+
+  .variations {
+    text-align: left;
+    margin-top: 1em;
+    margin-bottom: 0 !important;
+
+    .reset_variations {
+      visibility: hidden !important;
+    }
+
+    .label {
+      display: none;
+    }
+  }
+
+  .single_variation_wrap{
+   position: absolute;
+    bottom: 2.5em;
+  }
+}
